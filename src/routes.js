@@ -6,6 +6,7 @@ import PendaftaranPage from "./pages/PendaftaranPage";
 import DetailPelatihanPage from "./pages/DetailPelatihanPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import ProfileUserPage from "./pages/ProfileUserPage";
 import Home from "./pages/Home";
 
 const RouteApp = () => {
@@ -19,6 +20,7 @@ const RouteApp = () => {
         <Route path="/detail-pelatihan" exact element={<DetailPelatihanPage />} />
         <Route path="/login" exact element={<LoginPage />} />
         <Route path="/register" exact element={<RegisterPage />} />
+        <Route path="/profile-user" exact element={<ProfileUserPage />} />
       </Routes>
     </>
   );
