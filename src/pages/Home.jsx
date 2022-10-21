@@ -8,7 +8,6 @@ import History from "../components/History";
 import Info from "../components/Info";
 import NavBar from "../components/NavBar";
 import Pelatihan from "../components/Pelatihan";
-import Slider from "../components/Slider";
 
 const Home = () => {
   return (
@@ -21,7 +20,6 @@ const Home = () => {
       <Info />
       <Gallery />
       <History />
-      <Slider />
       <Footer />
     </>
   );
