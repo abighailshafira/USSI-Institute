@@ -9,11 +9,9 @@ const NavBar = () => {
         <div className="container">
           <div className="flex items-center justify-between relative">
             <div className="px-4">
-              <Link to="/">
-                <a className="py-4 block">
-                  <img src={Logo} alt="LOGO" className="h-10" />
-                </a>
-              </Link>
+              <a href="index.html" className="py-4 block">
+                <img src={Logo} alt="LOGO" className="h-10" />
+              </a>
             </div>
 
             <div className="px-4 flex items-center">
