@@ -13,7 +13,7 @@ const images = [pic1, pic2, pic3, pic4, pic5];
 function App() {
   const NextArrow = ({ onClick }) => {
     return (
-      <div className="absolute cursor-pointer z-10 right-0 top-[45%] bg-white rounded-full shadow-xl p-3" onClick={onClick}>
+      <div classNameName="absolute cursor-pointer z-10 right-0 top-[45%] bg-white rounded-full shadow-xl p-3" onClick={onClick}>
         <HiOutlineChevronRight />
       </div>
     );
@@ -21,7 +21,7 @@ function App() {
 
   const PrevArrow = ({ onClick }) => {
     return (
-      <div className="absolute cursor-pointer z-10 left-0 top-[45%] bg-white rounded-full shadow-xl p-3" onClick={onClick}>
+      <div classNameName="absolute cursor-pointer z-10 left-0 top-[45%] bg-white rounded-full shadow-xl p-3" onClick={onClick}>
         <HiOutlineChevronLeft />
       </div>
     );
@@ -42,28 +42,11 @@ function App() {
   };
 
   return (
-<<<<<<< HEAD
-    <>
-      <section className="pt-36">
-        <div className="container">
-          <div className="w-full px-4">
-            <div className="mx-auto text-center mb-16">
-              <h1 className="text-3xl font-bold mb-2 uppercase text-slate-800">
-                History Pelatihan
-              </h1>
-              <h2 className="text-base text-slate-500">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptates, earum!
-              </h2>
-            </div>
-          </div>
-=======
     <div className="container max-w-6xl pt-36">
-      <div class="w-full px-4">
-        <div class="mx-auto text-center mb-16">
-          <h1 class="text-3xl font-bold mb-2 uppercase text-slate-800">History Pelatihan</h1>
-          <h2 class="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, earum!</h2>
->>>>>>> 2c7b6072e35e8470b8113dc5d06e272b694bfece
+      <div className="w-full px-4">
+        <div className="mx-auto text-center mb-16">
+          <h1 className="text-3xl font-bold mb-2 uppercase text-slate-800">History Pelatihan</h1>
+          <h2 className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, earum!</h2>
         </div>
       </div>
       <Slider {...settings}>
