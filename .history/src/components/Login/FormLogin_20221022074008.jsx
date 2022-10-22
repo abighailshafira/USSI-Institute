@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Image from "../../assets/image/login.png";
 
 const FormLogin = () => {
@@ -44,17 +43,11 @@ const FormLogin = () => {
                       id="exampleCheck3"
                       checked
                     />
-                    <label
-                      className="form-check-label inline-block text-slate-500"
-                      for="exampleCheck2"
-                    >
+                    <label className="form-check-label inline-block text-slate-500" for="exampleCheck2">
                       Remember me
                     </label>
                   </div>
-                  <a
-                    href="#!"
-                    className="text-cyan-500 hover:text-cyan-600 focus:text-cyan-700 active:text-cyan-600 duration-200 transition ease-in-out"
-                  >
+                  <a href="#!" className="text-cyan-500 hover:text-cyan-600 focus:text-cyan-700 active:text-cyan-600 duration-200 transition ease-in-out">
                     Forgot password?
                   </a>
                 </div>
@@ -70,9 +63,9 @@ const FormLogin = () => {
 
                 <p className="mt-3 text-slate-500">
                   Belum punya akun?{" "}
-                  <Link to="/register">
-                    <a className="text-cyan-500">Register disini</a>
-                  </Link>
+                  <a href="register.html" className="text-cyan-500">
+                    Register disini
+                  </a>
                 </p>
               </form>
             </div>

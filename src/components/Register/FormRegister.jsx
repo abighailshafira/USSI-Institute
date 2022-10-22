@@ -57,7 +57,7 @@ const FormRegister = () => {
                   />
                 </div>
 
-                <div className="form-group mb-4">
+                {/* <div className="form-group mb-4">
                   <label for="password" className="text-base">
                     Ulangi Password
                   </label>
@@ -66,7 +66,7 @@ const FormRegister = () => {
                     className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
                     placeholder="Ulangi Password"
                   />
-                </div>
+                </div> */}
 
                 <button
                   type="submit"

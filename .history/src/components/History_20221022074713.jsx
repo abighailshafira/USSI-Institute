@@ -13,7 +13,7 @@ const images = [pic1, pic2, pic3, pic4, pic5];
 function App() {
   const NextArrow = ({ onClick }) => {
     return (
-      <div classNameName="absolute cursor-pointer z-10 right-0 top-[45%] bg-white rounded-full shadow-xl p-3" onClick={onClick}>
+      <div className="absolute cursor-pointer z-10 right-0 top-[45%] bg-white rounded-full shadow-xl p-3" onClick={onClick}>
         <HiOutlineChevronRight />
       </div>
     );
@@ -21,7 +21,7 @@ function App() {
 
   const PrevArrow = ({ onClick }) => {
     return (
-      <div classNameName="absolute cursor-pointer z-10 left-0 top-[45%] bg-white rounded-full shadow-xl p-3" onClick={onClick}>
+      <div className="absolute cursor-pointer z-10 left-0 top-[45%] bg-white rounded-full shadow-xl p-3" onClick={onClick}>
         <HiOutlineChevronLeft />
       </div>
     );
