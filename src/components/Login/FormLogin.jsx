@@ -7,6 +7,10 @@ const FormLogin = () => {
     <>
       <section className="pt-36">
         <div className="container">
+          <div className="max-w-xl mx-auto text-center mb-10">
+            <h1 className="text-3xl font-bold mb-2">Login</h1>
+            <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+          </div>
           <div className="flex flex-wrap items-center justify-center mx-auto rounded-lg shadow-xl bg-white overflow-hidden max-w-4xl">
             <div className="w-full md:w-1/2">
               <img src={Image} className="w-full" alt="Phone image" />
@@ -44,24 +48,18 @@ const FormLogin = () => {
                       id="exampleCheck3"
                       checked
                     />
-                    <label
-                      className="form-check-label inline-block text-slate-500"
-                      for="exampleCheck2"
-                    >
+                    <label className="form-check-label inline-block text-slate-500" for="exampleCheck2">
                       Remember me
                     </label>
                   </div>
-                  <a
-                    href="#!"
-                    className="text-cyan-500 hover:text-cyan-600 focus:text-cyan-700 active:text-cyan-600 duration-200 transition ease-in-out"
-                  >
+                  <a href="#!" className="text-cyan-500 hover:text-cyan-600 focus:text-cyan-700 active:text-cyan-600 duration-200 transition ease-in-out">
                     Forgot password?
                   </a>
                 </div>
 
                 <button
                   type="submit"
-                  className="inline-block px-7 py-3 bg-cyan-500 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-cyan-800 hover:shadow-lg focus:bg-cyan-800 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+                  className="inline-block px-7 py-3 bg-gradient-to-r from-cyan-500 to-sky-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-cyan-800 hover:shadow-lg focus:bg-cyan-800 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-800 active:shadow-lg transition duration-150 ease-in-out w-full"
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="light"
                 >
