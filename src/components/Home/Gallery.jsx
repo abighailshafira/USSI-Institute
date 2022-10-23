@@ -1,12 +1,12 @@
 import React from "react";
-import Video from "../assets/video/video1.mp4";
-import Video2 from "../assets/video/video2.mp4";
-import Video3 from "../assets/video/video4.mp4";
+import Video from "../../assets/video/video1.mp4";
+import Video2 from "../../assets/video/video2.mp4";
+import Video3 from "../../assets/video/video4.mp4";
 
 const Gallery = () => {
   return (
     <>
-      <section className="pt-36">
+      <section className="pt-24">
         <div className="container">
           <div className="w-full px-4">
             <div className="mx-auto text-center mb-16">

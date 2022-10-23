@@ -1,13 +1,13 @@
 import React from "react";
-import About from "../components/About";
-import Divisi from "../components/Divisi";
-import Footer from "../components/Footer";
-import Gallery from "../components/Gallery";
-import Hero from "../components/Hero";
-import History from "../components/History";
-import Info from "../components/Info";
 import NavBar from "../components/NavBar";
-import Pelatihan from "../components/Pelatihan";
+import Hero from "../components/Home/Hero";
+import About from "../components/Home/About";
+import Divisi from "../components/Home/Divisi";
+import Pelatihan from "../components/Home/Pelatihan";
+import Info from "../components/Home/Info";
+import Gallery from "../components/Home/Gallery";
+import History from "../components/Home/History";
+import Footer from "../components/Footer";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -76,7 +76,7 @@ const Home = () => {
   ];
   return (
     <>
-      <NavBar />
+      <NavBar theme="dark" />
       <Hero />
       <About />
       <Divisi />

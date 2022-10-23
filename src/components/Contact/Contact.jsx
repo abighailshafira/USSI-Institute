@@ -3,16 +3,13 @@ import React from "react";
 const Contact = () => {
   return (
     <>
-      <section id="contact" className="pb-24 pt-36">
+      <section id="contact" className="pt-36">
         <div className="container">
           <div className="w-full px-4">
             <div className="max-w-xl mx-auto text-center mb-10">
               <h2 className="font-semibold text-lg text-cyan-500">Kontak</h2>
               <h1 className="text-3xl font-bold mb-2">Hubungi Kami</h1>
-              <p className="text-base text-slate-500">
-                Mari bergabung dan mengikuti pelatihan yang kami selenggarakan
-                untuk membangun sumber daya manusia yang handal.
-              </p>
+              <p className="text-base text-slate-500">Mari bergabung dan mengikuti pelatihan yang kami selenggarakan untuk membangun sumber daya manusia yang handal.</p>
             </div>
           </div>
 
@@ -67,10 +64,7 @@ const Contact = () => {
                   ></textarea>
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full px-6 py-2.5 bg-cyan-500 text-white font-semibold text-sm leading-tight rounded-md hover:opacity-80 hover:shadow-lg transition duration-300 ease-in-out"
-                >
+                <button type="submit" className="w-full px-6 py-2.5 bg-cyan-500 text-white font-semibold text-sm leading-tight rounded-md hover:opacity-80 hover:shadow-lg transition duration-300 ease-in-out">
                   Kirim Pesan
                 </button>
               </form>
@@ -80,7 +74,7 @@ const Contact = () => {
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.605228444797!2d107.66938051455905!3d-6.9376945949875015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68c2a7b5cda115%3A0x6158ba9a35b7790c!2sUSSI%20Pinbuk%20Prima%20Software%20PT!5e0!3m2!1sen!2sid!4v1665975453920!5m2!1sen!2sid"
                 style={{
-                    border: 0
+                  border: 0,
                 }}
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
