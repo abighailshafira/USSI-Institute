@@ -66,7 +66,7 @@ const FormLogin = () => {
                   Login
                 </button>
 
-                <p className="mt-3 text-slate-500">
+                <p className="mt-3 text-slate-500 text-center">
                   Belum punya akun?{" "}
                   <Link to="/register">
                     <a className="text-cyan-500">Register disini</a>

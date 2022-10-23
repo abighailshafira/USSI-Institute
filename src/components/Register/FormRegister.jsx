@@ -73,7 +73,7 @@ const FormRegister = () => {
                   Register
                 </button>
 
-                <p className="mt-3 text-slate-500">
+                <p className="mt-3 text-slate-500 text-center">
                   Sudah punya akun?{" "}
                   <Link to="/login">
                     <a className="text-cyan-500">Login disini</a>
