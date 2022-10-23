@@ -1,85 +1,164 @@
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import { Table } from 'antd';
+import classNames from 'classnames';
+import ResizeObserver from 'rc-resize-observer';
+import React, { useEffect, useRef, useState } from 'react';
+import { VariableSizeGrid as Grid } from 'react-window';
 
-const TAX_RATE = 0.07;
-
-function ccyFormat(num) {
-  return `${num.toFixed(2)}`;
-}
-
-function priceRow(qty, unit) {
-  return qty * unit;
-}
-
-function createRow(desc, qty, unit) {
-  const price = priceRow(qty, unit);
-  return { desc, qty, unit, price };
-}
-
-function subtotal(items) {
-  return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
-}
-
-const rows = [
-  createRow('Paperclips (Box)', 100, 1.15),
-  createRow('Paper (Case)', 10, 45.99),
-  createRow('Waste Basket', 2, 17.99),
-];
-
-const invoiceSubtotal = subtotal(rows);
-const invoiceTaxes = TAX_RATE * invoiceSubtotal;
-const invoiceTotal = invoiceTaxes + invoiceSubtotal;
-
-export default function UserTable() {
+const VirtualTable = (props) => {
+  const { columns, scroll } = props;
+  const [tableWidth, setTableWidth] = useState(0);
+  const widthColumnCount = columns.filter(({ width }) => !width).length;
+  const mergedColumns = columns.map((column) => {
+    if (column.width) {
+      return column;
+    }
+    return {
+      ...column,
+      width: Math.floor(tableWidth / widthColumnCount),
+    };
+  });
+  const gridRef = useRef();
+  const [connectObject] = useState(() => {
+    const obj = {};
+    Object.defineProperty(obj, 'scrollLeft', {
+      get: () => {
+        if (gridRef.current) {
+          return gridRef.current?.state?.scrollLeft;
+        }
+        return null;
+      },
+      set: (scrollLeft) => {
+        if (gridRef.current) {
+          gridRef.current.scrollTo({
+            scrollLeft,
+          });
+        }
+      },
+    });
+    return obj;
+  });
+  const resetVirtualGrid = () => {
+    gridRef.current?.resetAfterIndices({
+      columnIndex: 0,
+      shouldForceUpdate: true,
+    });
+  };
+  useEffect(() => resetVirtualGrid, [tableWidth]);
+  const renderVirtualList = (rawData, { scrollbarSize, ref, onScroll }) => {
+    ref.current = connectObject;
+    const totalHeight = rawData.length * 54;
+    return (
+      <Grid
+        ref={gridRef}
+        className="virtual-grid"
+        columnCount={mergedColumns.length}
+        columnWidth={(index) => {
+          const { width } = mergedColumns[index];
+          return totalHeight > scroll.y && index === mergedColumns.length - 1
+            ? width - scrollbarSize - 1
+            : width;
+        }}
+        height={scroll.y}
+        rowCount={rawData.length}
+        rowHeight={() => 54}
+        width={tableWidth}
+        onScroll={({ scrollLeft }) => {
+          onScroll({
+            scrollLeft,
+          });
+        }}
+      >
+        {({ columnIndex, rowIndex, style }) => (
+          <div
+            className={classNames('virtual-table-cell', {
+              'virtual-table-cell-last': columnIndex === mergedColumns.length - 1,
+            })}
+            style={style}
+          >
+            {rawData[rowIndex][mergedColumns[columnIndex].dataIndex]}
+          </div>
+        )}
+      </Grid>
+    );
+  };
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="spanning table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="center" colSpan={3}>
-              Details
-            </TableCell>
-            <TableCell align="right">Price</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Desc</TableCell>
-            <TableCell align="right">Qty.</TableCell>
-            <TableCell align="right">Unit</TableCell>
-            <TableCell align="right">Sum</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.desc}>
-              <TableCell>{row.desc}</TableCell>
-              <TableCell align="right">{row.qty}</TableCell>
-              <TableCell align="right">{row.unit}</TableCell>
-              <TableCell align="right">{ccyFormat(row.price)}</TableCell>
-            </TableRow>
-          ))}
-
-          <TableRow>
-            <TableCell rowSpan={3} />
-            <TableCell colSpan={2}>Subtotal</TableCell>
-            <TableCell align="right">{ccyFormat(invoiceSubtotal)}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Tax</TableCell>
-            <TableCell align="right">{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
-            <TableCell align="right">{ccyFormat(invoiceTaxes)}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell colSpan={2}>Total</TableCell>
-            <TableCell align="right">{ccyFormat(invoiceTotal)}</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <ResizeObserver
+      onResize={({ width }) => {
+        setTableWidth(width);
+      }}
+    >
+      <Table
+        {...props}
+        className="virtual-table py-32 pl-10"
+        columns={mergedColumns}
+        pagination={false}
+        components={{
+          body: renderVirtualList,
+        }}
+      />
+    </ResizeObserver>
   );
-}
+};
+
+// Usage
+const columns = [
+  {
+    title: 'No',
+    dataIndex: 'key',
+    width: 50,
+  },
+  {
+    title: 'Kegiatan',
+    dataIndex: 'key',
+    width: 250,
+  },
+  {
+    title: 'Tgl Awal',
+    dataIndex: 'key',
+    width: 100,
+  },
+  {
+    title: 'Tgl Akhir',
+    dataIndex: 'key',
+    width: 100,
+  },
+  {
+    title: 'Lokasi',
+    dataIndex: 'key',
+    width: 200,
+  },
+  {
+    title: 'Kota',
+    dataIndex: 'key',
+    width: 100,
+  },
+  {
+    title: 'Sertifikat Attendance',
+    dataIndex: 'key',
+    width: 100,
+  },
+  {
+    title: 'Sertifikat Kelulusan',
+    dataIndex: 'key',
+    width: 100,
+  },
+];
+const data = Array.from(
+  {
+    length: 100000,
+  },
+  (_, key) => ({
+    key,
+  }),
+);
+const App = () => (
+  <VirtualTable
+    columns={columns}
+    dataSource={data}
+    scroll={{
+      y: 300,
+      x: '100vw',
+    }}
+  />
+);
+export default App;
