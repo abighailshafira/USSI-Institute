@@ -13,11 +13,13 @@ const FormDaftar = () => {
   }, []);
 
   const apiCity = async () => {
-    await axios.get(`https://binderbyte.com/wilayah/kabupaten`).then((res) => {
-      const getData = res.data.data;
-      // setGetCity(getData);
-      console.log(getData);
-    });
+    await axios
+      .get(`https://kabupatenid.herokuapp.com/kabupaten/list`)
+      .then((res) => {
+        const getData = res.data.data;
+        // setGetCity(getData);
+        console.log(getData.map((d) => d.nama));
+      });
   };
 
   function handleChangeCity(value) {

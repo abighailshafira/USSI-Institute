@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "../../assets/image/register.png";
+import AsyncSelect from "react-select/async";
 import axios from "axios";
 import ReactSelect from "react-select";
 
@@ -13,11 +14,13 @@ const FormDaftar = () => {
   }, []);
 
   const apiCity = async () => {
-    await axios.get(`https://binderbyte.com/wilayah/kabupaten`).then((res) => {
-      const getData = res.data.data;
-      // setGetCity(getData);
-      console.log(getData);
-    });
+    await axios
+      .get(`https://kabupatenid.herokuapp.com/kabupaten/list`)
+      .then((res) => {
+        const getData = res.data.data;
+        setGetCity(getData);
+        console.table(getData);
+      });
   };
 
   function handleChangeCity(value) {
@@ -26,21 +29,12 @@ const FormDaftar = () => {
   }
 
   // const optionsCity = getCity.map((d) => {
-  //   return {
-  //     label: d.nama,
-  //     value: d.nama,
-  //   };
-  // });
-
-  // const optionsCity = getCity.map((d) => {
   //   return (
   //     label: d.name,
   //   value: d.name
   //   )
   // })
-
-  // console.log(getCity?.map((d) => d.nama));
-
+    
   return (
     <>
       <section id="form-daftar" className="pt-36">
@@ -69,12 +63,22 @@ const FormDaftar = () => {
                   <label for="subject" className="text-base">
                     Pelatihan
                   </label>
-                  <select className="form-control block w-full px-2 py-1.5 text-base bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500">
+                  <ReactSelect
+                    className="basic-single"
+                    placeholder="Pilih Kota ..."
+                    classNamePrefix="select"
+                    // value={selectedCity}
+                    // isLoading={isLoading}
+                    isSearchable
+                    options={getCity}
+                    // onChange={handleChangeCity}
+                  />
+                  {/* <select className="form-control block w-full px-2 py-1.5 text-base bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500">
                     <option selected>Open this select menu</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
-                  </select>
+                  </select> */}
                 </div>
 
                 <div className="form-group mb-4">
@@ -129,17 +133,11 @@ const FormDaftar = () => {
                     <label for="asalKota" className="text-base">
                       Asal Kota
                     </label>
-                    <ReactSelect
-                      className="basic-single"
-                      placeholder="Pilih Kota ..."
-                      classNamePrefix="select"
-                      // value={selectedCity}
-                      // isLoading={isLoading}
-                      getOptionLabel={(e) => e.name}
-                      getOptionValue={(e) => e.id}
-                      isSearchable
-                      options={getCity}
-                      // onChange={handleChangeCity}
+                    <input
+                      type="text"
+                      className="form-control block w-full px-3 py-1.5 text-base text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
+                      id="asalKota"
+                      placeholder="Asal Kota"
                     />
                   </div>
                 </div>

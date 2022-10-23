@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "../../assets/image/register.png";
+import AsyncSelect from "react-select/async";
 import axios from "axios";
 import ReactSelect from "react-select";
 
@@ -13,11 +14,13 @@ const FormDaftar = () => {
   }, []);
 
   const apiCity = async () => {
-    await axios.get(`https://binderbyte.com/wilayah/kabupaten`).then((res) => {
-      const getData = res.data.data;
-      // setGetCity(getData);
-      console.log(getData);
-    });
+    await axios
+      .get(`https://kabupatenid.herokuapp.com/kabupaten/list`)
+      .then((res) => {
+        const getData = res.data.data;
+        setGetCity(getData);
+        console.log(getData);
+      });
   };
 
   function handleChangeCity(value) {
@@ -26,20 +29,11 @@ const FormDaftar = () => {
   }
 
   // const optionsCity = getCity.map((d) => {
-  //   return {
-  //     label: d.nama,
-  //     value: d.nama,
-  //   };
-  // });
-
-  // const optionsCity = getCity.map((d) => {
   //   return (
   //     label: d.name,
   //   value: d.name
   //   )
   // })
-
-  // console.log(getCity?.map((d) => d.nama));
 
   return (
     <>
@@ -135,8 +129,6 @@ const FormDaftar = () => {
                       classNamePrefix="select"
                       // value={selectedCity}
                       // isLoading={isLoading}
-                      getOptionLabel={(e) => e.name}
-                      getOptionValue={(e) => e.id}
                       isSearchable
                       options={getCity}
                       // onChange={handleChangeCity}

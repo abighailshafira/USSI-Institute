@@ -15,9 +15,13 @@ const FormDaftar = () => {
   const apiCity = async () => {
     await axios.get(`https://binderbyte.com/wilayah/kabupaten`).then((res) => {
       const getData = res.data.data;
-      // setGetCity(getData);
+      setGetCity(getData);
       console.log(getData);
     });
+  };
+
+  const onChangeCity = (value) => {
+    setCity(value);
   };
 
   function handleChangeCity(value) {
@@ -129,18 +133,25 @@ const FormDaftar = () => {
                     <label for="asalKota" className="text-base">
                       Asal Kota
                     </label>
-                    <ReactSelect
-                      className="basic-single"
-                      placeholder="Pilih Kota ..."
-                      classNamePrefix="select"
-                      // value={selectedCity}
-                      // isLoading={isLoading}
-                      getOptionLabel={(e) => e.name}
-                      getOptionValue={(e) => e.id}
-                      isSearchable
-                      options={getCity}
-                      // onChange={handleChangeCity}
-                    />
+                    <Select
+                      showSearch
+                      placeholder="Select city"
+                      optionFilterProp="children"
+                      style={{ width: "100%" }}
+                      onChange={onChangeCity}
+                      onSearch={onSearch}
+                      filterOption={(input, option) =>
+                        option.children
+                          .toLowerCase()
+                          .includes(input.toLowerCase())
+                      }
+                    >
+                      {getCity?.map((d) => (
+                        <Option key={d.id} value={d.nama}>
+                          {toTitleCase(d.nama)}
+                        </Option>
+                      ))}
+                    </Select>
                   </div>
                 </div>
 

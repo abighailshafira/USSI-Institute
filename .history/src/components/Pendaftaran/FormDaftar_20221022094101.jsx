@@ -13,11 +13,13 @@ const FormDaftar = () => {
   }, []);
 
   const apiCity = async () => {
-    await axios.get(`https://binderbyte.com/wilayah/kabupaten`).then((res) => {
-      const getData = res.data.data;
-      // setGetCity(getData);
-      console.log(getData);
-    });
+    await axios
+      .get(`https://kabupatenid.herokuapp.com/kabupaten/list`)
+      .then((res) => {
+        const getData = res.data.data;
+        setGetCity(getData);
+        console.log(getData.map(d => d.nama));
+      });
   };
 
   function handleChangeCity(value) {
@@ -39,7 +41,7 @@ const FormDaftar = () => {
   //   )
   // })
 
-  // console.log(getCity?.map((d) => d.nama));
+  // console.log(getCity?.map(d => d.nama))
 
   return (
     <>
@@ -135,10 +137,8 @@ const FormDaftar = () => {
                       classNamePrefix="select"
                       // value={selectedCity}
                       // isLoading={isLoading}
-                      getOptionLabel={(e) => e.name}
-                      getOptionValue={(e) => e.id}
                       isSearchable
-                      options={getCity}
+                      // options={optionsCity}
                       // onChange={handleChangeCity}
                     />
                   </div>
