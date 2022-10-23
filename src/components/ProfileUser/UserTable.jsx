@@ -1,44 +1,85 @@
 import * as React from 'react';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
+const TAX_RATE = 0.07;
 
-const UserTable = () => {
-  return <>    <section className="pb-24 pt-36">
-  <div className="container">
-    <table className="w-full border text-center">
-      <thead className="">
-        <tr>
-          <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 border-r">#</th>
-          <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 border-r">First</th>
-          <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 border-r">Last</th>
-          <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4">Handle</th>
-          <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4">Handle</th>
-          <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4">Handle</th>
-          <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4">Handle</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr className="border-t-[1px]">
-          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r">1</td>
-          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r">Mark</td>
-          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r">Otto</td>
-          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">@mdo</td>
-        </tr>
-        <tr className="bg-white border-b-2">
-          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r">2</td>
-          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r">Jacob</td>
-          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r">Thornton</td>
-          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">@fat</td>
-        </tr>
-        <tr className="bg-white border-b-2">
-          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r">3</td>
-          <td colspan="2" className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center border-r">Larry the Bird</td>
-          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">@twitter</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-</>;
-};
+function ccyFormat(num) {
+  return `${num.toFixed(2)}`;
+}
 
-export default UserTable;
+function priceRow(qty, unit) {
+  return qty * unit;
+}
+
+function createRow(desc, qty, unit) {
+  const price = priceRow(qty, unit);
+  return { desc, qty, unit, price };
+}
+
+function subtotal(items) {
+  return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
+}
+
+const rows = [
+  createRow('Paperclips (Box)', 100, 1.15),
+  createRow('Paper (Case)', 10, 45.99),
+  createRow('Waste Basket', 2, 17.99),
+];
+
+const invoiceSubtotal = subtotal(rows);
+const invoiceTaxes = TAX_RATE * invoiceSubtotal;
+const invoiceTotal = invoiceTaxes + invoiceSubtotal;
+
+export default function UserTable() {
+  return (
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 700 }} aria-label="spanning table">
+        <TableHead>
+          <TableRow>
+            <TableCell align="center" colSpan={3}>
+              Details
+            </TableCell>
+            <TableCell align="right">Price</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Desc</TableCell>
+            <TableCell align="right">Qty.</TableCell>
+            <TableCell align="right">Unit</TableCell>
+            <TableCell align="right">Sum</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.desc}>
+              <TableCell>{row.desc}</TableCell>
+              <TableCell align="right">{row.qty}</TableCell>
+              <TableCell align="right">{row.unit}</TableCell>
+              <TableCell align="right">{ccyFormat(row.price)}</TableCell>
+            </TableRow>
+          ))}
+
+          <TableRow>
+            <TableCell rowSpan={3} />
+            <TableCell colSpan={2}>Subtotal</TableCell>
+            <TableCell align="right">{ccyFormat(invoiceSubtotal)}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Tax</TableCell>
+            <TableCell align="right">{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
+            <TableCell align="right">{ccyFormat(invoiceTaxes)}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell colSpan={2}>Total</TableCell>
+            <TableCell align="right">{ccyFormat(invoiceTotal)}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+}
