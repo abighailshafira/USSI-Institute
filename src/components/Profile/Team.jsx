@@ -82,7 +82,7 @@ export default class Responsive extends Component {
           <Slider {...settings} className="pb-3">
             <div className="px-3 py-5">
               <div className="bg-white rounded-md shadow-lg">
-                <div className="overflow-hidden bg-no-repeat bg-cover p-3 ">
+                <div className="overflow-hidden bg-no-repeat bg-cover p-3">
                   <img src={Image1} className="rounded-lg shadow-md" />
                 </div>
 
