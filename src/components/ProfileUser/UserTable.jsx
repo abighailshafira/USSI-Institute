@@ -1,8 +1,8 @@
-import { Table } from 'antd';
-import classNames from 'classnames';
-import ResizeObserver from 'rc-resize-observer';
-import React, { useEffect, useRef, useState } from 'react';
-import { VariableSizeGrid as Grid } from 'react-window';
+import { Table } from "antd";
+import classNames from "classnames";
+import ResizeObserver from "rc-resize-observer";
+import React, { useEffect, useRef, useState } from "react";
+import { VariableSizeGrid as Grid } from "react-window";
 
 const VirtualTable = (props) => {
   const { columns, scroll } = props;
@@ -20,7 +20,7 @@ const VirtualTable = (props) => {
   const gridRef = useRef();
   const [connectObject] = useState(() => {
     const obj = {};
-    Object.defineProperty(obj, 'scrollLeft', {
+    Object.defineProperty(obj, "scrollLeft", {
       get: () => {
         if (gridRef.current) {
           return gridRef.current?.state?.scrollLeft;
@@ -54,9 +54,7 @@ const VirtualTable = (props) => {
         columnCount={mergedColumns.length}
         columnWidth={(index) => {
           const { width } = mergedColumns[index];
-          return totalHeight > scroll.y && index === mergedColumns.length - 1
-            ? width - scrollbarSize - 1
-            : width;
+          return totalHeight > scroll.y && index === mergedColumns.length - 1 ? width - scrollbarSize - 1 : width;
         }}
         height={scroll.y}
         rowCount={rawData.length}
@@ -70,8 +68,8 @@ const VirtualTable = (props) => {
       >
         {({ columnIndex, rowIndex, style }) => (
           <div
-            className={classNames('virtual-table-cell', {
-              'virtual-table-cell-last': columnIndex === mergedColumns.length - 1,
+            className={classNames("virtual-table-cell", {
+              "virtual-table-cell-last": columnIndex === mergedColumns.length - 1,
             })}
             style={style}
           >
@@ -89,7 +87,7 @@ const VirtualTable = (props) => {
     >
       <Table
         {...props}
-        className="virtual-table py-32 pl-10"
+        className="virtual-table py-32 px-10"
         columns={mergedColumns}
         pagination={false}
         components={{
@@ -103,43 +101,43 @@ const VirtualTable = (props) => {
 // Usage
 const columns = [
   {
-    title: 'No',
-    dataIndex: 'key',
+    title: "No",
+    dataIndex: "key",
     width: 50,
   },
   {
-    title: 'Kegiatan',
-    dataIndex: 'key',
+    title: "Kegiatan",
+    dataIndex: "key",
     width: 250,
   },
   {
-    title: 'Tgl Awal',
-    dataIndex: 'key',
+    title: "Tgl Awal",
+    dataIndex: "key",
     width: 100,
   },
   {
-    title: 'Tgl Akhir',
-    dataIndex: 'key',
+    title: "Tgl Akhir",
+    dataIndex: "key",
     width: 100,
   },
   {
-    title: 'Lokasi',
-    dataIndex: 'key',
+    title: "Lokasi",
+    dataIndex: "key",
     width: 200,
   },
   {
-    title: 'Kota',
-    dataIndex: 'key',
+    title: "Kota",
+    dataIndex: "key",
     width: 100,
   },
   {
-    title: 'Sertifikat Attendance',
-    dataIndex: 'key',
+    title: "Sertifikat Attendance",
+    dataIndex: "key",
     width: 100,
   },
   {
-    title: 'Sertifikat Kelulusan',
-    dataIndex: 'key',
+    title: "Sertifikat Kelulusan",
+    dataIndex: "key",
     width: 100,
   },
 ];
@@ -149,7 +147,7 @@ const data = Array.from(
   },
   (_, key) => ({
     key,
-  }),
+  })
 );
 const App = () => (
   <VirtualTable
@@ -157,7 +155,7 @@ const App = () => (
     dataSource={data}
     scroll={{
       y: 300,
-      x: '100vw',
+      x: "100vw",
     }}
   />
 );
