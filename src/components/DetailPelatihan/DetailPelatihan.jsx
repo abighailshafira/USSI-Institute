@@ -25,8 +25,8 @@ const DetailPelatihan = () => {
                   Nemo facere maiores mollitia!
                 </p>
               </div>
-              <p className="text-slate-500 py-2 flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 text-slate-800">
+              <p className="text-slate-800 py-2 flex items-center text-sm font-medium">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 text-slate-500">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -38,7 +38,7 @@ const DetailPelatihan = () => {
               <div>
                 <h2 className="text-2xl font-semibold text-slate-800 mt-5 py-6">Ready to Participate?</h2>
                 <Link to="/pendaftaran">
-                  <a className="text-sm font-semibold text-white bg-cyan-500 py-3 px-8 rounded-md">Daftar Sekarang</a>
+                  <a className="text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-sky-600  hover:bg-cyan-800 hover:shadow-lg  transition duration-150 ease-in-out py-3 px-8 rounded-md">Daftar Sekarang</a>
                 </Link>
               </div>
             </div>
