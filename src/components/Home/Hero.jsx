@@ -28,7 +28,7 @@ const Hero = () => {
               <h1 className="text-4xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-6 md:mb-8">
                 Selamat Datang di Website
                 <br />
-                <span className="text-cyan-500">USSI INSTITUTE</span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-sky-600">USSI INSTITUTE</span>
               </h1>
               <a
                 href="#"
