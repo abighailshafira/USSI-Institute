@@ -5,16 +5,6 @@ import Image2 from "../../assets/image/team-2.jpg";
 import Image3 from "../../assets/image/team-3.jpg";
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 
-// function NextArrow(props) {
-//   const { className, style, onClick } = props;
-//   return <div className={className} style={{ ...style, display: "block", background: "red" }} onClick={onClick} />;
-// }
-
-// function PrevArrow(props) {
-//   const { className, style, onClick } = props;
-//   return <div className={className} style={{ ...style, display: "block", background: "green" }} onClick={onClick} />;
-// }
-
 const NextArrow = ({ onClick }) => {
   return (
     <div className="absolute cursor-pointer z-10 right-0 top-[45%] bg-white rounded-full shadow-xl p-3" onClick={onClick}>

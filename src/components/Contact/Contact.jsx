@@ -7,64 +7,58 @@ const Contact = () => {
         <div className="container">
           <div className="w-full px-4">
             <div className="max-w-xl mx-auto text-center mb-10">
-              <h2 className="font-semibold text-lg text-cyan-500">Kontak</h2>
-              <h1 className="text-3xl font-bold mb-2">Hubungi Kami</h1>
+              <h2 className="font-semibold text-lg text-cyan-500 mb-0">Kontak</h2>
+              <h1 className="text-3xl font-bold mb-2 text-slate-800">Hubungi Kami</h1>
               <p className="text-base text-slate-500">Mari bergabung dan mengikuti pelatihan yang kami selenggarakan untuk membangun sumber daya manusia yang handal.</p>
             </div>
           </div>
 
-          <div className="flex flex-wrap justify-center mx-auto rounded-lg shadow-xl bg-white overflow-hidden max-w-4xl">
+          <div className="flex flex-wrap justify-center mx-auto rounded-lg shadow-lg bg-white overflow-hidden max-w-4xl">
             <div className="w-full p-7 md:w-1/2 md:p-10">
               <form>
-                <div className="grid grid-cols-2 gap-2 md:gap-4">
-                  <div className="form-group">
-                    <label for="name" className="text-base">
-                      Nama
-                    </label>
+                <div className="grid grid-cols-2 gap-2 md:gap-4 text-slate-800">
+                  <div className="form-group text-base">
+                    <label for="name">Nama</label>
                     <input
                       type="text"
-                      className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
+                      className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
                       id="name"
                       placeholder="Nama"
                     />
                   </div>
-                  <div className="form-group mb-4">
-                    <label for="email" className="text-base">
-                      Email
-                    </label>
+
+                  <div className="form-group text-base mb-4">
+                    <label for="email">Email</label>
                     <input
                       type="email"
-                      className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
+                      className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
                       id="email"
                       placeholder="Email"
                     />
                   </div>
                 </div>
 
-                <div className="form-group mb-4">
-                  <label for="subject" className="text-base">
-                    Subjek
-                  </label>
+                <div className="text-base mb-4">
+                  <label for="subject">Subjek</label>
                   <input
                     type="text"
-                    className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
+                    className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
                     id="subject"
                     placeholder="Subjek"
                   />
                 </div>
-                <div className="form-group mb-4">
-                  <label for="message" className="text-base">
-                    Pesan
-                  </label>
+
+                <div className="text-base mb-4">
+                  <label for="message">Pesan</label>
                   <textarea
                     type="text"
-                    className="h-32 form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
+                    className="h-32 form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
                     id="message"
                     placeholder="Pesan"
                   ></textarea>
                 </div>
 
-                <button type="submit" className="w-full px-6 py-2.5 bg-cyan-500 text-white font-semibold text-sm leading-tight rounded-md hover:opacity-80 hover:shadow-lg transition duration-300 ease-in-out">
+                <button type="submit" className="w-full px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-sky-600 text-white font-medium text-base tracking-wide leading-snug rounded-md hover:shadow-lg transition duration-300 ease-in-out">
                   Kirim Pesan
                 </button>
               </form>
