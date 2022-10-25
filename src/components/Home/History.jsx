@@ -46,7 +46,7 @@ function App() {
       <div className="w-full px-4">
         <div className="mx-auto text-center mb-16">
           <h1 className="text-3xl font-bold mb-2 uppercase text-slate-800">History Pelatihan</h1>
-          <h2 className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, earum!</h2>
+          <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, earum!</p>
         </div>
       </div>
       <Slider {...settings}>

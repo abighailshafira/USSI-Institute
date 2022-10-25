@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Image from "../../assets/image/register.png";
+import Image from "../../assets/image/pendaftaran.png";
 import axios from "axios";
 import ReactSelect from "react-select";
 import Institution from "./Steps/Institution";
@@ -213,7 +213,7 @@ const FormDaftar = () => {
       </section> */}
 
       <section id="form-daftar" className="pt-36">
-        <div className="container">
+        <div className="container max-w-6xl">
           <div className="w-full px-4">
             <div className="max-w-xl mx-auto text-center mb-10">
               <h2 className="font-semibold text-lg text-cyan-500 mb-0">Pendaftaran</h2>
@@ -223,23 +223,24 @@ const FormDaftar = () => {
           </div>
 
           <div className="flex flex-wrap justify-center items-center rounded-lg shadow-xl bg-white mx-auto">
-            <div className="w-full px-5 md:w-1/2">
+            <div className="w-full md:w-1/2">
               <img src={Image} className="w-full" />
             </div>
 
-            <div className="w-full px-10 md:w-1/2">
-              <div className=" mb-5">
+            <div className="w-full px-10 md:w-1/2 md:pl-0 py-5">
+              <div className="mb-5">
                 <h3 className="font-semibold text-xl text-cyan-500">{FormTitles[page]}</h3>
               </div>
+
               <div className="w-full h-3 bg-slate-100 mb-5 rounded-md">
                 <div className="w-[33.3%] h-full bg-cyan-500 rounded-md shadow-md" style={{ width: page === 0 ? "33.3%" : page === 1 ? "66.6%" : "100%" }}></div>
               </div>
 
               <form>{PageDisplay()}</form>
 
-              <div className="flex justify-center gap-2">
+              <div className="flex justify-center gap-2 lg:gap-4">
                 <button
-                  className="px-6 py-2.5 border-cyan-500 border-2 text-cyan-500 font-semibold text-sm leading-tight rounded-md "
+                  className="px-6 py-2.5 border-cyan-500 border-2 text-cyan-500 font-semibold text-sm leading-tight rounded-md cursor-pointer"
                   disabled={page === 0}
                   onClick={() => {
                     setPage((currPage) => currPage - 1);
@@ -249,7 +250,7 @@ const FormDaftar = () => {
                 </button>
 
                 <button
-                  className="px-6 py-2.5 bg-cyan-500 text-white font-semibold text-sm leading-tight rounded-md "
+                  className="px-6 py-2.5 bg-cyan-500 text-white font-semibold text-sm leading-tight rounded-md cursor-pointer"
                   onClick={() => {
                     if (page === FormTitles.length - 1) {
                       alert("FORM SUBMITTED");
