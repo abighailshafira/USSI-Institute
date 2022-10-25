@@ -102,52 +102,57 @@ const VirtualTable = (props) => {
 const columns = [
   {
     title: "No",
-    dataIndex: "key",
+    dataIndex: "no",
     width: 50,
   },
   {
     title: "Kegiatan",
-    dataIndex: "key",
+    dataIndex: "kegiatan",
     width: 250,
   },
   {
     title: "Tgl Awal",
-    dataIndex: "key",
+    dataIndex: "tgl_awal",
     width: 100,
   },
   {
     title: "Tgl Akhir",
-    dataIndex: "key",
+    dataIndex: "tgl_akhir",
     width: 100,
   },
   {
     title: "Lokasi",
-    dataIndex: "key",
+    dataIndex: "lokasi",
     width: 200,
   },
   {
     title: "Kota",
-    dataIndex: "key",
+    dataIndex: "kota",
     width: 100,
   },
   {
     title: "Sertifikat Attendance",
-    dataIndex: "key",
+    dataIndex: "sertif_hadir",
     width: 100,
   },
   {
     title: "Sertifikat Kelulusan",
-    dataIndex: "key",
+    dataIndex: "sertif_lulus",
     width: 100,
   },
 ];
 const data = Array.from(
   {
-    length: 100000,
+    key: '1',
+    no: '1',
+    kegiatan: 'PELATIHAN DAN SERTIFIKASI TEKNISI MUDA JARINGAN KOMPUTER', 
+    tgl_awal: '23/03/2021',
+    tgl_akhir: '25/03/2021',
+    lokasi: 'HOTEL GRAND CORDELLA BANDUNG',
+    kota: 'BANDUNG',
+    sertif_hadir: 'DOWNLOAD',
+    sertif_lulus: '',
   },
-  (_, key) => ({
-    key,
-  })
 );
 const App = () => (
   <VirtualTable
