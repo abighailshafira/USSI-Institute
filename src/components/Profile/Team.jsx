@@ -30,8 +30,8 @@ export default class Responsive extends Component {
       slidesToShow: 4,
       slidesToScroll: 1,
       initialSlide: 0,
-      nextArrow: <NextArrow />,
-      prevArrow: <PrevArrow />,
+      //nextArrow: <NextArrow />,
+      //prevArrow: <PrevArrow />,
       responsive: [
         {
           breakpoint: 1024,

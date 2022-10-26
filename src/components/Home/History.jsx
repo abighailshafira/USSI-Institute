@@ -1,14 +1,17 @@
 import "../../App.css";
 import { useState } from "react";
 import Slider from "react-slick";
-import pic1 from "../../assets/image/Consulting-rafiki.png";
-import pic2 from "../../assets/image/Creative writing-rafiki.png";
-import pic3 from "../../assets/image/Football Goal-rafiki.png";
-import pic4 from "../../assets/image/Researchers-rafiki.png";
-import pic5 from "../../assets/image/User research-rafiki.png";
+import pic1 from "../../assets/image/flyer/1-OBOX.png";
+import pic2 from "../../assets/image/flyer/2-AUDITTI.png";
+import pic3 from "../../assets/image/flyer/3-OBOX.png";
+import pic4 from "../../assets/image/flyer/4-acl.png";
+import pic5 from "../../assets/image/flyer/5-sdm.png";
+import pic6 from "../../assets/image/flyer/6-mikrotik.png";
+import pic7 from "../../assets/image/flyer/7-lapbul.png";
+import pic8 from "../../assets/image/flyer/8-rbb.png";
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 
-const images = [pic1, pic2, pic3, pic4, pic5];
+const images = [pic1, pic2, pic3, pic4, pic5, pic6, pic7, pic8];
 
 function App() {
   const NextArrow = ({ onClick }) => {
@@ -42,17 +45,18 @@ function App() {
   };
 
   return (
-    <div className="container max-w-6xl pt-24">
+    <div className="container max-w-7xl pt-24">
       <div className="w-full px-4">
         <div className="mx-auto text-center mb-16">
-          <h1 className="text-3xl font-bold mb-2 uppercase text-slate-800">History Pelatihan</h1>
+          <h1 className="text-3xl font-bold mb-2 uppercase text-slate-800">Riwayat Pelatihan</h1>
           <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, earum!</p>
         </div>
       </div>
+
       <Slider {...settings}>
         {images.map((img, idx) => (
           <div className={idx === imgIndex ? "slide activeSlide" : "slide"}>
-            <img src={img} alt={idx} />
+            <img src={img} alt={idx} className="p-5" />
           </div>
         ))}
       </Slider>
