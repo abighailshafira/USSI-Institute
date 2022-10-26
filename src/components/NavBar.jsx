@@ -57,7 +57,7 @@ const NavBar = ({ theme }) => {
                   </li>
 
                   <li className="group">
-                    <Link to="/">
+                    <Link to="/pelatihan">
                       <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex">Pelatihan</a>
                     </Link>
                   </li>

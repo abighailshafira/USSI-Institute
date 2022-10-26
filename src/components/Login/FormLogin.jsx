@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Image from "../../assets/image/login.png";
 
 const FormLogin = () => {
+
   return (
     <>
       <section className="pt-36">
@@ -29,11 +30,12 @@ const FormLogin = () => {
                     placeholder="Email"
                   />
                 </div>
-
+                
                 <div className="mb-3">
                   <label for="password" className="text-base">
                     Password
                   </label>
+                  
                   <input
                     type="password"
                     className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"

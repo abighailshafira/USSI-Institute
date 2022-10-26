@@ -10,6 +10,7 @@ import History from "../components/Home/History";
 import Footer from "../components/Footer";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import FloatingButton from "../components/FloatingButton";
 
 const Home = () => {
   const data = [
@@ -84,6 +85,7 @@ const Home = () => {
       <Info />
       <Gallery />
       <History />
+      <FloatingButton />
       <Footer />
     </>
   );
