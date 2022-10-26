@@ -7,6 +7,7 @@ import DetailPelatihanPage from "./pages/DetailPelatihanPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfileUserPage from "./pages/ProfileUserPage";
+import Pelatihan from "./pages/Pelatihan" 
 import Home from "./pages/Home";
 
 const RouteApp = () => {
@@ -21,6 +22,7 @@ const RouteApp = () => {
         <Route path="/login" exact element={<LoginPage />} />
         <Route path="/register" exact element={<RegisterPage />} />
         <Route path="/profile-user" exact element={<ProfileUserPage />} />
+        <Route path="/pelatihan" exact element={<Pelatihan />} />
       </Routes>
     </>
   );
