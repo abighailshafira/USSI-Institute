@@ -1,4 +1,5 @@
 import React from "react";
+import CountUp from "react-countup";
 
 const Info = () => {
   return (
@@ -15,7 +16,9 @@ const Info = () => {
                 />
               </svg>
 
-              <h5 class="text-5xl font-medium text-cyan-500 mb-4">100</h5>
+              <h5 class="text-5xl font-medium text-cyan-500 mb-4">
+                <CountUp start={0} end={100} duration={2} />
+              </h5>
               <h6 class="text-base text-slate-800">Our Staffs</h6>
             </div>
 
@@ -29,7 +32,9 @@ const Info = () => {
                 <path d="M5.082 14.254a8.287 8.287 0 00-1.308 5.135 9.687 9.687 0 01-1.764-.44l-.115-.04a.563.563 0 01-.373-.487l-.01-.121a3.75 3.75 0 013.57-4.047zM20.226 19.389a8.287 8.287 0 00-1.308-5.135 3.75 3.75 0 013.57 4.047l-.01.121a.563.563 0 01-.373.486l-.115.04c-.567.2-1.156.349-1.764.441z" />
               </svg>
 
-              <h5 class="text-5xl font-medium text-cyan-500 mb-4">200</h5>
+              <h5 class="text-5xl font-medium text-cyan-500 mb-4">
+                <CountUp start={0} end={200} duration={2} />
+              </h5>
               <h6 class="text-base text-slate-800">Our Clients</h6>
             </div>
 
@@ -38,7 +43,9 @@ const Info = () => {
                 <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
               </svg>
 
-              <h5 class="text-5xl font-medium text-cyan-500 mb-4">300</h5>
+              <h5 class="text-5xl font-medium text-cyan-500 mb-4">
+                <CountUp start={0} end={300} duration={2} />
+              </h5>
               <h6 class="text-base text-slate-800">Completed Projects</h6>
             </div>
 
@@ -52,7 +59,9 @@ const Info = () => {
                 <path d="M12.971 1.816A5.23 5.23 0 0114.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 013.434 1.279 9.768 9.768 0 00-6.963-6.963z" />
               </svg>
 
-              <h5 class="text-5xl font-medium text-cyan-500 mb-4">400</h5>
+              <h5 class="text-5xl font-medium text-cyan-500 mb-4">
+                <CountUp start={0} end={400} duration={2} />
+              </h5>
               <h6 class="text-base text-slate-800 mb-0">Running Projects</h6>
             </div>
           </div>
