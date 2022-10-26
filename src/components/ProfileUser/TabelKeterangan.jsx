@@ -38,7 +38,8 @@ const data = [
 const App = () => 
   <>
     <div className='container'>
-    <Table className='p-10 w-1/2 italic font-bold' columns={columns} dataSource={data} />
+    <Table className='p-10 w-1/2 italic font-bold' pagination={false} columns={columns} dataSource={data} />
     </div>
   </>;
 export default App;
+
