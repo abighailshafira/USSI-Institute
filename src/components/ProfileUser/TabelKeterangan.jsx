@@ -35,5 +35,10 @@ const data = [
     keterangan : 'Menunggu hasil ujian',
   },
 ];
-const App = () => <Table className='p-10 w-1/2' columns={columns} dataSource={data} />;
+const App = () => 
+  <>
+    <div className='container'>
+    <Table className='p-10 w-1/2 italic font-bold' columns={columns} dataSource={data} />
+    </div>
+  </>;
 export default App;

@@ -50,7 +50,7 @@ const VirtualTable = (props) => {
     return (
       <Grid
         ref={gridRef}
-        className="virtual-grid"
+        className="virtual-grid border-2"
         columnCount={mergedColumns.length}
         columnWidth={(index) => {
           const { width } = mergedColumns[index];
@@ -68,7 +68,7 @@ const VirtualTable = (props) => {
       >
         {({ columnIndex, rowIndex, style }) => (
           <div
-            className={classNames("virtual-table-cell", {
+            className={classNames("virtual-table-cell border-2 border-lime-200", {
               "virtual-table-cell-last": columnIndex === mergedColumns.length - 1,
             })}
             style={style}
@@ -80,21 +80,29 @@ const VirtualTable = (props) => {
     );
   };
   return (
+    <>       
+    <div className="container">
+    <div className="w-full px-4 pt-36">
+      <div className="mx-auto mb-10">
+        <h1 className="text-3xl font-bold mb-2 uppercase text-slate-800">KEGIATAN</h1>
+      </div>
+    </div>
     <ResizeObserver
       onResize={({ width }) => {
         setTableWidth(width);
-      }}
+      } }
     >
       <Table
         {...props}
-        className="virtual-table py-32 px-10"
+        className="virtual-table bg-blue-100"
         columns={mergedColumns}
         pagination={false}
         components={{
           body: renderVirtualList,
-        }}
-      />
+        }} />
     </ResizeObserver>
+    </div>
+    </>
   );
 };
 
@@ -102,7 +110,7 @@ const VirtualTable = (props) => {
 const columns = [
   {
     title: "No",
-    dataIndex: "no",
+    dataIndex: "No",
     width: 50,
   },
   {
@@ -144,7 +152,7 @@ const columns = [
 const data = Array.from(
   {
     key: '1',
-    no: '1',
+    No: '1',
     kegiatan: 'PELATIHAN DAN SERTIFIKASI TEKNISI MUDA JARINGAN KOMPUTER', 
     tgl_awal: '23/03/2021',
     tgl_akhir: '25/03/2021',
