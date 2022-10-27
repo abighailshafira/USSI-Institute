@@ -1,17 +1,38 @@
-import React from 'react'
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { RiArrowUpSLine } from "react-icons/ri";
 
 const FloatingButton = () => {
+  const [visible, setVisible] = useState(false);
+
+  const toggleVisible = () => {
+    const scrolled = document.documentElement.scrollTop;
+    if (scrolled > 300) {
+      setVisible(true);
+    } else if (scrolled <= 300) {
+      setVisible(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  window.addEventListener("scroll", toggleVisible);
 
   return (
     <>
-    <Link to="/">
-    <button title="Up"
-        class="fixed z-90 bottom-10 right-8 bg-cyan-500 w-14 h-14 rounded-full drop-shadow-lg flex justify-center items-center text-white text-4xl hover:opacity-80 hover:drop-shadow-2xl animate-bounce duration-300">&#8593;</button>
-
-    </Link>
+      <button
+        title="Up"
+        style={{ display: visible ? "inline" : "none" }}
+        class="fixed z-90 bottom-4 right-4 md:bottom-8 md:right-8 bg-cyan-500 w-14 h-14 rounded-full shadow-md flex justify-center items-center text-white text-4xl hover:opacity-90 hover:shadow-lg animate-bounce duration-300"
+      >
+        <RiArrowUpSLine onClick={scrollToTop} className="mx-auto" />
+      </button>
     </>
-  )
-}
+  );
+};
 
-export default FloatingButton
+export default FloatingButton;
