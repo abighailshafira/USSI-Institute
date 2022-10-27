@@ -238,9 +238,9 @@ const FormDaftar = () => {
 
               <form>{PageDisplay()}</form>
 
-              <div className="flex justify-center gap-2 lg:gap-4">
+              <div className="flex justify-center gap-2">
                 <button
-                  className="px-6 py-2.5 border-cyan-500 border-2 text-cyan-500 font-semibold text-sm leading-tight rounded-md cursor-pointer"
+                  className="px-6 py-2.5 border-cyan-500 border-2 text-cyan-500 text-sm font-semibold leading-tight rounded-md cursor-pointer hover:bg-cyan-500 hover:text-white transition duration-300 ease-in-out"
                   disabled={page === 0}
                   onClick={() => {
                     setPage((currPage) => currPage - 1);
@@ -250,7 +250,7 @@ const FormDaftar = () => {
                 </button>
 
                 <button
-                  className="px-6 py-2.5 bg-cyan-500 text-white font-semibold text-sm leading-tight rounded-md cursor-pointer"
+                  className="px-6 py-2.5 bg-cyan-500 text-white font-semibold text-sm leading-tight rounded-md cursor-pointer hover:bg-cyan-600 transition duration-300 ease-in-out"
                   onClick={() => {
                     if (page === FormTitles.length - 1) {
                       alert("FORM SUBMITTED");

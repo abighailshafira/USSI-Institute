@@ -8,8 +8,13 @@ function Institution({ formData, setFormData }) {
 
     <div className="text-slate-800">
       <div className="mb-4">
-        <label className="text-base">Pelatihan</label>
-        <select className="form-control block w-full px-2 py-1.5 text-sm bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500">
+        <label for="trainingName" className="text-base">
+          Pelatihan
+        </label>
+        <select
+          id="trainingName"
+          className="form-control block w-full px-2 py-1.5 text-sm bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
+        >
           <option selected>Open this select menu</option>
           <option value="1">One</option>
           <option value="2">Two</option>
@@ -18,25 +23,25 @@ function Institution({ formData, setFormData }) {
       </div>
 
       <div className="mb-4">
-        <label for="namaLembaga" className="text-base">
+        <label for="institutionName" className="text-base">
           Nama Lembaga
         </label>
         <input
           type="text"
           className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
-          id="namaLembaga"
+          id="institutionName"
           placeholder="Nama Lembaga"
         />
       </div>
 
       <div className="mb-4">
-        <label for="alamatLembaga" className="text-base">
+        <label for="institutionAddress" className="text-base">
           Alamat Lembaga
         </label>
         <input
           type="text"
           className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
-          id="alamatLembaga"
+          id="institutionAddress"
           placeholder="Alamat Lembaga"
         />
       </div>
