@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Image from "../../assets/image/login.png";
-import Home from "../../pages/Home";
 import { setData } from "../../redux/slices/authSlice";
 
 const FormLogin = () => {
@@ -27,28 +26,25 @@ const FormLogin = () => {
       data: userData,
     })
       .then((res) => {
-        // console.log(res.data)
-        if (res.data.status === "success") {
+        if (res.status === 200) {
           dispatch(
             setData({
-              token: res.data.token,
+              token: res.data,
             })
           );
 
           navigate("/");
-          message.success("Login Berhasil.");
-          setTimeout(window.location.reload.bind(window.location), 300);
+          message.success("This is a success message");
+          // setTimeout(window.location.reload.bind(window.location), 300);
           // toastMixin.fire({
           //   animation: true,
           //   title: "Signed in Successfully",
           // });
-        } else {
-          message.error("Silahkan Cek Email dan Password Anda.");
         }
       })
       .catch((err) => {
         console.log(err);
-        // message.error("This is an error message");
+        message.error("This is an error message");
         // toastMixin.fire({
         //   icon: "error",
         //   animation: true,
@@ -56,10 +52,6 @@ const FormLogin = () => {
         // });
       });
   };
-
-  if (isLoggedIn) {
-    return <Home />;
-  }
 
   return (
     <>

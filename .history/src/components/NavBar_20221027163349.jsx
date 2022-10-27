@@ -1,4 +1,3 @@
-import { message } from "antd";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -30,7 +29,24 @@ const NavBar = ({ theme }) => {
   const handleLogout = () => {
     // jsCookie.remove('auth')
     localStorage.removeItem('persist:auth')
-    message.success("Logout Berhasil.");
+    var toastMixin = Swal.mixin({
+      toast: true,
+      icon: 'success',
+      title: 'General Title',
+      animation: false,
+      position: 'top-right',
+      showConfirmButton: false,
+      timer: 800,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    });
+    toastMixin.fire({
+      animation: true,
+      title: 'Logout Successfully'
+    });
     navigate('/')
     setTimeout(window.location.reload.bind(window.location), 500);
   };
@@ -132,7 +148,7 @@ const NavBar = ({ theme }) => {
 
                   {isLoggedIn ? (
                     <li className="group">
-                      <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex" onClick={handleLogout}>
+                      <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex">
                         JANCOK LOGOUT AE!!
                       </a>
                     </li>

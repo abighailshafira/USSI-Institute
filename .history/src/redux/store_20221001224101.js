@@ -1,6 +1,8 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 import authReducer from './slices/authSlice'
+import symptomsReducer from './slices/symptomsSlice'
+import profileReducer from './slices/profileSlice'
 // import notificationReducer from './slices/notificationSlice'
 // import wishlistReducer from './slices/wishlistSlice'
 

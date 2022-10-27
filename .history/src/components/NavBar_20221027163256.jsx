@@ -1,7 +1,6 @@
-import { message } from "antd";
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "../assets/image/logo-ussi.png";
 
 // window.onscroll = function () {
@@ -25,16 +24,6 @@ import Logo from "../assets/image/logo-ussi.png";
 
 const NavBar = ({ theme }) => {
   const isLoggedIn = useSelector((state) => state.auth.token);
-  const navigate = useNavigate()
-
-  const handleLogout = () => {
-    // jsCookie.remove('auth')
-    localStorage.removeItem('persist:auth')
-    message.success("Logout Berhasil.");
-    navigate('/')
-    setTimeout(window.location.reload.bind(window.location), 500);
-  };
-
   return (
     <>
       <header
@@ -132,7 +121,7 @@ const NavBar = ({ theme }) => {
 
                   {isLoggedIn ? (
                     <li className="group">
-                      <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex" onClick={handleLogout}>
+                      <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex">
                         JANCOK LOGOUT AE!!
                       </a>
                     </li>

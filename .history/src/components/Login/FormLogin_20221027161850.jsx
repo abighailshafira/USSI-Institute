@@ -27,24 +27,24 @@ const FormLogin = () => {
       data: userData,
     })
       .then((res) => {
-        // console.log(res.data)
-        if (res.data.status === "success") {
-          dispatch(
-            setData({
-              token: res.data.token,
-            })
-          );
+        console.log(res)
+        // if (res.status === 200) {
+        //   dispatch(
+        //     setData({
+        //       token: res.data.token,
+        //     })
+        //   );
 
-          navigate("/");
-          message.success("Login Berhasil.");
-          setTimeout(window.location.reload.bind(window.location), 300);
-          // toastMixin.fire({
-          //   animation: true,
-          //   title: "Signed in Successfully",
-          // });
-        } else {
-          message.error("Silahkan Cek Email dan Password Anda.");
-        }
+        //   navigate("/");
+        //   message.success("This is a success message");
+        //   setTimeout(window.location.reload.bind(window.location), 300);
+        //   // toastMixin.fire({
+        //   //   animation: true,
+        //   //   title: "Signed in Successfully",
+        //   // });
+        // } else {
+        //   message.error("This is an error message");
+        // }
       })
       .catch((err) => {
         console.log(err);

@@ -27,23 +27,22 @@ const FormLogin = () => {
       data: userData,
     })
       .then((res) => {
-        // console.log(res.data)
-        if (res.data.status === "success") {
+        if (res.status === "success") {
           dispatch(
             setData({
-              token: res.data.token,
+              token: res.token,
             })
           );
 
           navigate("/");
-          message.success("Login Berhasil.");
+          message.success("This is a success message");
           setTimeout(window.location.reload.bind(window.location), 300);
           // toastMixin.fire({
           //   animation: true,
           //   title: "Signed in Successfully",
           // });
         } else {
-          message.error("Silahkan Cek Email dan Password Anda.");
+          message.error("This is an error message");
         }
       })
       .catch((err) => {

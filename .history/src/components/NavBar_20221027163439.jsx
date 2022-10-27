@@ -132,7 +132,7 @@ const NavBar = ({ theme }) => {
 
                   {isLoggedIn ? (
                     <li className="group">
-                      <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex" onClick={handleLogout}>
+                      <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex">
                         JANCOK LOGOUT AE!!
                       </a>
                     </li>
