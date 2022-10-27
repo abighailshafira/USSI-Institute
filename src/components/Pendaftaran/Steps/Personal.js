@@ -42,16 +42,17 @@ function Personal({ formData, setFormData }) {
       </div>
 
       <div className="form-group mb-4">
-        <label for="asalKota" className="text-base">
+        <label for="city" className="text-base">
           Asal Kota
         </label>
         <input
           type="text"
           className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
-          id="name"
-          placeholder="Nama Peserta"
+          id="city"
+          placeholder="Asal Kota"
         />
         {/* <ReactSelect
+            id="city"
             className="basic-single"
             placeholder="Pilih Kota ..."
             classNamePrefix="select"
@@ -79,7 +80,7 @@ function Personal({ formData, setFormData }) {
         </div>
 
         <div className="form-group mb-4">
-          <label for="asalKota" className="text-base">
+          <label for="gender" className="text-base">
             Jenis Kelamin
           </label>
           <div className="flex items-center space-x-5 py-1.5">

@@ -1,6 +1,6 @@
 import React from "react";
 import Image1 from "../../assets/image/logo-audit.png";
-import Image2 from "../../assets/image/logo-ussi.png";
+import Image2 from "../../assets/image/divisi-ussi.png";
 
 const Divisi = () => {
   return (
@@ -26,7 +26,7 @@ const Divisi = () => {
             <div className="rounded-lg shadow-lg h-full block bg-white">
               <div className="flex justify-center">
                 <div className="p-8 bg-white rounded-full shadow-lg inline-block -mt-16">
-                  <img src={Image1} alt="Audit Kepatuhan TI" className="w-20" />
+                  <img src={Image2} alt="Audit Kepatuhan TI" className="w-20" />
                 </div>
               </div>
               <div className="p-6">

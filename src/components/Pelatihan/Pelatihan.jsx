@@ -1,250 +1,232 @@
-import { Table } from 'antd';
-import React from 'react';
+import { Table } from "antd";
+import React from "react";
+
 const columns = [
   {
-    title: 'NamNama BPR',
-    dataIndex: 'name',
-    key: 'name',
-    width: 100,
-    fixed: 'left',
+    title: "Nama BPR",
+    dataIndex: "institution",
+    key: "institution",
+    width: 150,
+    fixed: "left",
+    align: "center",
     filters: [
       {
-        text: 'Joe',
-        value: 'Joe',
+        text: "BPR",
+        value: "BPR",
       },
       {
-        text: 'John',
-        value: 'John',
-      },
-    ],
-    onFilter: (value, record) => record.name.indexOf(value) === 0,
-  },
-  {
-    title: 'PELATIHAN DAN TRIAL ERROR APLIKASI Obox 1 (Januari)',
-    children: [
-      {
-        title: 'Jumlah Peserta',
-        dataIndex: 'age',
-        key: 'age',
-        width: 150,
-      },
-      {
-        title: 'Hadir',
-        dataIndex: 'street',
-        key: 'street',
-        width: 150,
+        text: "Perumda",
+        value: "Perumda",
       },
     ],
+    onFilter: (value, record) => record.institution.indexOf(value) === 0,
   },
   {
-    title: 'PELATIHAN DAN TRIAL ERROR APLIKASI Obox 1 (Januari)',
+    title: "Pelatihan dan Trial Error Aplikasi Obox 1 (Januari)",
     children: [
       {
-        title: 'Jumlah Peserta',
-        dataIndex: 'age',
-        key: 'age',
-        width: 150,
+        title: "Jumlah Peserta",
+        dataIndex: "participant",
+        key: "participant",
+        width: 130,
+        align: "center",
       },
       {
-        title: 'Hadir',
-        dataIndex: 'street',
-        key: 'street',
-        width: 150,
+        title: "Hadir",
+        dataIndex: "attendance",
+        key: "attendance",
+        width: 70,
+        align: "center",
       },
     ],
   },
   {
-    title: 'PELATIHAN DAN TRIAL ERROR APLIKASI Obox 1 (Januari)',
+    title: "Pelatihan Audit TI (Februari)",
     children: [
       {
-        title: 'Jumlah Peserta',
-        dataIndex: 'age',
-        key: 'age',
-        width: 150,
+        title: "Jumlah Peserta",
+        dataIndex: "participant",
+        key: "participant",
+        width: 130,
+        align: "center",
       },
       {
-        title: 'Hadir',
-        dataIndex: 'street',
-        key: 'street',
-        width: 150,
+        title: "Hadir",
+        dataIndex: "attendance",
+        key: "attendance",
+        width: 70,
+        align: "center",
       },
     ],
   },
   {
-    title: 'PELATIHAN DAN TRIAL ERROR APLIKASI Obox 1 (Januari)',
+    title: "Pelatihan dan Trial Error Aplikasi Obox 2 (Maret)",
     children: [
       {
-        title: 'Jumlah Peserta',
-        dataIndex: 'age',
-        key: 'age',
-        width: 150,
+        title: "Jumlah Peserta",
+        dataIndex: "participant",
+        key: "participant",
+        width: 130,
+        align: "center",
       },
       {
-        title: 'Hadir',
-        dataIndex: 'street',
-        key: 'street',
-        width: 150,
+        title: "Hadir",
+        dataIndex: "attendance",
+        key: "attendance",
+        width: 70,
+        align: "center",
       },
     ],
   },
   {
-    title: 'PELATIHAN DAN TRIAL ERROR APLIKASI Obox 1 (Januari)',
+    title: "Teknik audit berbantuan komputer dengan ACL (April)",
     children: [
       {
-        title: 'Jumlah Peserta',
-        dataIndex: 'age',
-        key: 'age',
-        width: 150,
+        title: "Jumlah Peserta",
+        dataIndex: "participant",
+        key: "participant",
+        width: 130,
+        align: "center",
       },
       {
-        title: 'Hadir',
-        dataIndex: 'street',
-        key: 'street',
-        width: 150,
+        title: "Hadir",
+        dataIndex: "attendance",
+        key: "attendance",
+        width: 70,
+        align: "center",
       },
     ],
   },
   {
-    title: 'PELATIHAN DAN TRIAL ERROR APLIKASI Obox 1 (Januari)',
+    title: "Pelatihan Penggunaan Aplikasi USSI (Mei)",
     children: [
       {
-        title: 'Jumlah Peserta',
-        dataIndex: 'age',
-        key: 'age',
-        width: 150,
+        title: "Jumlah Peserta",
+        dataIndex: "participant",
+        key: "participant",
+        width: 130,
+        align: "center",
       },
       {
-        title: 'Hadir',
-        dataIndex: 'street',
-        key: 'street',
-        width: 150,
+        title: "Hadir",
+        dataIndex: "attendance",
+        key: "attendance",
+        width: 70,
+        align: "center",
       },
     ],
   },
   {
-    title: 'PELATIHAN DAN TRIAL ERROR APLIKASI Obox 1 (Januari)',
+    title: "Pelatihan Fungsi SDM TI (Juni)",
     children: [
       {
-        title: 'Jumlah Peserta',
-        dataIndex: 'age',
-        key: 'age',
-        width: 150,
+        title: "Jumlah Peserta",
+        dataIndex: "participant",
+        key: "participant",
+        width: 130,
+        align: "center",
       },
       {
-        title: 'Hadir',
-        dataIndex: 'street',
-        key: 'street',
-        width: 150,
+        title: "Hadir",
+        dataIndex: "attendance",
+        key: "attendance",
+        width: 70,
+        align: "center",
       },
     ],
   },
   {
-    title: 'PELATIHAN DAN TRIAL ERROR APLIKASI Obox 1 (Januari)',
+    title: "Pelatihan Mikrotik (Juli)",
     children: [
       {
-        title: 'Jumlah Peserta',
-        dataIndex: 'age',
-        key: 'age',
-        width: 150,
+        title: "Jumlah Peserta",
+        dataIndex: "participant",
+        key: "participant",
+        width: 130,
+        align: "center",
       },
       {
-        title: 'Hadir',
-        dataIndex: 'street',
-        key: 'street',
-        width: 150,
+        title: "Hadir",
+        dataIndex: "attendance",
+        key: "attendance",
+        width: 70,
+        align: "center",
       },
     ],
   },
   {
-    title: 'PELATIHAN DAN TRIAL ERROR APLIKASI Obox 1 (Januari)',
+    title: "Pelatihan dan Petunjuk Teknis Pelaporan dan Solusi Permasalahan LAPBUL (Agustus)",
     children: [
       {
-        title: 'Jumlah Peserta',
-        dataIndex: 'age',
-        key: 'age',
-        width: 150,
+        title: "Jumlah Peserta",
+        dataIndex: "participant",
+        key: "participant",
+        width: 130,
+        align: "center",
       },
       {
-        title: 'Hadir',
-        dataIndex: 'street',
-        key: 'street',
-        width: 150,
+        title: "Hadir",
+        dataIndex: "attendance",
+        key: "attendance",
+        width: 70,
+        align: "center",
       },
     ],
   },
   {
-    title: 'PELATIHAN DAN TRIAL ERROR APLIKASI Obox 1 (Januari)',
+    title: "Pelatihan Digitalisasi (September)",
     children: [
       {
-        title: 'Jumlah Peserta',
-        dataIndex: 'age',
-        key: 'age',
-        width: 150,
+        title: "Jumlah Peserta",
+        dataIndex: "participant",
+        key: "participant",
+        width: 130,
+        align: "center",
       },
       {
-        title: 'Hadir',
-        dataIndex: 'street',
-        key: 'street',
-        width: 150,
-      },
-    ],
-  },
-  {
-    title: 'PELATIHAN DAN TRIAL ERROR APLIKASI Obox 1 (Januari)',
-    children: [
-      {
-        title: 'Jumlah Peserta',
-        dataIndex: 'age',
-        key: 'age',
-        width: 150,
-      },
-      {
-        title: 'Hadir',
-        dataIndex: 'street',
-        key: 'street',
-        width: 150,
-      },
-    ],
-  },
-  {
-    title: 'PELATIHAN DAN TRIAL ERROR APLIKASI Obox 1 (Januari)',
-    children: [
-      {
-        title: 'Total',
-        dataIndex: 'age',
-        key: 'age',
-        width: 150,
+        title: "Hadir",
+        dataIndex: "attendance",
+        key: "attendance",
+        width: 70,
+        align: "center",
       },
     ],
   },
 ];
+
 const data = [];
 for (let i = 0; i < 100; i++) {
   data.push({
     key: i,
-    name: 'John Brown',
-    age: i + 1,
-    street: 'Lake Park',
-    building: 'C',
-    number: 2035,
-    companyAddress: 'Lake Street 42',
-    companyName: 'SoftLake Co',
-    gender: 'M',
+    institution: "John Brown",
+    participant: i + 1,
+    attendance: 1,
   });
 }
+
 const App = () => (
-    <><div className='container pt-36'>
-        <Table
-            pagination={false}
-            columns={columns}
-            dataSource={data}
-            bordered
-            size="middle"
-            scroll={{
-                x: 'calc(700px + 50%)',
-                y: 240,
-        }} />
+  <>
+    <div className="container mt-36">
+      <div className="w-full px-4">
+        <div className="mb-10">
+          <h1 className="text-3xl font-bold mb-2 text-slate-800">Pelatihan</h1>
+          <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis laudantium magnam quaerat?</p>
+        </div>
+      </div>
+
+      <Table
+        className="px-5"
+        pagination={false}
+        columns={columns}
+        dataSource={data}
+        bordered
+        size="middle"
+        scroll={{
+          x: "calc(700px + 50%)",
+          y: 240,
+        }}
+      />
     </div>
-    </>
+  </>
 );
 export default App;

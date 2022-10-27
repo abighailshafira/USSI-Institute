@@ -23,11 +23,11 @@ function Payment({ formData, setFormData }) {
 
     <div className="text-slate-800">
       <div className="mb-4">
-        <label for="" className="text-base">
+        <label for="payment" className="text-base">
           Bukti Pembayaran
         </label>
         <div className="mb-8">
-          <input type="file" name="file" id="file" className="sr-only" />
+          <input id="payment" type="file" name="file" className="sr-only" />
           <label for="file" className="relative flex h-[145px] justify-center items-center rounded-md border border-dashed py-8 text-center">
             <div>
               <span className="mb-2 block text-base font-semibold"> Drop files here </span>
