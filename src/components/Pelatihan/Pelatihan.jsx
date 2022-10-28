@@ -192,6 +192,18 @@ const columns = [
       },
     ],
   },
+  {
+    title: "Total",
+    children: [
+      {
+        title: "Jumlah Peserta",
+        dataIndex: "participant",
+        key: "participant",
+        width: 100,
+        align: "center",
+      },
+    ],
+  },
 ];
 
 const data = [];
