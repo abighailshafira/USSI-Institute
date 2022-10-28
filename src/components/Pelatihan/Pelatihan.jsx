@@ -194,6 +194,7 @@ const columns = [
   },
   {
     title: "Total",
+    align: "center",
     children: [
       {
         title: "Jumlah Peserta",
