@@ -67,9 +67,7 @@ const FormLogin = () => {
         <div className="container">
           <div className="max-w-xl mx-auto text-center mb-10">
             <h1 className="text-3xl font-bold mb-2 text-slate-800">Login</h1>
-            <p className="text-base text-slate-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing.
-            </p>
+            <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
           </div>
 
           <div className="flex flex-wrap items-center justify-center mx-auto rounded-lg shadow-lg bg-white max-w-4xl">
@@ -113,10 +111,7 @@ const FormLogin = () => {
                       value=""
                       checked
                     />
-                    <label
-                      className="form-check-label inline-block text-slate-500"
-                      for="flexCheckChecked"
-                    >
+                    <label className="form-check-label inline-block text-slate-500" for="flexCheckChecked">
                       Remember me
                     </label>
                   </div>
@@ -137,9 +132,7 @@ const FormLogin = () => {
                 <p className="mt-2 text-slate-500 text-center">
                   Belum punya akun?{" "}
                   <Link to="/register">
-                    <a className="text-cyan-500 font-semibold">
-                      Register disini
-                    </a>
+                    <a className="text-cyan-500 font-semibold">Register disini</a>
                   </Link>
                 </p>
               </form>
