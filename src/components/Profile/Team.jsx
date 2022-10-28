@@ -7,7 +7,7 @@ import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 
 const NextArrow = ({ onClick }) => {
   return (
-    <div className="absolute cursor-pointer z-10 right-0 top-[45%] bg-white rounded-full shadow-xl p-3" onClick={onClick}>
+    <div className="absolute cursor-pointer z-99 -right-11 top-[45%] bg-white rounded-full shadow-xl p-3" onClick={onClick}>
       <HiOutlineChevronRight />
     </div>
   );
@@ -15,7 +15,7 @@ const NextArrow = ({ onClick }) => {
 
 const PrevArrow = ({ onClick }) => {
   return (
-    <div className="absolute cursor-pointer z-10 left-0 top-[45%] bg-white rounded-full shadow-xl p-3" onClick={onClick}>
+    <div className="absolute cursor-pointer z-99 -left-11 top-[45%] bg-white rounded-full shadow-xl p-3" onClick={onClick}>
       <HiOutlineChevronLeft />
     </div>
   );
@@ -30,8 +30,8 @@ export default class Responsive extends Component {
       slidesToShow: 4,
       slidesToScroll: 1,
       initialSlide: 0,
-      //nextArrow: <NextArrow />,
-      //prevArrow: <PrevArrow />,
+      nextArrow: <NextArrow />,
+      prevArrow: <PrevArrow />,
       responsive: [
         {
           breakpoint: 1024,
@@ -43,7 +43,7 @@ export default class Responsive extends Component {
           },
         },
         {
-          breakpoint: 600,
+          breakpoint: 767,
           settings: {
             slidesToShow: 2,
             slidesToScroll: 2,
@@ -51,7 +51,7 @@ export default class Responsive extends Component {
           },
         },
         {
-          breakpoint: 480,
+          breakpoint: 452,
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
@@ -61,9 +61,9 @@ export default class Responsive extends Component {
     };
     return (
       <section>
-        <div className="container">
+        <div className="container px-14">
           <div className="w-full px-4">
-            <div className="mx-auto text-center mb-10">
+            <div className="mx-auto text-center mb-0 md:mb-6">
               <h1 className="text-3xl font-bold mb-2 uppercase text-slate-800">Team UI</h1>
               <p className="text-base text-slate-500">Kami siap membantu anda untuk lebih bersinergi</p>
             </div>
