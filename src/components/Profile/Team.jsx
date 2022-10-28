@@ -34,7 +34,7 @@ export default class Responsive extends Component {
       prevArrow: <PrevArrow />,
       responsive: [
         {
-          breakpoint: 1024,
+          breakpoint: 1023,
           settings: {
             slidesToShow: 3,
             slidesToScroll: 3,
@@ -51,7 +51,7 @@ export default class Responsive extends Component {
           },
         },
         {
-          breakpoint: 452,
+          breakpoint: 499,
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
@@ -77,7 +77,7 @@ export default class Responsive extends Component {
                 </div>
 
                 <div className="text-center pb-5">
-                  <h3 className="text-xl font-semibold text-slate-800">Rukanda Tahyana</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">Rukanda Tahyana</h3>
                   <p className="text-sm text-slate-400">Direktur Utama PT. USSI PPS</p>
 
                   <div className="flex justify-center space-x-3 mt-8">
@@ -125,7 +125,7 @@ export default class Responsive extends Component {
                 </div>
 
                 <div className="text-center pb-5">
-                  <h3 className="text-xl font-semibold text-slate-800">Dede Hendrawan P.</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">Dede Hendrawan P.</h3>
                   <p className="text-sm text-slate-400">Manager USSI Institute</p>
 
                   <div className="flex justify-center space-x-3 mt-8">
@@ -173,7 +173,7 @@ export default class Responsive extends Component {
                 </div>
 
                 <div className="text-center pb-5">
-                  <h3 className="text-xl font-semibold text-slate-800">Naufal Azhfar Zaid</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">Naufal Azhfar Zaid</h3>
                   <p className="text-sm text-slate-400">Staff USSI Institute</p>
 
                   <div className="flex justify-center space-x-3 mt-8">
@@ -221,7 +221,7 @@ export default class Responsive extends Component {
                 </div>
 
                 <div className="text-center pb-5">
-                  <h3 className="text-xl font-semibold text-slate-800">Firli Arwandi</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">Firli Arwandi</h3>
                   <p className="text-sm text-slate-400">Staff USSI Institute</p>
 
                   <div className="flex justify-center space-x-3 mt-8">
@@ -269,7 +269,7 @@ export default class Responsive extends Component {
                 </div>
 
                 <div className="text-center pb-5">
-                  <h3 className="text-xl font-semibold text-slate-800">Firli Arwandi</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">Firli Arwandi</h3>
                   <p className="text-sm text-slate-400">Staff USSI Institute</p>
 
                   <div className="flex justify-center space-x-3 mt-8">
@@ -317,7 +317,7 @@ export default class Responsive extends Component {
                 </div>
 
                 <div className="text-center pb-5">
-                  <h3 className="text-xl font-semibold text-slate-800">Firli Arwandi</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">Firli Arwandi</h3>
                   <p className="text-sm text-slate-400">Staff USSI Institute</p>
 
                   <div className="flex justify-center space-x-3 mt-8">

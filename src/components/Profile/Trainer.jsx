@@ -33,7 +33,7 @@ export default class Responsive extends Component {
       prevArrow: <PrevArrow />,
       responsive: [
         {
-          breakpoint: 1024,
+          breakpoint: 1023,
           settings: {
             slidesToShow: 3,
             slidesToScroll: 3,
@@ -42,7 +42,7 @@ export default class Responsive extends Component {
           },
         },
         {
-          breakpoint: 501,
+          breakpoint: 767,
           settings: {
             slidesToShow: 2,
             slidesToScroll: 2,
@@ -50,7 +50,7 @@ export default class Responsive extends Component {
           },
         },
         {
-          breakpoint: 500,
+          breakpoint: 499,
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
@@ -77,7 +77,7 @@ export default class Responsive extends Component {
                 </div>
 
                 <div className="text-center pb-5">
-                  <h3 className="text-xl font-semibold text-slate-800">Widi Jaelani</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">Widi Jaelani</h3>
                   <p className="text-sm text-slate-400">STT - Bandung</p>
 
                   <div className="flex justify-center space-x-3 mt-8">
@@ -125,7 +125,7 @@ export default class Responsive extends Component {
                 </div>
 
                 <div className="text-center pb-5">
-                  <h3 className="text-xl font-semibold text-slate-800">Wiranata Suka</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">Wiranata Suka</h3>
                   <p className="text-sm text-slate-400">PERUMDA BPR Karya Remaja</p>
 
                   <div className="flex justify-center space-x-3 mt-8">
@@ -173,7 +173,7 @@ export default class Responsive extends Component {
                 </div>
 
                 <div className="text-center pb-5">
-                  <h3 className="text-xl font-semibold text-slate-800">Widi Jaelani</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">Widi Jaelani</h3>
                   <p className="text-sm text-slate-400">STT - Bandung</p>
 
                   <div className="flex justify-center space-x-3 mt-8">
@@ -221,7 +221,7 @@ export default class Responsive extends Component {
                 </div>
 
                 <div className="text-center pb-5">
-                  <h3 className="text-xl font-semibold text-slate-800">Widi Jaelani</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">Widi Jaelani</h3>
                   <p className="text-sm text-slate-400">STT - Bandung</p>
 
                   <div className="flex justify-center space-x-3 mt-8">
@@ -269,7 +269,7 @@ export default class Responsive extends Component {
                 </div>
 
                 <div className="text-center pb-5">
-                  <h3 className="text-xl font-semibold text-slate-800">Widi Jaelani</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">Widi Jaelani</h3>
                   <p className="text-sm text-slate-400">STT - Bandung</p>
 
                   <div className="flex justify-center space-x-3 mt-8">
