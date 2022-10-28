@@ -6,7 +6,7 @@ import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 
 const NextArrow = ({ onClick }) => {
   return (
-    <div className="absolute cursor-pointer z-10 right-0 top-[45%] bg-white rounded-full shadow-xl p-3" onClick={onClick}>
+    <div className="absolute cursor-pointer z-99 -right-11 top-[45%] bg-white rounded-full shadow-xl p-3" onClick={onClick}>
       <HiOutlineChevronRight />
     </div>
   );
@@ -14,7 +14,7 @@ const NextArrow = ({ onClick }) => {
 
 const PrevArrow = ({ onClick }) => {
   return (
-    <div className="absolute cursor-pointer z-10 left-0 top-[45%] bg-white rounded-full shadow-xl p-3" onClick={onClick}>
+    <div className="absolute cursor-pointer z-99 -left-11 top-[45%] bg-white rounded-full shadow-xl p-3" onClick={onClick}>
       <HiOutlineChevronLeft />
     </div>
   );
@@ -33,7 +33,7 @@ export default class Responsive extends Component {
       prevArrow: <PrevArrow />,
       responsive: [
         {
-          breakpoint: 1024,
+          breakpoint: 1023,
           settings: {
             slidesToShow: 3,
             slidesToScroll: 3,
@@ -42,7 +42,7 @@ export default class Responsive extends Component {
           },
         },
         {
-          breakpoint: 600,
+          breakpoint: 767,
           settings: {
             slidesToShow: 2,
             slidesToScroll: 2,
@@ -50,7 +50,7 @@ export default class Responsive extends Component {
           },
         },
         {
-          breakpoint: 480,
+          breakpoint: 499,
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
@@ -61,11 +61,11 @@ export default class Responsive extends Component {
     return (
       <section className="pt-24">
         {" "}
-        <div className="container">
+        <div className="container px-14">
           <div className="w-full px-4">
-            <div className="mx-auto text-center mb-10">
+            <div className="mx-auto text-center mb-0 md:mb-6">
               <h1 className="text-3xl font-bold mb-2 uppercase text-slate-800">Trainer UI</h1>
-              <h2 className="text-base text-slate-500">Didukung oleh pemateri yang kompeten dibidangnya</h2>
+              <p className="text-base text-slate-500">Didukung oleh pemateri yang kompeten dibidangnya</p>
             </div>
           </div>
 
@@ -77,7 +77,7 @@ export default class Responsive extends Component {
                 </div>
 
                 <div className="text-center pb-5">
-                  <h3 className="text-xl font-semibold text-slate-800">Widi Jaelani</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">Widi Jaelani</h3>
                   <p className="text-sm text-slate-400">STT - Bandung</p>
 
                   <div className="flex justify-center space-x-3 mt-8">
@@ -125,7 +125,7 @@ export default class Responsive extends Component {
                 </div>
 
                 <div className="text-center pb-5">
-                  <h3 className="text-xl font-semibold text-slate-800">Wiranata Suka</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">Wiranata Suka</h3>
                   <p className="text-sm text-slate-400">PERUMDA BPR Karya Remaja</p>
 
                   <div className="flex justify-center space-x-3 mt-8">
@@ -173,7 +173,7 @@ export default class Responsive extends Component {
                 </div>
 
                 <div className="text-center pb-5">
-                  <h3 className="text-xl font-semibold text-slate-800">Widi Jaelani</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">Widi Jaelani</h3>
                   <p className="text-sm text-slate-400">STT - Bandung</p>
 
                   <div className="flex justify-center space-x-3 mt-8">
@@ -221,7 +221,7 @@ export default class Responsive extends Component {
                 </div>
 
                 <div className="text-center pb-5">
-                  <h3 className="text-xl font-semibold text-slate-800">Widi Jaelani</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">Widi Jaelani</h3>
                   <p className="text-sm text-slate-400">STT - Bandung</p>
 
                   <div className="flex justify-center space-x-3 mt-8">
@@ -269,7 +269,7 @@ export default class Responsive extends Component {
                 </div>
 
                 <div className="text-center pb-5">
-                  <h3 className="text-xl font-semibold text-slate-800">Widi Jaelani</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">Widi Jaelani</h3>
                   <p className="text-sm text-slate-400">STT - Bandung</p>
 
                   <div className="flex justify-center space-x-3 mt-8">

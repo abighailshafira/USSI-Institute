@@ -13,7 +13,7 @@ const Profile = () => {
           ></path>
         </svg>
 
-        <div className="container pt-36 md:pt-24">
+        <div className="container pt-36 md:pt-24 lg:pb-12">
           <div className="text-slate-800 px-4">
             <div className="grid lg:grid-cols-2 gap-x-6 xl:gap-x-12 mb-16">
               <div className="mb-6 lg:mb-0">

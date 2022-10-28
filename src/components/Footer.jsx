@@ -51,27 +51,9 @@ const Footer = () => {
               </div>
 
               <div className="w-full mb-6 md:w-1/2 lg:w-1/4">
-                <h6 className="uppercase font-semibold mb-4 flex justify-center md:justify-start text-white ">Products</h6>
-                <p className="mb-4">
-                  <a href="#!" className="text-gray-600">
-                    Angular
-                  </a>
-                </p>
-                <p className="mb-4">
-                  <a href="#!" className="text-gray-600">
-                    React
-                  </a>
-                </p>
-                <p className="mb-4">
-                  <a href="#!" className="text-gray-600">
-                    Vue
-                  </a>
-                </p>
-                <p>
-                  <a href="#!" className="text-gray-600">
-                    Laravel
-                  </a>
-                </p>
+                <h6 className="uppercase font-semibold mb-4 flex justify-center md:justify-start text-white ">Divisi</h6>
+                <p className="text-white mb-4">USSI Institute</p>
+                <p className="text-white mb-4">Audit Kepatuhan TI</p>
               </div>
 
               <div className="w-full mb-6 md:w-1/2 lg:w-1/4">
@@ -79,6 +61,12 @@ const Footer = () => {
                 <p className="mb-4">
                   <Link to="/">
                     <a className="text-white">Beranda</a>
+                  </Link>
+                </p>
+
+                <p className="mb-4">
+                  <Link to="/profile">
+                    <a className="text-white">Profil</a>
                   </Link>
                 </p>
 
@@ -91,6 +79,12 @@ const Footer = () => {
                 <p className="mb-4">
                   <Link to="/pendaftaran">
                     <a className="text-white">Pendaftaran</a>
+                  </Link>
+                </p>
+
+                <p className="mb-4">
+                  <Link to="/contact">
+                    <a className="text-white">Kontak</a>
                   </Link>
                 </p>
               </div>
