@@ -9,10 +9,10 @@ const Divisi = () => {
         <div className="container text-slate-800 text-center">
           <div className="grid lg:gap-x-12 lg:grid-cols-2">
             <div className="mb-24 lg:mb-0">
-              <div className="rounded-lg shadow-lg h-full block bg-white">
+              <div className="rounded-lg shadow-lg h-full block bg-white border-cyan-500 border-2">
                 <div className="flex justify-center">
-                  <div className="p-8 bg-white rounded-full shadow-lg inline-block -mt-16">
-                    <img src={Image1} alt="USSI Institute" className="w-20" />
+                  <div className="p-8 bg-white rounded-full shadow-lg inline-block -mt-14 md:-mt-20 border-cyan-500 border-2">
+                    <img src={Image1} alt="USSI Institute" className="w-12 md:w-20" />
                   </div>
                 </div>
                 <div className="p-6">
@@ -23,10 +23,10 @@ const Divisi = () => {
               </div>
             </div>
 
-            <div className="rounded-lg shadow-lg h-full block bg-white">
+            <div className="rounded-lg shadow-lg h-full block bg-white border-cyan-500 border-2">
               <div className="flex justify-center">
-                <div className="p-8 bg-white rounded-full shadow-lg inline-block -mt-16">
-                  <img src={Image2} alt="Audit Kepatuhan TI" className="w-20" />
+                <div className="p-8 bg-white rounded-full shadow-lg inline-block -mt-14 md:-mt-20 border-cyan-500 border-2">
+                  <img src={Image2} alt="Audit Kepatuhan TI" className="w-12 md:w-20" />
                 </div>
               </div>
               <div className="p-6">
