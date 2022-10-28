@@ -9,7 +9,10 @@ import { setData } from "../../redux/slices/authSlice";
 
 const FormLogin = () => {
   const [username, setUserName] = useState();
-  const [password, setPassword] = useState();
+  const [password, setPassword] = useState({
+    password: "",
+    showPassword: false,
+  });
   const navigate = useNavigate();
   // const isLoggedIn = jsCookie.get('auth')
   const isLoggedIn = !!useSelector((state) => state.auth.token);
@@ -106,10 +109,9 @@ const FormLogin = () => {
                   <div className="form-check">
                     <input
                       type="checkbox"
-                      className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top float-left mr-2 cursor-pointer"
+                      className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-cyan-500 focus:outline-none transition duration-200 mt-1 align-top float-left mr-2 cursor-pointer"
                       id="flexCheckChecked"
                       value=""
-                      checked
                     />
                     <label className="form-check-label inline-block text-slate-500" for="flexCheckChecked">
                       Remember me
