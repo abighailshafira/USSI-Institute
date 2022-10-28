@@ -5,7 +5,7 @@ const Pelatihan = ({ data }) => {
   console.log(data);
   return (
     <>
-      <section className="pt-24">
+      <section className="pt-24" id="JadwalPelatihan">
         <div className="container">
           <div className="w-full">
             <div className="mx-auto text-center mb-16">

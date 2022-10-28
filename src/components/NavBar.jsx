@@ -3,25 +3,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/image/logo-ussi.png";
+import { DownOutlined } from '@ant-design/icons';
+import { Dropdown, Menu, Space } from 'antd';
 
-// window.onscroll = function () {
-//   const header = document.querySelector("header");
-//   const fixedNav = header.offsetTop;
-
-//   if (window.pageYOffset > fixedNav) {
-//     header.classList.add("navbar-fixed");
-//   } else {
-//     header.classList.remove("navbar-fixed");
-//   }
-// };
-
-// const hamburger = document.querySelector("#hamburger");
-// const navMenu = document.querySelector("#nav-menu");
-
-// hamburger.addEventListener("click", function () {
-//   hamburger.classList.toggle("hamburger-active");
-//   navMenu.classList.toggle("hidden");
-// });
 
 const NavBar = ({ theme }) => {
   const isLoggedIn = useSelector((state) => state.auth.token);
@@ -34,6 +18,48 @@ const NavBar = ({ theme }) => {
     navigate('/')
     setTimeout(window.location.reload.bind(window.location), 500);
   };
+
+  const menu = (
+    <Menu className="pt-16"
+      items={[
+        {
+          label: 
+            <Link to="#">
+              <a>Jadwal Pelatihan</a>
+          </Link>,
+          key: '0',
+        },
+        {
+          label:
+          <Link to="/pelatihan">
+            <a>Pelatihan</a>
+        </Link>,
+          key: '1',
+        },
+      ]}
+    />
+  );
+  
+  // window.onscroll = function () {
+  //   const header = document.querySelector("header");
+  //   const fixedNav = header.offsetTop;
+  
+  //   if (window.pageYOffset > fixedNav) {
+  //     header.classList.add("navbar-fixed");
+  //   } else {
+  //     header.classList.remove("navbar-fixed");
+  //   }
+  // };
+  
+  // const hamburger = document.querySelector("#hamburger");
+  // const navMenu = document.querySelector("#nav-menu");
+  
+  // hamburger.addEventListener("click", function () {
+  //   hamburger.classList.toggle("hamburger-active");
+  //   navMenu.classList.toggle("hidden");
+  // });
+
+
 
   return (
     <>
@@ -107,11 +133,19 @@ const NavBar = ({ theme }) => {
                   </li>
 
                   <li className="group">
-                    <Link to="/pelatihan">
+                     <Dropdown className="pt-24" overlay={menu} trigger={['click']}>
+                      <a onClick={(e) => e.preventDefault()}>
+                        <Space className="text-base group-hover:text-cyan-500 py-2 mx-8 flex">
+                          Pelatihan
+                          <DownOutlined className="pt-0"/>
+                        </Space>
+                      </a>
+                    </Dropdown>
+                    {/* <Link to="/pelatihan">
                       <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex">
                         Pelatihan
                       </a>
-                    </Link>
+                    </Link> */}
                   </li>
 
                   <li className="group">
