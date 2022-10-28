@@ -7,8 +7,10 @@ import DetailPelatihanPage from "./pages/DetailPelatihanPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfileUserPage from "./pages/ProfileUserPage";
-import Pelatihan from "./pages/Pelatihan" 
+import Pelatihan from "./pages/Pelatihan";
 import Home from "./pages/Home";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 const RouteApp = () => {
   return (
@@ -23,6 +25,8 @@ const RouteApp = () => {
         <Route path="/register" exact element={<RegisterPage />} />
         <Route path="/profile-user" exact element={<ProfileUserPage />} />
         <Route path="/pelatihan" exact element={<Pelatihan />} />
+        <Route path="/forgot-password" exact element={<ForgotPasswordPage />} />
+        <Route path="/reset-password" exact element={<ResetPasswordPage />} />
       </Routes>
     </>
   );

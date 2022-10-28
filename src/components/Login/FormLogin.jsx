@@ -116,9 +116,9 @@ const FormLogin = () => {
                     </label>
                   </div>
 
-                  <a href="#" className="text-cyan-500">
-                    Forgot password?
-                  </a>
+                  <Link to="/forgot-password">
+                    <a className="text-cyan-500">Forgot password?</a>
+                  </Link>
                 </div>
 
                 <button
