@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Image from "../../assets/image/icon-ussi.ico";
+import { BsCalendarRange } from "react-icons/bs";
+import { RiTimeLine, RiUserLocationLine } from "react-icons/ri";
 
 const DetailPelatihan = () => {
   return (
@@ -20,15 +22,18 @@ const DetailPelatihan = () => {
                   assumenda ea aliquam repellendus esse doloribus. Deserunt cumque enim odio? Harum consectetur error nisi doloribus possimus illo impedit earum cumque nesciunt sapiente, libero corrupti tenetur. Facere ad sapiente sunt!
                   Nemo facere maiores mollitia!
                 </p>
+
                 <p className="text-slate-800 flex items-center text-sm font-medium">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 text-cyan-500 mr-1">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"
-                    />
-                  </svg>
-                  19 Oktober 2022
+                  <BsCalendarRange className="w-4 h-4 text-cyan-500 mr-2" />
+                  Senin, 19 Oktober 2022
+                </p>
+                <p className="text-slate-800 flex items-center text-sm font-medium">
+                  <RiTimeLine className="w-4 h-4 text-cyan-500 mr-2" />
+                  10.00 WIB
+                </p>
+                <p className="text-slate-800 flex items-center text-sm font-medium">
+                  <RiUserLocationLine className="w-4 h-4 text-cyan-500 mr-2" />
+                  Hotel Grand Cordella, Bandung
                 </p>
               </div>
 

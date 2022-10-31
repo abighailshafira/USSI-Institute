@@ -1,7 +1,7 @@
 import { Table } from "antd";
 import React from "react";
 import { DownloadOutlined } from "@ant-design/icons";
-import { Button, Radio } from "antd";
+import { Button } from "antd";
 
 const columns = [
   {
