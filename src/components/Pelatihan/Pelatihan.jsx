@@ -236,7 +236,7 @@ const App = () => (
         size="middle"
         scroll={{
           x: "calc(700px + 50%)",
-          y: 240,
+          y: 500,
         }}
       />
     </div>

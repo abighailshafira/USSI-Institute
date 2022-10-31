@@ -42,7 +42,7 @@ export default class Responsive extends Component {
           },
         },
         {
-          breakpoint: 767,
+          breakpoint: 800,
           settings: {
             slidesToShow: 2,
             slidesToScroll: 2,
@@ -50,7 +50,7 @@ export default class Responsive extends Component {
           },
         },
         {
-          breakpoint: 499,
+          breakpoint: 550,
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
@@ -73,7 +73,7 @@ export default class Responsive extends Component {
             <div className="px-3 py-5">
               <div className="bg-white rounded-md shadow-lg">
                 <div className="overflow-hidden bg-no-repeat bg-cover p-3 ">
-                  <img src={Image1} className="rounded-lg shadow-md" />
+                  <img src={Image1} className="rounded-lg shadow-md w-full" />
                 </div>
 
                 <div className="text-center pb-5">
@@ -121,7 +121,7 @@ export default class Responsive extends Component {
             <div className="px-3 py-5">
               <div className="bg-white rounded-md shadow-lg">
                 <div className="overflow-hidden bg-no-repeat bg-cover p-3 ">
-                  <img src={Image2} className="rounded-lg shadow-md" />
+                  <img src={Image2} className="rounded-lg shadow-md w-full" />
                 </div>
 
                 <div className="text-center pb-5">
@@ -169,7 +169,7 @@ export default class Responsive extends Component {
             <div className="px-3 py-5">
               <div className="bg-white rounded-md shadow-lg">
                 <div className="overflow-hidden bg-no-repeat bg-cover p-3 ">
-                  <img src={Image1} className="rounded-lg shadow-md" />
+                  <img src={Image1} className="rounded-lg shadow-md w-full" />
                 </div>
 
                 <div className="text-center pb-5">
@@ -217,7 +217,7 @@ export default class Responsive extends Component {
             <div className="px-3 py-5">
               <div className="bg-white rounded-md shadow-lg">
                 <div className="overflow-hidden bg-no-repeat bg-cover p-3 ">
-                  <img src={Image1} className="rounded-lg shadow-md" />
+                  <img src={Image1} className="rounded-lg shadow-md w-full" />
                 </div>
 
                 <div className="text-center pb-5">
@@ -265,7 +265,7 @@ export default class Responsive extends Component {
             <div className="px-3 py-5">
               <div className="bg-white rounded-md shadow-lg">
                 <div className="overflow-hidden bg-no-repeat bg-cover p-3 ">
-                  <img src={Image1} className="rounded-lg shadow-md" />
+                  <img src={Image1} className="rounded-lg shadow-md w-full" />
                 </div>
 
                 <div className="text-center pb-5">

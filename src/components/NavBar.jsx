@@ -3,72 +3,67 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/image/logo-ussi.png";
-import { DownOutlined } from '@ant-design/icons';
-import { Dropdown, Menu, Space } from 'antd';
+import { RiArrowDownSLine } from "react-icons/ri";
+import { Dropdown, Menu, Space } from "antd";
 
+window.onscroll = function () {
+  const header = document.querySelector("header");
+  const fixedNav = header.offsetTop;
+
+  if (window.pageYOffset > fixedNav) {
+    header.classList.add("navbar-fixed");
+  } else {
+    header.classList.remove("navbar-fixed");
+  }
+};
+
+const hamburger = document.querySelector("#hamburger");
+const navMenu = document.querySelector("#nav-menu");
+
+hamburger.addEventListener("click", function () {
+  hamburger.classList.toggle("hamburger-active");
+  navMenu.classList.toggle("hidden");
+});
 
 const NavBar = ({ theme }) => {
   const isLoggedIn = useSelector((state) => state.auth.token);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     // jsCookie.remove('auth')
-    localStorage.removeItem('persist:auth')
+    localStorage.removeItem("persist:auth");
     message.success("Logout Berhasil.");
-    navigate('/')
+    navigate("/");
     setTimeout(window.location.reload.bind(window.location), 500);
   };
 
   const menu = (
-    <Menu className="pt-16"
+    <Menu
+      className="pt-16"
       items={[
         {
-          label: 
+          label: (
             <Link to="#">
               <a>Jadwal Pelatihan</a>
-          </Link>,
-          key: '0',
+            </Link>
+          ),
+          key: "0",
         },
         {
-          label:
-          <Link to="/pelatihan">
-            <a>Pelatihan</a>
-        </Link>,
-          key: '1',
+          label: (
+            <Link to="/pelatihan">
+              <a>Pelatihan</a>
+            </Link>
+          ),
+          key: "1",
         },
       ]}
     />
   );
-  
-  // window.onscroll = function () {
-  //   const header = document.querySelector("header");
-  //   const fixedNav = header.offsetTop;
-  
-  //   if (window.pageYOffset > fixedNav) {
-  //     header.classList.add("navbar-fixed");
-  //   } else {
-  //     header.classList.remove("navbar-fixed");
-  //   }
-  // };
-  
-  // const hamburger = document.querySelector("#hamburger");
-  // const navMenu = document.querySelector("#nav-menu");
-  
-  // hamburger.addEventListener("click", function () {
-  //   hamburger.classList.toggle("hamburger-active");
-  //   navMenu.classList.toggle("hidden");
-  // });
-
-
 
   return (
     <>
-      <header
-        className={[
-          "absolute top-0 left-0 w-full flex items-center z-10",
-          theme === "dark" ? "bg-transparent" : "bg-white shadow-md",
-        ].join(" ")}
-      >
+      <header className={["absolute top-0 left-0 w-full flex items-center z-10 md:py-2", theme === "dark" ? "bg-transparent" : "bg-white shadow-md"].join(" ")}>
         <div className="container">
           <div className="flex items-center justify-between relative">
             <div className="px-4">
@@ -79,65 +74,33 @@ const NavBar = ({ theme }) => {
               </Link>
             </div>
 
-            <div className="px-4 flex items-center">
-              <button
-                id="hamburger"
-                name="hamburger"
-                type="button"
-                className="block absolute right-4 lg:hidden"
-              >
-                <span
-                  className={[
-                    "hamburger-line transition duration-300 ease-in-out origin-top-left",
-                    theme === "dark" ? "bg-white" : "bg-black",
-                  ].join(" ")}
-                ></span>
-                <span
-                  className={[
-                    "hamburger-line transition duration-300 ease-in-out",
-                    theme === "dark" ? "bg-white" : "bg-black",
-                  ].join(" ")}
-                ></span>
-                <span
-                  className={[
-                    "hamburger-line transition duration-300 ease-in-out origin-bottom-left",
-                    theme === "dark" ? "bg-white" : "bg-black",
-                  ].join(" ")}
-                ></span>
+            <div className="px-4 flex items-center md:pt-2.5">
+              <button id="hamburger" name="hamburger" type="button" className="block absolute right-4 lg:hidden">
+                <span className={["hamburger-line transition duration-300 ease-in-out origin-top-left", theme === "dark" ? "bg-white" : "bg-black"].join(" ")}></span>
+                <span className={["hamburger-line transition duration-300 ease-in-out", theme === "dark" ? "bg-white" : "bg-black"].join(" ")}></span>
+                <span className={["hamburger-line transition duration-300 ease-in-out origin-bottom-left", theme === "dark" ? "bg-white" : "bg-black"].join(" ")}></span>
               </button>
 
-              <nav
-                id="nav-menu"
-                className="hidden absolute py-5 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:bg-transparent lg:static lg:max-w-full lg:shadow-none lg:rounded-none"
-              >
-                <ul
-                  className={[
-                    "block lg:flex",
-                    theme === "dark" ? "text-white" : "text-black",
-                  ].join(" ")}
-                >
+              <nav id="nav-menu" className="hidden absolute py-5 md:py-0 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:bg-transparent lg:static lg:max-w-full lg:shadow-none lg:rounded-none">
+                <ul className={["block lg:flex", theme === "dark" ? "text-white" : "text-black"].join(" ")}>
                   <li className="group">
                     <Link to="/">
-                      <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex ">
-                        Beranda
-                      </a>
+                      <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex ">Beranda</a>
                     </Link>
                   </li>
 
                   <li className="group">
                     <Link to="/profile">
-                      <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex ">
-                        Profil
-                      </a>
+                      <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex ">Profil</a>
                     </Link>
                   </li>
 
                   <li className="group">
-                     <Dropdown className="pt-24" overlay={menu} trigger={['click']}>
+                    <Dropdown className="pt-24" overlay={menu} trigger={["click"]}>
                       <a onClick={(e) => e.preventDefault()}>
                         <Space className="text-base group-hover:text-cyan-500 py-2 mx-8 flex">
                           Pelatihan
-                          <DownOutlined className="pt-0"/>
+                          <RiArrowDownSLine />
                         </Space>
                       </a>
                     </Dropdown>
@@ -150,17 +113,13 @@ const NavBar = ({ theme }) => {
 
                   <li className="group">
                     <Link to="/pendaftaran">
-                      <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex">
-                        Pendaftaran
-                      </a>
+                      <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex">Pendaftaran</a>
                     </Link>
                   </li>
 
                   <li className="group">
                     <Link to="/contact">
-                      <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex">
-                        Kontak
-                      </a>
+                      <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex">Kontak</a>
                     </Link>
                   </li>
 
@@ -173,14 +132,7 @@ const NavBar = ({ theme }) => {
                   ) : (
                     <li className="group">
                       <Link to="/login">
-                        <a
-                          className={[
-                            "flex text-base border-2 border-cyan-500 rounded-full py-1.5 px-6 ml-5",
-                            theme === "dark" ? "text-white" : "text-black",
-                          ].join(" ")}
-                        >
-                          Login
-                        </a>
+                        <a className={["flex text-base border-2 border-cyan-500 rounded-full py-1.5 px-6 ml-5", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Login</a>
                       </Link>
                     </li>
                   )}
