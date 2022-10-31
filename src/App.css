@@ -54,7 +54,7 @@
 }
 
 .hamburger-line {
-  @apply w-[30px] h-[2px] my-2 block bg-white;
+  @apply w-[30px] h-[2.5px] my-2 block bg-white rounded-full;
 }
 
 .hamburger-active > span:nth-child(1) {

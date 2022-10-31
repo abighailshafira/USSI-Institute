@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/image/logo-ussi.png";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { Dropdown, Menu, Space } from "antd";
+import "../App.css";
 
 window.onscroll = function () {
   const header = document.querySelector("header");
@@ -17,13 +18,13 @@ window.onscroll = function () {
   }
 };
 
-const hamburger = document.querySelector("#hamburger");
-const navMenu = document.querySelector("#nav-menu");
+// const hamburger = document.querySelector("#hamburger");
+// const navMenu = document.querySelector("#nav-menu");
 
-hamburger.addEventListener("click", function () {
-  hamburger.classList.toggle("hamburger-active");
-  navMenu.classList.toggle("hidden");
-});
+// hamburger.addEventListener("click", function () {
+//   hamburger.classList.toggle("hamburger-active");
+//   navMenu.classList.toggle("hidden");
+// });
 
 const NavBar = ({ theme }) => {
   const isLoggedIn = useSelector((state) => state.auth.token);
@@ -74,14 +75,14 @@ const NavBar = ({ theme }) => {
               </Link>
             </div>
 
-            <div className="px-4 flex items-center md:pt-2.5">
+            <div className="px-4 flex items-center pt-2.5">
               <button id="hamburger" name="hamburger" type="button" className="block absolute right-4 lg:hidden">
                 <span className={["hamburger-line transition duration-300 ease-in-out origin-top-left", theme === "dark" ? "bg-white" : "bg-black"].join(" ")}></span>
                 <span className={["hamburger-line transition duration-300 ease-in-out", theme === "dark" ? "bg-white" : "bg-black"].join(" ")}></span>
                 <span className={["hamburger-line transition duration-300 ease-in-out origin-bottom-left", theme === "dark" ? "bg-white" : "bg-black"].join(" ")}></span>
               </button>
 
-              <nav id="nav-menu" className="hidden absolute py-5 md:py-0 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:bg-transparent lg:static lg:max-w-full lg:shadow-none lg:rounded-none">
+              <nav id="nav-menu" className="hidden absolute pt-3 lg:pt-0 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:bg-transparent lg:static lg:max-w-full lg:shadow-none lg:rounded-none">
                 <ul className={["block lg:flex", theme === "dark" ? "text-white" : "text-black"].join(" ")}>
                   <li className="group">
                     <Link to="/">
@@ -132,7 +133,7 @@ const NavBar = ({ theme }) => {
                   ) : (
                     <li className="group">
                       <Link to="/login">
-                        <a className={["flex text-base border-2 border-cyan-500 rounded-full py-1.5 px-6 ml-5", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Login</a>
+                        <a className={["flex text-base py-2 mx-8 lg:border-2 lg:border-cyan-500 text-black lg:text-white lg:rounded-full lg:py-1.5 lg:px-6 lg:ml-5", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Login</a>
                       </Link>
                     </li>
                   )}

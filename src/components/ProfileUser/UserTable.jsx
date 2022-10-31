@@ -1,5 +1,7 @@
 import { Table } from "antd";
 import React from "react";
+import { DownloadOutlined } from "@ant-design/icons";
+import { Button, Radio } from "antd";
 
 const columns = [
   {
@@ -41,9 +43,10 @@ const columns = [
   },
   {
     title: "Sertifikat Kehadiran",
-    dataIndex: "age",
-    key: "age",
+    dataIndex: "certificate",
+    key: "certificate",
     width: 150,
+    align: "center",
   },
   {
     title: "Keterangan",
@@ -61,6 +64,7 @@ for (let i = 0; i < 100; i++) {
     age: i + 1,
     location: "Hotel Grand Cordella",
     city: "Bandung",
+    certificate: <Button type="primary" shape="round" icon={<DownloadOutlined />} />,
   });
 }
 const App = () => (
