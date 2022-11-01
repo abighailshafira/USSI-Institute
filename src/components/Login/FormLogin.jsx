@@ -6,23 +6,39 @@ import { Link, useNavigate } from "react-router-dom";
 import Image from "../../assets/image/login.png";
 import Home from "../../pages/Home";
 import { setData } from "../../redux/slices/authSlice";
+// import { login } from "../../redux/slices/userSlice";
 
 const FormLogin = () => {
-  const [username, setUserName] = useState();
+  const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
   const [password, setPassword] = useState({
     password: "",
     showPassword: false,
   });
+
   const navigate = useNavigate();
   // const isLoggedIn = jsCookie.get('auth')
   const isLoggedIn = !!useSelector((state) => state.auth.token);
+
   const dispatch = useDispatch();
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   dispatch(
+  //     login({
+  //       email: email,
+  //       password: password,
+  //       loggedIn: true,
+  //     })
+  //   );
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const userData = new URLSearchParams();
-    userData.append("username", username);
+    userData.append("email", email);
     userData.append("password", password);
     axios({
       method: "post",
@@ -30,7 +46,7 @@ const FormLogin = () => {
       data: userData,
     })
       .then((res) => {
-        // console.log(res.data)
+        // console.log(res.data);
         if (res.data.status === "success") {
           dispatch(
             setData({
@@ -88,7 +104,8 @@ const FormLogin = () => {
                     type="email"
                     className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
                     placeholder="Email"
-                    onChange={(e) => setUserName(e.target.value)}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
 
@@ -101,6 +118,7 @@ const FormLogin = () => {
                     type="password"
                     className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
                     placeholder="Password"
+                    value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>

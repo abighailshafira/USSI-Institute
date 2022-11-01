@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Image from "../../assets/image/register.png";
 import { Link } from "react-router-dom";
-import { BsEye, BsEyeSlash } from "react-icons/bs";
 import PasswordInput from "../PasswordInput";
 
 const FormRegister = () => {

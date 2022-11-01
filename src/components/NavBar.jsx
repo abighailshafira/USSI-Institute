@@ -18,13 +18,13 @@ window.onscroll = function () {
   }
 };
 
-// const hamburger = document.querySelector("#hamburger");
-// const navMenu = document.querySelector("#nav-menu");
+const hamburger = document.querySelector("#hamburger");
+const navMenu = document.querySelector("#nav-menu");
 
-// hamburger.addEventListener("click", function () {
-//   hamburger.classList.toggle("hamburger-active");
-//   navMenu.classList.toggle("hidden");
-// });
+hamburger.addEventListener("click", function () {
+  hamburger.classList.toggle("hamburger-active");
+  navMenu.classList.toggle("hidden");
+});
 
 const NavBar = ({ theme }) => {
   const isLoggedIn = useSelector((state) => state.auth.token);
@@ -40,7 +40,7 @@ const NavBar = ({ theme }) => {
 
   const menu = (
     <Menu
-      className="pt-16"
+      className="pt-0"
       items={[
         {
           label: (
@@ -97,7 +97,7 @@ const NavBar = ({ theme }) => {
                   </li>
 
                   <li className="group">
-                    <Dropdown className="pt-24" overlay={menu} trigger={["click"]}>
+                    <Dropdown className="pt-36" overlay={menu} trigger={["hover"]}>
                       <a onClick={(e) => e.preventDefault()}>
                         <Space className="text-base group-hover:text-cyan-500 py-2 mx-8 flex">
                           Pelatihan
