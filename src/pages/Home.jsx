@@ -8,6 +8,7 @@ import Info from "../components/Home/Info";
 import Gallery from "../components/Home/Gallery";
 import History from "../components/Home/History";
 import Footer from "../components/Footer";
+import NavBar2 from "../components/NavBar2";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import FloatingButton from "../components/FloatingButton";
@@ -77,7 +78,8 @@ const Home = () => {
   ];
   return (
     <>
-      <NavBar theme="dark" />
+      {/* <NavBar theme="dark" /> */}
+      <NavBar2 />
       <Hero />
       <About />
       <Divisi />
