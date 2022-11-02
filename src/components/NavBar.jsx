@@ -15,11 +15,11 @@ window.onscroll = function () {
   }
 };
 
-function NavBar() {
+function NavBar({ theme }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="absolute top-0 left-0 w-full px-4 shadow-md">
+    <nav className={["absolute top-0 left-0 w-full px-4", theme === "dark" ? "bg-transparent" : "bg-white shadow-md"].join(" ")}>
       <div className="container py-2">
         <div className="flex items-center justify-between h-16 relative">
           <div className="">
@@ -33,7 +33,7 @@ function NavBar() {
           <div className="hidden md:block">
             <div className="flex items-center space-x-4">
               <Link to="/">
-                <a className=" hover:text-cyan-500 px-3 py-2 rounded-md text-base text-black">Beranda</a>
+                <a className="hover:text-cyan-500 px-3 py-2 rounded-md text-base text-black">Beranda</a>
               </Link>
 
               <Link to="/profile">

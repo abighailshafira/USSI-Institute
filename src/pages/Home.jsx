@@ -77,8 +77,8 @@ const Home = () => {
   ];
   return (
     <>
-      {/* <NavBar theme="dark" /> */}
-      <NavBar />
+      <NavBar theme="dark" />
+      {/* <NavBar /> */}
       <Hero />
       <About />
       <Divisi />
