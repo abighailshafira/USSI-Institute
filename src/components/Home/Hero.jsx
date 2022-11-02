@@ -5,7 +5,7 @@ const Hero = () => {
     <>
       <section>
         <div
-          className="relative overflow-hidden bg-no-repeat bg-cover"
+          className="overflow-hidden bg-no-repeat bg-cover"
           style={{
             backgroundPosition: "50%",
             backgroundImage: `url(

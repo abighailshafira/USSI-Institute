@@ -53,22 +53,6 @@
   opacity: 1;
 }
 
-.hamburger-line {
-  @apply w-[30px] h-[2.5px] my-2 block bg-white rounded-full;
-}
-
-.hamburger-active > span:nth-child(1) {
-  @apply rotate-45;
-}
-
-.hamburger-active > span:nth-child(2) {
-  @apply scale-0;
-}
-
-.hamburger-active > span:nth-child(3) {
-  @apply -rotate-45;
-}
-
 .navbar-fixed {
   @apply fixed z-[9999] bg-white w-full bg-opacity-80;
   backdrop-filter: blur(5px);
