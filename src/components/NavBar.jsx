@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Transition } from "@headlessui/react";
+import { Transition, Menu } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/image/logo-ussi.png";
+import { message } from "antd";
+import { useSelector } from "react-redux";
 import "../App.css";
 
 window.onscroll = function () {
@@ -15,11 +17,27 @@ window.onscroll = function () {
   }
 };
 
+const links = [
+  { href: "/pelatihan", label: "Pelatihan" },
+  { href: "/", label: "Jadwal Pelatihan" },
+];
+
 function NavBar({ theme }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  const isLoggedIn = useSelector((state) => state.auth.token);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // jsCookie.remove('auth')
+    localStorage.removeItem("persist:auth");
+    message.success("Logout Berhasil.");
+    navigate("/");
+    setTimeout(window.location.reload.bind(window.location), 500);
+  };
+
   return (
-    <nav className={["absolute top-0 left-0 w-full px-4", theme === "dark" ? "bg-transparent" : "bg-white shadow-md"].join(" ")}>
+    <nav className={["absolute top-0 left-0 w-full px-4 z-[9999]", theme === "dark" ? "bg-transparent" : "bg-white shadow-md"].join(" ")}>
       <div className="container py-2">
         <div className="flex items-center justify-between h-16 relative">
           <div className="">
@@ -44,6 +62,17 @@ function NavBar({ theme }) {
                 <a className="hover:text-cyan-500 px-3 py-2 rounded-md text-base text-black">Pelatihan</a>
               </Link>
 
+              {/* <Menu>
+                <Menu.Button className="hover:text-cyan-500 px-3 py-2 rounded-md text-base text-black">Pelatihan</Menu.Button>
+                <Menu.Items>
+                  {links.map((link) => (
+                    <Menu.Item as="a" key={link.href} href={link.href} className="ui-active:bg-blue-500 ui-active:text-white ui-not-active:bg-white ui-not-active:text-black">
+                      {link.label}
+                    </Menu.Item>
+                  ))}
+                </Menu.Items>
+              </Menu> */}
+
               <Link to="/pendaftaran">
                 <a href="#" className="hover:text-cyan-500 px-3 py-2 rounded-md text-base text-black">
                   Pendaftaran
@@ -57,10 +86,15 @@ function NavBar({ theme }) {
           </div>
 
           <div className="hidden md:block ">
-            {" "}
-            <Link to="/login">
-              <a className="hover:text-cyan-500 text-base text-black border-2 border-cyan-500 rounded-full py-1.5 px-6 ml-5">Login</a>
-            </Link>
+            {isLoggedIn ? (
+              <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex" onClick={handleLogout}>
+                Logout
+              </a>
+            ) : (
+              <Link to="/login">
+                <a className="hover:text-cyan-500 text-base text-black border-2 border-cyan-500 rounded-full py-1.5 px-6 ml-5">Login</a>
+              </Link>
+            )}
           </div>
 
           {/* hamburger */}

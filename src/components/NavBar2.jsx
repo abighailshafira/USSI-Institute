@@ -7,16 +7,16 @@ import { RiArrowDownSLine } from "react-icons/ri";
 import { Dropdown, Menu, Space } from "antd";
 import "../App.css";
 
-window.onscroll = function () {
-  const header = document.querySelector("header");
-  const fixedNav = header.offsetTop;
+// window.onscroll = function () {
+//   const header = document.querySelector("header");
+//   const fixedNav = header.offsetTop;
 
-  if (window.pageYOffset > fixedNav) {
-    header.classList.add("navbar-fixed");
-  } else {
-    header.classList.remove("navbar-fixed");
-  }
-};
+//   if (window.pageYOffset > fixedNav) {
+//     header.classList.add("navbar-fixed");
+//   } else {
+//     header.classList.remove("navbar-fixed");
+//   }
+// };
 
 // const hamburger = document.querySelector("#hamburger");
 // const navMenu = document.querySelector("#nav-menu");
@@ -27,16 +27,16 @@ window.onscroll = function () {
 // });
 
 const NavBar2 = ({ theme }) => {
-  const isLoggedIn = useSelector((state) => state.auth.token);
-  const navigate = useNavigate();
+  // const isLoggedIn = useSelector((state) => state.auth.token);
+  // const navigate = useNavigate();
 
-  const handleLogout = () => {
-    // jsCookie.remove('auth')
-    localStorage.removeItem("persist:auth");
-    message.success("Logout Berhasil.");
-    navigate("/");
-    setTimeout(window.location.reload.bind(window.location), 500);
-  };
+  // const handleLogout = () => {
+  //   // jsCookie.remove('auth')
+  //   localStorage.removeItem("persist:auth");
+  //   message.success("Logout Berhasil.");
+  //   navigate("/");
+  //   setTimeout(window.location.reload.bind(window.location), 500);
+  // };
 
   const menu = (
     <Menu
