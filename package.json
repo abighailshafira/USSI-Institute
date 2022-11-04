@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emailjs/browser": "^3.9.0",
     "@emotion/styled": "^11.10.4",
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
