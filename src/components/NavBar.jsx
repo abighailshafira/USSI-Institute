@@ -1,11 +1,16 @@
 import React, { useState, Fragment } from "react";
-import { Transition, Menu } from "@headlessui/react";
+import { Transition, Menu, Disclosure } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/image/logo-ussi.png";
 import { message } from "antd";
 import { useSelector } from "react-redux";
 import { RiArrowDownSLine } from "react-icons/ri";
 import "../App.css";
+import Paper from '@mui/material/Paper';
+import MenuList from '@mui/material/MenuList';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemText from '@mui/material/ListItemText';
+
 
 window.onscroll = function () {
   const header = document.querySelector("nav");
@@ -147,9 +152,45 @@ function NavBar({ theme }) {
                 <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Tentang</a>
               </Link>
 
-              <div>
+              <Menu as="div" className="relative">
+                <Disclosure>
+                  <Disclosure.Button className="inline-flex items-center hover:bg-slate-700 hover:text-white text-black px-4 py-2 rounded-md text-base ">
+                   Pelatihan
+                    <RiArrowDownSLine className="ml-2 text-black" aria-hidden="true" />
+                  </Disclosure.Button>
+                  <Disclosure.Panel className="text-gray-500 ml-10">
+                    <Link to="/">
+                        <a className="hover:bg-slate-700 hover:text-white text-black block px-4 py-2 rounded-md text-base">Pelatihan</a>
+                      </Link>
+
+                    <Link to="/pelatihan">
+                        <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Jadwal Pelatihan</a>
+                      </Link>
+                  </Disclosure.Panel>
+                </Disclosure>
+              </Menu>
+
+              {/* <div>
                 <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pelatihan</a>
-              </div>
+                <Paper sx={{ width: 320 }}>
+                  <MenuList dense>
+                    <MenuItem>
+                      <ListItemText inset>
+                        <Link to="/pelatihan">
+                          <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pelatihan</a>
+                        </Link>
+                      </ListItemText>
+                    </MenuItem>
+                    <MenuItem>
+                      <ListItemText inset>
+                        <Link to="/pelatihan">
+                          <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Jadwal Pelatihan</a>
+                        </Link>
+                      </ListItemText>
+                    </MenuItem>
+                  </MenuList>
+                </Paper>
+              </div> */}
 
               <Link to="/pendaftaran">
                 <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pendaftaran</a>
