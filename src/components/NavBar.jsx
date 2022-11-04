@@ -159,11 +159,11 @@ function NavBar({ theme }) {
                     <RiArrowDownSLine className="ml-2 text-black" aria-hidden="true" />
                   </Disclosure.Button>
                   <Disclosure.Panel className="text-gray-500 ml-10">
-                    <Link to="/">
+                    <Link to="/pelatihan">
                         <a className="hover:bg-slate-700 hover:text-white text-black block px-4 py-2 rounded-md text-base">Pelatihan</a>
                       </Link>
 
-                    <Link to="/pelatihan">
+                    <Link to="/jadwal-pelatihan">
                         <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Jadwal Pelatihan</a>
                       </Link>
                   </Disclosure.Panel>
