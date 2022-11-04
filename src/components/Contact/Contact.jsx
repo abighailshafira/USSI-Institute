@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm("service_6t70fcj", "template_i1b6rak", form.current, "-hablRCXNYLfvdviu").then(
+      (result) => {
+        console.log(result.text);
+        console.log("message sent");
+      },
+      (error) => {
+        console.log(error.text);
+      }
+    );
+  };
+
   return (
     <>
       <section id="contact" className="pt-36">
@@ -15,7 +32,7 @@ const Contact = () => {
 
           <div className="flex flex-wrap justify-center mx-auto rounded-lg shadow-lg bg-white overflow-hidden max-w-4xl">
             <div className="w-full p-7 md:w-1/2 md:p-10">
-              <form>
+              <form ref={form} onSubmit={sendEmail}>
                 <div className="grid grid-cols-2 gap-2 md:gap-4 text-slate-800">
                   <div className="form-group text-base">
                     <label for="name">Nama</label>
@@ -23,6 +40,7 @@ const Contact = () => {
                       type="text"
                       className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
                       id="name"
+                      name="name"
                       placeholder="Nama"
                     />
                   </div>
@@ -33,6 +51,7 @@ const Contact = () => {
                       type="email"
                       className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
                       id="email"
+                      name="email"
                       placeholder="Email"
                     />
                   </div>
@@ -44,6 +63,7 @@ const Contact = () => {
                     type="text"
                     className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
                     id="subject"
+                    name="subject"
                     placeholder="Subjek"
                   />
                 </div>
@@ -54,6 +74,7 @@ const Contact = () => {
                     type="text"
                     className="h-32 form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
                     id="message"
+                    name="message"
                     placeholder="Pesan"
                   ></textarea>
                 </div>
