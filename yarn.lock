@@ -1229,6 +1229,11 @@
   resolved "https://registry.yarnpkg.com/@ctrl/tinycolor/-/tinycolor-3.4.1.tgz#75b4c27948c81e88ccd3a8902047bcd797f38d32"
   integrity sha512-ej5oVy6lykXsvieQtqZxCOaLT+xD4+QNarq78cIYISHmZXshCvROLudpQN3lfL8G0NL7plMSSK+zlyvCaIJ4Iw==
 
+"@emailjs/browser@^3.9.0":
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/@emailjs/browser/-/browser-3.9.0.tgz#e2f85afada83c5b532e744250885edb7006b97f0"
+  integrity sha512-NyWRmPUS0gg2Z+ygLMNSBcHNwlPFL0cEs6u62AwxNO5EjlYQiWHU///LYOfPM54ZZOoHJ2gNVUU+VnnMrKXraA==
+
 "@emotion/babel-plugin@^11.10.0":
   version "11.10.2"
   resolved "https://registry.yarnpkg.com/@emotion/babel-plugin/-/babel-plugin-11.10.2.tgz#879db80ba622b3f6076917a1e6f648b1c7d008c7"
