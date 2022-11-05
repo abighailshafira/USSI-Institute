@@ -10,7 +10,7 @@ import { persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } fro
 import storage from "redux-persist/lib/storage";
 
 const persistConfig = {
-  key: "auth",
+  key: "persist:auth",
   version: 1,
   storage,
 };

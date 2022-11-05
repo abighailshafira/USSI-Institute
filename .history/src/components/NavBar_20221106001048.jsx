@@ -31,7 +31,7 @@ const links = [
 function NavBar({ theme }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const isLoggedIn = useSelector((state) => state.auth.accessToken);
+  const isLoggedIn = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   const handleLogout = () => {

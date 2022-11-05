@@ -47,10 +47,10 @@ const FormLogin = () => {
     })
       .then((res) => {
         // console.log(res.data);
-        if (res.data.statusCode === 200) {
+        if (res.data.statusCode === "success") {
           dispatch(
             setData({
-              accessToken: res.data.accessToken,
+              accessToken: res.accessToken,
             })
           );
 

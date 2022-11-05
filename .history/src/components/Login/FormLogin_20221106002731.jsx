@@ -50,7 +50,7 @@ const FormLogin = () => {
         if (res.data.statusCode === 200) {
           dispatch(
             setData({
-              accessToken: res.data.accessToken,
+              token: res.data.accessToken,
             })
           );
 

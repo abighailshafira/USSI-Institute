@@ -18,7 +18,7 @@ const FormLogin = () => {
 
   const navigate = useNavigate();
   // const isLoggedIn = jsCookie.get('auth')
-  const isLoggedIn = !!useSelector((state) => state.auth.accessToken);
+  const isLoggedIn = !!useSelector((state) => state.auth.token);
 
   const dispatch = useDispatch();
 
@@ -42,15 +42,15 @@ const FormLogin = () => {
     userData.append("password", password);
     axios({
       method: "post",
-      url: `http://localhost:5000/api/v1/login`,
+      url: `http://localhost:5000/api/users/login`,
       data: userData,
     })
       .then((res) => {
         // console.log(res.data);
-        if (res.data.statusCode === 200) {
+        if (res.data.status === "success") {
           dispatch(
             setData({
-              accessToken: res.data.accessToken,
+              token: res.data.token,
             })
           );
 

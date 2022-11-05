@@ -18,7 +18,7 @@ const FormLogin = () => {
 
   const navigate = useNavigate();
   // const isLoggedIn = jsCookie.get('auth')
-  const isLoggedIn = !!useSelector((state) => state.auth.accessToken);
+  const isLoggedIn = !!useSelector((state) => state.auth.token);
 
   const dispatch = useDispatch();
 
@@ -47,7 +47,7 @@ const FormLogin = () => {
     })
       .then((res) => {
         // console.log(res.data);
-        if (res.data.statusCode === 200) {
+        if (res.data.statusCode === "success") {
           dispatch(
             setData({
               accessToken: res.data.accessToken,

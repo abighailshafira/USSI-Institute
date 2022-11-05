@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    accessToken: localStorage.getItem("accessToken"),
+    token: localStorage.getItem("token"),
     // isAdmin: false,
     email: "",
     password: ""
@@ -11,8 +11,8 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        setAccessToken: (state, action) => {
-            state.accessToken = action.payload;
+        setToken: (state, action) => {
+            state.token = action.payload;
         },
         setEmail: (state, action) => {
             state.email = action.payload;
@@ -32,6 +32,6 @@ export const authSlice = createSlice({
     }
 });
 
-export const { setAccessToken, setEmail, setPassword, setData, clearData } = authSlice.actions;
+export const { setToken, setEmail, setPassword, setData, clearData } = authSlice.actions;
 
 export default authSlice.reducer;
