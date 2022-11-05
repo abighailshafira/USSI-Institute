@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import Image from "../../assets/image/register.png";
 import { Link, useNavigate } from "react-router-dom";
-// import PasswordInput from "../PasswordInput";
+import PasswordInput from "../PasswordInput";
 import axios from "axios";
-import { Input, message } from "antd";
-import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
+import { message } from "antd";
 
 const FormRegister = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -22,11 +21,6 @@ const FormRegister = () => {
     const userData = new URLSearchParams();
     userData.append("email", email);
     userData.append("password", password);
-
-    // for (var pair of userData.entries()) {
-    //     console.log(pair[0] + ", " + pair[1]);
-    // }
-
     axios({
       method: "post",
       url: `http://localhost:5000/api/v1/register`,
@@ -113,25 +107,13 @@ const FormRegister = () => {
                     Password
                   </label>
 
-                  <Input.Password
-                    placeholder="input password"
-                    style={{
-                      borderRadius: "5px",
-                    }}
-                    iconRender={(visible) =>
-                      visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-                    }
+                  <PasswordInput
                     onChange={(e) => setPassword(e.target.value)}
                   />
-
-                  {/* <PasswordInput
-                    onChange={(e) => setPassword(e.target.value)}
-                  /> */}
                 </div>
 
                 <button
                   type="submit"
-                  onClick={register}
                   className="w-full px-6 py-2.5 text-white font-medium text-base tracking-wide leading-snug rounded-md bg-gradient-to-r from-cyan-500 to-sky-600 hover:bg-gradient-to-l hover:to-sky-600 hover:from-cyan-500 transition duration-300 ease-in-out"
                 >
                   Register

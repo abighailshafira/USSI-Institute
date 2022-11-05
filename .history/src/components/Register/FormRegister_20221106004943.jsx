@@ -22,11 +22,6 @@ const FormRegister = () => {
     const userData = new URLSearchParams();
     userData.append("email", email);
     userData.append("password", password);
-
-    // for (var pair of userData.entries()) {
-    //     console.log(pair[0] + ", " + pair[1]);
-    // }
-
     axios({
       method: "post",
       url: `http://localhost:5000/api/v1/register`,

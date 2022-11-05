@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@emailjs/browser": "^3.9.0",
     "@emotion/styled": "^11.10.4",
     "@headlessui/react": "^1.7.4",

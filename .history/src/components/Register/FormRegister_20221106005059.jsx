@@ -23,44 +23,44 @@ const FormRegister = () => {
     userData.append("email", email);
     userData.append("password", password);
 
-    // for (var pair of userData.entries()) {
-    //     console.log(pair[0] + ", " + pair[1]);
-    // }
+    for (var pair of userData.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+    }
 
-    axios({
-      method: "post",
-      url: `http://localhost:5000/api/v1/register`,
-      data: userData,
-    })
-      .then((res) => {
-        // console.log(res.data);
-        navigate("/login");
-        message.success("Register Berhasil.");
-        // if (res.data.statusCode === 200) {
-        //   dispatch(
-        //     setData({
-        //       accessToken: res.data.accessToken,
-        //     })
-        //   );
+    // axios({
+    //   method: "post",
+    //   url: `http://localhost:5000/api/v1/register`,
+    //   data: userData,
+    // })
+    //   .then((res) => {
+    //     // console.log(res.data);
+    //     navigate("/login");
+    //     message.success("Register Berhasil.");
+    //     // if (res.data.statusCode === 200) {
+    //     //   dispatch(
+    //     //     setData({
+    //     //       accessToken: res.data.accessToken,
+    //     //     })
+    //     //   );
 
-        //   setTimeout(window.location.reload.bind(window.location), 300);
-        // toastMixin.fire({
-        //   animation: true,
-        //   title: "Signed in Successfully",
-        // });
-        // } else {
-        // }
-      })
-      .catch((err) => {
-        console.log(err);
-        message.error("Silahkan Cek Email dan Password Anda.");
-        // message.error("This is an error message");
-        // toastMixin.fire({
-        //   icon: "error",
-        //   animation: true,
-        //   title: "Not match!",
-        // });
-      });
+    //     //   setTimeout(window.location.reload.bind(window.location), 300);
+    //     // toastMixin.fire({
+    //     //   animation: true,
+    //     //   title: "Signed in Successfully",
+    //     // });
+    //     // } else {
+    //     // }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     message.error("Silahkan Cek Email dan Password Anda.");
+    //     // message.error("This is an error message");
+    //     // toastMixin.fire({
+    //     //   icon: "error",
+    //     //   animation: true,
+    //     //   title: "Not match!",
+    //     // });
+    //   });
   };
 
   return (
