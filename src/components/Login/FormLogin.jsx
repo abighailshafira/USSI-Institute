@@ -1,4 +1,4 @@
-import { message } from "antd";
+import { Input, message } from "antd";
 import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Image from "../../assets/image/login.png";
 import Home from "../../pages/Home";
 import { setData } from "../../redux/slices/authSlice";
+import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 
 const FormLogin = () => {
   const [email, setEmail] = useState("");
@@ -112,11 +113,14 @@ const FormLogin = () => {
                     Password
                   </label>
 
-                  <input
-                    type="password"
-                    className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
-                    placeholder="Password"
-                    value={password}
+                  <Input.Password
+                    placeholder="input password"
+                    style={{
+                      borderRadius: "5px",
+                    }}
+                    iconRender={(visible) =>
+                      visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                    }
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
