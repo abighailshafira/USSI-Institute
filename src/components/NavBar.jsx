@@ -6,11 +6,10 @@ import { message } from "antd";
 import { useSelector } from "react-redux";
 import { RiArrowDownSLine } from "react-icons/ri";
 import "../App.css";
-import Paper from '@mui/material/Paper';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
-
+import Paper from "@mui/material/Paper";
+import MenuList from "@mui/material/MenuList";
+import MenuItem from "@mui/material/MenuItem";
+import ListItemText from "@mui/material/ListItemText";
 
 window.onscroll = function () {
   const header = document.querySelector("nav");
@@ -154,18 +153,18 @@ function NavBar({ theme }) {
 
               <Menu as="div" className="relative">
                 <Disclosure>
-                  <Disclosure.Button className="inline-flex items-center hover:bg-slate-700 hover:text-white text-black px-4 py-2 rounded-md text-base ">
-                   Pelatihan
+                  <Disclosure.Button className="inline-flex items-center w-full hover:bg-slate-700 hover:text-white text-black px-4 py-2 rounded-md text-base ">
+                    Pelatihan
                     <RiArrowDownSLine className="ml-2 text-black" aria-hidden="true" />
                   </Disclosure.Button>
-                  <Disclosure.Panel className="text-gray-500 ml-10">
+                  <Disclosure.Panel className="text-gray-500 ml-5">
                     <Link to="/pelatihan">
-                        <a className="hover:bg-slate-700 hover:text-white text-black block px-4 py-2 rounded-md text-base">Pelatihan</a>
-                      </Link>
+                      <a className="hover:bg-slate-700 hover:text-white text-black block px-4 py-2 rounded-md text-base">Pelatihan</a>
+                    </Link>
 
                     <Link to="/jadwal-pelatihan">
-                        <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Jadwal Pelatihan</a>
-                      </Link>
+                      <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Jadwal Pelatihan</a>
+                    </Link>
                   </Disclosure.Panel>
                 </Disclosure>
               </Menu>

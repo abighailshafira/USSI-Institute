@@ -6,11 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import Image from "../../assets/image/login.png";
 import Home from "../../pages/Home";
 import { setData } from "../../redux/slices/authSlice";
-// import { login } from "../../redux/slices/userSlice";
 
 const FormLogin = () => {
   const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
   const [password, setPassword] = useState({
     password: "",
     showPassword: false,
