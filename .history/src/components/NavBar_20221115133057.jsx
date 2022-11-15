@@ -81,7 +81,7 @@ function NavBar({ theme }) {
                 >
                   <Menu.Items className="absolute right-0 mt-6 w-52 origin-top-right rounded-md bg-white shadow-lg p-2">
                     {links.map((link) => (
-                      <Menu.Item as="a" key={link.href} href={link.href} className="text-black flex w-full items-center px-4 py-2 text-base hover:bg-slate-700 hover:text-white rounded-md">
+                      <Menu.Item as="a" key={link.href} href={link.href} className="text-white flex w-full items-center px-4 py-2 text-base hover:bg-slate-700 hover:text-white rounded-md">
                         {link.label}
                       </Menu.Item>
                     ))}
@@ -90,13 +90,13 @@ function NavBar({ theme }) {
               </Menu>
 
               <Link to="/pendaftaran">
-                <a href="#" className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">
+                <a href="#" className="hover:text-cyan-500 px-3 py-2 rounded-md text-base text-black">
                   Pendaftaran
                 </a>
               </Link>
 
               <Link to="/contact">
-                <a className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">Kontak</a>
+                <a className="hover:text-cyan-500 px-3 py-2 text-base text-black">Kontak</a>
               </Link>
             </div>
           </div>
@@ -108,7 +108,7 @@ function NavBar({ theme }) {
               </a>
             ) : (
               <Link to="/login">
-                <a className="login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-1.5 px-6 ml-5">Login</a>
+                <a className="hover:text-cyan-500 text-base text-black border-2 border-cyan-500 rounded-full py-1.5 px-6 ml-5">Login</a>
               </Link>
             )}
           </div>

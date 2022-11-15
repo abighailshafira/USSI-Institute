@@ -57,17 +57,22 @@ function NavBar({ theme }) {
           <div className="hidden md:block">
             <div className="flex items-center space-x-4">
               <Link to="/">
-                <a className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">Beranda</a>
+                <a className={[theme === "dark" ? "hover:text-cyan-500 px-3 py-2 text-base text-white" : "hover:text-cyan-500 px-3 py-2 text-base text-black"]}>Beranda</a>
               </Link>
 
               <Link to="/profile">
-                <a className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">Tentang</a>
+                <a className="hover:text-cyan-500 px-3 py-2 text-base text-black">Tentang</a>
               </Link>
 
               <Menu as="div" className="relative">
-                <Menu.Button className="pilih inline-flex items-center hover:text-cyan-500 px-3 py-2 text-base text-white ">
+                {/* <Menu.Button className="inline-flex items-center hover:text-cyan-500 px-3 py-2 text-base text-black ">
                   Pelatihan
-                  <RiArrowDownSLine aria-hidden="true" />
+                  <RiArrowDownSLine className="ml-2 text-black" aria-hidden="true" />
+                </Menu.Button> */}
+
+                <Menu.Button className="inline-flex items-center hover:text-cyan-500 px-3 py-2 text-base text-black ">
+                  Pelatihan
+                  <RiArrowDownSLine className="ml-2 text-black" aria-hidden="true" />
                 </Menu.Button>
 
                 <Transition
@@ -90,13 +95,13 @@ function NavBar({ theme }) {
               </Menu>
 
               <Link to="/pendaftaran">
-                <a href="#" className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">
+                <a href="#" className="hover:text-cyan-500 px-3 py-2 rounded-md text-base text-black">
                   Pendaftaran
                 </a>
               </Link>
 
               <Link to="/contact">
-                <a className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">Kontak</a>
+                <a className="hover:text-cyan-500 px-3 py-2 text-base text-black">Kontak</a>
               </Link>
             </div>
           </div>
@@ -108,7 +113,7 @@ function NavBar({ theme }) {
               </a>
             ) : (
               <Link to="/login">
-                <a className="login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-1.5 px-6 ml-5">Login</a>
+                <a className="hover:text-cyan-500 text-base text-black border-2 border-cyan-500 rounded-full py-1.5 px-6 ml-5">Login</a>
               </Link>
             )}
           </div>

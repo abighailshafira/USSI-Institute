@@ -108,7 +108,7 @@ function NavBar({ theme }) {
               </a>
             ) : (
               <Link to="/login">
-                <a className="login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-1.5 px-6 ml-5">Login</a>
+                <a className="hover:text-cyan-500 text-base text-black border-2 border-cyan-500 rounded-full py-1.5 px-6 ml-5">Login</a>
               </Link>
             )}
           </div>

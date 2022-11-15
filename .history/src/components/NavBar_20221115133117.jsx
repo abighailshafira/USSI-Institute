@@ -90,13 +90,13 @@ function NavBar({ theme }) {
               </Menu>
 
               <Link to="/pendaftaran">
-                <a href="#" className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">
+                <a href="#" className="hover:text-cyan-500 px-3 py-2 rounded-md text-base text-black">
                   Pendaftaran
                 </a>
               </Link>
 
               <Link to="/contact">
-                <a className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">Kontak</a>
+                <a className="hover:text-cyan-500 px-3 py-2 text-base text-black">Kontak</a>
               </Link>
             </div>
           </div>
@@ -108,7 +108,7 @@ function NavBar({ theme }) {
               </a>
             ) : (
               <Link to="/login">
-                <a className="login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-1.5 px-6 ml-5">Login</a>
+                <a className="hover:text-cyan-500 text-base text-black border-2 border-cyan-500 rounded-full py-1.5 px-6 ml-5">Login</a>
               </Link>
             )}
           </div>

@@ -6,11 +6,10 @@ import { message } from "antd";
 import { useSelector } from "react-redux";
 import { RiArrowDownSLine } from "react-icons/ri";
 import "../App.css";
-import Paper from '@mui/material/Paper';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
-
+import Paper from "@mui/material/Paper";
+import MenuList from "@mui/material/MenuList";
+import MenuItem from "@mui/material/MenuItem";
+import ListItemText from "@mui/material/ListItemText";
 
 window.onscroll = function () {
   const header = document.querySelector("nav");
@@ -43,7 +42,12 @@ function NavBar({ theme }) {
   };
 
   return (
-    <nav className={["absolute top-0 left-0 w-full px-4 z-[9999]", theme === "dark" ? "bg-transparent" : "bg-white shadow-md"].join(" ")}>
+    <nav
+      className={[
+        "absolute top-0 left-0 w-full px-4 z-[9999]",
+        theme === "dark" ? "bg-transparent" : "bg-white shadow-md",
+      ].join(" ")}
+    >
       <div className="container py-2">
         <div className="flex items-center justify-between h-16 relative">
           <div className="">
@@ -57,11 +61,15 @@ function NavBar({ theme }) {
           <div className="hidden md:block">
             <div className="flex items-center space-x-4">
               <Link to="/">
-                <a className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">Beranda</a>
+                <a className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">
+                  Beranda
+                </a>
               </Link>
 
               <Link to="/profile">
-                <a className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">Tentang</a>
+                <a className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">
+                  Tentang
+                </a>
               </Link>
 
               <Menu as="div" className="relative">
@@ -81,7 +89,12 @@ function NavBar({ theme }) {
                 >
                   <Menu.Items className="absolute right-0 mt-6 w-52 origin-top-right rounded-md bg-white shadow-lg p-2">
                     {links.map((link) => (
-                      <Menu.Item as="a" key={link.href} href={link.href} className="text-black flex w-full items-center px-4 py-2 text-base hover:bg-slate-700 hover:text-white rounded-md">
+                      <Menu.Item
+                        as="a"
+                        key={link.href}
+                        href={link.href}
+                        className="text-black flex w-full items-center px-4 py-2 text-base hover:bg-slate-700 hover:text-white rounded-md"
+                      >
                         {link.label}
                       </Menu.Item>
                     ))}
@@ -90,40 +103,86 @@ function NavBar({ theme }) {
               </Menu>
 
               <Link to="/pendaftaran">
-                <a href="#" className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">
+                <a
+                  href="#"
+                  className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white"
+                >
                   Pendaftaran
                 </a>
               </Link>
 
               <Link to="/contact">
-                <a className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">Kontak</a>
+                <a className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">
+                  Kontak
+                </a>
               </Link>
             </div>
           </div>
 
           <div className="hidden md:block ">
             {isLoggedIn ? (
-              <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex" onClick={handleLogout}>
+              <a
+                className="text-base group-hover:text-cyan-500 py-2 mx-8 flex"
+                onClick={handleLogout}
+              >
                 Logout
               </a>
             ) : (
               <Link to="/login">
-                <a className="login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-1.5 px-6 ml-5">Login</a>
+                <a
+                  className={[
+                    theme === "dark"
+                      ? "hover:text-cyan-500 text-base border-2 border-cyan-500 rounded-full py-1.5 px-6 ml-5 text-white"
+                      : "hover:text-cyan-500 text-base border-2 border-cyan-500 rounded-full py-1.5 px-6 ml-5 text-black",
+                  ]}
+                >
+                  Login
+                </a>
               </Link>
             )}
           </div>
 
           {/* hamburger */}
           <div className="flex md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} type="button" className="bg-slate-700 inline-flex items-center justify-center p-2 rounded-md text-white shadow-md" aria-controls="mobile-menu" aria-expanded="false">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              type="button"
+              className="bg-slate-700 inline-flex items-center justify-center p-2 rounded-md text-white shadow-md"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+            >
               <span className="sr-only">Open main menu</span>
               {!isOpen ? (
-                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                <svg
+                  className="block h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 </svg>
               ) : (
-                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  className="block h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               )}
             </button>
@@ -145,27 +204,38 @@ function NavBar({ theme }) {
           <div className="md:hidden container" id="mobile-menu">
             <div ref={ref} className="pt-2 pb-3 space-y-1">
               <Link to="/">
-                <a className="hover:bg-slate-700 hover:text-white text-black block px-4 py-2 rounded-md text-base">Beranda</a>
+                <a className="hover:bg-slate-700 hover:text-white text-black block px-4 py-2 rounded-md text-base">
+                  Beranda
+                </a>
               </Link>
 
               <Link to="/profile">
-                <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Tentang</a>
+                <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">
+                  Tentang
+                </a>
               </Link>
 
               <Menu as="div" className="relative">
                 <Disclosure>
                   <Disclosure.Button className="inline-flex items-center hover:bg-slate-700 hover:text-white text-black px-4 py-2 rounded-md text-base ">
-                   Pelatihan
-                    <RiArrowDownSLine className="ml-2 text-black" aria-hidden="true" />
+                    Pelatihan
+                    <RiArrowDownSLine
+                      className="ml-2 text-black"
+                      aria-hidden="true"
+                    />
                   </Disclosure.Button>
                   <Disclosure.Panel className="text-gray-500 ml-10">
                     <Link to="/pelatihan">
-                        <a className="hover:bg-slate-700 hover:text-white text-black block px-4 py-2 rounded-md text-base">Pelatihan</a>
-                      </Link>
+                      <a className="hover:bg-slate-700 hover:text-white text-black block px-4 py-2 rounded-md text-base">
+                        Pelatihan
+                      </a>
+                    </Link>
 
                     <Link to="/jadwal-pelatihan">
-                        <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Jadwal Pelatihan</a>
-                      </Link>
+                      <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">
+                        Jadwal Pelatihan
+                      </a>
+                    </Link>
                   </Disclosure.Panel>
                 </Disclosure>
               </Menu>
@@ -193,15 +263,21 @@ function NavBar({ theme }) {
               </div> */}
 
               <Link to="/pendaftaran">
-                <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pendaftaran</a>
+                <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">
+                  Pendaftaran
+                </a>
               </Link>
 
               <Link to="/contact">
-                <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Kontak</a>
+                <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">
+                  Kontak
+                </a>
               </Link>
 
               <Link to="/login">
-                <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Login</a>
+                <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">
+                  Login
+                </a>
               </Link>
             </div>
           </div>
