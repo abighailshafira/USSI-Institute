@@ -5,7 +5,6 @@ import ReactSelect from "react-select";
 import Institution from "./Steps/Institution";
 import Personal from "./Steps/Personal";
 import Payment from "./Steps/Payment";
-import { useNavigate } from "react-router-dom";
 
 const FormDaftar = () => {
   const [pendaftaran, setPelatihan] = useState([]);
@@ -20,8 +19,6 @@ const FormDaftar = () => {
     // gender: "",
     payment: "",
   });
-
-  const navigate = useNavigate();
 
   const getPelatihan = async (data) => {
     await axios
@@ -83,46 +80,18 @@ const FormDaftar = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const userData = new URLSearchParams();
-    // console.log(userData);
-    userData.append("trainingName", formData.trainingName);
-    userData.append("institutionName", formData.institutionName);
-    userData.append("institutionAddress", formData.institutionAddress);
-    userData.append("name", formData.name);
-    userData.append("city", formData.city);
-    userData.append("phone", formData.phone);
-    // userData.append("karyawan", formData.employees);
-    userData.append("payment", formData.payment);
-
-    for (var pair of userData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
-
-    axios({
-      method: "post",
-      url: `http://localhost:5000/api/v1/registration`,
-      data: userData,
-      headers: {
-        Accept: "application/json",
-      },
-    })
-      .then((res) => {
-        //handle success
-        console.log(res);
-        // navigate("/"); ini untuk navigate ke halaman lain
-      })
-      .catch((err) => {
-        if (err.response) {
-          console.log("err.response ", err.response);
-        } else if (err.request) {
-          console.log("err.request ", err.request);
-        } else if (err.message) {
-          // do something other than the other two
-        }
-      });
-
-    // getPelatihan(formData);
+    // userData.append("nama", name);
+    // userData.append("alamat", address);
+    // userData.append("kota", city);
+    // userData.append("tipe", tipe);
+    // userData.append("kode_pos", postal_code);
+    // userData.append("nomor_telepon", phone_number);
+    // userData.append("karyawan", employees);
+    // userData.append("bagan_akun", chart);
+    getPelatihan(formData);
   };
 
+  console.log(formData);
   return (
     <>
       {/* <section id="form-daftar" className="pt-36">

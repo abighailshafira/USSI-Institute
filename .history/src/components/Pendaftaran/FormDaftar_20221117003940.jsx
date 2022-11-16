@@ -98,11 +98,12 @@ const FormDaftar = () => {
     }
 
     axios({
-      method: "post",
+      method: "put",
       url: `http://localhost:5000/api/v1/registration`,
       data: userData,
       headers: {
         Accept: "application/json",
+        // Authorization: `Bearer ${auth.token}`, ini diisi kalo ada auth token dari redux ya cok
       },
     })
       .then((res) => {

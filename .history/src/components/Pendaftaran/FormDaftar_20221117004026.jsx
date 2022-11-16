@@ -82,7 +82,7 @@ const FormDaftar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const userData = new URLSearchParams();
+    const userData = new FormData();
     // console.log(userData);
     userData.append("trainingName", formData.trainingName);
     userData.append("institutionName", formData.institutionName);
@@ -98,7 +98,7 @@ const FormDaftar = () => {
     }
 
     axios({
-      method: "post",
+      method: "put",
       url: `http://localhost:5000/api/v1/registration`,
       data: userData,
       headers: {

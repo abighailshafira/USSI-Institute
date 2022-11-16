@@ -5,7 +5,6 @@ import ReactSelect from "react-select";
 import Institution from "./Steps/Institution";
 import Personal from "./Steps/Personal";
 import Payment from "./Steps/Payment";
-import { useNavigate } from "react-router-dom";
 
 const FormDaftar = () => {
   const [pendaftaran, setPelatihan] = useState([]);
@@ -20,8 +19,6 @@ const FormDaftar = () => {
     // gender: "",
     payment: "",
   });
-
-  const navigate = useNavigate();
 
   const getPelatihan = async (data) => {
     await axios
@@ -96,29 +93,6 @@ const FormDaftar = () => {
     for (var pair of userData.entries()) {
       console.log(pair[0] + ", " + pair[1]);
     }
-
-    axios({
-      method: "post",
-      url: `http://localhost:5000/api/v1/registration`,
-      data: userData,
-      headers: {
-        Accept: "application/json",
-      },
-    })
-      .then((res) => {
-        //handle success
-        console.log(res);
-        // navigate("/"); ini untuk navigate ke halaman lain
-      })
-      .catch((err) => {
-        if (err.response) {
-          console.log("err.response ", err.response);
-        } else if (err.request) {
-          console.log("err.request ", err.request);
-        } else if (err.message) {
-          // do something other than the other two
-        }
-      });
 
     // getPelatihan(formData);
   };

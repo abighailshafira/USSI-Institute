@@ -98,21 +98,23 @@ const FormDaftar = () => {
     }
 
     axios({
-      method: "post",
-      url: `http://localhost:5000/api/v1/registration`,
+      method: "put",
+      // url: `${Url}/warehouses/${id}`, isi urlnya ya cok jel
       data: userData,
       headers: {
         Accept: "application/json",
+        // Authorization: `Bearer ${auth.token}`, ini diisi kalo ada auth token dari redux ya cok
       },
     })
       .then((res) => {
         //handle success
         console.log(res);
-        // navigate("/"); ini untuk navigate ke halaman lain
+        // navigate("/gudang"); ini untuk navigate ke halaman lain
       })
       .catch((err) => {
         if (err.response) {
           console.log("err.response ", err.response);
+          
         } else if (err.request) {
           console.log("err.request ", err.request);
         } else if (err.message) {

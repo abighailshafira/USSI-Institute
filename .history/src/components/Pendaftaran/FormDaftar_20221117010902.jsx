@@ -82,43 +82,43 @@ const FormDaftar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const userData = new URLSearchParams();
+    const formData = new URLSearchParams();
     // console.log(userData);
-    userData.append("trainingName", formData.trainingName);
-    userData.append("institutionName", formData.institutionName);
-    userData.append("institutionAddress", formData.institutionAddress);
-    userData.append("name", formData.name);
-    userData.append("city", formData.city);
-    userData.append("phone", formData.phone);
-    // userData.append("karyawan", formData.employees);
-    userData.append("payment", formData.payment);
+    // userData.append("trainingName", formData.trainingName);
+    // userData.append("institutionName", formData.institutionName);
+    // userData.append("institutionAddress", formData.institutionAddress);
+    // userData.append("name", formData.name);
+    // userData.append("city", formData.city);
+    // userData.append("phone", formData.phone);
+    // // userData.append("karyawan", formData.employees);
+    // userData.append("payment", formData.payment);
 
-    for (var pair of userData.entries()) {
+    for (var pair of formData.entries()) {
       console.log(pair[0] + ", " + pair[1]);
     }
 
-    axios({
-      method: "post",
-      url: `http://localhost:5000/api/v1/registration`,
-      data: userData,
-      headers: {
-        Accept: "application/json",
-      },
-    })
-      .then((res) => {
-        //handle success
-        console.log(res);
-        // navigate("/"); ini untuk navigate ke halaman lain
-      })
-      .catch((err) => {
-        if (err.response) {
-          console.log("err.response ", err.response);
-        } else if (err.request) {
-          console.log("err.request ", err.request);
-        } else if (err.message) {
-          // do something other than the other two
-        }
-      });
+    // axios({
+    //   method: "post",
+    //   url: `http://localhost:5000/api/v1/registration`,
+    //   data: userData,
+    //   headers: {
+    //     Accept: "application/json",
+    //   },
+    // })
+    //   .then((res) => {
+    //     //handle success
+    //     console.log(res);
+    //     // navigate("/"); ini untuk navigate ke halaman lain
+    //   })
+    //   .catch((err) => {
+    //     if (err.response) {
+    //       console.log("err.response ", err.response);
+    //     } else if (err.request) {
+    //       console.log("err.request ", err.request);
+    //     } else if (err.message) {
+    //       // do something other than the other two
+    //     }
+    //   });
 
     // getPelatihan(formData);
   };
