@@ -14,7 +14,7 @@ import FloatingButton from "../components/FloatingButton";
 import axios from "axios";
 
 const Home = () => {
-  const [pelatihan, setPelatihan] = useState([]);
+  const [pelaatihan, setPelatihan] = useState([]);
 
   useEffect(() => {
     getSchedule()
@@ -98,7 +98,7 @@ const Home = () => {
       <Hero />
       <About />
       <Divisi />
-      <Pelatihan pelatihan={pelatihan} />
+      <Pelatihan data={data} />
       <Info />
       <Gallery />
       <History />

@@ -14,17 +14,16 @@ import FloatingButton from "../components/FloatingButton";
 import axios from "axios";
 
 const Home = () => {
-  const [pelatihan, setPelatihan] = useState([]);
+  const [pelaatihan, setPelatihan] = useState([]);
 
   useEffect(() => {
     getSchedule()
   }, []);
 
   const getSchedule = async () => {
-    await axios.get(`http://localhost:5000/api/v1/detail/training`)
+    await axios.get(``)
     .then((res) => {
       const getData = res.data.data;
-      console.log(getData);
       setPelatihan(getData);
     })
   }
@@ -98,7 +97,7 @@ const Home = () => {
       <Hero />
       <About />
       <Divisi />
-      <Pelatihan pelatihan={pelatihan} />
+      <Pelatihan data={data} />
       <Info />
       <Gallery />
       <History />

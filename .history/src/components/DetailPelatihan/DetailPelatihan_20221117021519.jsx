@@ -1,34 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useParams } from "react-router-dom";
 import Image from "../../assets/image/icon-ussi.ico";
 import { BsCalendarRange } from "react-icons/bs";
 import { RiTimeLine, RiUserLocationLine } from "react-icons/ri";
-import axios from "axios";
 
 const DetailPelatihan = () => {
   const { id } = useParams();
 
-  // useEffect(() => {
-  //   getDetailPelatihan();
-  // }, []);
-
-  // const getDetailPelatihan = async () => {
-  //   await axios
-  //     .get(`http://localhost:5000/api/v1/detail/training/${id}`, {
-  //       headers: {
-  //         Accept: "application/json",
-  //         Authorization: `Bearer ${auth.token}`,
-  //       },
-  //     })
-  //     .then(function (res) {
-  //       const getData = res.data.data[0];
-        
-  //     })
-  //     .catch((err) => {
-  //       // Jika Gagal
-  //     });
-  // };
-  
   return (
     <>
       <section id="detail-pelatihan" className="pt-36 pb-10 md:pb-0">

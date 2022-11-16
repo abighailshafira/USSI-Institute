@@ -8,9 +8,9 @@ import axios from "axios";
 const DetailPelatihan = () => {
   const { id } = useParams();
 
-  // useEffect(() => {
-  //   getDetailPelatihan();
-  // }, []);
+  useEffect(() => {
+    getDetailPelatihan();
+  }, []);
 
   // const getDetailPelatihan = async () => {
   //   await axios

@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 const Pelatihan = ({ pelatihan }) => {
   const options = {
-    // weekday: "short",
-    // year: "numeric",
+    weekday: "short",
+    year: "numeric",
     month: "long",
-    // day: "numeric",
+    day: "numeric",
   };
 
   return (
@@ -29,6 +29,7 @@ const Pelatihan = ({ pelatihan }) => {
                   "en-GB",
                   options
                 );
+                console.log("day1", day1);
 
                 return (
                   <div className="w-full px-4 md:w-1/2 lg:w-1/3 xl:w-1/4">
@@ -39,7 +40,7 @@ const Pelatihan = ({ pelatihan }) => {
                           {item.trainingName}
                         </h3>
                         <p className="text-base text-slate-500 mb-7">
-                          Pelatihan {day1}
+                          {item.startDate}
                         </p>
                         <Link to={`/detail-pelatihan/${item.id}`}>
                           <a className="text-sm font-semibold text-white bg-cyan-500 py-3 px-8 rounded-md hover:shadow-lg hover:opacity-80 transition duration-300 ease-in-out">
