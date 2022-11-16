@@ -1,6 +1,20 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 function Institution({ formData, setFormData }) {
+  const [pelatihan, setPelatihan] = useState([]);
+  useEffect(() => {
+    getPelatihan();
+  }, []);
+  const getPelatihan = async () => {
+    await axios.get("http://localhost:5000/api/v1/detail/training").then((res) => {
+      const getData = res.data.data;
+      setPelatihan(getData);
+      // console.log(res.data.data);
+    });
+  };
+
+  // console.log(pelatihan);
   return (
     // <input className="m-5 w-[200px] h-[40px] pl-1 text-base" type="text" placeholder="Email..." value={formData.email} onChange={(event) => setFormData({ ...formData, email: event.target.value })} />
     // <input className="m-5 w-[200px] h-[40px] pl-1 text-base" type="text" placeholder="Password..." value={formData.password} onChange={(event) => setFormData({ ...formData, password: event.target.value })} />
@@ -14,11 +28,15 @@ function Institution({ formData, setFormData }) {
         <select
           id="trainingName"
           className="form-control block w-full px-2 py-1.5 text-sm bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
+          value={formData.trainingName}
+          onChange={(event) => setFormData({ ...formData, trainingName: event.target.value })}
         >
           <option selected>Open this select menu</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          {pelatihan.map((d) => (
+            <option value={d.trainingName}>{d.trainingName}</option>
+          ))}
+          {/* <option value="2">Two</option>
+          <option value="3">Three</option> */}
         </select>
       </div>
 
@@ -31,6 +49,8 @@ function Institution({ formData, setFormData }) {
           className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
           id="institutionName"
           placeholder="Nama Lembaga"
+          value={formData.institutionName}
+          onChange={(event) => setFormData({ ...formData, institutionName: event.target.value })}
         />
       </div>
 
@@ -43,6 +63,8 @@ function Institution({ formData, setFormData }) {
           className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
           id="institutionAddress"
           placeholder="Alamat Lembaga"
+          value={formData.institutionAddress}
+          onChange={(event) => setFormData({ ...formData, institutionAddress: event.target.value })}
         />
       </div>
     </div>

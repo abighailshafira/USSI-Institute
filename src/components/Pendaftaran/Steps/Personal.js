@@ -38,6 +38,8 @@ function Personal({ formData, setFormData }) {
           className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
           id="name"
           placeholder="Nama Peserta"
+          value={formData.name}
+          onChange={(event) => setFormData({ ...formData, name: event.target.value })}
         />
       </div>
 
@@ -50,6 +52,8 @@ function Personal({ formData, setFormData }) {
           className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
           id="city"
           placeholder="Asal Kota"
+          value={formData.city}
+          onChange={(event) => setFormData({ ...formData, city: event.target.value })}
         />
         {/* <ReactSelect
             id="city"
@@ -76,27 +80,9 @@ function Personal({ formData, setFormData }) {
             className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
             id="phone"
             placeholder="Nomor Telepon"
+            value={formData.phone}
+            onChange={(event) => setFormData({ ...formData, phone: event.target.value })}
           />
-        </div>
-
-        <div className="form-group mb-4">
-          <label for="gender" className="text-base">
-            Jenis Kelamin
-          </label>
-          <div className="flex items-center space-x-5 py-1.5">
-            <div className="flex items-center">
-              <input type="radio" name="radio1" id="radioButton1" className="h-5 w-5" />
-              <label for="radioButton1" className="pl-3 text-sm">
-                P
-              </label>
-            </div>
-            <div className="flex items-center">
-              <input type="radio" name="radio1" id="radioButton2" className="h-5 w-5" />
-              <label for="radioButton2" className="pl-3 text-sm">
-                L
-              </label>
-            </div>
-          </div>
         </div>
       </div>
     </div>

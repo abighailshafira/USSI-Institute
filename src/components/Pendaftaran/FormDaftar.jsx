@@ -7,26 +7,53 @@ import Personal from "./Steps/Personal";
 import Payment from "./Steps/Payment";
 
 const FormDaftar = () => {
-  const [city, setCity] = useState("");
-  const [getCity, setGetCity] = useState("");
-  const [selectedCity, setSelectedCity] = useState(null);
+  const [pendaftaran, setPelatihan] = useState([]);
+  useEffect(() => {}, []);
+  const [formData, setFormData] = useState({
+    trainingName: "",
+    institutionName: "",
+    institutionAddress: "",
+    name: "",
+    city: "",
+    phone: "",
+    // gender: "",
+    payment: "",
+  });
 
-  useEffect(() => {
-    apiCity();
-  }, []);
-
-  const apiCity = async () => {
-    await axios.get(`https://binderbyte.com/wilayah/kabupaten`).then((res) => {
-      const getData = res.data.data;
-      // setGetCity(getData);
-      console.log(getData);
-    });
+  const getPelatihan = async (data) => {
+    await axios
+      .post("http://localhost:5000/api/v1/registration", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: data,
+      })
+      .then((res) => {
+        console.log(data);
+      })
+      .catch((error) => console.log(error));
   };
 
-  function handleChangeCity(value) {
-    setCity(value.value);
-    setSelectedCity(value);
-  }
+  // const [city, setCity] = useState("");
+  // const [getCity, setGetCity] = useState("");
+  // const [selectedCity, setSelectedCity] = useState(null);
+
+  // useEffect(() => {
+  //   apiCity();
+  // }, []);
+
+  // const apiCity = async () => {
+  //   await axios.get(`https://binderbyte.com/wilayah/kabupaten`).then((res) => {
+  //     const getData = res.data.data;
+  //     // setGetCity(getData);
+  //     console.log(getData);
+  //   });
+  // };
+
+  // function handleChangeCity(value) {
+  //   setCity(value.value);
+  //   setSelectedCity(value);
+  // }
 
   // const optionsCity = getCity.map((d) => {
   //   return (
@@ -37,16 +64,6 @@ const FormDaftar = () => {
 
   // console.log(getCity?.map((d) => d.nama));
   const [page, setPage] = useState(0);
-  const [formData, setFormData] = useState({
-    training_name: "",
-    institution_name: "",
-    institution_address: "",
-    name: "",
-    city: "",
-    phone: "",
-    gender: "",
-    payment: "",
-  });
 
   const FormTitles = ["Informasi Lembaga", "Profil Peserta", "Pembayaran"];
 
@@ -60,6 +77,11 @@ const FormDaftar = () => {
     }
   };
 
+  const handleSubmit = () => {
+    getPelatihan(formData);
+  };
+
+  console.log(formData);
   return (
     <>
       {/* <section id="form-daftar" className="pt-36">
@@ -129,20 +151,44 @@ const FormDaftar = () => {
                 >
                   Kembali
                 </button>
+                {page === FormTitles.length - 1 ? (
+                  <form onSubmit={handleSubmit}>
+                    <button type="submit" className="px-6 py-2.5 bg-cyan-500 text-white font-semibold text-sm leading-tight rounded-md cursor-pointer hover:bg-cyan-600 transition duration-300 ease-in-out">
+                      Daftar
+                    </button>
+                  </form>
+                ) : (
+                  <button
+                    className="px-6 py-2.5 bg-cyan-500 text-white font-semibold text-sm leading-tight rounded-md cursor-pointer hover:bg-cyan-600 transition duration-300 ease-in-out"
+                    onClick={() => {
+                      // if (page === FormTitles.length - 1) {
+                      // alert("FORM SUBMITTED");
+                      // console.log(formData);
 
-                <button
-                  className="px-6 py-2.5 bg-cyan-500 text-white font-semibold text-sm leading-tight rounded-md cursor-pointer hover:bg-cyan-600 transition duration-300 ease-in-out"
-                  onClick={() => {
-                    if (page === FormTitles.length - 1) {
-                      alert("FORM SUBMITTED");
-                      console.log(formData);
-                    } else {
+                      // } else {
                       setPage((currPage) => currPage + 1);
-                    }
-                  }}
-                >
-                  {page === FormTitles.length - 1 ? "Daftar" : "Selanjutnya"}
-                </button>
+                      // }
+                    }}
+                  >
+                    Selanjutnya
+                  </button>
+                )}
+                {/* <form onSubmit={}>
+                  <button
+                    className="px-6 py-2.5 bg-cyan-500 text-white font-semibold text-sm leading-tight rounded-md cursor-pointer hover:bg-cyan-600 transition duration-300 ease-in-out"
+                    onClick={() => {
+                      if (page === FormTitles.length - 1) {
+                        alert("FORM SUBMITTED");
+                        // console.log(formData);
+                        getPelatihan();
+                      } else {
+                        setPage((currPage) => currPage + 1);
+                      }
+                    }}
+                  >
+                    {page === FormTitles.length - 1 ? "Daftar" : "Selanjutnya"}
+                  </button>
+                </form> */}
               </div>
             </div>
           </div>
