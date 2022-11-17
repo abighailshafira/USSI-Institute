@@ -1,7 +1,6 @@
 import { Table } from "antd";
 import React from "react";
 
-//contoh data tabel dan response BE
 const dataPelatihan = [
   {
     id: 1,
@@ -11,23 +10,19 @@ const dataPelatihan = [
         id: 1,
         trainingName: "Pelatihan Janauari",
         startDate: "Januari", // mengambil dari startdate lalu di convert ke bulan
-        detail: {
-          participants: 100, // jumlah peserta dari trainingname dan institutionName yang sama
-          attendance: null, // jumlah peserta yang hadir dari trainingname dan institutionName yang sama
-        },
+        participants: 100, // jumlah peserta dari trainingname dan institutionName yang sama
+        attendance: null, // jumlah peserta yang hadir dari trainingname dan institutionName yang sama
       },
       {
         id: 2,
         trainingName: "Pelatihan Janauari",
         startDate: "Januari", // mengambil dari startdate lalu di convert ke bulan
-        detail: {
-          participants: 100, // jumlah peserta dari trainingname dan institutionName yang sama
-          attendance: null, // jumlah peserta yang hadir dari trainingname dan institutionName yang sama
-        },
-      },
-    ],
-  },
-];
+        participants: 100, // jumlah peserta dari trainingname dan institutionName yang sama
+        attendance: null, // jumlah peserta yang hadir dari trainingname dan institutionName yang sama
+      }
+    ]
+  }
+]
 
 const columns = [
   {
@@ -183,8 +178,7 @@ const columns = [
     ],
   },
   {
-    title:
-      "Pelatihan dan Petunjuk Teknis Pelaporan dan Solusi Permasalahan LAPBUL (Agustus)",
+    title: "Pelatihan dan Petunjuk Teknis Pelaporan dan Solusi Permasalahan LAPBUL (Agustus)",
     children: [
       {
         title: "Jumlah Peserta",
@@ -252,10 +246,7 @@ const App = () => (
       <div className="w-full px-4">
         <div className="mb-10">
           <h1 className="text-3xl font-bold mb-2 text-slate-800">Pelatihan</h1>
-          <p className="text-base text-slate-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Perspiciatis laudantium magnam quaerat?
-          </p>
+          <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis laudantium magnam quaerat?</p>
         </div>
       </div>
 

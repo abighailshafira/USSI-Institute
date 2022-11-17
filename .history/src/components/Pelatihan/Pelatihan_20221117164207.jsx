@@ -1,7 +1,6 @@
 import { Table } from "antd";
 import React from "react";
 
-//contoh data tabel dan response BE
 const dataPelatihan = [
   {
     id: 1,
