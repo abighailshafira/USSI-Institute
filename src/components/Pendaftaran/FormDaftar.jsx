@@ -6,6 +6,7 @@ import Institution from "./Steps/Institution";
 import Personal from "./Steps/Personal";
 import Payment from "./Steps/Payment";
 import { useNavigate } from "react-router-dom";
+import { message } from "antd";
 
 const FormDaftar = () => {
   const [pendaftaran, setPelatihan] = useState([]);
@@ -120,6 +121,9 @@ const FormDaftar = () => {
           // do something other than the other two
         }
       });
+    message.success("Pendaftaran Berhasil.");
+    navigate("/pendaftaran");
+    setTimeout(window.location.reload.bind(window.location), 500);
 
     // getPelatihan(formData);
   };

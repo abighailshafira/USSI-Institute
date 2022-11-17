@@ -98,7 +98,7 @@ function NavBar({ theme }) {
 
           <div className="hidden md:block ">
             {isLoggedIn ? (
-              <a className="text-base group-hover:text-cyan-500 py-2 mx-8 flex" onClick={handleLogout}>
+              <a className={["login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-2 px-6 ml-5", theme === "dark" ? "text-white" : "text-black"].join(" ")} onClick={handleLogout}>
                 Logout
               </a>
             ) : (
