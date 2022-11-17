@@ -20,7 +20,6 @@ const RouteApp = () => {
         <Route path="/" exact element={<Home />} />
         <Route path="/contact" exact element={<ContactPage />} />
         <Route path="/profile" exact element={<ProfilePage />} />
-        <Route path="/pendaftaran" exact element={<PendaftaranPage />} />
         <Route path="/pendaftaran/:id" exact element={<PendaftaranPage />} />
         <Route path="/detail-pelatihan/:id" exact element={<DetailPelatihanPage />} />
         <Route path="/login" exact element={<LoginPage />} />

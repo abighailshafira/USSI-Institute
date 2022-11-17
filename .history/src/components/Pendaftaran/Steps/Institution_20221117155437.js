@@ -9,9 +9,7 @@ function Institution({ formData, setFormData }) {
 
   useEffect(() => {
     getPelatihan();
-    if (id) {
-      getPelatihanById()
-    }
+    getPelatihanById()
   }, []);
 
   const getPelatihan = async () => {

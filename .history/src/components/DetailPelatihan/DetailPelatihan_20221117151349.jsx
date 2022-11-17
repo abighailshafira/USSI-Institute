@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Image from "../../assets/image/icon-ussi.ico";
 import { BsCalendarRange } from "react-icons/bs";
@@ -6,7 +6,6 @@ import { RiTimeLine, RiUserLocationLine } from "react-icons/ri";
 import axios from "axios";
 
 const DetailPelatihan = () => {
-  const [data, setData] = useState('');
   const { id } = useParams();
 
   useEffect(() => {
@@ -22,31 +21,14 @@ const DetailPelatihan = () => {
         },
       })
       .then(function (res) {
-        const getData = res.data.data;
-        setData(getData)
+        const getData = res.data;
         console.log(getData);
+        
       })
       .catch((err) => {
         // Jika Gagal
       });
   };
-
-  const options = {
-    weekday: "short",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-
-  const startDate = new Date(data.startDate).toLocaleDateString(
-    "en-GB",
-    options
-  );
-
-  const endDate = new Date(data.endDate).toLocaleDateString(
-    "en-GB",
-    options
-  );
   
   return (
     <>
@@ -60,24 +42,30 @@ const DetailPelatihan = () => {
                   USSI Institute
                 </h1>
                 <h2 className="text-xl font-bold text-slate-800 mb-3">
-                  {data.trainingName}
+                  Web Design
                 </h2>
                 <p className="text-base text-slate-500 text-justify">
-                  {data.description}
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Sequi, praesentium facilis corporis eius aspernatur
+                  necessitatibus voluptatibus debitis veniam consequuntur.
+                  Ducimus magnam libero, vitae culpa a modi neque assumenda ea
+                  aliquam repellendus esse doloribus. Deserunt cumque enim odio?
+                  Harum consectetur error nisi doloribus possimus illo impedit
+                  earum cumque nesciunt sapiente, libero corrupti tenetur.
+                  Facere ad sapiente sunt! Nemo facere maiores mollitia!
                 </p>
 
                 <p className="text-slate-800 flex items-center text-sm font-medium">
                   <BsCalendarRange className="w-4 h-4 text-cyan-500 mr-2" />
-                  {startDate} - {endDate}
+                  Senin, 19 Oktober 2022
                 </p>
                 <p className="text-slate-800 flex items-center text-sm font-medium">
                   <RiTimeLine className="w-4 h-4 text-cyan-500 mr-2" />
-                  {/* belum ada Waktu dari BE */}
                   10.00 WIB
                 </p>
                 <p className="text-slate-800 flex items-center text-sm font-medium">
                   <RiUserLocationLine className="w-4 h-4 text-cyan-500 mr-2" />
-                  {data.location}
+                  Hotel Grand Cordella, Bandung
                 </p>
               </div>
 
@@ -85,7 +73,7 @@ const DetailPelatihan = () => {
                 <h2 className="text-xl md:text-2xl text-slate-800 mt-5 md:py-5 py-3">
                   Ready to Participate?
                 </h2>
-                <Link to={`/pendaftaran/${data.id}`}>
+                <Link to="/pendaftaran">
                   <a className="text-xs md:text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-sky-600 md:py-3 md:px-8 py-2 px-6 rounded-md hover:bg-gradient-to-l hover:to-sky-600 hover:from-cyan-500 transition duration-300 ease-in-out">
                     Daftar Sekarang
                   </a>
@@ -97,25 +85,25 @@ const DetailPelatihan = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="col-span-2 ">
                   <img
-                    src={data.img}
-                    alt="Pelatihan"
-                    className="w-full rounded-lg hover:opacity-80 transition duration-300 ease-in-out"
-                  />
-                </div>
-                {/* <div>
-                  <img
-                    src={data.img}
+                    src="https://source.unsplash.com/360x200?programming"
                     alt="Pelatihan"
                     className="w-full rounded-lg hover:opacity-80 transition duration-300 ease-in-out"
                   />
                 </div>
                 <div>
                   <img
-                    src={data.img}
+                    src="https://source.unsplash.com/360x200?programming"
                     alt="Pelatihan"
                     className="w-full rounded-lg hover:opacity-80 transition duration-300 ease-in-out"
                   />
-                </div> */}
+                </div>
+                <div>
+                  <img
+                    src="https://source.unsplash.com/360x200?programming"
+                    alt="Pelatihan"
+                    className="w-full rounded-lg hover:opacity-80 transition duration-300 ease-in-out"
+                  />
+                </div>
               </div>
             </div>
           </div>

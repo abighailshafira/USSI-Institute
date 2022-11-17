@@ -1,17 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 
 function Institution({ formData, setFormData }) {
   const [pelatihan, setPelatihan] = useState([]);
 
-  const { id } = useParams();
-
   useEffect(() => {
-    getPelatihan();
-    if (id) {
-      getPelatihanById()
-    }
+    // getPelatihan();
   }, []);
 
   const getPelatihan = async () => {
@@ -22,14 +16,6 @@ function Institution({ formData, setFormData }) {
     });
   };
 
-  const getPelatihanById = async () => {
-    await axios.get(`http://localhost:5000/api/v1/detail/training/${id}`)
-    .then((res) => {
-      const getData = res.data.data;
-      setFormData(getData);
-      // console.log(res.data.data);
-    });
-  }
 
   // console.log(pelatihan);
   return (

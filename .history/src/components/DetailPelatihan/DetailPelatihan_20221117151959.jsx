@@ -38,12 +38,7 @@ const DetailPelatihan = () => {
     day: "numeric",
   };
 
-  const startDate = new Date(data.startDate).toLocaleDateString(
-    "en-GB",
-    options
-  );
-
-  const endDate = new Date(data.endDate).toLocaleDateString(
+  const day = new Date(data.startDate).toLocaleDateString(
     "en-GB",
     options
   );
@@ -68,7 +63,7 @@ const DetailPelatihan = () => {
 
                 <p className="text-slate-800 flex items-center text-sm font-medium">
                   <BsCalendarRange className="w-4 h-4 text-cyan-500 mr-2" />
-                  {startDate} - {endDate}
+                  {day}
                 </p>
                 <p className="text-slate-800 flex items-center text-sm font-medium">
                   <RiTimeLine className="w-4 h-4 text-cyan-500 mr-2" />
@@ -85,7 +80,7 @@ const DetailPelatihan = () => {
                 <h2 className="text-xl md:text-2xl text-slate-800 mt-5 md:py-5 py-3">
                   Ready to Participate?
                 </h2>
-                <Link to={`/pendaftaran/${data.id}`}>
+                <Link to="/pendaftaran">
                   <a className="text-xs md:text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-sky-600 md:py-3 md:px-8 py-2 px-6 rounded-md hover:bg-gradient-to-l hover:to-sky-600 hover:from-cyan-500 transition duration-300 ease-in-out">
                     Daftar Sekarang
                   </a>
@@ -97,25 +92,25 @@ const DetailPelatihan = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="col-span-2 ">
                   <img
-                    src={data.img}
-                    alt="Pelatihan"
-                    className="w-full rounded-lg hover:opacity-80 transition duration-300 ease-in-out"
-                  />
-                </div>
-                {/* <div>
-                  <img
-                    src={data.img}
+                    src="https://source.unsplash.com/360x200?programming"
                     alt="Pelatihan"
                     className="w-full rounded-lg hover:opacity-80 transition duration-300 ease-in-out"
                   />
                 </div>
                 <div>
                   <img
-                    src={data.img}
+                    src="https://source.unsplash.com/360x200?programming"
                     alt="Pelatihan"
                     className="w-full rounded-lg hover:opacity-80 transition duration-300 ease-in-out"
                   />
-                </div> */}
+                </div>
+                <div>
+                  <img
+                    src="https://source.unsplash.com/360x200?programming"
+                    alt="Pelatihan"
+                    className="w-full rounded-lg hover:opacity-80 transition duration-300 ease-in-out"
+                  />
+                </div>
               </div>
             </div>
           </div>

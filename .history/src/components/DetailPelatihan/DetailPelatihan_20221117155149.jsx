@@ -102,7 +102,7 @@ const DetailPelatihan = () => {
                     className="w-full rounded-lg hover:opacity-80 transition duration-300 ease-in-out"
                   />
                 </div>
-                {/* <div>
+                <div>
                   <img
                     src={data.img}
                     alt="Pelatihan"
@@ -115,7 +115,7 @@ const DetailPelatihan = () => {
                     alt="Pelatihan"
                     className="w-full rounded-lg hover:opacity-80 transition duration-300 ease-in-out"
                   />
-                </div> */}
+                </div>
               </div>
             </div>
           </div>

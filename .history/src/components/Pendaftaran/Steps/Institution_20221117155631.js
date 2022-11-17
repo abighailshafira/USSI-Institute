@@ -24,11 +24,11 @@ function Institution({ formData, setFormData }) {
 
   const getPelatihanById = async () => {
     await axios.get(`http://localhost:5000/api/v1/detail/training/${id}`)
-    .then((res) => {
-      const getData = res.data.data;
-      setFormData(getData);
-      // console.log(res.data.data);
-    });
+      .then((res) => {
+        const getData = res.data.data;
+        setFormData(getData);
+        // console.log(res.data.data);
+      });
   }
 
   // console.log(pelatihan);
