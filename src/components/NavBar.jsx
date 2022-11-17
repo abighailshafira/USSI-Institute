@@ -6,11 +6,6 @@ import { message } from "antd";
 import { useSelector } from "react-redux";
 import { RiArrowDownSLine } from "react-icons/ri";
 import "../App.css";
-import Paper from '@mui/material/Paper';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
-
 
 window.onscroll = function () {
   const header = document.querySelector("nav");
@@ -57,15 +52,15 @@ function NavBar({ theme }) {
           <div className="hidden md:block">
             <div className="flex items-center space-x-4">
               <Link to="/">
-                <a className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">Beranda</a>
+                <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Beranda</a>
               </Link>
 
               <Link to="/profile">
-                <a className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">Tentang</a>
+                <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Tentang</a>
               </Link>
 
               <Menu as="div" className="relative">
-                <Menu.Button className="pilih inline-flex items-center hover:text-cyan-500 px-3 py-2 text-base text-white ">
+                <Menu.Button className={["navbar-text inline-flex items-center hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>
                   Pelatihan
                   <RiArrowDownSLine aria-hidden="true" />
                 </Menu.Button>
@@ -90,13 +85,13 @@ function NavBar({ theme }) {
               </Menu>
 
               <Link to="/pendaftaran">
-                <a href="#" className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">
+                <a href="#" className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>
                   Pendaftaran
                 </a>
               </Link>
 
               <Link to="/contact">
-                <a className="pilih hover:text-cyan-500 px-3 py-2 text-base text-white">Kontak</a>
+                <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Kontak</a>
               </Link>
             </div>
           </div>
@@ -108,14 +103,14 @@ function NavBar({ theme }) {
               </a>
             ) : (
               <Link to="/login">
-                <a className="login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-1.5 px-6 ml-5">Login</a>
+                <a className={["login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-2 px-6 ml-5", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Login</a>
               </Link>
             )}
           </div>
 
           {/* hamburger */}
           <div className="flex md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} type="button" className="bg-slate-700 inline-flex items-center justify-center p-2 rounded-md text-white shadow-md" aria-controls="mobile-menu" aria-expanded="false">
+            <button onClick={() => setIsOpen(!isOpen)} type="button" className="bg-slate-800 inline-flex items-center justify-center p-2 rounded-md text-white shadow-md" aria-controls="mobile-menu" aria-expanded="false">
               <span className="sr-only">Open main menu</span>
               {!isOpen ? (
                 <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -155,42 +150,20 @@ function NavBar({ theme }) {
               <Menu as="div" className="relative">
                 <Disclosure>
                   <Disclosure.Button className="inline-flex items-center hover:bg-slate-700 hover:text-white text-black px-4 py-2 rounded-md text-base ">
-                   Pelatihan
+                    Pelatihan
                     <RiArrowDownSLine className="ml-2 text-black" aria-hidden="true" />
                   </Disclosure.Button>
                   <Disclosure.Panel className="text-gray-500 ml-10">
                     <Link to="/pelatihan">
-                        <a className="hover:bg-slate-700 hover:text-white text-black block px-4 py-2 rounded-md text-base">Pelatihan</a>
-                      </Link>
+                      <a className="hover:bg-slate-700 hover:text-white text-black block px-4 py-2 rounded-md text-base">Pelatihan</a>
+                    </Link>
 
                     <Link to="/jadwal-pelatihan">
-                        <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Jadwal Pelatihan</a>
-                      </Link>
+                      <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Jadwal Pelatihan</a>
+                    </Link>
                   </Disclosure.Panel>
                 </Disclosure>
               </Menu>
-
-              {/* <div>
-                <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pelatihan</a>
-                <Paper sx={{ width: 320 }}>
-                  <MenuList dense>
-                    <MenuItem>
-                      <ListItemText inset>
-                        <Link to="/pelatihan">
-                          <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pelatihan</a>
-                        </Link>
-                      </ListItemText>
-                    </MenuItem>
-                    <MenuItem>
-                      <ListItemText inset>
-                        <Link to="/pelatihan">
-                          <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Jadwal Pelatihan</a>
-                        </Link>
-                      </ListItemText>
-                    </MenuItem>
-                  </MenuList>
-                </Paper>
-              </div> */}
 
               <Link to="/pendaftaran">
                 <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pendaftaran</a>

@@ -23,10 +23,6 @@ const FormRegister = () => {
     userData.append("email", email);
     userData.append("password", password);
 
-    // for (var pair of userData.entries()) {
-    //     console.log(pair[0] + ", " + pair[1]);
-    // }
-
     axios({
       method: "post",
       url: `http://localhost:5000/api/v1/register`,
@@ -36,20 +32,6 @@ const FormRegister = () => {
         // console.log(res.data);
         navigate("/login");
         message.success("Register Berhasil.");
-        // if (res.data.statusCode === 200) {
-        //   dispatch(
-        //     setData({
-        //       accessToken: res.data.accessToken,
-        //     })
-        //   );
-
-        //   setTimeout(window.location.reload.bind(window.location), 300);
-        // toastMixin.fire({
-        //   animation: true,
-        //   title: "Signed in Successfully",
-        // });
-        // } else {
-        // }
       })
       .catch((err) => {
         console.log(err);
@@ -69,33 +51,18 @@ const FormRegister = () => {
         <div className="container">
           <div className="w-full px-4">
             <div className="max-w-xl mx-auto text-center mb-10">
-              <h1 className="text-3xl font-bold mb-2 text-slate-800">
-                Register
-              </h1>
-              <p className="text-base text-slate-500">
-                Lorem ipsum dolor sit amet consectetur adipisicing.
-              </p>
+              <h1 className="text-3xl font-bold mb-2 text-slate-800">Register</h1>
+              <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
             </div>
           </div>
 
           <div className="flex flex-wrap items-center justify-center mx-auto rounded-lg shadow-xl bg-white max-w-4xl">
-            <div className="w-full md:w-1/2">
-              <img src={Image} className="w-full" alt="Register" />
+            <div className="w-full md:w-1/2 ">
+              <img src={Image} className="w-full " alt="Register" />
             </div>
 
             <div className="w-full md:w-1/2 p-10 text-slate-800">
               <form>
-                {/* <div className="mb-4">
-                  <label for="name" className="text-base">
-                    Nama Lengkap
-                  </label>
-                  <input
-                    type="name"
-                    className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
-                    placeholder="Nama Lengkap"
-                  />
-                </div> */}
-
                 <div className="mb-4">
                   <label for="email" className="text-base">
                     Email
@@ -114,19 +81,13 @@ const FormRegister = () => {
                   </label>
 
                   <Input.Password
-                    placeholder="input password"
+                    placeholder="Password"
                     style={{
                       borderRadius: "5px",
                     }}
-                    iconRender={(visible) =>
-                      visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-                    }
+                    iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                     onChange={(e) => setPassword(e.target.value)}
                   />
-
-                  {/* <PasswordInput
-                    onChange={(e) => setPassword(e.target.value)}
-                  /> */}
                 </div>
 
                 <button
@@ -137,10 +98,10 @@ const FormRegister = () => {
                   Register
                 </button>
 
-                <p className="mt-2 text-slate-500 text-center">
+                <p className="mt-2 text-slate-500 text-center ">
                   Sudah punya akun?{" "}
                   <Link to="/login">
-                    <a className="text-cyan-500 font-semibold">Login disini</a>
+                    <a className="text-cyan-500 font-semibold hover:text-sky-600">Login disini</a>
                   </Link>
                 </p>
               </form>

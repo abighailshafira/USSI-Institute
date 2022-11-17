@@ -31,7 +31,7 @@ const Hero = () => {
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-sky-600">USSI INSTITUTE</span>
               </h1>
               <a
-                href="#"
+                href="#about"
                 className="inline-block px-7 py-3 mb-2 md:mb-0 mr-0 md:mr-2 bg-gradient-to-r from-cyan-500 to-sky-600 text-white font-semibold text-sm rounded-md shadow-md hover:bg-gradient-to-l hover:from-cyan-500 hover:to-sky-600"
               >
                 Selanjutnya

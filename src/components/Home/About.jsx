@@ -5,14 +5,18 @@ import Image2 from "../../assets/image/image3.jpg";
 const About = () => {
   return (
     <>
-      <section className="pt-14 md:pt-24">
+      <section id="about" className="pt-14 md:pt-24">
         <div className="container">
           <div className="mb-16">
             <h2 className="font-semibold text-lg text-cyan-500">Tentang UI</h2>
             <h1 className="text-3xl font-bold mb-2 uppercase text-slate-800">USSI Institute Divisi Pelatihan dan Sertifikasi</h1>
             <p className="text-base md:text-lg text-slate-500 text-justify">
-              USSI INSTITUTE merupakan sebuah divisi yang berada di bawah naungan PT. USSI Pinbuk Prima Software yang bergerak dalam bidang teknologi informasi. Divisi USSI INSTITUTE lebih berfokus pada pelatihan dan peningkatan kompetensi
-              SDM baik internal maupun eksternal. Dengan mengadakan pelatihan dan sertifikasi yang diselenggarakan secara berkelanjutan untuk menunjang operasional pada perusahaan customer juga untuk meningkatkan kompetensi SDM.
+              USSI INSTITUTE merupakan sebuah divisi yang berada di bawah naungan{" "}
+              <a className="text-cyan-500 hover:text-sky-600" href="https://ussi-software.com/" target="_blank">
+                PT. USSI Pinbuk Prima Software
+              </a>{" "}
+              yang bergerak dalam bidang teknologi informasi. Divisi USSI INSTITUTE lebih berfokus pada pelatihan dan peningkatan kompetensi SDM baik internal maupun eksternal. Dengan mengadakan pelatihan dan sertifikasi yang
+              diselenggarakan secara berkelanjutan untuk menunjang operasional pada perusahaan customer juga untuk meningkatkan kompetensi SDM.
             </p>
           </div>
 

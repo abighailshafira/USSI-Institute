@@ -16,10 +16,6 @@ function Institution({ formData, setFormData }) {
 
   // console.log(pelatihan);
   return (
-    // <input className="m-5 w-[200px] h-[40px] pl-1 text-base" type="text" placeholder="Email..." value={formData.email} onChange={(event) => setFormData({ ...formData, email: event.target.value })} />
-    // <input className="m-5 w-[200px] h-[40px] pl-1 text-base" type="text" placeholder="Password..." value={formData.password} onChange={(event) => setFormData({ ...formData, password: event.target.value })} />
-    // <input className="m-5 w-[200px] h-[40px] pl-1 text-base" type="text" placeholder="Confirm Password..." value={formData.confirmPassword} onChange={(event) => setFormData({ ...formData, confirmPassword: event.target.value })} />
-
     <div className="text-slate-800">
       <div className="mb-4">
         <label for="trainingName" className="text-base">
@@ -31,7 +27,7 @@ function Institution({ formData, setFormData }) {
           value={formData.trainingName}
           onChange={(event) => setFormData({ ...formData, trainingName: event.target.value })}
         >
-          <option selected>Open this select menu</option>
+          <option selected>-</option>
           {pelatihan.map((d) => (
             <option value={d.trainingName}>{d.trainingName}</option>
           ))}

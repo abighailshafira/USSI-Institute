@@ -161,15 +161,9 @@ const FormDaftar = () => {
         <div className="container max-w-6xl">
           <div className="w-full px-4">
             <div className="max-w-xl mx-auto text-center mb-10">
-              <h2 className="font-semibold text-lg text-cyan-500 mb-0">
-                Pendaftaran
-              </h2>
-              <h1 className="text-3xl font-bold mb-2 text-slate-800">
-                Pendaftaran Pelatihan
-              </h1>
-              <p className="text-base text-slate-500">
-                Silahkan lengkapi form pendaftaran dengan benar.
-              </p>
+              <h2 className="font-semibold text-lg text-cyan-500 mb-0">Pendaftaran</h2>
+              <h1 className="text-3xl font-bold mb-2 text-slate-800">Pendaftaran Pelatihan</h1>
+              <p className="text-base text-slate-500">Silahkan lengkapi form pendaftaran dengan benar.</p>
             </div>
           </div>
 
@@ -180,9 +174,7 @@ const FormDaftar = () => {
 
             <div className="w-full px-10 md:w-1/2 md:pl-0 py-5">
               <div className="mb-5">
-                <h3 className="font-semibold text-xl text-cyan-500">
-                  {FormTitles[page]}
-                </h3>
+                <h3 className="font-semibold text-xl text-cyan-500">{FormTitles[page]}</h3>
               </div>
 
               <div className="w-full h-3 bg-slate-100 mb-5 rounded-md">
@@ -208,10 +200,7 @@ const FormDaftar = () => {
                 </button>
                 {page === FormTitles.length - 1 ? (
                   <form onSubmit={handleSubmit}>
-                    <button
-                      type="submit"
-                      className="px-6 py-2.5 bg-cyan-500 text-white font-semibold text-sm leading-tight rounded-md cursor-pointer hover:bg-cyan-600 transition duration-300 ease-in-out"
-                    >
+                    <button type="submit" className="px-6 py-3 bg-cyan-500 text-white font-semibold text-sm leading-tight rounded-md cursor-pointer hover:bg-cyan-600 transition duration-300 ease-in-out">
                       Daftar
                     </button>
                   </form>

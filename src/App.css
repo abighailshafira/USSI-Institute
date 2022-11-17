@@ -21,12 +21,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  /* color: white; */
 }
-
-/* .App-link {
-  color: #ffff;
-} */
 
 @keyframes App-logo-spin {
   from {
@@ -59,10 +54,10 @@
   box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
 }
 
-.navbar-fixed .pilih {
-  @apply text-black hover:text-cyan-500 px-3 py-2 text-base;
+.navbar-fixed a {
+  @apply text-black;
 }
 
-.navbar-fixed .login {
-  @apply hover:text-cyan-500 text-base text-black border-2 border-cyan-500 rounded-full py-1.5 px-6 ml-5
+.navbar-fixed .navbar-text {
+  @apply text-black hover:text-cyan-500 px-3 py-2 text-base;
 }

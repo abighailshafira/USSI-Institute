@@ -2,32 +2,6 @@ import React from "react";
 
 function Personal({ formData, setFormData }) {
   return (
-    // <div className="personal-info-container">
-    //   <input
-    //     type="text"
-    //     placeholder="First Name..."
-    //     value={formData.firstName}
-    //     onChange={(e) => {
-    //       setFormData({ ...formData, firstName: e.target.value });
-    //     }}
-    //   />
-    //   <input
-    //     type="text"
-    //     placeholder="Last Name..."
-    //     value={formData.lastName}
-    //     onChange={(e) => {
-    //       setFormData({ ...formData, lastName: e.target.value });
-    //     }}
-    //   />
-    //   <input
-    //     type="text"
-    //     placeholder="Username..."
-    //     value={formData.username}
-    //     onChange={(e) => {
-    //       setFormData({ ...formData, username: e.target.value });
-    //     }}
-    //   />
-    // </div>
     <div className="text-slate-800">
       <div className="mb-4">
         <label for="name" className="text-base">
@@ -70,7 +44,23 @@ function Personal({ formData, setFormData }) {
           /> */}
       </div>
 
-      <div className="grid grid-cols-2 gap-2 md:gap-4">
+      {/* <div className="grid grid-cols-2 gap-2 md:gap-4">
+        <div className="mb-4">
+          <label for="phone" className="text-base">
+            Nomor Telepon
+          </label>
+          <input
+            type="text"
+            className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
+            id="phone"
+            placeholder="Nomor Telepon"
+            value={formData.phone}
+            onChange={(event) => setFormData({ ...formData, phone: event.target.value })}
+          />
+        </div>
+      </div> */}
+
+      <div className="form-group mb-4">
         <div className="mb-4">
           <label for="phone" className="text-base">
             Nomor Telepon

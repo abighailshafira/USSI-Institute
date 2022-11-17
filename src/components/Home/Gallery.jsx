@@ -10,7 +10,7 @@ const Gallery = () => {
         <div className="container">
           <div className="w-full px-4">
             <div className="mx-auto text-center mb-16">
-              <h1 className="text-3xl font-bold mb-2 uppercase text-slate-800">Gallery</h1>
+              <h1 className="text-3xl font-bold mb-2 uppercase text-slate-800">Galeri</h1>
               <p className="text-base text-slate-500">Kegiatan Pelatihan UI Tahun 2022</p>
             </div>
 

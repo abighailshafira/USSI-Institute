@@ -16,22 +16,9 @@ const FormLogin = () => {
   });
 
   const navigate = useNavigate();
-  // const isLoggedIn = jsCookie.get('auth')
   const isLoggedIn = !!useSelector((state) => state.auth.accessToken);
 
   const dispatch = useDispatch();
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   dispatch(
-  //     login({
-  //       email: email,
-  //       password: password,
-  //       loggedIn: true,
-  //     })
-  //   );
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -114,13 +101,11 @@ const FormLogin = () => {
                   </label>
 
                   <Input.Password
-                    placeholder="input password"
+                    placeholder="Password"
                     style={{
                       borderRadius: "5px",
                     }}
-                    iconRender={(visible) =>
-                      visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-                    }
+                    iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
@@ -139,7 +124,7 @@ const FormLogin = () => {
                   </div>
 
                   <Link to="/forgot-password">
-                    <a className="text-cyan-500">Forgot password?</a>
+                    <a className="text-cyan-500 hover:text-sky-600">Forgot password?</a>
                   </Link>
                 </div>
 
@@ -154,7 +139,7 @@ const FormLogin = () => {
                 <p className="mt-2 text-slate-500 text-center">
                   Belum punya akun?{" "}
                   <Link to="/register">
-                    <a className="text-cyan-500 font-semibold">Register disini</a>
+                    <a className="text-cyan-500 font-semibold hover:text-sky-600">Register disini</a>
                   </Link>
                 </p>
               </form>

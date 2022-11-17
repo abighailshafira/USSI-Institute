@@ -49,7 +49,7 @@ function App() {
       <div className="w-full px-4">
         <div className="mx-auto text-center mb-16">
           <h1 className="text-3xl font-bold mb-2 uppercase text-slate-800">Riwayat Pelatihan</h1>
-          <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, earum!</p>
+          <p className="text-base text-slate-500">Kegiatan Pelatihan yang Pernah Dilaksanakan</p>
         </div>
       </div>
 
