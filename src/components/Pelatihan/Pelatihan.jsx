@@ -51,133 +51,91 @@ const columns = [
   },
   {
     title: "Pelatihan dan Trial Error Aplikasi Obox 1 (Januari)",
+    align: "center",
     children: [
       {
         title: "Jumlah Peserta",
         dataIndex: "participant",
         key: "participant",
         width: 130,
-        align: "center",
-      },
-      {
-        title: "Hadir",
-        dataIndex: "attendance",
-        key: "attendance",
-        width: 70,
         align: "center",
       },
     ],
   },
   {
     title: "Pelatihan Audit TI (Februari)",
+    align: "center",
     children: [
       {
         title: "Jumlah Peserta",
         dataIndex: "participant",
         key: "participant",
         width: 130,
-        align: "center",
-      },
-      {
-        title: "Hadir",
-        dataIndex: "attendance",
-        key: "attendance",
-        width: 70,
         align: "center",
       },
     ],
   },
   {
     title: "Pelatihan dan Trial Error Aplikasi Obox 2 (Maret)",
+    align: "center",
     children: [
       {
         title: "Jumlah Peserta",
         dataIndex: "participant",
         key: "participant",
         width: 130,
-        align: "center",
-      },
-      {
-        title: "Hadir",
-        dataIndex: "attendance",
-        key: "attendance",
-        width: 70,
         align: "center",
       },
     ],
   },
   {
     title: "Teknik audit berbantuan komputer dengan ACL (April)",
+    align: "center",
     children: [
       {
         title: "Jumlah Peserta",
         dataIndex: "participant",
         key: "participant",
         width: 130,
-        align: "center",
-      },
-      {
-        title: "Hadir",
-        dataIndex: "attendance",
-        key: "attendance",
-        width: 70,
         align: "center",
       },
     ],
   },
   {
     title: "Pelatihan Penggunaan Aplikasi USSI (Mei)",
+    align: "center",
     children: [
       {
         title: "Jumlah Peserta",
         dataIndex: "participant",
         key: "participant",
         width: 130,
-        align: "center",
-      },
-      {
-        title: "Hadir",
-        dataIndex: "attendance",
-        key: "attendance",
-        width: 70,
         align: "center",
       },
     ],
   },
   {
     title: "Pelatihan Fungsi SDM TI (Juni)",
+    align: "center",
     children: [
       {
         title: "Jumlah Peserta",
         dataIndex: "participant",
         key: "participant",
         width: 130,
-        align: "center",
-      },
-      {
-        title: "Hadir",
-        dataIndex: "attendance",
-        key: "attendance",
-        width: 70,
         align: "center",
       },
     ],
   },
   {
     title: "Pelatihan Mikrotik (Juli)",
+    align: "center",
     children: [
       {
         title: "Jumlah Peserta",
         dataIndex: "participant",
         key: "participant",
         width: 130,
-        align: "center",
-      },
-      {
-        title: "Hadir",
-        dataIndex: "attendance",
-        key: "attendance",
-        width: 70,
         align: "center",
       },
     ],
@@ -185,38 +143,26 @@ const columns = [
   {
     title:
       "Pelatihan dan Petunjuk Teknis Pelaporan dan Solusi Permasalahan LAPBUL (Agustus)",
+      align: "center",
     children: [
       {
         title: "Jumlah Peserta",
         dataIndex: "participant",
         key: "participant",
         width: 130,
-        align: "center",
-      },
-      {
-        title: "Hadir",
-        dataIndex: "attendance",
-        key: "attendance",
-        width: 70,
         align: "center",
       },
     ],
   },
   {
     title: "Pelatihan Digitalisasi (September)",
+    align: "center",
     children: [
       {
         title: "Jumlah Peserta",
         dataIndex: "participant",
         key: "participant",
         width: 130,
-        align: "center",
-      },
-      {
-        title: "Hadir",
-        dataIndex: "attendance",
-        key: "attendance",
-        width: 70,
         align: "center",
       },
     ],
