@@ -59,7 +59,11 @@ function NavBar({ theme }) {
                 <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Tentang</a>
               </Link>
 
-              <Menu as="div" className="relative">
+              <Link to="/jadwal-pelatihan">
+                <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Pelatihan</a>
+              </Link>
+
+              {/* <Menu as="div" className="relative">
                 <Menu.Button className={["navbar-text inline-flex items-center hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>
                   Pelatihan
                   <RiArrowDownSLine aria-hidden="true" />
@@ -82,7 +86,7 @@ function NavBar({ theme }) {
                     ))}
                   </Menu.Items>
                 </Transition>
-              </Menu>
+              </Menu> */}
 
               <Link to="/pendaftaran">
                 <a href="#" className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>

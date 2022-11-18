@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Image1 from "../../assets/image/logo-audit.png";
 import Image2 from "../../assets/image/divisi-ussi.png";
 
@@ -12,13 +13,16 @@ const Divisi = () => {
               <div className="rounded-lg shadow-lg h-full block bg-white border-cyan-500 border-2">
                 <div className="flex justify-center">
                   <div className="p-8 bg-white rounded-full shadow-lg inline-block -mt-14 md:-mt-20 border-cyan-500 border-2">
-                    <img src={Image1} alt="USSI Institute" className="w-12 md:w-20" />
+                    <img src={Image2} alt="Audit Kepatuhan TI" className="w-12 md:w-20" />
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold text-cyan-500 mb-5">USSI Institute</h3>
+                  <h3 className="text-2xl font-bold text-cyan-500 mb-3">USSI Institute</h3>
                   <p className="text-slate-500 text-base mb-0">Divisi</p>
-                  <h4 className="text-lg font-medium mb-4">Pelatihan dan Sertifikasi</h4>
+                  <h4 className="text-lg font-medium mb-8">Pelatihan dan Sertifikasi</h4>
+                  <Link to="/">
+                    <a className=" text-sm font-semibold text-white bg-cyan-500 py-3 px-8 rounded-md hover:shadow-lg hover:opacity-80 transition duration-300 ease-in-out">Selengkapnya</a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -26,13 +30,16 @@ const Divisi = () => {
             <div className="rounded-lg shadow-lg h-full block bg-white border-cyan-500 border-2">
               <div className="flex justify-center">
                 <div className="p-8 bg-white rounded-full shadow-lg inline-block -mt-14 md:-mt-20 border-cyan-500 border-2">
-                  <img src={Image2} alt="Audit Kepatuhan TI" className="w-12 md:w-20" />
+                  <img src={Image1} alt="USSI Institute" className="w-12 md:w-20" />
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-2xl font-bold text-cyan-500 mb-5">Audit Kepatuhan TI</h3>
+                <h3 className="text-2xl font-bold text-cyan-500 mb-3">Audit Kepatuhan TI</h3>
                 <p className="text-slate-500 text-base mb-0">Divisi</p>
-                <h4 className="text-lg font-medium mb-4">Audit Kepatuhan Teknologi Informasi</h4>
+                <h4 className="text-lg font-medium mb-8">Audit Kepatuhan Teknologi Informasi</h4>
+                <Link to="/">
+                  <a className=" text-sm font-semibold text-white bg-cyan-500 py-3 px-8 rounded-md hover:shadow-lg hover:opacity-80 transition duration-300 ease-in-out">Selengkapnya</a>
+                </Link>
               </div>
             </div>
           </div>
