@@ -12,7 +12,8 @@ import Home from "./pages/Home";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import JadwalPelatihanPage from "./pages/JadwalPelatihanPage";
-import DaftarBprPage from "./pages/DaftarBpr"
+import DaftarBprPage from "./pages/DaftarBpr";
+import DashboardPage from "./pages/AdminPage";
 
 const RouteApp = () => {
   return (
@@ -32,6 +33,7 @@ const RouteApp = () => {
         <Route path="/reset-password" exact element={<ResetPasswordPage />} />
         <Route path="/jadwal-pelatihan" exact element={<JadwalPelatihanPage />} />
         <Route path="/daftar-bpr" exact element={<DaftarBprPage />} />
+        <Route path="/dashboard" exact element={<DashboardPage />} />
       </Routes>
     </>
   );

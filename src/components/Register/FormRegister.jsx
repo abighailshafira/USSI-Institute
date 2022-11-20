@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import Image from "../../assets/image/register.png";
 import { Link, useNavigate } from "react-router-dom";
-// import PasswordInput from "../PasswordInput";
 import axios from "axios";
 import { Input, message } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 
 const FormRegister = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  //nama bpr
 
   const navigate = useNavigate();
 
@@ -20,6 +21,7 @@ const FormRegister = () => {
   const register = async (e) => {
     e.preventDefault();
     const userData = new URLSearchParams();
+    //belum masukin nama sama bpr
     userData.append("email", email);
     userData.append("password", password);
 
@@ -63,6 +65,30 @@ const FormRegister = () => {
 
             <div className="w-full md:w-1/2 p-10 text-slate-800">
               <form>
+                <div className="mb-4">
+                  <label for="institutionName" className="text-base">
+                    Nama Lembaga
+                  </label>
+                  <input
+                    type="institutionName"
+                    className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
+                    placeholder="Nama Lembaga"
+                    // onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label for="name" className="text-base">
+                    Nama Lengkap
+                  </label>
+                  <input
+                    type="name"
+                    className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
+                    placeholder="Nama Lengkap"
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+
                 <div className="mb-4">
                   <label for="email" className="text-base">
                     Email

@@ -151,7 +151,11 @@ function NavBar({ theme }) {
                 <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Tentang</a>
               </Link>
 
-              <Menu as="div" className="relative">
+              <Link to="/jadwal-pelatihan">
+                <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pelatihan</a>
+              </Link>
+
+              {/* <Menu as="div" className="relative">
                 <Disclosure>
                   <Disclosure.Button className="inline-flex items-center hover:bg-slate-700 hover:text-white text-black px-4 py-2 rounded-md text-base ">
                     Pelatihan
@@ -167,7 +171,7 @@ function NavBar({ theme }) {
                     </Link>
                   </Disclosure.Panel>
                 </Disclosure>
-              </Menu>
+              </Menu> */}
 
               <Link to="/pendaftaran">
                 <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pendaftaran</a>
