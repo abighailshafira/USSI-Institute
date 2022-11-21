@@ -1,28 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "antd/dist/antd.css";
 import Logo from "../../assets/image/logo-ussi.png";
-import {
-  AppstoreOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  DatabaseOutlined,
-  FileOutlined,
-  LogoutOutlined,
-  MailOutlined,
-  PieChartOutlined,
-  PlusOutlined,
-  SettingOutlined,
-  ShopOutlined,
-  SnippetsOutlined,
-  TeamOutlined,
-  UploadOutlined,
-  UsergroupAddOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
+import { LogoutOutlined, PlusOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons";
+import { Form, Input, Button, Select, Layout, Menu, Modal, Space, Table } from "antd";
+
 import { FiHome } from "react-icons/fi";
-import { HiOutlineUserGroup } from "react-icons/hi";
-import { Button, Input, Layout, Menu, message, Modal, notification, Space } from "antd";
+import { HiOutlineOfficeBuilding, HiOutlineViewGridAdd } from "react-icons/hi";
+import { GrCertificate } from "react-icons/gr";
 import Search from "antd/lib/transfer/search";
 import { Link, useNavigate } from "react-router-dom";
 // import Url from "../../Config";
@@ -32,11 +16,11 @@ import { Link, useNavigate } from "react-router-dom";
 // import AnswerTable from "../../components/admin/AnswerTable";
 
 const { Header, Content, Sider } = Layout;
-const items = [UserOutlined, VideoCameraOutlined, UploadOutlined, BarChartOutlined, CloudOutlined, AppstoreOutlined, TeamOutlined, ShopOutlined].map((icon, index) => ({
-  key: String(index + 1),
-  icon: React.createElement(icon),
-  label: `nav ${index + 1}`,
-}));
+// const items = [UserOutlined, VideoCameraOutlined, UploadOutlined, BarChartOutlined, CloudOutlined, AppstoreOutlined, TeamOutlined, ShopOutlined].map((icon, index) => ({
+//   key: String(index + 1),
+//   icon: React.createElement(icon),
+//   label: `nav ${index + 1}`,
+// }));
 
 const Dashboard = () => {
   // const [collapsed, setCollapsed] = useState(false);
@@ -47,12 +31,12 @@ const Dashboard = () => {
   // const navigate = useNavigate();
   // const dispatch = useDispatch();
 
-  const [visible, setVisible] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
+  // const [visible, setVisible] = useState(false);
+  // const [confirmLoading, setConfirmLoading] = useState(false);
 
-  const showModal = () => {
-    setVisible(true);
-  };
+  // const showModal = () => {
+  //   setVisible(true);
+  // }
 
   // const handleCancel = () => {
   //   setVisible(false);
@@ -139,7 +123,7 @@ const Dashboard = () => {
         >
           <div className="logo">
             <Link to="/dashboard">
-              <a className="py-4 flex justify-center">
+              <a className="py-6 flex justify-center">
                 <img src={Logo} alt="USSI Institute" className="h-10" />
               </a>
             </Link>
@@ -147,34 +131,36 @@ const Dashboard = () => {
           <Menu
             mode="inline"
             theme="dark"
-            defaultSelectedKeys={["5"]}
+            defaultSelectedKeys={["1"]}
             // selectedKeys={[location.pathname]}
           >
             <Menu.Item key="1" icon={<FiHome />}>
+              <Link to="/dashboard" />
               Dashboard
             </Menu.Item>
-            <Menu.Item key="2" icon={<UsergroupAddOutlined />}>
-              <Link to="/dashboard" />
+            <Menu.Item key="2" icon={<HiOutlineViewGridAdd />}>
+              <Link to="/dashboard/pelatihan" />
               Pelatihan
             </Menu.Item>
-            <Menu.Item key="4" icon={<UsergroupAddOutlined />}>
-              <Link to="/dashboard" />
+            <Menu.Item key="3" icon={<HiOutlineOfficeBuilding />}>
+              <Link to="/dashboard/lembaga" />
               Lembaga
             </Menu.Item>
-            <Menu.Item key="3" icon={<HiOutlineUserGroup />}>
+            <Menu.Item key="4" icon={<GrCertificate />}>
               <Link to="/dashboard" />
               Peserta
             </Menu.Item>
             <Menu.SubMenu key="SubMenu" title="User" icon={<UserOutlined />}>
-              <Menu.Item key="two" icon={<SettingOutlined />}>
+              <Menu.Item key="one" icon={<SettingOutlined />}>
                 Profile
               </Menu.Item>
-              <Menu.Item key="three" icon={<LogoutOutlined />}>
+              <Menu.Item key="two" icon={<LogoutOutlined />}>
                 Logout
               </Menu.Item>
             </Menu.SubMenu>
           </Menu>
         </Sider>
+
         <Layout>
           <Header
             className="site-layout-sub-header-background"
@@ -182,10 +168,7 @@ const Dashboard = () => {
               padding: 0,
             }}
           >
-            <Menu
-              mode="horizontal"
-              // defaultSelectedKeys={['mail']}
-            >
+            <Menu mode="horizontal">
               <Space
                 style={{
                   marginLeft: 20,
@@ -201,52 +184,26 @@ const Dashboard = () => {
               </Space>
             </Menu>
           </Header>
+
           <Content
             style={{
-              margin: "5px 16px 0",
+              margin: "5px 10px 0",
             }}
           >
             <div
               className="site-layout-background"
               style={{
                 padding: 20,
-                minHeight: 650,
+                minHeight: 644,
               }}
             >
               <div className="container p-3 mb-1 bg-body rounded d-flex flex-column">
                 <div className="row">
                   <div className="col text-title text-start">
-                    <h4 className="title fw-bold">Dashboard</h4>
+                    <h1 className="title fw-bold text-3xl mb-2 text-slate-800">Dashboard</h1>
+                    <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis laudantium magnam quaerat?</p>
                   </div>
-                  <div className="col button-add text-end me-3">
-                    {/* <Button type="primary" icon={<PlusOutlined />} onClick={showModal} /> */}
-                    <Button type="primary" icon={<PlusOutlined />} />
-                  </div>
-                  {/* <AnswerTable data={answers} deleteAnswers={deleteAnswers} /> */}
                 </div>
-                {/* <Modal title="Tambah Jawaban" centered visible={visible} onOk={handleSubmit} confirmLoading={confirmLoading} onCancel={handleCancel}> */}
-                <Modal title="Tambah Jawaban" centered visible={visible} confirmLoading={confirmLoading}>
-                  <div className="text-title text-start">
-                    <div className="row">
-                      <label htmlFor="inputNama3" className="col-sm-3 col-form-label">
-                        Dashboard
-                      </label>
-                      <div className="col-sm-9">
-                        {/* <Input placeholder="Type Answer" onChange={(e) => setAnswer_name(e.target.value)} /> */}
-                        <Input placeholder="Type Answer" />
-                      </div>
-                    </div>
-                    <div className="row">
-                      <label htmlFor="inputNama3" className="col-sm-3 col-form-label">
-                        MD User
-                      </label>
-                      <div className="col-sm-9">
-                        {/* <Input placeholder="Type Value" onChange={(e) => setMDUser(e.target.value)} /> */}
-                        <Input placeholder="Type Value" />
-                      </div>
-                    </div>
-                  </div>
-                </Modal>
               </div>
             </div>
           </Content>
