@@ -73,6 +73,7 @@ const FormRegister = () => {
                     type="institutionName"
                     className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
                     placeholder="Nama Lembaga"
+                    required
                     // onChange={(e) => setName(e.target.value)}
                   />
                 </div>
@@ -85,6 +86,7 @@ const FormRegister = () => {
                     type="name"
                     className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
                     placeholder="Nama Lengkap"
+                    required
                     onChange={(e) => setName(e.target.value)}
                   />
                 </div>
@@ -97,6 +99,7 @@ const FormRegister = () => {
                     type="email"
                     className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
                     placeholder="Email"
+                    required
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
@@ -113,6 +116,7 @@ const FormRegister = () => {
                     }}
                     iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                     onChange={(e) => setPassword(e.target.value)}
+                    required
                   />
                 </div>
 

@@ -31,7 +31,7 @@ const Pelatihan = ({ pelatihan }) => {
                         <h3 className="text-lg font-semibold truncate mb-0">{item.trainingName}</h3>
                         <p className="text-base text-slate-500 mb-7">Pelatihan {day1}</p>
                         <Link to={`/detail-pelatihan/${item.id}`}>
-                          <a className="text-sm font-semibold text-white bg-cyan-500 py-3 px-8 rounded-md hover:shadow-lg hover:opacity-80 transition duration-300 ease-in-out hover:text-white">Selengkapnya</a>
+                          <a className="text-sm font-semibold text-white bg-cyan-500 py-3 px-8 rounded-md shadow-md hover:bg-cyan-600 hover:text-white duration-300 transition">Selengkapnya</a>
                         </Link>
                       </div>
                     </div>

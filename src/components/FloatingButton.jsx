@@ -27,7 +27,7 @@ const FloatingButton = () => {
       <button
         title="Up"
         style={{ display: visible ? "inline" : "none" }}
-        class="fixed z-90 bottom-4 right-4 md:bottom-8 md:right-8 bg-cyan-500 w-14 h-14 rounded-full shadow-md flex justify-center items-center text-white text-4xl hover:opacity-90 hover:shadow-lg animate-bounce duration-300"
+        class="fixed z-90 bottom-4 right-4 md:bottom-8 md:right-8 bg-cyan-500 w-14 h-14 rounded-full shadow-md flex justify-center items-center text-white text-4xl hover:bg-cyan-600 animate-bounce duration-300"
       >
         <RiArrowUpSLine onClick={scrollToTop} className="mx-auto" />
       </button>

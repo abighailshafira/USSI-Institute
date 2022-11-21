@@ -17,91 +17,29 @@ const Home = () => {
   const [pelatihan, setPelatihan] = useState([]);
 
   useEffect(() => {
-    getSchedule()
+    getSchedule();
   }, []);
 
   const getSchedule = async () => {
-    await axios.get(`http://localhost:5000/api/v1/detail/training`)
-    .then((res) => {
+    await axios.get(`http://localhost:5000/api/v1/detail/training`).then((res) => {
       const getData = res.data.data;
       console.log(getData);
       setPelatihan(getData);
-    })
-  }
+    });
+  };
 
-  const data = [
-    {
-      id: 1,
-      training_name: "Pelatihan Januari",
-      category: "Web Design",
-    },
-    {
-      id: 2,
-      training_name: "Pelatihan Februari",
-      category: "Web Development",
-    },
-    {
-      id: 3,
-      training_name: "Pelatihan Maret",
-      category: "App Design",
-    },
-    {
-      id: 4,
-      training_name: "Pelatihan April",
-      category: "App Development",
-    },
-    {
-      id: 5,
-      training_name: "Pelatihan Mei",
-      category: "Web Design",
-    },
-    {
-      id: 6,
-      training_name: "Pelatihan Juni",
-      category: "Web Development",
-    },
-    {
-      id: 7,
-      training_name: "Pelatihan Juli",
-      category: "App Design",
-    },
-    {
-      id: 8,
-      training_name: "Pelatihan Agustus",
-      category: "App Development",
-    },
-    {
-      id: 9,
-      training_name: "Pelatihan September",
-      category: "Web Design",
-    },
-    {
-      id: 10,
-      training_name: "Pelatihan Oktober",
-      category: "Web Development",
-    },
-    {
-      id: 11,
-      training_name: "Pelatihan November",
-      category: "App Design",
-    },
-    {
-      id: 12,
-      training_name: "Pelatihan Desember",
-      category: "Web Design",
-    },
-  ];
   return (
     <>
       <NavBar theme="dark" />
-      {/* <NavBar /> */}
       <Hero />
       <About />
       <Divisi />
       <Pelatihan pelatihan={pelatihan} />
       <Info />
+      {/* <div className="bg-gradient-to-b from-slate-100"> */}
       <Gallery />
       <History />
+      {/* </div> */}
       <FloatingButton />
       <Footer />
     </>

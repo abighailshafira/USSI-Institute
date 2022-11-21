@@ -42,6 +42,7 @@ const Contact = () => {
                       id="name"
                       name="name"
                       placeholder="Nama"
+                      required
                     />
                   </div>
 
@@ -53,6 +54,7 @@ const Contact = () => {
                       id="email"
                       name="email"
                       placeholder="Email"
+                      required
                     />
                   </div>
                 </div>
@@ -65,6 +67,7 @@ const Contact = () => {
                     id="subject"
                     name="subject"
                     placeholder="Subjek"
+                    required
                   />
                 </div>
 
@@ -76,6 +79,7 @@ const Contact = () => {
                     id="message"
                     name="message"
                     placeholder="Pesan"
+                    required
                   ></textarea>
                 </div>
 
