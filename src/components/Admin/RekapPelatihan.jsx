@@ -4,13 +4,41 @@ import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
 import { PlusOutlined } from "@ant-design/icons";
 import Search from "antd/lib/transfer/search";
-import { Form, Input, Button, Layout, Menu, Space, Table, Upload, DatePicker, TimePicker } from "antd";
-import { FiHome, FiList, FiChevronLeft, FiSettings, FiLogOut, FiUser } from "react-icons/fi";
+import { Button, Layout, Menu, Space, Table, DatePicker } from "antd";
+import { FiHome, FiList, FiSettings, FiLogOut, FiUser } from "react-icons/fi";
 import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
 
 const { Header, Content, Sider } = Layout;
 const { RangePicker } = DatePicker;
+
+//contoh data tabel dan response BE
+// const dataPelatihan = [
+//   {
+//     id: 1,
+//     institutionName: "Universitas Brawijaya",
+//     detailTrainings: [
+//       {
+//         id: 1,
+//         trainingName: "Pelatihan Janauari",
+//         startDate: "Januari", // mengambil dari startdate lalu di convert ke bulan
+//         detail: {
+//           participants: 100, // jumlah peserta dari trainingname dan institutionName yang sama
+//           attendance: null, // jumlah peserta yang hadir dari trainingname dan institutionName yang sama
+//         },
+//       },
+//       {
+//         id: 2,
+//         trainingName: "Pelatihan Janauari",
+//         startDate: "Januari", // mengambil dari startdate lalu di convert ke bulan
+//         detail: {
+//           participants: 100, // jumlah peserta dari trainingname dan institutionName yang sama
+//           attendance: null, // jumlah peserta yang hadir dari trainingname dan institutionName yang sama
+//         },
+//       },
+//     ],
+//   },
+// ];
 
 const App = () => {
   //table
@@ -72,26 +100,6 @@ const App = () => {
     });
   }
 
-  const rangeConfig = {
-    rules: [
-      {
-        type: "array",
-        required: true,
-        message: "Please select time!",
-      },
-    ],
-  };
-
-  const config = {
-    rules: [
-      {
-        type: "object",
-        required: true,
-        message: "Please select time!",
-      },
-    ],
-  };
-
   return (
     <>
       {" "}
@@ -122,7 +130,7 @@ const App = () => {
           <Menu
             mode="inline"
             theme="dark"
-            defaultSelectedKeys={["pelatihan"]}
+            defaultSelectedKeys={["rekapPelatihan"]}
             // selectedKeys={[location.pathname]}
           >
             <Menu.Item key="dashboard" icon={<FiHome />}>
@@ -134,7 +142,7 @@ const App = () => {
                 <Link to="/dashboard/pelatihan" />
                 Pelatihan
               </Menu.Item>
-              <Menu.Item key="rekap pelatihan" icon={<FiList />}>
+              <Menu.Item key="rekapPelatihan" icon={<FiList />}>
                 <Link to="/dashboard/rekap-pelatihan" />
                 Rekap Pelatihan
               </Menu.Item>
@@ -200,23 +208,10 @@ const App = () => {
               }}
             >
               <div className="container p-3">
-                {/* <div className="bg-white shadow-lg rounded-lg p-10">
+                <div className="bg-white shadow-lg rounded-lg p-10">
                   <div className="flex justify-between mb-3">
                     <div>
                       <h1 className="title font-semibold text-3xl text-slate-800">Rekap Pelatihan</h1>
-                    </div>
-                    <div>
-                      <Button type="primary" icon={<PlusOutlined />} onClick={showModal} />
-                    </div>
-                  </div>
-
-                  
-                </div> */}
-
-                <div className="dashboard-card">
-                  <div className="flex justify-between mb-3">
-                    <div>
-                      <h2 className="title font-semibold text-xl text-slate-800">Pelatihan</h2>
                     </div>
                     <div>
                       <Button type="primary" icon={<PlusOutlined />} />
@@ -233,71 +228,6 @@ const App = () => {
                       y: 500,
                     }}
                   />
-                </div>
-
-                <div className="dashboard-card mt-10">
-                  <h2 className="text-slate-800 flex items-center text-lg">
-                    <a href="#">
-                      <FiChevronLeft className="w-4 h-4 text-cyan-500 mr-2" />
-                    </a>
-                    Tambah Pelatihan
-                  </h2>
-                  <Form
-                    labelCol={{
-                      span: 7,
-                    }}
-                    wrapperCol={{
-                      span: 14,
-                    }}
-                    layout="horizontal"
-                  >
-                    <Form.Item label="Nama Pelatihan">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item
-                      name="deskripsi"
-                      label="Deskripsi"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input Intro",
-                        },
-                      ]}
-                    >
-                      <Input.TextArea showCount maxLength={100} />
-                    </Form.Item>
-                    <Form.Item name="range-picker" label="Tanggal pelaksanaan" {...rangeConfig}>
-                      <RangePicker />
-                    </Form.Item>
-                    <Form.Item name="time-picker" label="Waktu Pelaksanaan" {...config}>
-                      <TimePicker />
-                    </Form.Item>
-                    <Form.Item label="Lokasi">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item label="Gambar" valuePropName="fileList">
-                      <Upload action="/upload.do" listType="picture-card">
-                        <div>
-                          <PlusOutlined />
-                          <div
-                            style={{
-                              marginTop: 8,
-                            }}
-                          >
-                            Upload
-                          </div>
-                        </div>
-                      </Upload>
-                    </Form.Item>
-                    <Form.Item label="Batas Pendaftaran">
-                      <DatePicker />
-                    </Form.Item>
-                    <Form.Item>
-                      <Button type="primary" className="mt-2">
-                        Tambah
-                      </Button>
-                    </Form.Item>
-                  </Form>
                 </div>
               </div>
             </div>

@@ -1,47 +1,33 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/image/logo-ussi.png";
-
 import "antd/dist/antd.css";
 import { PlusOutlined } from "@ant-design/icons";
-import { Form, Input, Button, Select, Layout, Menu, Modal, Space, Table } from "antd";
+import { Form, Input, Button, Select, Layout, Menu, Space, Table } from "antd";
 import Search from "antd/lib/transfer/search";
-
-import { FiHome, FiSettings, FiLogOut, FiUser, FiPlus } from "react-icons/fi";
-import { HiOutlineOfficeBuilding, HiOutlineViewGridAdd } from "react-icons/hi";
-import { GrCertificate } from "react-icons/gr";
+import { FiHome, FiList, FiChevronLeft, FiSettings, FiLogOut, FiUser } from "react-icons/fi";
+import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from "react-icons/hi";
+import { TbCertificate } from "react-icons/tb";
 
 const { Header, Content, Sider } = Layout;
+const { Option } = Select;
 
 const Lembaga = () => {
-  //modal
-  const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const showModal = () => {
-    setOpen(true);
-  };
-
-  const handleOk = () => {
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setOpen(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
-
-  const handleCancel = () => {
-    console.log("Clicked cancel button");
-    setOpen(false);
-  };
-
   //table
   const columns = [
+    {
+      title: "Kode",
+      dataIndex: "code",
+      key: "code",
+      width: 50,
+      sorter: (a, b) => a.code - b.code,
+    },
     {
       title: "Nama Lembaga",
       dataIndex: "institutionName",
       key: "institutionName",
-      width: 150,
-      fixed: "left",
+      width: 120,
+      sorter: (a, b) => a.institutionName - b.institutionName,
       filters: [
         {
           text: "BPR",
@@ -52,74 +38,80 @@ const Lembaga = () => {
           value: "Perumda",
         },
       ],
-      onFilter: (value, record) => record.institution.indexOf(value) === 0,
-    },
-    {
-      title: "Kode",
-      align: "center",
-      dataIndex: "code",
-      key: "code",
-      width: 50,
-      align: "center",
     },
     {
       title: "Alamat Lembaga",
-      align: "center",
       dataIndex: "institutionAddress",
       key: "institutionAddress",
       width: 100,
-      align: "center",
     },
     {
       title: "Provinsi",
-      align: "center",
       dataIndex: "province",
       key: "province",
       width: 100,
-      align: "center",
+      sorter: (a, b) => a.province - b.province,
+      filters: [
+        {
+          text: "Jawa Barat",
+          value: "Jawa Barat",
+        },
+        {
+          text: "Jawa Tengah",
+          value: "Jawa Tengah",
+        },
+      ],
     },
     {
       title: "Email",
-      align: "center",
       dataIndex: "email",
       key: "email",
       width: 100,
-      align: "center",
+      sorter: (a, b) => a.email - b.email,
     },
     {
       title: "No Telp",
-      align: "center",
       dataIndex: "phone",
       key: "phone",
       width: 90,
-      align: "center",
     },
     {
       title: "Nama CP",
-      align: "center",
       dataIndex: "CPName",
       key: "CPName",
       width: 100,
-      align: "center",
+      sorter: (a, b) => a.CPName - b.CPName,
     },
     {
       title: "Kontak CP",
-      align: "center",
       dataIndex: "CPPhone",
       key: "CPPhone",
       width: 90,
-      align: "center",
     },
     {
       title: "Status SLA",
-      align: "center",
       dataIndex: "statusSLA",
       key: "statusSLA",
       width: 80,
-      align: "center",
+      filters: [
+        {
+          text: "0",
+          value: "0",
+        },
+        {
+          text: "1",
+          value: "1",
+        },
+      ],
+    },
+    {
+      title: "Action",
+      dataIndex: "action",
+      key: "action",
+      width: 80,
+      render: () => <a>Delete</a>,
     },
   ];
-
   const data = [];
   for (let i = 0; i < 100; i++) {
     data.push({
@@ -130,6 +122,20 @@ const Lembaga = () => {
     });
   }
 
+  //phone number
+  const prefixSelector = (
+    <Form.Item name="prefix" noStyle>
+      <Select
+        style={{
+          width: 70,
+        }}
+      >
+        <Option value="62">+62</Option>
+        <Option value="87">+87</Option>
+      </Select>
+    </Form.Item>
+  );
+
   return (
     <>
       {" "}
@@ -137,10 +143,11 @@ const Lembaga = () => {
         <Sider
           breakpoint="lg"
           collapsedWidth="0"
-          style={{
-            height: "screen",
-            // position: 'fixed',
-          }}
+          style={
+            {
+              // height: "screen",
+            }
+          }
           onBreakpoint={(broken) => {
             console.log(broken);
           }}
@@ -155,34 +162,42 @@ const Lembaga = () => {
               </a>
             </Link>
           </div>
+
           <Menu
             mode="inline"
             theme="dark"
-            defaultSelectedKeys={["3"]}
+            defaultSelectedKeys={["lembaga"]}
             // selectedKeys={[location.pathname]}
           >
-            <Menu.Item key="1" icon={<FiHome />}>
+            <Menu.Item key="dashboard" icon={<FiHome />}>
               <Link to="/dashboard" />
               Dashboard
             </Menu.Item>
-            <Menu.Item key="2" icon={<HiOutlineViewGridAdd />}>
-              <Link to="/dashboard/pelatihan" />
-              Pelatihan
-            </Menu.Item>
-            <Menu.Item key="3" icon={<HiOutlineOfficeBuilding />}>
+            <Menu.SubMenu title="Pelatihan" icon={<HiOutlineViewGrid />}>
+              <Menu.Item key="pelatihan" icon={<HiOutlineViewGridAdd />}>
+                <Link to="/dashboard/pelatihan" />
+                Pelatihan
+              </Menu.Item>
+              <Menu.Item key="rekap pelatihan" icon={<FiList />}>
+                <Link to="/dashboard/rekap-pelatihan" />
+                Rekap Pelatihan
+              </Menu.Item>
+            </Menu.SubMenu>
+            <Menu.Item key="lembaga" icon={<HiOutlineOfficeBuilding />}>
               <Link to="/dashboard/lembaga" />
               Lembaga
             </Menu.Item>
-            <Menu.Item key="4" icon={<GrCertificate />}>
-              <Link to="/dashboard" />
+            <Menu.Item key="peserta" icon={<TbCertificate />}>
+              <Link to="/dashboard/peserta" />
               Peserta
             </Menu.Item>
-            <Menu.SubMenu key="SubMenu" title="User" icon={<FiUser />}>
+            <Menu.SubMenu title="Pengguna" icon={<FiUser />}>
               <Menu.Item key="one" icon={<FiSettings />}>
-                Profile
+                <Link to="/dashboard/profile" />
+                Profil
               </Menu.Item>
               <Menu.Item key="two" icon={<FiLogOut />}>
-                Logout
+                Keluar
               </Menu.Item>
             </Menu.SubMenu>
           </Menu>
@@ -190,12 +205,12 @@ const Lembaga = () => {
 
         <Layout>
           <Header
-            className="site-layout-sub-header-background"
+            className="site-layout-background"
             style={{
               padding: 0,
             }}
           >
-            <Menu mode="horizontal">
+            <Menu mode="inline">
               <Space
                 style={{
                   marginLeft: 20,
@@ -208,6 +223,10 @@ const Lembaga = () => {
                   size="large"
                   // onSearch={onSearch}
                 />
+                <Menu.Item key="1" icon={<FiHome />}>
+                  Hi, Admin
+                  <Link to="/dashboard" />
+                </Menu.Item>
               </Space>
             </Menu>
           </Header>
@@ -225,31 +244,35 @@ const Lembaga = () => {
               }}
             >
               <div className="container p-3 mb-1 bg-body rounded d-flex flex-column">
-                <div className="row">
-                  <div className="col text-title text-start">
-                    <h1 className="title fw-bold text-3xl mb-2 text-slate-800">Lembaga</h1>
-                    <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis laudantium magnam quaerat?</p>
-                  </div>
-                  <div className="bg-white shadow-lg rounded-lg p-10">
-                    <div className="col button-add text-end mb-5">
-                      <Button type="primary" icon={<PlusOutlined />} onClick={showModal} />
+                <div className="bg-white shadow-lg rounded-lg p-10">
+                  <div className="flex justify-between mb-3">
+                    <div>
+                      <h2 className="title font-semibold text-xl text-slate-800">Lembaga</h2>
                     </div>
-
-                    <Table
-                      pagination={false}
-                      columns={columns}
-                      dataSource={data}
-                      bordered
-                      size="middle"
-                      scroll={{
-                        x: "calc(700px + 50%)",
-                        y: 500,
-                      }}
-                    />
+                    <div>
+                      <Button type="primary" icon={<PlusOutlined />} />
+                    </div>
                   </div>
+
+                  <Table
+                    columns={columns}
+                    dataSource={data}
+                    bordered
+                    size="middle"
+                    scroll={{
+                      x: "calc(700px + 50%)",
+                      y: 500,
+                    }}
+                  />
                 </div>
 
-                <Modal title="Lembaga" open={open} onOk={handleOk} confirmLoading={confirmLoading} onCancel={handleCancel}>
+                <div className="dashboard-card mt-10">
+                  <h2 className="text-slate-800 flex items-center text-lg mb-5">
+                    <a href="#">
+                      <FiChevronLeft className="w-4 h-4 text-cyan-500 mr-3" />
+                    </a>
+                    Tambah Pengguna
+                  </h2>
                   <Form
                     labelCol={{
                       span: 7,
@@ -258,39 +281,140 @@ const Lembaga = () => {
                       span: 14,
                     }}
                     layout="horizontal"
+                    labelAlign="left"
                   >
-                    <Form.Item label="Kode">
+                    <Form.Item
+                      name="code"
+                      label="Kode Lembaga"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input your ...",
+                        },
+                      ]}
+                    >
                       <Input />
                     </Form.Item>
-                    <Form.Item label="Nama Lembaga">
+                    <Form.Item
+                      name="institutionName"
+                      label="Nama Lembaga"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input your ...",
+                        },
+                      ]}
+                    >
                       <Input />
                     </Form.Item>
-                    <Form.Item label="Alamat Lembaga">
+                    <Form.Item
+                      name="institutionAddress"
+                      label="Alamat Lembaga"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input your ...",
+                        },
+                      ]}
+                    >
                       <Input />
                     </Form.Item>
-                    <Form.Item label="Provinsi">
+                    <Form.Item
+                      name="province"
+                      label="Provinsi"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input your ...",
+                        },
+                      ]}
+                    >
                       <Input />
                     </Form.Item>
-                    <Form.Item label="Email">
+                    <Form.Item
+                      name="email"
+                      label="E-mail"
+                      rules={[
+                        {
+                          type: "email",
+                          message: "The input is not valid E-mail!",
+                        },
+                        {
+                          required: true,
+                          message: "Please input your E-mail!",
+                        },
+                      ]}
+                    >
                       <Input />
                     </Form.Item>
-                    <Form.Item label="Nomor Telepon">
+                    <Form.Item
+                      name="phone"
+                      label="Phone Number"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input your phone number!",
+                        },
+                      ]}
+                    >
+                      <Input
+                        addonBefore={prefixSelector}
+                        style={{
+                          width: "100%",
+                        }}
+                      />
+                    </Form.Item>
+                    <Form.Item
+                      name="CPName"
+                      label="Nama CP"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input your ...",
+                        },
+                      ]}
+                    >
                       <Input />
                     </Form.Item>
-                    <Form.Item label="Nama CP">
-                      <Input />
+                    <Form.Item
+                      name="CPPhone"
+                      label="Kontak CP"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input your ...",
+                        },
+                      ]}
+                    >
+                      <Input
+                        addonBefore={prefixSelector}
+                        style={{
+                          width: "100%",
+                        }}
+                      />
                     </Form.Item>
-                    <Form.Item label="Kontak CP">
-                      <Input />
-                    </Form.Item>
-                    <Form.Item label="Status SLA">
+                    <Form.Item
+                      name="statusSLA"
+                      label="Status SLA"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input your ...",
+                        },
+                      ]}
+                    >
                       <Select>
-                        <Select.Option value="demo">0</Select.Option>
-                        <Select.Option value="demo">1</Select.Option>
+                        <Select.Option value="0">0</Select.Option>
+                        <Select.Option value="1">1</Select.Option>
                       </Select>
                     </Form.Item>
+                    <Form.Item>
+                      <Button type="primary" className="mt-2">
+                        Tambah
+                      </Button>
+                    </Form.Item>
                   </Form>
-                </Modal>
+                </div>
               </div>
             </div>
           </Content>
