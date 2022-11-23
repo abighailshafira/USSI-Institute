@@ -61,3 +61,7 @@
 .navbar-fixed .navbar-text {
   @apply text-black hover:text-cyan-500 px-3 py-2 text-base;
 }
+
+.dashboard-card {
+  @apply bg-white shadow-lg rounded-lg px-10 py-7;
+}
