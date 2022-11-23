@@ -19,6 +19,7 @@ const App = () => {
       {" "}
       <Layout>
         <Sider
+          width={230}
           breakpoint="lg"
           collapsedWidth="0"
           style={
@@ -56,7 +57,7 @@ const App = () => {
                 <Link to="/dashboard/pelatihan" />
                 Pelatihan
               </Menu.Item>
-              <Menu.Item key="rekap pelatihan" icon={<FiList />}>
+              <Menu.Item key="rekapPelatihan" icon={<FiList />}>
                 <Link to="/dashboard/rekap-pelatihan" />
                 Rekap Pelatihan
               </Menu.Item>
@@ -70,11 +71,11 @@ const App = () => {
               Peserta
             </Menu.Item>
             <Menu.SubMenu title="Pengguna" icon={<FiUser />}>
-              <Menu.Item key="one" icon={<FiSettings />}>
+              <Menu.Item key="profil" icon={<FiSettings />}>
                 <Link to="/dashboard/profile" />
                 Profil
               </Menu.Item>
-              <Menu.Item key="two" icon={<FiLogOut />}>
+              <Menu.Item key="logout" icon={<FiLogOut />}>
                 Keluar
               </Menu.Item>
             </Menu.SubMenu>

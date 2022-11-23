@@ -32,7 +32,7 @@ const InputPelatihan = () => {
     <>
       {" "}
       <div className="dashboard-card mt-10">
-        <h2 className="text-slate-800 flex items-center text-lg">
+        <h2 className="text-slate-800 flex items-center text-lg mb-7">
           <a href="#">
             <FiChevronLeft className="w-4 h-4 text-cyan-500 mr-2" />
           </a>
@@ -41,12 +41,10 @@ const InputPelatihan = () => {
 
         <Form
           labelCol={{
-            span: 7,
-          }}
-          wrapperCol={{
-            span: 14,
+            span: 4,
           }}
           layout="horizontal"
+          labelAlign="left"
         >
           <Form.Item
             name="trainingName"
@@ -126,7 +124,7 @@ const InputPelatihan = () => {
           >
             <DatePicker />
           </Form.Item>
-          <Form.Item>
+          <Form.Item className="flex justify-end">
             <Button type="primary" className="mt-2">
               Tambah
             </Button>
