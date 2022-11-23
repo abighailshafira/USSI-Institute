@@ -69,8 +69,8 @@ const Dashboard = () => {
               <Link to="/dashboard/lembaga" />
               Lembaga
             </Menu.Item>
-            <Menu.Item key="4" icon={<GrCertificate />}>
-              <Link to="/dashboard" />
+            <Menu.Item key="peserta" icon={<TbCertificate />}>
+              <Link to="/dashboard/peserta" />
               Peserta
             </Menu.Item>
             <Menu.SubMenu title="Pengguna" icon={<FiUser />}>
