@@ -1,0 +1,238 @@
+import React, { useState, useRef } from "react";
+import { Space, Table, Button, Input, Popconfirm } from "antd";
+import { EditOutlined, DeleteOutlined, SearchOutlined } from "@ant-design/icons";
+import Highlighter from "react-highlight-words";
+
+const TableLembaga = () => {
+  // Search
+  const [searchText, setSearchText] = useState("");
+  const [searchedColumn, setSearchedColumn] = useState("");
+  const searchInput = useRef(null);
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText("");
+  };
+
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+      <div
+        style={{
+          padding: 8,
+        }}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        <Input
+          ref={searchInput}
+          placeholder="Search"
+          value={selectedKeys[0]}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{
+            marginBottom: 8,
+            display: "block",
+          }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            size="middle"
+            style={{
+              width: 90,
+            }}
+          >
+            Search
+          </Button>
+          <Button
+            onClick={() => clearFilters && handleReset(clearFilters)}
+            size="middle"
+            style={{
+              width: 90,
+            }}
+          >
+            Reset
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered) => (
+      <SearchOutlined
+        style={{
+          color: filtered ? "#1890ff" : undefined,
+        }}
+      />
+    ),
+    onFilter: (value, record) => record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilterDropdownOpenChange: (visible) => {
+      if (visible) {
+        setTimeout(() => searchInput.current?.select(), 100);
+      }
+    },
+    render: (text) =>
+      searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{
+            backgroundColor: "#ffc069",
+            padding: 0,
+          }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ""}
+        />
+      ) : (
+        text
+      ),
+  });
+
+  // Delete
+  const handleDelete = (key) => {
+    const newData = dataSource.filter((item) => item.key !== key);
+    setDataSource(newData);
+  };
+
+  // Table Data
+  const [dataSource, setDataSource] = useState([
+    {
+      key: "1",
+      code: "10367",
+      institutionName: "BMT HASANA MANDIRI",
+      institutionAddress: "Jl. Solo-wonogiri ruko grogol green garden telukan, grogol, sukoharjo",
+      email: "budiadi1968@gmail.com",
+      phone: "089649470248",
+      CPName: "IBU UMI",
+      CPPhone: "089649470248",
+      statusSLA: "1",
+    },
+    {
+      key: "2",
+      code: "10313",
+      institutionName: "Credit Union - Puskhat",
+      institutionAddress: "Jl MT Haryono, Rukan 1-2 Pontianak Selatan, 78121",
+      email: "puskhatmail@gmail.com",
+      phone: "089649470248",
+      CPName: "IBU UMI",
+      CPPhone: "089649470248",
+      statusSLA: "0",
+    },
+  ]);
+
+  // Table Columns
+  const columns = [
+    {
+      title: "Kode",
+      dataIndex: "code",
+      key: "code",
+      width: 60,
+      fixed: "left",
+      sorter: (a, b) => a.code - b.code,
+      ...getColumnSearchProps("code"),
+    },
+    {
+      title: "Nama Lembaga",
+      dataIndex: "institutionName",
+      key: "institutionName",
+      width: 120,
+      fixed: "left",
+      sorter: (a, b) => a.institutionName - b.institutionName,
+      ...getColumnSearchProps("institutionName"),
+    },
+    {
+      title: "Alamat Lembaga",
+      dataIndex: "institutionAddress",
+      key: "institutionAddress",
+      width: 120,
+      ...getColumnSearchProps("institutionAddress"),
+    },
+    {
+      title: "Provinsi",
+      dataIndex: "province",
+      key: "province",
+      width: 100,
+      sorter: (a, b) => a.province - b.province,
+      ...getColumnSearchProps("province"),
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+      width: 100,
+      sorter: (a, b) => a.email - b.email,
+      ...getColumnSearchProps("email"),
+    },
+    {
+      title: "No Telp",
+      dataIndex: "phone",
+      key: "phone",
+      width: 80,
+    },
+    {
+      title: "Nama CP",
+      dataIndex: "CPName",
+      key: "CPName",
+      width: 80,
+      sorter: (a, b) => a.CPName - b.CPName,
+      ...getColumnSearchProps("CPName"),
+    },
+    {
+      title: "Kontak CP",
+      dataIndex: "CPPhone",
+      key: "CPPhone",
+      width: 80,
+    },
+    {
+      title: "Status SLA",
+      dataIndex: "statusSLA",
+      key: "statusSLA",
+      width: 60,
+      filters: [
+        {
+          text: "0",
+          value: "0",
+        },
+        {
+          text: "1",
+          value: "1",
+        },
+      ],
+    },
+    {
+      title: "Action",
+      dataIndex: "action",
+      key: "action",
+      width: 80,
+      align: "center",
+      render: (_, record) =>
+        dataSource.length >= 1 ? (
+          <Space size="small">
+            <Button icon={<EditOutlined />} />
+            <Popconfirm title="Sure to delete?">
+              <Button type="primary" danger icon={<DeleteOutlined />} onConfirm={() => handleDelete(record.key)} />
+            </Popconfirm>
+          </Space>
+        ) : null,
+    },
+  ];
+
+  return (
+    <>
+      {" "}
+      <Table
+        columns={columns}
+        dataSource={dataSource}
+        bordered
+        size="middle"
+        scroll={{
+          x: "calc(1000px + 50%)",
+          y: 500,
+        }}
+      />
+    </>
+  );
+};
+
+export default TableLembaga;
