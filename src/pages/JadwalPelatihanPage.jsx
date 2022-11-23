@@ -24,9 +24,7 @@ const JadwalPelatihanPage = () => {
   return (
     <>
       <NavBar />
-      <div className="mt-14">
-        <Pelatihan pelatihan={pelatihan} />
-      </div>
+      <Pelatihan pelatihan={pelatihan} />
       <FloatingButton />
       <Footer />
     </>
