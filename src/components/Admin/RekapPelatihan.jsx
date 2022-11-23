@@ -10,7 +10,6 @@ import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from
 import { TbCertificate } from "react-icons/tb";
 
 const { Header, Content, Sider } = Layout;
-const { RangePicker } = DatePicker;
 
 //contoh data tabel dan response BE
 // const dataPelatihan = [
@@ -41,62 +40,166 @@ const { RangePicker } = DatePicker;
 // ];
 
 const App = () => {
-  //table
+  // Table
   const columns = [
     {
-      title: "Nama Pelatihan",
-      dataIndex: "trainingName",
-      key: "trainingName",
+      title: "Nama BPR",
+      dataIndex: "institution",
+      key: "institution",
       width: 150,
+      fixed: "left",
+      align: "center",
+      filters: [
+        {
+          text: "BPR",
+          value: "BPR",
+        },
+        {
+          text: "Perumda",
+          value: "Perumda",
+        },
+      ],
+      onFilter: (value, record) => record.institution.indexOf(value) === 0,
     },
     {
-      title: "Deskripsi",
-      dataIndex: "description",
-      key: "description",
-      width: 150,
+      title: "Pelatihan dan Trial Error Aplikasi Obox 1 (Januari)",
+      align: "center",
+      children: [
+        {
+          title: "Jumlah Peserta",
+          dataIndex: "participant",
+          key: "participant",
+          width: 130,
+          align: "center",
+        },
+      ],
     },
     {
-      title: "Tanggal Mulai",
-      dataIndex: "startDate",
-      key: "startDate",
-      width: 100,
+      title: "Pelatihan Audit TI (Februari)",
+      align: "center",
+      children: [
+        {
+          title: "Jumlah Peserta",
+          dataIndex: "participant",
+          key: "participant",
+          width: 130,
+          align: "center",
+        },
+      ],
     },
     {
-      title: "Tanggal Selesai",
-      dataIndex: "endDate",
-      key: "endDate",
-      width: 100,
+      title: "Pelatihan dan Trial Error Aplikasi Obox 2 (Maret)",
+      align: "center",
+      children: [
+        {
+          title: "Jumlah Peserta",
+          dataIndex: "participant",
+          key: "participant",
+          width: 130,
+          align: "center",
+        },
+      ],
     },
     {
-      title: "Waktu",
-      dataIndex: "time",
-      key: "time",
-      width: 50,
+      title: "Teknik audit berbantuan komputer dengan ACL (April)",
+      align: "center",
+      children: [
+        {
+          title: "Jumlah Peserta",
+          dataIndex: "participant",
+          key: "participant",
+          width: 130,
+          align: "center",
+        },
+      ],
     },
     {
-      title: "Lokasi",
-      dataIndex: "location",
-      key: "location",
-      width: 100,
+      title: "Pelatihan Penggunaan Aplikasi USSI (Mei)",
+      align: "center",
+      children: [
+        {
+          title: "Jumlah Peserta",
+          dataIndex: "participant",
+          key: "participant",
+          width: 130,
+          align: "center",
+        },
+      ],
     },
     {
-      title: "Gambar",
-      dataIndex: "image",
-      key: "image",
-      width: 100,
+      title: "Pelatihan Fungsi SDM TI (Juni)",
+      align: "center",
+      children: [
+        {
+          title: "Jumlah Peserta",
+          dataIndex: "participant",
+          key: "participant",
+          width: 130,
+          align: "center",
+        },
+      ],
     },
     {
-      title: "Batas Pendaftaran",
-      dataIndex: "pendaftaran",
-      key: "pendaftaran",
-      width: 100,
+      title: "Pelatihan Mikrotik (Juli)",
+      align: "center",
+      children: [
+        {
+          title: "Jumlah Peserta",
+          dataIndex: "participant",
+          key: "participant",
+          width: 130,
+          align: "center",
+        },
+      ],
+    },
+    {
+      title: "Pelatihan dan Petunjuk Teknis Pelaporan dan Solusi Permasalahan LAPBUL (Agustus)",
+      align: "center",
+      children: [
+        {
+          title: "Jumlah Peserta",
+          dataIndex: "participant",
+          key: "participant",
+          width: 130,
+          align: "center",
+        },
+      ],
+    },
+    {
+      title: "Pelatihan Digitalisasi (September)",
+      align: "center",
+      children: [
+        {
+          title: "Jumlah Peserta",
+          dataIndex: "participant",
+          key: "participant",
+          width: 130,
+          align: "center",
+        },
+      ],
+    },
+    {
+      title: "Total",
+      align: "center",
+      children: [
+        {
+          title: "Jumlah Peserta",
+          dataIndex: "participant",
+          key: "participant",
+          width: 130,
+          align: "center",
+        },
+      ],
     },
   ];
 
   const data = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 100; i++) {
     data.push({
       key: i,
+      institution: "John Brown",
+      participant: i + 1,
+      attendance: 1,
     });
   }
 
@@ -208,10 +311,10 @@ const App = () => {
               }}
             >
               <div className="container p-3">
-                <div className="bg-white shadow-lg rounded-lg p-10">
+                <div className="dashboard-card">
                   <div className="flex justify-between mb-3">
                     <div>
-                      <h1 className="title font-semibold text-3xl text-slate-800">Rekap Pelatihan</h1>
+                      <h2 className="title font-semibold text-xl text-slate-800">Rekap Pelatihan</h2>
                     </div>
                     <div>
                       <Button type="primary" icon={<PlusOutlined />} />
@@ -235,30 +338,6 @@ const App = () => {
         </Layout>
       </Layout>
     </>
-
-    // <>
-    //   <div className="container mt-36">
-    //     <div className="w-full px-4">
-    //       <div className="mb-10">
-    //         <h1 className="text-3xl font-bold mb-2 text-slate-800">Pelatihan</h1>
-    //         <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis laudantium magnam quaerat?</p>
-    //       </div>
-    //     </div>
-
-    //     <Table
-    //       className="px-5"
-    //       pagination={false}
-    //       columns={columns}
-    //       dataSource={data}
-    //       bordered
-    //       size="middle"
-    //       scroll={{
-    //         x: "calc(700px + 50%)",
-    //         y: 500,
-    //       }}
-    //     />
-    //   </div>
-    // </>
   );
 };
 export default App;

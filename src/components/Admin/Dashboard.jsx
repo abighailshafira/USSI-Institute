@@ -8,47 +8,51 @@ import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from
 import { TbCertificate } from "react-icons/tb";
 import Search from "antd/lib/transfer/search";
 import { Link } from "react-router-dom";
-// import Url from "../../Config";
-// import axios from "axios";
-// import { useDispatch, useSelector } from "react-redux";
-// import Swal from "sweetalert2";
-// import AnswerTable from "../../components/admin/AnswerTable";
 
 const { Header, Content, Sider } = Layout;
-// const items = [UserOutlined, VideoCameraOutlined, UploadOutlined, BarChartOutlined, CloudOutlined, AppstoreOutlined, TeamOutlined, ShopOutlined].map((icon, index) => ({
-//   key: String(index + 1),
-//   icon: React.createElement(icon),
-//   label: `nav ${index + 1}`,
-// }));
 
 const Dashboard = () => {
+  // Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
+
   const handleOk = () => {
     setIsModalOpen(false);
   };
 
-  //table
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  // Table
   const columns = [
     {
       title: "Kode",
       dataIndex: "code",
       key: "code",
-      width: 50,
+      width: 150,
+      sorter: (a, b) => a.code - b.code,
+    },
+    {
+      title: "Nama",
+      dataIndex: "name",
+      key: "name",
+      width: 300,
       sorter: (a, b) => a.code - b.code,
     },
     {
       title: "Email",
       dataIndex: "email",
       key: "email",
-      width: 100,
+      width: 400,
       sorter: (a, b) => a.email - b.email,
     },
     {
       title: "Action",
       key: "action",
+      align: "center",
       render: () => (
         <Space size="middle">
           <a>Info</a>
@@ -272,7 +276,15 @@ const Dashboard = () => {
                     </div>
                   </div>
 
-                  <Table columns={columns} dataSource={data} bordered />
+                  <Table
+                    columns={columns}
+                    dataSource={data}
+                    bordered
+                    size="middle"
+                    pagination={{
+                      position: "bottomCenter",
+                    }}
+                  />
                 </div>
 
                 <div className="dashboard-card mt-10">
@@ -293,7 +305,7 @@ const Dashboard = () => {
                     labelAlign="left"
                   >
                     <Form.Item label="Kode">
-                      <Input />
+                      <Input disabled={true} />
                     </Form.Item>
                     <Form.Item
                       name="email"
@@ -349,7 +361,7 @@ const Dashboard = () => {
                     labelAlign="left"
                   >
                     <Form.Item label="Kode">
-                      <Input />
+                      <Input disabled={true} />
                     </Form.Item>
                     <Form.Item
                       name="email"
@@ -386,7 +398,7 @@ const Dashboard = () => {
                     </Form.Item>
                   </Form>
                 </div>
-                <Modal title="Info Pengguna" open={isModalOpen} onOk={handleOk}>
+                <Modal title="Info Pengguna" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                   <Form
                     labelCol={{
                       span: 3,
