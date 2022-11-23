@@ -106,7 +106,25 @@ const TablePeserta = () => {
       bpr: "BPR Bandung",
       tgl_mulai: "12/02/2022",
       tgl_selesai: "12/03/2022",
-      tags: ['Download'],
+      tags: ['Lulus'],
+    },
+    {
+      key: "3",
+      no: "3",
+      name: "Zayn King 1",
+      bpr: "BPR Bandung",
+      tgl_mulai: "12/02/2022",
+      tgl_selesai: "12/03/2022",
+      tags: ['Tidak Lulus'],
+    },
+    {
+      key: "4",
+      no: "4",
+      name: "Zayn King 1",
+      bpr: "BPR Bandung",
+      tgl_mulai: "12/02/2022",
+      tgl_selesai: "12/03/2022",
+      tags: ['Menunggu Hasil'],
     },
   ]);
   const [count, setCount] = useState(2);
@@ -172,7 +190,13 @@ const TablePeserta = () => {
           {tags.map((tag) => {
             let color = tag.length > 5 ? 'geekblue' : 'green';
             if (tag === 'Download') {
-              color = 'volcano';
+              color = 'geekblue';
+            }else if (tag === 'Tidak Lulus') {
+              color = 'red'
+            }else if (tag === 'Lulus') {
+              color = 'green'
+            }else if (tag ==='Menunggu Hasil') {
+              color = 'yellow'
             }
             return (
               <Tag color={color} key={tag}>
