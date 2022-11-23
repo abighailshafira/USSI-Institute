@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
-import { Button, Layout, Menu, Space } from "antd";
+import { Layout, Menu, Space, DatePicker, Input, Button } from "antd";
 import Search from "antd/lib/transfer/search";
-import { PlusOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
+import Highlighter from "react-highlight-words";
 import { FiHome, FiList, FiSettings, FiLogOut, FiUser } from "react-icons/fi";
 import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
@@ -39,6 +40,9 @@ const { Header, Content, Sider } = Layout;
 //     ],
 //   },
 // ];
+const onChange = (date, dateString) => {
+  console.log(date, dateString);
+};
 
 const App = () => {
   return (
@@ -156,7 +160,7 @@ const App = () => {
                       <h2 className="title font-semibold text-xl text-slate-800">Rekap Pelatihan</h2>
                     </div>
                     <div>
-                      <Button type="primary" icon={<PlusOutlined />} />
+                      <DatePicker onChange={onChange} picker="year" />
                     </div>
                   </div>
 

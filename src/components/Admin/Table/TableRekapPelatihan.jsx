@@ -1,28 +1,124 @@
-import React from "react";
-import { Table, Typography } from "antd";
+import React, { useState, useRef } from "react";
+import { Table, Typography, Space, Input, Button } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
+import Highlighter from "react-highlight-words";
 const { Text } = Typography;
 
 const TableRekapPelatihan = () => {
-  // Table
+  // Search
+  const [searchText, setSearchText] = useState("");
+  const [searchedColumn, setSearchedColumn] = useState("");
+  const searchInput = useRef(null);
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText("");
+  };
+
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+      <div
+        style={{
+          padding: 8,
+        }}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        <Input
+          ref={searchInput}
+          placeholder="Search"
+          value={selectedKeys[0]}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{
+            marginBottom: 8,
+            display: "block",
+          }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            size="middle"
+            style={{
+              width: 90,
+            }}
+          >
+            Search
+          </Button>
+          <Button
+            onClick={() => clearFilters && handleReset(clearFilters)}
+            size="middle"
+            style={{
+              width: 90,
+            }}
+          >
+            Reset
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered) => (
+      <SearchOutlined
+        style={{
+          color: filtered ? "#1890ff" : undefined,
+        }}
+      />
+    ),
+    onFilter: (value, record) => record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilterDropdownOpenChange: (visible) => {
+      if (visible) {
+        setTimeout(() => searchInput.current?.select(), 100);
+      }
+    },
+    render: (text) =>
+      searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{
+            backgroundColor: "#ffc069",
+            padding: 0,
+          }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ""}
+        />
+      ) : (
+        text
+      ),
+  });
+
+  // Table Data
+  const [dataSource, setDataSource] = useState([
+    {
+      key: "1",
+      institutionName: "PT. BPR DANA RAYA JAWA TIMUR",
+      participant: 1,
+    },
+    {
+      key: "2",
+      institutionName: "PT. BPR Artha Bersama",
+      participant: 2,
+    },
+    {
+      key: "3",
+      institutionName: "PT BPR ANUGERAH HARTA KALIWUNGU",
+      participant: 1,
+    },
+  ]);
+
+  // Table Column
   const columns = [
     {
       title: "Nama BPR",
       dataIndex: "institutionName",
       key: "institutionName",
-      width: 150,
+      width: 200,
       fixed: "left",
       sorter: (a, b) => a.institutionName - b.institutionName,
-      filters: [
-        {
-          text: "BPR",
-          value: "BPR",
-        },
-        {
-          text: "Perumda",
-          value: "Perumda",
-        },
-      ],
-      onFilter: (value, record) => record.institution.indexOf(value) === 0,
+      ...getColumnSearchProps("institutionName"),
     },
     {
       title: "Pelatihan dan Trial Error Aplikasi Obox 1 (Januari)",
@@ -167,20 +263,11 @@ const TableRekapPelatihan = () => {
     },
   ];
 
-  const data = [];
-  for (let i = 0; i < 20; i++) {
-    data.push({
-      key: i,
-      institutionName: "BPR Kota Bandung",
-      participant: 1,
-    });
-  }
-
   return (
     <>
       <Table
         columns={columns}
-        dataSource={data}
+        dataSource={dataSource}
         bordered
         size="middle"
         scroll={{

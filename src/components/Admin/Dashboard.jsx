@@ -27,7 +27,8 @@ const Dashboard = () => {
           collapsedWidth="0"
           style={
             {
-              // height: "screen",
+              // height: "100%",
+              // borderRight: 0,
             }
           }
           onBreakpoint={(broken) => {
