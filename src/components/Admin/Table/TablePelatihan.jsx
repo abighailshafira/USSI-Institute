@@ -50,14 +50,15 @@ const TablePelatihan = () => {
       title: "Nama Pelatihan",
       dataIndex: "trainingName",
       key: "trainingName",
-      width: "100",
+      width: 150,
       editable: true,
+      fixed: "left",
       sorter: (a, b) => a.trainingName - b.trainingName,
     },
     {
       title: "description",
       dataIndex: "description",
-      width: "100",
+      width: 150,
       editable: true,
       editable: true,
     },
@@ -65,7 +66,7 @@ const TablePelatihan = () => {
       title: "Tanggal Mulai",
       dataIndex: "startDate",
       key: "startDate",
-      width: "50",
+      width: 80,
       editable: true,
       sorter: (a, b) => a.startDate - b.startDate,
     },
@@ -73,7 +74,7 @@ const TablePelatihan = () => {
       title: "Tanggal Selesai",
       dataIndex: "endDate",
       key: "endDate",
-      width: "50",
+      width: 80,
       editable: true,
       sorter: (a, b) => a.endDate - b.endDate,
     },
@@ -105,7 +106,7 @@ const TablePelatihan = () => {
       dataIndex: "pendaftaran",
       key: "pendaftaran",
       editable: true,
-      width: 100,
+      width: 80,
       sorter: (a, b) => a.pendaftaran - b.pendaftaran,
     },
     {
@@ -113,7 +114,6 @@ const TablePelatihan = () => {
       dataIndex: "aksi",
       width: 120,
       align: "center",
-      fixed: "right",
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
@@ -216,7 +216,7 @@ const TablePelatihan = () => {
           }}
           size="middle"
           scroll={{
-            x: "calc(700px + 50%)",
+            x: "calc(1000px + 50%)",
             y: 500,
           }}
         />
