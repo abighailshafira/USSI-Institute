@@ -46,6 +46,7 @@ const App = () => {
       {" "}
       <Layout>
         <Sider
+          width={230}
           breakpoint="lg"
           collapsedWidth="0"
           style={

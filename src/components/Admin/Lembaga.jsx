@@ -122,25 +122,12 @@ const Lembaga = () => {
     });
   }
 
-  //phone number
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select
-        style={{
-          width: 70,
-        }}
-      >
-        <Option value="62">+62</Option>
-        <Option value="87">+87</Option>
-      </Select>
-    </Form.Item>
-  );
-
   return (
     <>
       {" "}
       <Layout>
         <Sider
+          width={230}
           breakpoint="lg"
           collapsedWidth="0"
           style={
@@ -192,11 +179,11 @@ const Lembaga = () => {
               Peserta
             </Menu.Item>
             <Menu.SubMenu title="Pengguna" icon={<FiUser />}>
-              <Menu.Item key="one" icon={<FiSettings />}>
+              <Menu.Item key="profil" icon={<FiSettings />}>
                 <Link to="/dashboard/profile" />
                 Profil
               </Menu.Item>
-              <Menu.Item key="two" icon={<FiLogOut />}>
+              <Menu.Item key="logout" icon={<FiLogOut />}>
                 Keluar
               </Menu.Item>
             </Menu.SubMenu>
@@ -267,7 +254,7 @@ const Lembaga = () => {
                 </div>
 
                 <div className="dashboard-card mt-10">
-                  <h2 className="text-slate-800 flex items-center text-lg mb-5">
+                  <h2 className="text-slate-800 flex items-center text-lg mb-7">
                     <a href="#">
                       <FiChevronLeft className="w-4 h-4 text-cyan-500 mr-3" />
                     </a>
@@ -275,10 +262,7 @@ const Lembaga = () => {
                   </h2>
                   <Form
                     labelCol={{
-                      span: 7,
-                    }}
-                    wrapperCol={{
-                      span: 14,
+                      span: 4,
                     }}
                     layout="horizontal"
                     labelAlign="left"
@@ -358,7 +342,7 @@ const Lembaga = () => {
                       ]}
                     >
                       <Input
-                        addonBefore={prefixSelector}
+                        addonBefore="+62"
                         style={{
                           width: "100%",
                         }}
@@ -387,7 +371,7 @@ const Lembaga = () => {
                       ]}
                     >
                       <Input
-                        addonBefore={prefixSelector}
+                        addonBefore="+62"
                         style={{
                           width: "100%",
                         }}
@@ -408,7 +392,7 @@ const Lembaga = () => {
                         <Select.Option value="1">1</Select.Option>
                       </Select>
                     </Form.Item>
-                    <Form.Item>
+                    <Form.Item className="flex justify-end">
                       <Button type="primary" className="mt-2">
                         Tambah
                       </Button>
