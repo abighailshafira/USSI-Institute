@@ -1,28 +1,51 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
-import { Layout, Menu, Space, Form, Input, Button, Modal } from "antd";
+import { Button, Layout, Menu, Space } from "antd";
 import Search from "antd/lib/transfer/search";
 import { PlusOutlined } from "@ant-design/icons";
 import { FiHome, FiList, FiSettings, FiLogOut, FiUser } from "react-icons/fi";
 import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
-import TablePengguna from "./Table/TablePengguna";
-import InputPengguna from "./Form/InputPengguna";
-import EditPengguna from "./Form/EditPengguna";
+import TableRekapPelatihan from "./Table/TableRekapPelatihan";
 
 const { Header, Content, Sider } = Layout;
 
-const Dashboard = () => {
-  // Navbar
-  // const [collapsed, setCollapsed] = useState(false);
+//contoh data tabel dan response BE
+// const dataPelatihan = [
+//   {
+//     id: 1,
+//     institutionName: "Universitas Brawijaya",
+//     detailTrainings: [
+//       {
+//         id: 1,
+//         trainingName: "Pelatihan Janauari",
+//         startDate: "Januari", // mengambil dari startdate lalu di convert ke bulan
+//         detail: {
+//           participants: 100, // jumlah peserta dari trainingname dan institutionName yang sama
+//           attendance: null, // jumlah peserta yang hadir dari trainingname dan institutionName yang sama
+//         },
+//       },
+//       {
+//         id: 2,
+//         trainingName: "Pelatihan Janauari",
+//         startDate: "Januari", // mengambil dari startdate lalu di convert ke bulan
+//         detail: {
+//           participants: 100, // jumlah peserta dari trainingname dan institutionName yang sama
+//           attendance: null, // jumlah peserta yang hadir dari trainingname dan institutionName yang sama
+//         },
+//       },
+//     ],
+//   },
+// ];
 
+const App = () => {
   return (
     <>
+      {" "}
       <Layout>
         <Sider
-          width={230}
           breakpoint="lg"
           collapsedWidth="0"
           style={
@@ -48,7 +71,7 @@ const Dashboard = () => {
           <Menu
             mode="inline"
             theme="dark"
-            defaultSelectedKeys={["dashboard"]}
+            defaultSelectedKeys={["rekapPelatihan"]}
             // selectedKeys={[location.pathname]}
           >
             <Menu.Item key="dashboard" icon={<FiHome />}>
@@ -60,7 +83,7 @@ const Dashboard = () => {
                 <Link to="/dashboard/pelatihan" />
                 Pelatihan
               </Menu.Item>
-              <Menu.Item key="rekap pelatihan" icon={<FiList />}>
+              <Menu.Item key="rekapPelatihan" icon={<FiList />}>
                 <Link to="/dashboard/rekap-pelatihan" />
                 Rekap Pelatihan
               </Menu.Item>
@@ -69,8 +92,8 @@ const Dashboard = () => {
               <Link to="/dashboard/lembaga" />
               Lembaga
             </Menu.Item>
-            <Menu.Item key="4" icon={<GrCertificate />}>
-              <Link to="/dashboard" />
+            <Menu.Item key="peserta" icon={<TbCertificate />}>
+              <Link to="/dashboard/peserta" />
               Peserta
             </Menu.Item>
             <Menu.SubMenu title="Pengguna" icon={<FiUser />}>
@@ -126,26 +149,18 @@ const Dashboard = () => {
               }}
             >
               <div className="container p-3">
-                <div>
-                  <h1 className="text-3xl mb-2 text-slate-800">Dashboard</h1>
-                  <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis laudantium magnam quaerat?</p>
-                </div>
-
-                <div className="dashboard-card mt-10">
+                <div className="dashboard-card">
                   <div className="flex justify-between mb-3">
                     <div>
-                      <h2 className="title font-semibold text-xl text-slate-800">Pengguna</h2>
+                      <h2 className="title font-semibold text-xl text-slate-800">Rekap Pelatihan</h2>
                     </div>
                     <div>
                       <Button type="primary" icon={<PlusOutlined />} />
                     </div>
                   </div>
-                  <TablePengguna />
+
+                  <TableRekapPelatihan />
                 </div>
-
-                <InputPengguna />
-
-                <EditPengguna />
               </div>
             </div>
           </Content>
@@ -154,5 +169,4 @@ const Dashboard = () => {
     </>
   );
 };
-
-export default Dashboard;
+export default App;

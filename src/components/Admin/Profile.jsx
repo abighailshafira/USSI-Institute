@@ -2,27 +2,20 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
-import { Layout, Menu, Space, Form, Input, Button, Modal } from "antd";
+import { Form, Input, Layout, Menu, Space, Image } from "antd";
 import Search from "antd/lib/transfer/search";
-import { PlusOutlined } from "@ant-design/icons";
-import { FiHome, FiList, FiSettings, FiLogOut, FiUser } from "react-icons/fi";
+import { FiHome, FiList, FiSettings, FiLogOut, FiUser, FiChevronLeft } from "react-icons/fi";
 import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
-import TablePengguna from "./Table/TablePengguna";
-import InputPengguna from "./Form/InputPengguna";
-import EditPengguna from "./Form/EditPengguna";
 
 const { Header, Content, Sider } = Layout;
 
-const Dashboard = () => {
-  // Navbar
-  // const [collapsed, setCollapsed] = useState(false);
-
+const Profile = () => {
   return (
     <>
+      {" "}
       <Layout>
         <Sider
-          width={230}
           breakpoint="lg"
           collapsedWidth="0"
           style={
@@ -48,7 +41,7 @@ const Dashboard = () => {
           <Menu
             mode="inline"
             theme="dark"
-            defaultSelectedKeys={["dashboard"]}
+            defaultSelectedKeys={["profile"]}
             // selectedKeys={[location.pathname]}
           >
             <Menu.Item key="dashboard" icon={<FiHome />}>
@@ -69,16 +62,16 @@ const Dashboard = () => {
               <Link to="/dashboard/lembaga" />
               Lembaga
             </Menu.Item>
-            <Menu.Item key="4" icon={<GrCertificate />}>
-              <Link to="/dashboard" />
+            <Menu.Item key="peserta" icon={<TbCertificate />}>
+              <Link to="/dashboard/peserta" />
               Peserta
             </Menu.Item>
             <Menu.SubMenu title="Pengguna" icon={<FiUser />}>
-              <Menu.Item key="one" icon={<FiSettings />}>
+              <Menu.Item key="profile" icon={<FiSettings />}>
                 <Link to="/dashboard/profile" />
                 Profil
               </Menu.Item>
-              <Menu.Item key="two" icon={<FiLogOut />}>
+              <Menu.Item key="logout" icon={<FiLogOut />}>
                 Keluar
               </Menu.Item>
             </Menu.SubMenu>
@@ -126,26 +119,25 @@ const Dashboard = () => {
               }}
             >
               <div className="container p-3">
-                <div>
-                  <h1 className="text-3xl mb-2 text-slate-800">Dashboard</h1>
-                  <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis laudantium magnam quaerat?</p>
-                </div>
-
-                <div className="dashboard-card mt-10">
-                  <div className="flex justify-between mb-3">
-                    <div>
-                      <h2 className="title font-semibold text-xl text-slate-800">Pengguna</h2>
-                    </div>
-                    <div>
-                      <Button type="primary" icon={<PlusOutlined />} />
-                    </div>
+                <div className="dashboard-card">
+                  <h2 className="text-slate-800 flex items-center text-lg">
+                    <a href="#">
+                      <FiChevronLeft className="w-4 h-4 text-cyan-500 mr-2" />
+                    </a>
+                    Profil Pengguna
+                  </h2>
+                  <div className="flex justify-center pb-10">
+                    <Image width={150} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" className="rounded-full" />
                   </div>
-                  <TablePengguna />
+                  <Form className="max-w-xl" layout="vertical">
+                    <Form.Item label="Email">
+                      <Input />
+                    </Form.Item>
+                    <Form.Item label="Password">
+                      <Input />
+                    </Form.Item>
+                  </Form>
                 </div>
-
-                <InputPengguna />
-
-                <EditPengguna />
               </div>
             </div>
           </Content>
@@ -155,4 +147,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Profile;
