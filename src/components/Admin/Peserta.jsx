@@ -134,9 +134,6 @@ const Peserta = () => {
                     <div>
                       <h2 className="title font-semibold text-xl text-slate-800">Peserta</h2>
                     </div>
-                    <div>
-                      <Button type="primary" icon={<PlusOutlined />} />
-                    </div>
                   </div>
                  <TablePeserta />
                 </div>
