@@ -6,7 +6,7 @@ const inputPengguna = () => {
   return (
     <>
       <div className="dashboard-card mt-10">
-        <h2 className="text-slate-800 flex items-center text-lg mb-5">
+        <h2 className="text-slate-800 flex items-center text-lg mb-7">
           <a href="#">
             <FiChevronLeft className="w-4 h-4 text-cyan-500 mr-3" />
           </a>
@@ -17,13 +17,18 @@ const inputPengguna = () => {
           labelCol={{
             span: 3,
           }}
-          wrapperCol={{
-            span: 14,
-          }}
           layout="horizontal"
           labelAlign="left"
         >
-          <Form.Item label="Kode">
+          <Form.Item
+            name="code"
+            label="Kode"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
             <Input disabled={true} />
           </Form.Item>
           <Form.Item
@@ -66,7 +71,7 @@ const inputPengguna = () => {
           >
             <Input.Password />
           </Form.Item>
-          <Form.Item>
+          <Form.Item className="flex justify-end">
             <Button type="primary" className="mt-2">
               Tambah
             </Button>

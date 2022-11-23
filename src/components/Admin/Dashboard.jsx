@@ -18,24 +18,11 @@ const Dashboard = () => {
   // Navbar
   // const [collapsed, setCollapsed] = useState(false);
 
-  // Modal
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <>
       <Layout>
         <Sider
+          width={230}
           breakpoint="lg"
           collapsedWidth="0"
           style={
@@ -150,36 +137,14 @@ const Dashboard = () => {
                       <h2 className="title font-semibold text-xl text-slate-800">Pengguna</h2>
                     </div>
                     <div>
-                      <Button type="primary" icon={<PlusOutlined />} onClick={showModal} />
+                      <Button type="primary" icon={<PlusOutlined />} />
                     </div>
                   </div>
                   <TablePengguna />
                 </div>
 
-                <Modal title="Info Pengguna" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                  <Form
-                    labelCol={{
-                      span: 3,
-                    }}
-                    wrapperCol={{
-                      span: 14,
-                    }}
-                    layout="horizontal"
-                    labelAlign="left"
-                  >
-                    <Form.Item label="Kode">
-                      <Input disabled={true} />
-                    </Form.Item>
-                    <Form.Item name="name" label="Nama">
-                      <Input disabled={true} />
-                    </Form.Item>
-                    <Form.Item name="email" label="E-mail">
-                      <Input disabled={true} />
-                    </Form.Item>
-                  </Form>
-                </Modal>
-
                 <InputPengguna />
+
                 <EditPengguna />
               </div>
             </div>
