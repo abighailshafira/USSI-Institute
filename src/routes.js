@@ -15,6 +15,7 @@ import JadwalPelatihanPage from "./pages/JadwalPelatihanPage";
 import DashboardPage from "./pages/AdminPage";
 import LembagaPage from "./components/Admin/Lembaga";
 import DetailDivisiPage from "./pages/DetailDivisiPage";
+import PesertaPage from "./components/Admin/Peserta";
 
 const RouteApp = () => {
   return (
@@ -36,6 +37,7 @@ const RouteApp = () => {
         <Route path="/jadwal-pelatihan" exact element={<JadwalPelatihanPage />} />
         <Route path="/dashboard" exact element={<DashboardPage />} />
         <Route path="/dashboard/lembaga" exact element={<LembagaPage />} />
+        <Route path="/dashboard/peserta" exact element={<PesertaPage />} />
       </Routes>
     </>
   );

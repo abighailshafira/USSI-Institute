@@ -147,7 +147,7 @@ const Dashboard = () => {
               Lembaga
             </Menu.Item>
             <Menu.Item key="4" icon={<GrCertificate />}>
-              <Link to="/dashboard" />
+              <Link to="/dashboard/peserta" />
               Peserta
             </Menu.Item>
             <Menu.SubMenu key="SubMenu" title="User" icon={<UserOutlined />}>
