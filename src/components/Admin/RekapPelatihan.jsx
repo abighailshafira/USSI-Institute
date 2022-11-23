@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
-import { PlusOutlined } from "@ant-design/icons";
+import { Button, Layout, Menu, Space } from "antd";
 import Search from "antd/lib/transfer/search";
-import { Button, Layout, Menu, Space, Table, DatePicker } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 import { FiHome, FiList, FiSettings, FiLogOut, FiUser } from "react-icons/fi";
 import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
+import TableRekapPelatihan from "./Table/TableRekapPelatihan";
 
 const { Header, Content, Sider } = Layout;
 
@@ -40,169 +41,6 @@ const { Header, Content, Sider } = Layout;
 // ];
 
 const App = () => {
-  // Table
-  const columns = [
-    {
-      title: "Nama BPR",
-      dataIndex: "institution",
-      key: "institution",
-      width: 150,
-      fixed: "left",
-      align: "center",
-      filters: [
-        {
-          text: "BPR",
-          value: "BPR",
-        },
-        {
-          text: "Perumda",
-          value: "Perumda",
-        },
-      ],
-      onFilter: (value, record) => record.institution.indexOf(value) === 0,
-    },
-    {
-      title: "Pelatihan dan Trial Error Aplikasi Obox 1 (Januari)",
-      align: "center",
-      children: [
-        {
-          title: "Jumlah Peserta",
-          dataIndex: "participant",
-          key: "participant",
-          width: 130,
-          align: "center",
-        },
-      ],
-    },
-    {
-      title: "Pelatihan Audit TI (Februari)",
-      align: "center",
-      children: [
-        {
-          title: "Jumlah Peserta",
-          dataIndex: "participant",
-          key: "participant",
-          width: 130,
-          align: "center",
-        },
-      ],
-    },
-    {
-      title: "Pelatihan dan Trial Error Aplikasi Obox 2 (Maret)",
-      align: "center",
-      children: [
-        {
-          title: "Jumlah Peserta",
-          dataIndex: "participant",
-          key: "participant",
-          width: 130,
-          align: "center",
-        },
-      ],
-    },
-    {
-      title: "Teknik audit berbantuan komputer dengan ACL (April)",
-      align: "center",
-      children: [
-        {
-          title: "Jumlah Peserta",
-          dataIndex: "participant",
-          key: "participant",
-          width: 130,
-          align: "center",
-        },
-      ],
-    },
-    {
-      title: "Pelatihan Penggunaan Aplikasi USSI (Mei)",
-      align: "center",
-      children: [
-        {
-          title: "Jumlah Peserta",
-          dataIndex: "participant",
-          key: "participant",
-          width: 130,
-          align: "center",
-        },
-      ],
-    },
-    {
-      title: "Pelatihan Fungsi SDM TI (Juni)",
-      align: "center",
-      children: [
-        {
-          title: "Jumlah Peserta",
-          dataIndex: "participant",
-          key: "participant",
-          width: 130,
-          align: "center",
-        },
-      ],
-    },
-    {
-      title: "Pelatihan Mikrotik (Juli)",
-      align: "center",
-      children: [
-        {
-          title: "Jumlah Peserta",
-          dataIndex: "participant",
-          key: "participant",
-          width: 130,
-          align: "center",
-        },
-      ],
-    },
-    {
-      title: "Pelatihan dan Petunjuk Teknis Pelaporan dan Solusi Permasalahan LAPBUL (Agustus)",
-      align: "center",
-      children: [
-        {
-          title: "Jumlah Peserta",
-          dataIndex: "participant",
-          key: "participant",
-          width: 130,
-          align: "center",
-        },
-      ],
-    },
-    {
-      title: "Pelatihan Digitalisasi (September)",
-      align: "center",
-      children: [
-        {
-          title: "Jumlah Peserta",
-          dataIndex: "participant",
-          key: "participant",
-          width: 130,
-          align: "center",
-        },
-      ],
-    },
-    {
-      title: "Total",
-      align: "center",
-      children: [
-        {
-          title: "Jumlah Peserta",
-          dataIndex: "participant",
-          key: "participant",
-          width: 130,
-          align: "center",
-        },
-      ],
-    },
-  ];
-
-  const data = [];
-  for (let i = 0; i < 100; i++) {
-    data.push({
-      key: i,
-      institution: "John Brown",
-      participant: i + 1,
-      attendance: 1,
-    });
-  }
-
   return (
     <>
       {" "}
@@ -320,17 +158,8 @@ const App = () => {
                       <Button type="primary" icon={<PlusOutlined />} />
                     </div>
                   </div>
-                  <Table
-                    pagination={false}
-                    columns={columns}
-                    dataSource={data}
-                    bordered
-                    size="middle"
-                    scroll={{
-                      x: "calc(700px + 50%)",
-                      y: 500,
-                    }}
-                  />
+
+                  <TableRekapPelatihan />
                 </div>
               </div>
             </div>
