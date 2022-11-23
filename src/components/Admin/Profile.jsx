@@ -4,9 +4,9 @@ import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
 import { Form, Input, Layout, Menu, Space, Image } from "antd";
 import Search from "antd/lib/transfer/search";
-import { FiHome, FiSettings, FiLogOut, FiUser, FiChevronLeft } from "react-icons/fi";
-import { HiOutlineOfficeBuilding, HiOutlineViewGridAdd } from "react-icons/hi";
-import { GrCertificate } from "react-icons/gr";
+import { FiHome, FiList, FiSettings, FiLogOut, FiUser, FiChevronLeft } from "react-icons/fi";
+import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from "react-icons/hi";
+import { TbCertificate } from "react-icons/tb";
 
 const { Header, Content, Sider } = Layout;
 
@@ -18,10 +18,11 @@ const Profile = () => {
         <Sider
           breakpoint="lg"
           collapsedWidth="0"
-          style={{
-            height: "screen",
-            // position: 'fixed',
-          }}
+          style={
+            {
+              // height: "screen",
+            }
+          }
           onBreakpoint={(broken) => {
             console.log(broken);
           }}
@@ -36,34 +37,42 @@ const Profile = () => {
               </a>
             </Link>
           </div>
+
           <Menu
             mode="inline"
             theme="dark"
-            defaultSelectedKeys={["3"]}
+            defaultSelectedKeys={["profile"]}
             // selectedKeys={[location.pathname]}
           >
-            <Menu.Item key="1" icon={<FiHome />}>
+            <Menu.Item key="dashboard" icon={<FiHome />}>
               <Link to="/dashboard" />
               Dashboard
             </Menu.Item>
-            <Menu.Item key="2" icon={<HiOutlineViewGridAdd />}>
-              <Link to="/dashboard/pelatihan" />
-              Pelatihan
-            </Menu.Item>
-            <Menu.Item key="3" icon={<HiOutlineOfficeBuilding />}>
+            <Menu.SubMenu title="Pelatihan" icon={<HiOutlineViewGrid />}>
+              <Menu.Item key="pelatihan" icon={<HiOutlineViewGridAdd />}>
+                <Link to="/dashboard/pelatihan" />
+                Pelatihan
+              </Menu.Item>
+              <Menu.Item key="rekap pelatihan" icon={<FiList />}>
+                <Link to="/dashboard/rekap-pelatihan" />
+                Rekap Pelatihan
+              </Menu.Item>
+            </Menu.SubMenu>
+            <Menu.Item key="lembaga" icon={<HiOutlineOfficeBuilding />}>
               <Link to="/dashboard/lembaga" />
               Lembaga
             </Menu.Item>
-            <Menu.Item key="4" icon={<GrCertificate />}>
-              <Link to="/dashboard" />
+            <Menu.Item key="peserta" icon={<TbCertificate />}>
+              <Link to="/dashboard/peserta" />
               Peserta
             </Menu.Item>
-            <Menu.SubMenu key="SubMenu" title="User" icon={<FiUser />}>
-              <Menu.Item key="one" icon={<FiSettings />}>
-                Profile
+            <Menu.SubMenu title="Pengguna" icon={<FiUser />}>
+              <Menu.Item key="profile" icon={<FiSettings />}>
+                <Link to="/dashboard/profile" />
+                Profil
               </Menu.Item>
-              <Menu.Item key="two" icon={<FiLogOut />}>
-                Logout
+              <Menu.Item key="logout" icon={<FiLogOut />}>
+                Keluar
               </Menu.Item>
             </Menu.SubMenu>
           </Menu>
@@ -71,12 +80,12 @@ const Profile = () => {
 
         <Layout>
           <Header
-            className="site-layout-sub-header-background"
+            className="site-layout-background"
             style={{
               padding: 0,
             }}
           >
-            <Menu mode="horizontal">
+            <Menu mode="inline">
               <Space
                 style={{
                   marginLeft: 20,
@@ -89,6 +98,10 @@ const Profile = () => {
                   size="large"
                   // onSearch={onSearch}
                 />
+                <Menu.Item key="1" icon={<FiHome />}>
+                  Hi, Admin
+                  <Link to="/dashboard" />
+                </Menu.Item>
               </Space>
             </Menu>
           </Header>
@@ -116,15 +129,7 @@ const Profile = () => {
                   <div className="flex justify-center pb-10">
                     <Image width={150} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" className="rounded-full" />
                   </div>
-                  <Form
-                    labelCol={{
-                      span: 7,
-                    }}
-                    wrapperCol={{
-                      span: 14,
-                    }}
-                    layout="vertical"
-                  >
+                  <Form className="max-w-xl" layout="vertical">
                     <Form.Item label="Email">
                       <Input />
                     </Form.Item>
