@@ -139,7 +139,7 @@ const TablePengguna = () => {
         dataSource.length >= 1 ? (
           <Space size="middle">
             <Button type="primary" icon={<InfoOutlined />} onClick={showModal} />
-            <Button icon={<EditOutlined />} />
+            {/* <Button icon={<EditOutlined />} /> */}
             <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
               <Button type="primary" danger icon={<DeleteOutlined />} />
             </Popconfirm>

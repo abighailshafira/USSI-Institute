@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
-import { Form, Input, Layout, Menu, Space, Image } from "antd";
+import { Form, Input, Layout, Menu, Space, Image, Button } from "antd";
 import Search from "antd/lib/transfer/search";
 import { FiHome, FiList, FiSettings, FiLogOut, FiUser, FiChevronLeft } from "react-icons/fi";
 import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from "react-icons/hi";
@@ -16,6 +16,7 @@ const Profile = () => {
       {" "}
       <Layout>
         <Sider
+          width={230}
           breakpoint="lg"
           collapsedWidth="0"
           style={
@@ -120,7 +121,7 @@ const Profile = () => {
             >
               <div className="container p-3">
                 <div className="dashboard-card">
-                  <h2 className="text-slate-800 flex items-center text-lg">
+                  <h2 className="text-slate-800 flex items-center text-lg mb-7">
                     <a href="#">
                       <FiChevronLeft className="w-4 h-4 text-cyan-500 mr-2" />
                     </a>
@@ -129,12 +130,30 @@ const Profile = () => {
                   <div className="flex justify-center pb-10">
                     <Image width={150} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" className="rounded-full" />
                   </div>
-                  <Form className="max-w-xl" layout="vertical">
-                    <Form.Item label="Email">
+                  <Form
+                    layout="horizontal"
+                    labelCol={{
+                      span: 3,
+                    }}
+                    labelAlign="left"
+                  >
+                    <Form.Item label="Kode">
+                      <Input disabled={true} />
+                    </Form.Item>
+                    <Form.Item label="Nama">
                       <Input />
+                    </Form.Item>
+                    <Form.Item label="Email">
+                      <Input disabled={true} />
                     </Form.Item>
                     <Form.Item label="Password">
                       <Input />
+                    </Form.Item>
+                    <Form.Item className="flex justify-end">
+                      <Button className="mr-3">Reset</Button>
+                      <Button type="primary" className="mt-2">
+                        Simpan
+                      </Button>
                     </Form.Item>
                   </Form>
                 </div>
