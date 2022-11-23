@@ -168,38 +168,17 @@ const Dashboard = () => {
                     labelAlign="left"
                   >
                     <Form.Item label="Kode">
-                      <Input />
+                      <Input disabled={true} />
                     </Form.Item>
-                    <Form.Item
-                      name="email"
-                      label="E-mail"
-                      rules={[
-                        {
-                          type: "email",
-                          message: "The input is not valid E-mail!",
-                        },
-                        {
-                          required: true,
-                          message: "Please input your E-mail!",
-                        },
-                      ]}
-                    >
-                      <Input />
+                    <Form.Item name="name" label="Nama">
+                      <Input disabled={true} />
                     </Form.Item>
-                    <Form.Item
-                      name="password"
-                      label="Password"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input your password!",
-                        },
-                      ]}
-                    >
-                      <Input.Password />
+                    <Form.Item name="email" label="E-mail">
+                      <Input disabled={true} />
                     </Form.Item>
                   </Form>
                 </Modal>
+
                 <InputPengguna />
                 <EditPengguna />
               </div>

@@ -27,6 +27,18 @@ const inputPengguna = () => {
             <Input disabled={true} />
           </Form.Item>
           <Form.Item
+            name="name"
+            label="Nama"
+            rules={[
+              {
+                required: true,
+                message: "Please input your Name!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
             name="email"
             label="E-mail"
             rules={[
