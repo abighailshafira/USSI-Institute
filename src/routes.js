@@ -14,6 +14,10 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import JadwalPelatihanPage from "./pages/JadwalPelatihanPage";
 import DashboardPage from "./pages/AdminPage";
 import LembagaPage from "./components/Admin/Lembaga";
+import PelatihanPage from "./components/Admin/Pelatihan";
+import RekapPelatihanPage from "./components/Admin/RekapPelatihan";
+import PesertaPage from "./components/Admin/Peserta";
+import ProfileAdminPage from "./components/Admin/Profile";
 import DetailDivisiPage from "./pages/DetailDivisiPage";
 
 const RouteApp = () => {
@@ -36,6 +40,10 @@ const RouteApp = () => {
         <Route path="/jadwal-pelatihan" exact element={<JadwalPelatihanPage />} />
         <Route path="/dashboard" exact element={<DashboardPage />} />
         <Route path="/dashboard/lembaga" exact element={<LembagaPage />} />
+        <Route path="/dashboard/pelatihan" exact element={<PelatihanPage />} />
+        <Route path="/dashboard/peserta" exact element={<PesertaPage />} />
+        <Route path="/dashboard/profile" exact element={<ProfileAdminPage />} />
+        <Route path="/dashboard/rekap-pelatihan" exact element={<RekapPelatihanPage />} />
       </Routes>
     </>
   );
