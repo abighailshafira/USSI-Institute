@@ -4,8 +4,8 @@ import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
 import { Button, Layout, Menu, Space } from "antd";
 import { PlusOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { FiHome, FiList, FiSettings, FiLogOut, FiUser } from "react-icons/fi";
-import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from "react-icons/hi";
+import { FiHome, FiUser } from "react-icons/fi";
+import { HiOutlineOfficeBuilding, HiOutlineViewGrid } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
 import TablePelatihan from "./Table/TablePelatihan";
 import InputPelatihan from "./Form/InputPelatihan";
@@ -18,7 +18,7 @@ const App = () => {
     <>
       {" "}
       <Layout>
-      <Sider
+        <Sider
           trigger={null}
           collapsible
           collapsed={collapsed}

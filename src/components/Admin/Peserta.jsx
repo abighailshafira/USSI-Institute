@@ -4,8 +4,8 @@ import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
 import { Layout, Menu, Space } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { FiHome, FiList, FiSettings, FiLogOut, FiUser } from "react-icons/fi";
-import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from "react-icons/hi";
+import { FiHome, FiUser } from "react-icons/fi";
+import { HiOutlineOfficeBuilding, HiOutlineViewGrid } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
 import TablePeserta from "./Table/TablePeserta";
 
@@ -51,11 +51,11 @@ const Peserta = () => {
               Dashboard
             </Menu.Item>
             <Menu.SubMenu title="Pelatihan" icon={<HiOutlineViewGrid />}>
-              <Menu.Item key="pelatihan" icon={<HiOutlineViewGridAdd />}>
+              <Menu.Item key="pelatihan">
                 <Link to="/dashboard/pelatihan" />
                 Pelatihan
               </Menu.Item>
-              <Menu.Item key="rekap pelatihan" icon={<FiList />}>
+              <Menu.Item key="rekap pelatihan">
                 <Link to="/dashboard/rekap-pelatihan" />
                 Rekap Pelatihan
               </Menu.Item>
@@ -69,13 +69,11 @@ const Peserta = () => {
               Peserta
             </Menu.Item>
             <Menu.SubMenu title="Pengguna" icon={<FiUser />}>
-              <Menu.Item key="profil" icon={<FiSettings />}>
+              <Menu.Item key="profil">
                 <Link to="/dashboard/profile" />
                 Profil
               </Menu.Item>
-              <Menu.Item key="logout" icon={<FiLogOut />}>
-                Keluar
-              </Menu.Item>
+              <Menu.Item key="logout">Keluar</Menu.Item>
             </Menu.SubMenu>
           </Menu>
         </Sider>

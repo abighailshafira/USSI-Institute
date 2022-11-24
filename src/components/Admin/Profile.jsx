@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
 import { Form, Input, Layout, Menu, Space, Image, Button } from "antd";
-import { PlusOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { FiHome, FiList, FiSettings, FiLogOut, FiUser, FiChevronLeft } from "react-icons/fi";
-import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from "react-icons/hi";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { FiHome, FiUser, FiChevronLeft } from "react-icons/fi";
+import { HiOutlineOfficeBuilding, HiOutlineViewGrid } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
 
 const { Header, Content, Sider } = Layout;
@@ -16,7 +16,7 @@ const Profile = () => {
     <>
       {" "}
       <Layout>
-      <Sider
+        <Sider
           trigger={null}
           collapsible
           collapsed={collapsed}
@@ -117,9 +117,11 @@ const Profile = () => {
                     </a>
                     Profil Pengguna
                   </h2>
+
                   <div className="flex justify-center pb-10">
                     <Image width={150} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" className="rounded-full" />
                   </div>
+
                   <Form
                     layout="horizontal"
                     labelCol={{
