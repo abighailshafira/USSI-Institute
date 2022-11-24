@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
-import { Layout, Menu, Space, Button } from "antd";
-import { PlusOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { Layout, Menu, Space } from "antd";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { FiHome, FiUser } from "react-icons/fi";
 import { HiOutlineOfficeBuilding, HiOutlineViewGrid } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
 import TablePengguna from "./Table/TablePengguna";
 import InputPengguna from "./Form/InputPengguna";
-import EditPengguna from "./Form/EditPengguna";
 
 const { Header, Content, Sider } = Layout;
 
@@ -119,21 +118,9 @@ const Dashboard = () => {
                   <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis laudantium magnam quaerat?</p>
                 </div>
 
-                <div className="dashboard-card mt-10">
-                  <div className="flex justify-between mb-3">
-                    <div>
-                      <h2 className="title font-semibold text-xl text-slate-800">Pengguna</h2>
-                    </div>
-                    <div>
-                      <Button type="primary" icon={<PlusOutlined />} />
-                    </div>
-                  </div>
-                  <TablePengguna />
-                </div>
+                <TablePengguna />
 
                 <InputPengguna />
-
-                <EditPengguna />
               </div>
             </div>
           </Content>

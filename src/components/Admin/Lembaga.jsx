@@ -4,8 +4,8 @@ import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
 import { Button, Layout, Menu, Space } from "antd";
 import { PlusOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { FiHome, FiList, FiSettings, FiLogOut, FiUser } from "react-icons/fi";
-import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from "react-icons/hi";
+import { FiHome, FiUser } from "react-icons/fi";
+import { HiOutlineOfficeBuilding, HiOutlineViewGrid } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
 import TableLembaga from "./Table/TableLembaga";
 import InputLembaga from "./Form/InputLembaga";
@@ -19,7 +19,7 @@ const Lembaga = () => {
     <>
       {" "}
       <Layout>
-      <Sider
+        <Sider
           trigger={null}
           collapsible
           collapsed={collapsed}
@@ -44,7 +44,7 @@ const Lembaga = () => {
           <Menu
             mode="inline"
             theme="dark"
-            defaultSelectedKeys={["dashboard/lembaga"]}
+            defaultSelectedKeys={["lembaga"]}
             // selectedKeys={[location.pathname]}
           >
             <Menu.Item key="dashboard" icon={<FiHome />}>

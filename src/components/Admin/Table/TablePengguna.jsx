@@ -1,21 +1,34 @@
 import React, { useRef, useState } from "react";
 import { Space, Table, Button, Form, Modal, Input, Popconfirm } from "antd";
-import { InfoOutlined, DeleteOutlined, SearchOutlined } from "@ant-design/icons";
+import { InfoOutlined, DeleteOutlined, SearchOutlined, PlusOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 
 const TablePengguna = () => {
   // Modal
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
-    setIsModalOpen(true);
+  const [isModalOpen1, setIsModalOpen1] = useState(false);
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
+  const showModal1 = () => {
+    setIsModalOpen1(true);
   };
 
-  const handleOk = () => {
-    setIsModalOpen(false);
+  const handleOk1 = () => {
+    setIsModalOpen1(false);
   };
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
+  const handleCancel1 = () => {
+    setIsModalOpen1(false);
+  };
+
+  const showModal2 = () => {
+    setIsModalOpen2(true);
+  };
+
+  const handleOk2 = () => {
+    setIsModalOpen2(false);
+  };
+
+  const handleCancel2 = () => {
+    setIsModalOpen2(false);
   };
 
   // Search
@@ -158,7 +171,7 @@ const TablePengguna = () => {
       render: (_, record) =>
         dataSource.length >= 1 ? (
           <Space size="middle">
-            <Button type="primary" icon={<InfoOutlined />} onClick={showModal} />
+            <Button type="primary" icon={<InfoOutlined />} onClick={showModal2} />
             <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
               <Button type="primary" danger icon={<DeleteOutlined />} />
             </Popconfirm>
@@ -169,11 +182,39 @@ const TablePengguna = () => {
 
   return (
     <>
-      <div>
+      <div className="dashboard-card mt-10">
+        <div className="flex justify-between mb-3">
+          <div>
+            <h2 className="title font-semibold text-xl text-slate-800">Pengguna</h2>
+          </div>
+          <div>
+            <Button type="primary" icon={<PlusOutlined />} onClick={showModal1} />
+          </div>
+        </div>
         <Table bordered dataSource={dataSource} columns={columns} size="middle" />
       </div>
 
-      <Modal title="Info Pengguna" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      <Modal title="Tambah Pengguna" open={isModalOpen1} width={1000} onOk={handleOk1} onCancel={handleCancel1}>
+        <Form
+          labelCol={{
+            span: 4,
+          }}
+          layout="horizontal"
+          labelAlign="left"
+        >
+          <Form.Item label="Kode">
+            <Input disabled={true} />
+          </Form.Item>
+          <Form.Item name="name" label="Nama">
+            <Input disabled={true} />
+          </Form.Item>
+          <Form.Item name="email" label="E-mail">
+            <Input disabled={true} />
+          </Form.Item>
+        </Form>
+      </Modal>
+
+      <Modal title="Info Pengguna" open={isModalOpen2} width={1000} onOk={handleOk2} onCancel={handleCancel2}>
         <Form
           labelCol={{
             span: 4,

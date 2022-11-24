@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { Form, Input, InputNumber, Popconfirm, Table, Typography } from "antd";
-
+import React, { useState, useRef } from "react";
+import { Form, Input, InputNumber, Popconfirm, Table, Typography, Space, Button } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
+import Highlighter from "react-highlight-words";
 // Data
 const originData = [];
 for (let i = 0; i < 10; i++) {
@@ -44,6 +45,91 @@ const EditableCell = ({ editing, dataIndex, title, inputType, record, index, chi
 };
 
 const TablePelatihan = () => {
+  // Search
+  const [searchText, setSearchText] = useState("");
+  const [searchedColumn, setSearchedColumn] = useState("");
+  const searchInput = useRef(null);
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText("");
+  };
+
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+      <div
+        style={{
+          padding: 8,
+        }}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        <Input
+          ref={searchInput}
+          placeholder="Search"
+          value={selectedKeys[0]}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{
+            marginBottom: 8,
+            display: "block",
+          }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            size="middle"
+            style={{
+              width: 90,
+            }}
+          >
+            Search
+          </Button>
+          <Button
+            onClick={() => clearFilters && handleReset(clearFilters)}
+            size="middle"
+            style={{
+              width: 90,
+            }}
+          >
+            Reset
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered) => (
+      <SearchOutlined
+        style={{
+          color: filtered ? "#1890ff" : undefined,
+        }}
+      />
+    ),
+    onFilter: (value, record) => record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilterDropdownOpenChange: (visible) => {
+      if (visible) {
+        setTimeout(() => searchInput.current?.select(), 100);
+      }
+    },
+    render: (text) =>
+      searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{
+            backgroundColor: "#ffc069",
+            padding: 0,
+          }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ""}
+        />
+      ) : (
+        text
+      ),
+  });
+
   // Table
   const columns = [
     {
@@ -53,12 +139,13 @@ const TablePelatihan = () => {
       width: 150,
       editable: true,
       fixed: "left",
-      sorter: (a, b) => a.trainingName - b.trainingName,
+      sorter: (a, b) => a.trainingName.localeCompare(b.trainingName),
+      ...getColumnSearchProps("trainingName"),
     },
     {
       title: "description",
       dataIndex: "description",
-      width: 150,
+      width: 180,
       editable: true,
       editable: true,
     },
@@ -69,6 +156,7 @@ const TablePelatihan = () => {
       width: 80,
       editable: true,
       sorter: (a, b) => a.startDate - b.startDate,
+      ...getColumnSearchProps("startDate"),
     },
     {
       title: "Tanggal Selesai",
@@ -77,6 +165,7 @@ const TablePelatihan = () => {
       width: 80,
       editable: true,
       sorter: (a, b) => a.endDate - b.endDate,
+      ...getColumnSearchProps("endDate"),
     },
     {
       title: "Waktu",
@@ -85,6 +174,7 @@ const TablePelatihan = () => {
       width: 50,
       editable: true,
       sorter: (a, b) => a.time - b.time,
+      ...getColumnSearchProps("time"),
     },
     {
       title: "Lokasi",
@@ -92,7 +182,8 @@ const TablePelatihan = () => {
       key: "location",
       width: 100,
       editable: true,
-      sorter: (a, b) => a.location - b.location,
+      sorter: (a, b) => a.location.localeCompare(b.location),
+      ...getColumnSearchProps("location"),
     },
     {
       title: "Gambar",
@@ -108,6 +199,7 @@ const TablePelatihan = () => {
       editable: true,
       width: 80,
       sorter: (a, b) => a.pendaftaran - b.pendaftaran,
+      ...getColumnSearchProps("pendaftaran"),
     },
     {
       title: "Aksi",
@@ -216,7 +308,7 @@ const TablePelatihan = () => {
           }}
           size="middle"
           scroll={{
-            x: "calc(1000px + 50%)",
+            x: "calc(1200px + 50%)",
             y: 500,
           }}
         />

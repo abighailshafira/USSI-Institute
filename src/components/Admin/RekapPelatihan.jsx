@@ -2,12 +2,10 @@ import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
-import { Layout, Menu, Space, DatePicker, Input, Button } from "antd";
-import Search from "antd/lib/transfer/search";
-import { PlusOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import Highlighter from "react-highlight-words";
-import { FiHome, FiList, FiSettings, FiLogOut, FiUser } from "react-icons/fi";
-import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from "react-icons/hi";
+import { Layout, Menu, Space, DatePicker } from "antd";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { FiHome, FiUser } from "react-icons/fi";
+import { HiOutlineOfficeBuilding, HiOutlineViewGrid } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
 import TableRekapPelatihan from "./Table/TableRekapPelatihan";
 
@@ -50,7 +48,7 @@ const App = () => {
     <>
       {" "}
       <Layout>
-      <Sider
+        <Sider
           trigger={null}
           collapsible
           collapsed={collapsed}
@@ -75,7 +73,7 @@ const App = () => {
           <Menu
             mode="inline"
             theme="dark"
-            defaultSelectedKeys={["dashboard/rekap-pelatihan"]}
+            defaultSelectedKeys={["rekapPelatihan"]}
             // selectedKeys={[location.pathname]}
           >
             <Menu.Item key="dashboard" icon={<FiHome />}>
