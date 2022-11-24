@@ -75,7 +75,7 @@ const App = () => {
           <Menu
             mode="inline"
             theme="dark"
-            defaultSelectedKeys={["dashboard/rekap-pelatihan"]}
+            defaultSelectedKeys={["rekapPelatihan"]}
             // selectedKeys={[location.pathname]}
           >
             <Menu.Item key="dashboard" icon={<FiHome />}>

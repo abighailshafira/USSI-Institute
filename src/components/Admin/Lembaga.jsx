@@ -44,7 +44,7 @@ const Lembaga = () => {
           <Menu
             mode="inline"
             theme="dark"
-            defaultSelectedKeys={["dashboard/lembaga"]}
+            defaultSelectedKeys={["lembaga"]}
             // selectedKeys={[location.pathname]}
           >
             <Menu.Item key="dashboard" icon={<FiHome />}>

@@ -41,7 +41,7 @@ const Profile = () => {
           <Menu
             mode="inline"
             theme="dark"
-            defaultSelectedKeys={["dashboard/profile"]}
+            defaultSelectedKeys={["profil"]}
             // selectedKeys={[location.pathname]}
           >
             <Menu.Item key="dashboard" icon={<FiHome />}>
