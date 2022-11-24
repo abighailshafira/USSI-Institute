@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
-import { Layout, Menu, Space, Form, Input, Button, Modal } from "antd";
-import Search from "antd/lib/transfer/search";
-import { PlusOutlined } from "@ant-design/icons";
+import { Layout, Menu, Space } from "antd";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { FiHome, FiList, FiSettings, FiLogOut, FiUser } from "react-icons/fi";
 import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
@@ -14,26 +13,24 @@ const { Header, Content, Sider } = Layout;
 
 const Peserta = () => {
   // Navbar
-  // const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
   return (
     <>
       <Layout>
         <Sider
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
           width={230}
           breakpoint="lg"
-          collapsedWidth="0"
+          collapsedWidth="100"
           style={
             {
-              // height: "screen",
+              // height: "100%",
+              // borderRight: 0,
             }
           }
-          onBreakpoint={(broken) => {
-            console.log(broken);
-          }}
-          onCollapse={(collapsed, type) => {
-            console.log(collapsed, type);
-          }}
         >
           <div className="logo">
             <Link to="/dashboard">
@@ -72,11 +69,11 @@ const Peserta = () => {
               Peserta
             </Menu.Item>
             <Menu.SubMenu title="Pengguna" icon={<FiUser />}>
-              <Menu.Item key="one" icon={<FiSettings />}>
+              <Menu.Item key="profil" icon={<FiSettings />}>
                 <Link to="/dashboard/profile" />
                 Profil
               </Menu.Item>
-              <Menu.Item key="two" icon={<FiLogOut />}>
+              <Menu.Item key="logout" icon={<FiLogOut />}>
                 Keluar
               </Menu.Item>
             </Menu.SubMenu>
@@ -96,17 +93,10 @@ const Peserta = () => {
                   marginLeft: 20,
                 }}
               >
-                <Search
-                  placeholder="input search text"
-                  allowClear
-                  enterButton="Search"
-                  size="large"
-                  // onSearch={onSearch}
-                />
-                <Menu.Item key="1" icon={<FiHome />}>
-                  Hi, Admin
-                  <Link to="/dashboard" />
-                </Menu.Item>
+                {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                  className: "trigger",
+                  onClick: () => setCollapsed(!collapsed),
+                })}
               </Space>
             </Menu>
           </Header>
@@ -124,18 +114,13 @@ const Peserta = () => {
               }}
             >
               <div className="container p-3">
-                <div>
-                  <h1 className="text-3xl mb-2 text-slate-800">Peserta</h1>
-                  <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis laudantium magnam quaerat?</p>
-                </div>
-
-                <div className="dashboard-card mt-10">
+                <div className="dashboard-card">
                   <div className="flex justify-between mb-3">
                     <div>
                       <h2 className="title font-semibold text-xl text-slate-800">Peserta</h2>
                     </div>
                   </div>
-                 <TablePeserta />
+                  <TablePeserta />
                 </div>
               </div>
             </div>

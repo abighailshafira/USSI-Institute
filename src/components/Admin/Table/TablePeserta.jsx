@@ -105,7 +105,7 @@ const TablePeserta = () => {
       trainingName: "Pelatihan A",
       startDate: "12/02/2022",
       endDate: "12/03/2022",
-      tags: ["Download"],
+      status: ["Download"],
     },
     {
       key: "2",
@@ -115,7 +115,7 @@ const TablePeserta = () => {
       trainingName: "Pelatihan",
       startDate: "12/02/2022",
       endDate: "12/03/2022",
-      tags: ["Lulus"],
+      status: ["Lulus"],
     },
     {
       key: "3",
@@ -125,7 +125,7 @@ const TablePeserta = () => {
       trainingName: "Pelatihan",
       startDate: "12/02/2022",
       endDate: "12/03/2022",
-      tags: ["Tidak Lulus"],
+      status: ["Tidak Lulus"],
     },
     {
       key: "4",
@@ -135,7 +135,7 @@ const TablePeserta = () => {
       trainingName: "Pelatihan",
       startDate: "12/02/2022",
       endDate: "12/03/2022",
-      tags: ["Menunggu Hasil"],
+      status: ["Menunggu Hasil"],
     },
   ]);
 
@@ -211,9 +211,9 @@ const TablePeserta = () => {
       title: "Status",
       key: "Status",
       dataIndex: "status",
-      render: (_, { tags }) => (
+      render: (_, { status }) => (
         <>
-          {tags.map((tag) => {
+          {status.map((tag) => {
             let color = tag.length > 5 ? "geekblue" : "green";
             if (tag === "Download") {
               color = "geekblue";
@@ -232,6 +232,7 @@ const TablePeserta = () => {
           })}
         </>
       ),
+
       filters: [
         {
           text: "Download",
@@ -250,7 +251,7 @@ const TablePeserta = () => {
           value: "Menunggu Hasil",
         },
       ],
-      onFilter: (value, record) => record.status.startsWith(value),
+      onFilter: (value, record) => record.status.indexOf(value) === 0,
     },
   ];
 
