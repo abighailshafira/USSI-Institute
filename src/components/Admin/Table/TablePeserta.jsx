@@ -145,7 +145,7 @@ const TablePeserta = () => {
       dataIndex: "name",
       key: "name",
       width: 150,
-      sorter: (a, b) => a.name.length - b.name.length,
+      sorter: (a, b) => a.name.localeCompare(b.name),
       ...getColumnSearchProps("name"),
     },
     {
@@ -153,13 +153,15 @@ const TablePeserta = () => {
       dataIndex: "institutionName",
       key: "institutionName",
       width: 200,
+      sorter: (a, b) => a.institutionName.localeCompare(b.institutionName),
+      ...getColumnSearchProps("institutionName"),
     },
     {
       title: "Kegiatan",
       dataIndex: "trainingName",
       key: "trainingName",
       width: 300,
-      sorter: (a, b) => a.trainingName.length - b.trainingName.length,
+      sorter: (a, b) => a.trainingName.localeCompare(b.trainingName),
       ...getColumnSearchProps("trainingName"),
     },
     {
@@ -177,6 +179,22 @@ const TablePeserta = () => {
       width: 150,
       sorter: (a, b) => a.endDate - b.endDate,
       ...getColumnSearchProps("endDate"),
+    },
+    {
+      title: "Lokasi",
+      dataIndex: "location",
+      key: "location",
+      width: 150,
+      sorter: (a, b) => a.location.localeCompare(b.location),
+      ...getColumnSearchProps("location"),
+    },
+    {
+      title: "Kota",
+      dataIndex: "city",
+      key: "city",
+      width: 150,
+      sorter: (a, b) => a.city.localeCompare(b.city),
+      ...getColumnSearchProps("city"),
     },
     {
       title: "Sertifikat",

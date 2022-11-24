@@ -1,39 +1,32 @@
 import { Table } from "antd";
 import React from "react";
 import { DownloadOutlined } from "@ant-design/icons";
-import { Button } from "antd";
+import { Button, Tag } from "antd";
 
 const columns = [
-  {
-    title: "No",
-    dataIndex: "number",
-    key: "number",
-    width: 35,
-    align: "center",
-  },
   {
     title: "Kegiatan",
     dataIndex: "name",
     key: "name",
-    width: 200,
+    width: 350,
   },
   {
     title: "Tanggal Mulai",
     dataIndex: "age",
     key: "age",
-    width: 100,
+    width: 150,
   },
   {
     title: "Tanggal Selesai",
     dataIndex: "age",
     key: "age",
-    width: 100,
+    width: 150,
   },
   {
     title: "Lokasi",
     dataIndex: "location",
     key: "location",
-    width: 150,
+    width: 200,
   },
   {
     title: "Kota",
@@ -42,29 +35,26 @@ const columns = [
     width: 100,
   },
   {
-    title: "Sertifikat Kehadiran",
-    dataIndex: "certificate",
-    key: "certificate",
-    width: 150,
+    title: "Sertifikat",
+    dataIndex: "sertificate",
     align: "center",
+    render: (_, record) => (data.length >= 1 ? <Button type="primary" icon={<DownloadOutlined />}></Button> : null),
   },
   {
-    title: "Keterangan",
-    dataIndex: "age",
-    key: "age",
-    width: 150,
+    title: "Status",
+    key: "Status",
+    dataIndex: "status",
   },
 ];
 
 const data = [];
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 15; i++) {
   data.push({
     number: i + 1,
     name: "Pelatihan Sertifikasi Teknisi Muda Jaringan Komputer",
     age: i + 1,
     location: "Hotel Grand Cordella",
     city: "Bandung",
-    certificate: <Button type="primary" shape="round" icon={<DownloadOutlined />} />,
   });
 }
 const App = () => (
@@ -77,18 +67,7 @@ const App = () => (
         </div>
       </div>
 
-      <Table
-        className="px-5"
-        pagination={false}
-        columns={columns}
-        dataSource={data}
-        bordered
-        size="middle"
-        scroll={{
-          x: "calc(700px + 50%)",
-          y: 240,
-        }}
-      />
+      <Table className="px-5" columns={columns} dataSource={data} bordered size="middle" />
     </div>
   </>
 );
