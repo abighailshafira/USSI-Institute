@@ -10,6 +10,7 @@ import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from
 import { TbCertificate } from "react-icons/tb";
 import TableLembaga from "./Table/TableLembaga";
 import InputLembaga from "./Form/InputLembaga";
+import EditLembaga from "./Form/EditLembaga";
 
 const { Header, Content, Sider } = Layout;
 
@@ -133,6 +134,8 @@ const Lembaga = () => {
                 </div>
 
                 <InputLembaga />
+
+                <EditLembaga />
               </div>
             </div>
           </Content>
