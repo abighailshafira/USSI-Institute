@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
-import { Layout, Menu, Space, Form, Input, Button, Modal } from "antd";
-import { PlusOutlined,  MenuFoldOutlined, MenuUnfoldOutlined, } from "@ant-design/icons";
+import { Layout, Menu, Space, Button } from "antd";
+import { PlusOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { FiHome, FiUser } from "react-icons/fi";
-import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from "react-icons/hi";
+import { HiOutlineOfficeBuilding, HiOutlineViewGrid } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
 import TablePengguna from "./Table/TablePengguna";
 import InputPengguna from "./Form/InputPengguna";
@@ -21,7 +21,9 @@ const Dashboard = () => {
     <>
       <Layout>
         <Sider
-          trigger={null} collapsible collapsed={collapsed}
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
           width={230}
           breakpoint="lg"
           collapsedWidth="100"
@@ -31,17 +33,11 @@ const Dashboard = () => {
               // borderRight: 0,
             }
           }
-          onBreakpoint={(broken) => {
-            console.log(broken);
-          }}
-          onCollapse={(collapsed, type) => {
-            console.log(collapsed, type);
-          }}
         >
           <div className="logo">
             <Link to="/dashboard">
               <a className="py-6 flex justify-center">
-                <img src={Logo} alt="USSI Institute" className="md:h-10 h-8" />
+                <img src={Logo} alt="USSI Institute" className="h-10" />
               </a>
             </Link>
           </div>
@@ -79,9 +75,7 @@ const Dashboard = () => {
                 <Link to="/dashboard/profile" />
                 Profil
               </Menu.Item>
-              <Menu.Item key="logout">
-                Keluar
-              </Menu.Item>
+              <Menu.Item key="logout">Keluar</Menu.Item>
             </Menu.SubMenu>
           </Menu>
         </Sider>
@@ -100,20 +94,9 @@ const Dashboard = () => {
                 }}
               >
                 {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                  className: 'trigger',
+                  className: "trigger",
                   onClick: () => setCollapsed(!collapsed),
-              })}
-                {/* <Search
-                  placeholder="input search text"
-                  allowClear
-                  enterButton="Search"
-                  size="large"
-                  // onSearch={onSearch}
-                /> */}
-                {/* <Menu.Item key="1" icon={<FiHome />}>
-                  Hi, Admin
-                  <Link to="/dashboard" />
-                </Menu.Item> */}
+                })}
               </Space>
             </Menu>
           </Header>

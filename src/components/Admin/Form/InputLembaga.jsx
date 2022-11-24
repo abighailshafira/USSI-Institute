@@ -10,7 +10,7 @@ const InputLembaga = () => {
           <a href="#">
             <FiChevronLeft className="w-4 h-4 text-cyan-500 mr-3" />
           </a>
-          Tambah Pengguna
+          Tambah Lembaga
         </h2>
         <Form
           labelCol={{
