@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
 import { Layout, Menu, Space, Form, Input, Button, Modal } from "antd";
-import Search from "antd/lib/transfer/search";
 import { PlusOutlined,  MenuFoldOutlined, MenuUnfoldOutlined, } from "@ant-design/icons";
-import { FiHome, FiList, FiSettings, FiLogOut, FiUser } from "react-icons/fi";
+import { FiHome, FiUser } from "react-icons/fi";
 import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
 import TablePengguna from "./Table/TablePengguna";
@@ -42,7 +41,7 @@ const Dashboard = () => {
           <div className="logo">
             <Link to="/dashboard">
               <a className="py-6 flex justify-center">
-                <img src={Logo} alt="USSI Institute" className="h-10" />
+                <img src={Logo} alt="USSI Institute" className="md:h-10 h-8" />
               </a>
             </Link>
           </div>
@@ -104,17 +103,17 @@ const Dashboard = () => {
                   className: 'trigger',
                   onClick: () => setCollapsed(!collapsed),
               })}
-                <Search
+                {/* <Search
                   placeholder="input search text"
                   allowClear
                   enterButton="Search"
                   size="large"
                   // onSearch={onSearch}
-                />
-                <Menu.Item key="1" icon={<FiHome />}>
+                /> */}
+                {/* <Menu.Item key="1" icon={<FiHome />}>
                   Hi, Admin
                   <Link to="/dashboard" />
-                </Menu.Item>
+                </Menu.Item> */}
               </Space>
             </Menu>
           </Header>
