@@ -232,6 +232,7 @@ const TablePeserta = () => {
           value: "Menunggu Hasil",
         },
       ],
+      onFilter: (value, record) => record.status.startsWith(value),
     },
   ];
 

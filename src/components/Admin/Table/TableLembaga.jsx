@@ -138,7 +138,7 @@ const TableLembaga = () => {
       key: "institutionName",
       width: 120,
       fixed: "left",
-      sorter: (a, b) => a.institutionName - b.institutionName,
+      sorter: (a, b) => a.institutionName.localeCompare(b.institutionName),
       ...getColumnSearchProps("institutionName"),
     },
     {
@@ -153,7 +153,7 @@ const TableLembaga = () => {
       dataIndex: "province",
       key: "province",
       width: 100,
-      sorter: (a, b) => a.province - b.province,
+      sorter: (a, b) => a.province.localeCompare(b.province),
       ...getColumnSearchProps("province"),
     },
     {
@@ -161,7 +161,7 @@ const TableLembaga = () => {
       dataIndex: "email",
       key: "email",
       width: 100,
-      sorter: (a, b) => a.email - b.email,
+      sorter: (a, b) => a.email.localeCompare(b.email),
       ...getColumnSearchProps("email"),
     },
     {
@@ -175,7 +175,7 @@ const TableLembaga = () => {
       dataIndex: "CPName",
       key: "CPName",
       width: 80,
-      sorter: (a, b) => a.CPName - b.CPName,
+      sorter: (a, b) => a.CPName.localeCompare(b.CPName),
       ...getColumnSearchProps("CPName"),
     },
     {
