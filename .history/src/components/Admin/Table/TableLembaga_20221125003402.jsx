@@ -261,7 +261,7 @@ const TableLembaga = () => {
       {" "}
       <Table
         columns={columns}
-        dataSource={institutions}
+        dataSource={dataSource}
         bordered
         size="middle"
         scroll={{
