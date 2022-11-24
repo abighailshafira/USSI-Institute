@@ -4,7 +4,7 @@ import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
 import { Layout, Menu, Space, DatePicker, Input, Button } from "antd";
 import Search from "antd/lib/transfer/search";
-import { SearchOutlined } from "@ant-design/icons";
+import { PlusOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import { FiHome, FiList, FiSettings, FiLogOut, FiUser } from "react-icons/fi";
 import { HiOutlineOfficeBuilding, HiOutlineViewGrid, HiOutlineViewGridAdd } from "react-icons/hi";
@@ -45,25 +45,24 @@ const onChange = (date, dateString) => {
 };
 
 const App = () => {
+  const [collapsed, setCollapsed] = useState(false);
   return (
     <>
       {" "}
       <Layout>
-        <Sider
+      <Sider
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
           width={230}
           breakpoint="lg"
-          collapsedWidth="0"
+          collapsedWidth="100"
           style={
             {
-              // height: "screen",
+              // height: "100%",
+              // borderRight: 0,
             }
           }
-          onBreakpoint={(broken) => {
-            console.log(broken);
-          }}
-          onCollapse={(collapsed, type) => {
-            console.log(collapsed, type);
-          }}
         >
           <div className="logo">
             <Link to="/dashboard">
@@ -76,7 +75,7 @@ const App = () => {
           <Menu
             mode="inline"
             theme="dark"
-            defaultSelectedKeys={["rekapPelatihan"]}
+            defaultSelectedKeys={["dashboard/rekap-pelatihan"]}
             // selectedKeys={[location.pathname]}
           >
             <Menu.Item key="dashboard" icon={<FiHome />}>
@@ -84,11 +83,11 @@ const App = () => {
               Dashboard
             </Menu.Item>
             <Menu.SubMenu title="Pelatihan" icon={<HiOutlineViewGrid />}>
-              <Menu.Item key="pelatihan" icon={<HiOutlineViewGridAdd />}>
+              <Menu.Item key="pelatihan">
                 <Link to="/dashboard/pelatihan" />
                 Pelatihan
               </Menu.Item>
-              <Menu.Item key="rekapPelatihan" icon={<FiList />}>
+              <Menu.Item key="rekapPelatihan">
                 <Link to="/dashboard/rekap-pelatihan" />
                 Rekap Pelatihan
               </Menu.Item>
@@ -102,18 +101,16 @@ const App = () => {
               Peserta
             </Menu.Item>
             <Menu.SubMenu title="Pengguna" icon={<FiUser />}>
-              <Menu.Item key="one" icon={<FiSettings />}>
+              <Menu.Item key="profil">
                 <Link to="/dashboard/profile" />
                 Profil
               </Menu.Item>
-              <Menu.Item key="two" icon={<FiLogOut />}>
-                Keluar
-              </Menu.Item>
+              <Menu.Item key="logout">Keluar</Menu.Item>
             </Menu.SubMenu>
           </Menu>
         </Sider>
 
-        <Layout>
+        <Layout className="site-layout">
           <Header
             className="site-layout-background"
             style={{
@@ -126,17 +123,10 @@ const App = () => {
                   marginLeft: 20,
                 }}
               >
-                <Search
-                  placeholder="input search text"
-                  allowClear
-                  enterButton="Search"
-                  size="large"
-                  // onSearch={onSearch}
-                />
-                <Menu.Item key="1" icon={<FiHome />}>
-                  Hi, Admin
-                  <Link to="/dashboard" />
-                </Menu.Item>
+                {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                  className: "trigger",
+                  onClick: () => setCollapsed(!collapsed),
+                })}
               </Space>
             </Menu>
           </Header>
