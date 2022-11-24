@@ -1,91 +1,98 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { Space, Table, Button, Form, Modal, Input, Upload,Tag } from "antd";
-import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
-
-// Delete row
-const EditableContext = React.createContext(null);
-const EditableRow = ({ index, ...props }) => {
-  const [form] = Form.useForm();
-  return (
-    <Form form={form} component={false}>
-      <EditableContext.Provider value={form}>
-        <tr {...props} />
-      </EditableContext.Provider>
-    </Form>
-  );
-};
-const EditableCell = ({ title, editable, children, dataIndex, record, handleSave, ...restProps }) => {
-  const [editing, setEditing] = useState(false);
-  const inputRef = useRef(null);
-  const form = useContext(EditableContext);
-  useEffect(() => {
-    if (editing) {
-      inputRef.current.focus();
-    }
-  }, [editing]);
-  const toggleEdit = () => {
-    setEditing(!editing);
-    form.setFieldsValue({
-      [dataIndex]: record[dataIndex],
-    });
-  };
-  const save = async () => {
-    try {
-      const values = await form.validateFields();
-      toggleEdit();
-      handleSave({
-        ...record,
-        ...values,
-      });
-    } catch (errInfo) {
-      console.log("Save failed:", errInfo);
-    }
-  };
-  let childNode = children;
-  if (editable) {
-    childNode = editing ? (
-      <Form.Item
-        style={{
-          margin: 0,
-        }}
-        name={dataIndex}
-        rules={[
-          {
-            required: true,
-            messcode: `${title} is required.`,
-          },
-        ]}
-      >
-        <Input ref={inputRef} onPressEnter={save} onBlur={save} />
-      </Form.Item>
-    ) : (
-      <div
-        className="editable-cell-value-wrap"
-        style={{
-          paddingRight: 24,
-        }}
-        onClick={toggleEdit}
-      >
-        {children}
-      </div>
-    );
-  }
-  return <td {...restProps}>{childNode}</td>;
-};
+import React, { useRef, useState } from "react";
+import { Space, Table, Button, Input, Tag, Upload } from "antd";
+import { UploadOutlined, SearchOutlined } from "@ant-design/icons";
+import Highlighter from "react-highlight-words";
 
 const TablePeserta = () => {
-  // Modal
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
-    setIsModalOpen(true);
+  // Search
+  const [searchText, setSearchText] = useState("");
+  const [searchedColumn, setSearchedColumn] = useState("");
+  const searchInput = useRef(null);
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText("");
   };
 
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+      <div
+        style={{
+          padding: 8,
+        }}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        <Input
+          ref={searchInput}
+          placeholder="Search"
+          value={selectedKeys[0]}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{
+            marginBottom: 8,
+            display: "block",
+          }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            size="middle"
+            style={{
+              width: 90,
+            }}
+          >
+            Search
+          </Button>
+          <Button
+            onClick={() => clearFilters && handleReset(clearFilters)}
+            size="middle"
+            style={{
+              width: 90,
+            }}
+          >
+            Reset
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered) => (
+      <SearchOutlined
+        style={{
+          color: filtered ? "#1890ff" : undefined,
+        }}
+      />
+    ),
+    onFilter: (value, record) => record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilterDropdownOpenChange: (visible) => {
+      if (visible) {
+        setTimeout(() => searchInput.current?.select(), 100);
+      }
+    },
+    render: (text) =>
+      searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{
+            backgroundColor: "#ffc069",
+            padding: 0,
+          }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ""}
+        />
+      ) : (
+        text
+      ),
+  });
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
+  // Delete
+  const handleDelete = (key) => {
+    const newData = dataSource.filter((item) => item.key !== key);
+    setDataSource(newData);
   };
 
   // Table
@@ -94,194 +101,170 @@ const TablePeserta = () => {
       key: "1",
       no: "1",
       name: "Edward King 0",
-      bpr: "BPR Tangerang",
-      tgl_mulai: "12/02/2022",
-      tgl_selesai: "12/03/2022",
-      tags: ['Download'],
+      institutionName: "BPR Tangerang",
+      trainingName: "Pelatihan A",
+      startDate: "12/02/2022",
+      endDate: "12/03/2022",
+      tags: ["Download"],
     },
     {
       key: "2",
       no: "2",
       name: "Zayn King 1",
-      bpr: "BPR Bandung",
-      tgl_mulai: "12/02/2022",
-      tgl_selesai: "12/03/2022",
-      tags: ['Lulus'],
+      institutionName: "BPR Bandung",
+      trainingName: "Pelatihan",
+      startDate: "12/02/2022",
+      endDate: "12/03/2022",
+      tags: ["Lulus"],
     },
     {
       key: "3",
       no: "3",
       name: "Zayn King 1",
-      bpr: "BPR Bandung",
-      tgl_mulai: "12/02/2022",
-      tgl_selesai: "12/03/2022",
-      tags: ['Tidak Lulus'],
+      institutionName: "BPR Bandung",
+      trainingName: "Pelatihan",
+      startDate: "12/02/2022",
+      endDate: "12/03/2022",
+      tags: ["Tidak Lulus"],
     },
     {
       key: "4",
       no: "4",
       name: "Zayn King 1",
-      bpr: "BPR Bandung",
-      tgl_mulai: "12/02/2022",
-      tgl_selesai: "12/03/2022",
-      tags: ['Menunggu Hasil'],
+      institutionName: "BPR Bandung",
+      trainingName: "Pelatihan",
+      startDate: "12/02/2022",
+      endDate: "12/03/2022",
+      tags: ["Menunggu Hasil"],
     },
   ]);
-  const [count, setCount] = useState(2);
-  const handleDelete = (key) => {
-    const newData = dataSource.filter((item) => item.key !== key);
-    setDataSource(newData);
-  };
 
   const defaultColumns = [
-    {
-      title: "No",
-      dataIndex: "no",
-      key: "no",
-      width: 50,
-    },
     {
       title: "Nama",
       dataIndex: "name",
       key: "name",
-      width: 300,
+      width: 150,
+      sorter: (a, b) => a.name.length - b.name.length,
+      ...getColumnSearchProps("name"),
     },
     {
-      title: "Asal BPR",
-      dataIndex: "bpr",
-      key: "bpr",
-      width: 300,
+      title: "Lembaga",
+      dataIndex: "institutionName",
+      key: "institutionName",
+      width: 200,
     },
     {
       title: "Kegiatan",
-      dataIndex: "kegiatan",
-      key: "kegiatan",
+      dataIndex: "trainingName",
+      key: "trainingName",
       width: 300,
+      sorter: (a, b) => a.trainingName.length - b.trainingName.length,
+      ...getColumnSearchProps("trainingName"),
     },
     {
       title: "Tanggal Mulai",
-      dataIndex: "tgl_mulai",
-      key: "tgl_mulai",
-      width: 400,
+      dataIndex: "startDate",
+      key: "startDate",
+      width: 150,
+      sorter: (a, b) => a.startDate - b.startDate,
+      ...getColumnSearchProps("startDate"),
     },
     {
       title: "Tanggal Selesai",
-      dataIndex: "tgl_selesai",
-      key: "tgl_selesai",
-      width: 400,
+      dataIndex: "endDate",
+      key: "endDate",
+      width: 150,
+      sorter: (a, b) => a.endDate - b.endDate,
+      ...getColumnSearchProps("endDate"),
     },
     {
-      title: "Sertifikat Kehadiran",
+      title: "Sertifikat",
       dataIndex: "sertificate",
       align: "center",
       render: (_, record) =>
         dataSource.length >= 1 ? (
-          <Space size="middle">
-            <Button type="primary" icon={<UploadOutlined />} onClick={showModal} />
-          </Space>
+          <Upload {...props} fileList={fileList}>
+            <Button type="primary" icon={<UploadOutlined />}></Button>
+          </Upload>
         ) : null,
     },
     {
-      title: 'Status',
-      key: 'Status',
-      dataIndex: 'status',
+      title: "Status",
+      key: "Status",
+      dataIndex: "status",
       render: (_, { tags }) => (
         <>
           {tags.map((tag) => {
-            let color = tag.length > 5 ? 'geekblue' : 'green';
-            if (tag === 'Download') {
-              color = 'geekblue';
-            }else if (tag === 'Tidak Lulus') {
-              color = 'red'
-            }else if (tag === 'Lulus') {
-              color = 'green'
-            }else if (tag ==='Menunggu Hasil') {
-              color = 'yellow'
+            let color = tag.length > 5 ? "geekblue" : "green";
+            if (tag === "Download") {
+              color = "geekblue";
+            } else if (tag === "Tidak Lulus") {
+              color = "red";
+            } else if (tag === "Lulus") {
+              color = "green";
+            } else if (tag === "Menunggu Hasil") {
+              color = "yellow";
             }
             return (
               <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
+                {tag}
               </Tag>
             );
           })}
         </>
       ),
+      filters: [
+        {
+          text: "Download",
+          value: "Download",
+        },
+        {
+          text: "Lulus",
+          value: "Lulus",
+        },
+        {
+          text: "Tidak Lulus",
+          value: "Tidak Lulus",
+        },
+        {
+          text: "Menunggu Hasil",
+          value: "Menunggu Hasil",
+        },
+      ],
     },
   ];
 
-  const handleSave = (row) => {
-    const newData = [...dataSource];
-    const index = newData.findIndex((item) => row.key === item.key);
-    const item = newData[index];
-    newData.splice(index, 1, {
-      ...item,
-      ...row,
+  // Upload
+  const [fileList, setFileList] = useState([]);
+  const handleChange = (info) => {
+    let newFileList = [...info.fileList];
+
+    // 1. Limit the number of uploaded files
+    // Only to show two recent uploaded files, and old ones will be replaced by the new
+    newFileList = newFileList.slice(-2);
+
+    // 2. Read from response and show file link
+    newFileList = newFileList.map((file) => {
+      if (file.response) {
+        // Component will show file.url as link
+        file.url = file.response.url;
+      }
+      return file;
     });
-    setDataSource(newData);
+    setFileList(newFileList);
   };
-  const components = {
-    body: {
-      row: EditableRow,
-      cell: EditableCell,
-    },
+  const props = {
+    action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+    onChange: handleChange,
+    multiple: true,
   };
-  const columns = defaultColumns.map((col) => {
-    if (!col.editable) {
-      return col;
-    }
-    return {
-      ...col,
-      onCell: (record) => ({
-        record,
-        editable: col.editable,
-        dataIndex: col.dataIndex,
-        title: col.title,
-        handleSave,
-      }),
-    };
-  });
 
   return (
     <>
       <div>
-        <Table components={components} rowClassName={() => "editable-row"} bordered dataSource={dataSource} columns={columns} size="middle" />
+        <Table bordered dataSource={dataSource} columns={defaultColumns} size="middle" />
       </div>
-
-      <Modal title="Info Pengguna" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        <Form
-          labelCol={{
-            span: 4,
-          }}
-          layout="horizontal"
-          labelAlign="left"
-        >
-        <Form.Item
-            name="File"
-            label="File"
-            valuePropName="fileList"
-            rules={[
-              {
-                required: true,
-                message: "Please input Intro",
-              },
-            ]}
-          >
-            <Upload action="/upload.do" listType="picture-card">
-              <div>
-                <PlusOutlined />
-                <div
-                  style={{
-                    marginTop: 8,
-                    marginLeft: 8,
-                  }}
-                >
-                  Upload
-                </div>
-              </div>
-            </Upload>
-          </Form.Item>
-        </Form>
-      </Modal>
     </>
   );
 };
