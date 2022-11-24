@@ -1,6 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Space, Table, Button, Input, Popconfirm } from "antd";
-import { EditOutlined, DeleteOutlined, SearchOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  DeleteOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import axios from "axios";
 
@@ -22,25 +26,30 @@ const TableLembaga = () => {
 
   useEffect(() => {
     getInstitutions();
-  }, []);
+  }, [])
 
   const getInstitutions = async () => {
     await axios
-      .get("http://localhost:5000/api/v1/institution", {
+      .post("http://localhost:5000/api/v1/institution", {
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((res) => {
-        const getData = res.data.data;
-        console.log(getData);
-        setInstitutions(getData);
+        const getData = res.data.data
+        console.log(getData)
+        setInstitutions(getData)
       })
       .catch((error) => console.log(error));
   };
 
   const getColumnSearchProps = (dataIndex) => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+    filterDropdown: ({
+      setSelectedKeys,
+      selectedKeys,
+      confirm,
+      clearFilters,
+    }) => (
       <div
         style={{
           padding: 8,
@@ -51,7 +60,9 @@ const TableLembaga = () => {
           ref={searchInput}
           placeholder="Search"
           value={selectedKeys[0]}
-          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onChange={(e) =>
+            setSelectedKeys(e.target.value ? [e.target.value] : [])
+          }
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
           style={{
             marginBottom: 8,
@@ -88,7 +99,8 @@ const TableLembaga = () => {
         }}
       />
     ),
-    onFilter: (value, record) => record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilter: (value, record) =>
+      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
     onFilterDropdownOpenChange: (visible) => {
       if (visible) {
         setTimeout(() => searchInput.current?.select(), 100);
@@ -122,7 +134,8 @@ const TableLembaga = () => {
       key: "1",
       code: "10367",
       institutionName: "BMT HASANA MANDIRI",
-      institutionAddress: "Jl. Solo-wonogiri ruko grogol green garden telukan, grogol, sukoharjo",
+      institutionAddress:
+        "Jl. Solo-wonogiri ruko grogol green garden telukan, grogol, sukoharjo",
       email: "budiadi1968@gmail.com",
       phone: "089649470248",
       CPName: "IBU UMI",
@@ -232,7 +245,10 @@ const TableLembaga = () => {
         dataSource.length >= 1 ? (
           <Space size="small">
             <Button icon={<EditOutlined />} />
-            <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
+            <Popconfirm
+              title="Sure to delete?"
+              onConfirm={() => handleDelete(record.key)}
+            >
               <Button type="primary" danger icon={<DeleteOutlined />} />
             </Popconfirm>
           </Space>
@@ -245,7 +261,7 @@ const TableLembaga = () => {
       {" "}
       <Table
         columns={columns}
-        dataSource={institutions}
+        dataSource={dataSource}
         bordered
         size="middle"
         scroll={{

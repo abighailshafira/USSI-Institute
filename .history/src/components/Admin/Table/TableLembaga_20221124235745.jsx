@@ -1,11 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { Space, Table, Button, Input, Popconfirm } from "antd";
 import { EditOutlined, DeleteOutlined, SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
-import axios from "axios";
 
 const TableLembaga = () => {
-  const [institutions, setInstitutions] = useState([]);
   // Search
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
@@ -18,25 +16,6 @@ const TableLembaga = () => {
   const handleReset = (clearFilters) => {
     clearFilters();
     setSearchText("");
-  };
-
-  useEffect(() => {
-    getInstitutions();
-  }, []);
-
-  const getInstitutions = async () => {
-    await axios
-      .get("http://localhost:5000/api/v1/institution", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        const getData = res.data.data;
-        console.log(getData);
-        setInstitutions(getData);
-      })
-      .catch((error) => console.log(error));
   };
 
   const getColumnSearchProps = (dataIndex) => ({
@@ -245,7 +224,7 @@ const TableLembaga = () => {
       {" "}
       <Table
         columns={columns}
-        dataSource={institutions}
+        dataSource={dataSource}
         bordered
         size="middle"
         scroll={{
