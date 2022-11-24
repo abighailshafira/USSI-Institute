@@ -132,15 +132,15 @@ const TablePengguna = () => {
       dataIndex: "code",
       key: "code",
       width: 150,
-      sorter: (a, b) => a.code - b.code,
       ...getColumnSearchProps("code"),
+      sorter: (a, b) => a.code.localeCompare(b.code),
     },
     {
       title: "Nama",
       dataIndex: "name",
       key: "name",
       width: 300,
-      sorter: (a, b) => a.name - b.name,
+      sorter: (a, b) => a.name.localeCompare(b.name),
       ...getColumnSearchProps("name"),
     },
     {
@@ -148,7 +148,7 @@ const TablePengguna = () => {
       dataIndex: "email",
       key: "email",
       width: 400,
-      sorter: (a, b) => a.email - b.email,
+      sorter: (a, b) => a.email.localeCompare(b.email),
       ...getColumnSearchProps("email"),
     },
     {

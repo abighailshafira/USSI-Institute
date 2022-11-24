@@ -199,6 +199,7 @@ const TableLembaga = () => {
           value: "1",
         },
       ],
+      onFilter: (value, record) => record.statusSLA.indexOf(value) === 0,
     },
     {
       title: "Action",
@@ -210,8 +211,8 @@ const TableLembaga = () => {
         dataSource.length >= 1 ? (
           <Space size="small">
             <Button icon={<EditOutlined />} />
-            <Popconfirm title="Sure to delete?">
-              <Button type="primary" danger icon={<DeleteOutlined />} onConfirm={() => handleDelete(record.key)} />
+            <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
+              <Button type="primary" danger icon={<DeleteOutlined />} />
             </Popconfirm>
           </Space>
         ) : null,
