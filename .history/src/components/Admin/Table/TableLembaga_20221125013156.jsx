@@ -36,9 +36,9 @@ const TableLembaga = () => {
         },
       })
       .then((res) => {
-        const getData = res.data.data
+        const getData = res.data
         console.log(getData)
-        setInstitutions(getData)
+        // setInstitutions(getData)
       })
       .catch((error) => console.log(error));
   };

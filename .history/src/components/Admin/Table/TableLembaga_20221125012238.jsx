@@ -30,7 +30,7 @@ const TableLembaga = () => {
 
   const getInstitutions = async () => {
     await axios
-      .get("http://localhost:5000/api/v1/institution", {
+      .post("http://localhost:5000/api/v1/institution", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -38,7 +38,7 @@ const TableLembaga = () => {
       .then((res) => {
         const getData = res.data.data
         console.log(getData)
-        setInstitutions(getData)
+        // setInstitutions(getData)
       })
       .catch((error) => console.log(error));
   };
