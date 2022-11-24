@@ -1,9 +1,38 @@
 import React, { useState, useRef } from "react";
-import { Space, Table, Button, Input, Popconfirm } from "antd";
-import { EditOutlined, DeleteOutlined, SearchOutlined } from "@ant-design/icons";
+import { Space, Table, Button, Input, Popconfirm, Modal } from "antd";
+import { EditOutlined, DeleteOutlined, SearchOutlined, PlusOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
+import InputLembaga from "../Form/InputLembaga";
+import EditLembaga from "../Form/EditLembaga";
 
 const TableLembaga = () => {
+  // Modal
+  const [isModalOpen1, setIsModalOpen1] = useState(false);
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
+  const showModal1 = () => {
+    setIsModalOpen1(true);
+  };
+
+  const handleOk1 = () => {
+    setIsModalOpen1(false);
+  };
+
+  const handleCancel1 = () => {
+    setIsModalOpen1(false);
+  };
+
+  const showModal2 = () => {
+    setIsModalOpen2(true);
+  };
+
+  const handleOk2 = () => {
+    setIsModalOpen2(false);
+  };
+
+  const handleCancel2 = () => {
+    setIsModalOpen2(false);
+  };
+
   // Search
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
@@ -210,7 +239,7 @@ const TableLembaga = () => {
       render: (_, record) =>
         dataSource.length >= 1 ? (
           <Space size="small">
-            <Button icon={<EditOutlined />} />
+            <Button icon={<EditOutlined />} onClick={showModal2} />
             <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
               <Button type="primary" danger icon={<DeleteOutlined />} />
             </Popconfirm>
@@ -221,17 +250,36 @@ const TableLembaga = () => {
 
   return (
     <>
-      {" "}
-      <Table
-        columns={columns}
-        dataSource={dataSource}
-        bordered
-        size="middle"
-        scroll={{
-          x: "calc(1000px + 50%)",
-          y: 500,
-        }}
-      />
+      <div className="container p-3">
+        <div className="bg-white shadow-lg rounded-lg p-10">
+          <div className="flex justify-between mb-3">
+            <div>
+              <h2 className="title font-semibold text-xl text-slate-800">Lembaga</h2>
+            </div>
+            <div>
+              <Button type="primary" icon={<PlusOutlined />} onClick={showModal1} />
+            </div>
+          </div>
+          <Table
+            columns={columns}
+            dataSource={dataSource}
+            bordered
+            size="middle"
+            scroll={{
+              x: "calc(1000px + 50%)",
+              y: 500,
+            }}
+          />
+
+          <Modal title="Tambah Lembaga" open={isModalOpen1} width={800} onOk={handleOk1} onCancel={handleCancel1}>
+            <InputLembaga />
+          </Modal>
+
+          <Modal title="Edit Lembaga" open={isModalOpen2} width={800} onOk={handleOk2} onCancel={handleCancel2}>
+            <EditLembaga />
+          </Modal>
+        </div>
+      </div>
     </>
   );
 };

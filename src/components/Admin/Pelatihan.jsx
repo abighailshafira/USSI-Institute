@@ -111,22 +111,7 @@ const App = () => {
                 minHeight: 644,
               }}
             >
-              <div className="container p-3">
-                <div className="dashboard-card">
-                  <div className="flex justify-between mb-3">
-                    <div>
-                      <h2 className="title font-semibold text-xl text-slate-800">Pelatihan</h2>
-                    </div>
-                    <div>
-                      <Button type="primary" icon={<PlusOutlined />} />
-                    </div>
-                  </div>
-
-                  <TablePelatihan />
-                </div>
-
-                <InputPelatihan />
-              </div>
+              <TablePelatihan />
             </div>
           </Content>
         </Layout>

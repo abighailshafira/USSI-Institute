@@ -8,7 +8,6 @@ import { FiHome, FiUser } from "react-icons/fi";
 import { HiOutlineOfficeBuilding, HiOutlineViewGrid } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
 import TablePengguna from "./Table/TablePengguna";
-import InputPengguna from "./Form/InputPengguna";
 
 const { Header, Content, Sider } = Layout;
 
@@ -119,8 +118,6 @@ const Dashboard = () => {
                 </div>
 
                 <TablePengguna />
-
-                <InputPengguna />
               </div>
             </div>
           </Content>

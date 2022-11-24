@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
-import { Button, Layout, Menu, Space } from "antd";
-import { PlusOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { Layout, Menu, Space } from "antd";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { FiHome, FiUser } from "react-icons/fi";
 import { HiOutlineOfficeBuilding, HiOutlineViewGrid } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
 import TableLembaga from "./Table/TableLembaga";
-import InputLembaga from "./Form/InputLembaga";
-import EditLembaga from "./Form/EditLembaga";
 
 const { Header, Content, Sider } = Layout;
 
 const Lembaga = () => {
+  // Navbar
   const [collapsed, setCollapsed] = useState(false);
+
   return (
     <>
       {" "}
@@ -112,24 +112,7 @@ const Lembaga = () => {
                 minHeight: 644,
               }}
             >
-              <div className="container p-3 mb-1 bg-body rounded d-flex flex-column">
-                <div className="bg-white shadow-lg rounded-lg p-10">
-                  <div className="flex justify-between mb-3">
-                    <div>
-                      <h2 className="title font-semibold text-xl text-slate-800">Lembaga</h2>
-                    </div>
-                    <div>
-                      <Button type="primary" icon={<PlusOutlined />} />
-                    </div>
-                  </div>
-
-                  <TableLembaga />
-                </div>
-
-                <InputLembaga />
-
-                <EditLembaga />
-              </div>
+              <TableLembaga />
             </div>
           </Content>
         </Layout>

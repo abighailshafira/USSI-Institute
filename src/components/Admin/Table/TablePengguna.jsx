@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Space, Table, Button, Form, Modal, Input, Popconfirm } from "antd";
 import { InfoOutlined, DeleteOutlined, SearchOutlined, PlusOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
+import InputPengguna from "../Form/InputPengguna";
 
 const TablePengguna = () => {
   // Modal
@@ -194,27 +195,11 @@ const TablePengguna = () => {
         <Table bordered dataSource={dataSource} columns={columns} size="middle" />
       </div>
 
-      <Modal title="Tambah Pengguna" open={isModalOpen1} width={1000} onOk={handleOk1} onCancel={handleCancel1}>
-        <Form
-          labelCol={{
-            span: 4,
-          }}
-          layout="horizontal"
-          labelAlign="left"
-        >
-          <Form.Item label="Kode">
-            <Input disabled={true} />
-          </Form.Item>
-          <Form.Item name="name" label="Nama">
-            <Input disabled={true} />
-          </Form.Item>
-          <Form.Item name="email" label="E-mail">
-            <Input disabled={true} />
-          </Form.Item>
-        </Form>
+      <Modal title="Tambah Pengguna" open={isModalOpen1} width={800} onOk={handleOk1} onCancel={handleCancel1}>
+        <InputPengguna />
       </Modal>
 
-      <Modal title="Info Pengguna" open={isModalOpen2} width={1000} onOk={handleOk2} onCancel={handleCancel2}>
+      <Modal title="Info Pengguna" open={isModalOpen2} onOk={handleOk2} onCancel={handleCancel2}>
         <Form
           labelCol={{
             span: 4,

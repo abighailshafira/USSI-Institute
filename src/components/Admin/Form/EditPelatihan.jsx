@@ -5,7 +5,7 @@ import { FiChevronLeft } from "react-icons/fi";
 
 const { RangePicker } = DatePicker;
 
-const InputPelatihan = () => {
+const EditPelatihan = () => {
   // Range time
   const rangeConfig = {
     rules: [
@@ -30,6 +30,7 @@ const InputPelatihan = () => {
 
   return (
     <>
+      {" "}
       <Form
         labelCol={{
           span: 4,
@@ -125,4 +126,4 @@ const InputPelatihan = () => {
   );
 };
 
-export default InputPelatihan;
+export default EditPelatihan;

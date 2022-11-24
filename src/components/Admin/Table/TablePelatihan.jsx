@@ -1,50 +1,38 @@
 import React, { useState, useRef } from "react";
-import { Form, Input, InputNumber, Popconfirm, Table, Typography, Space, Button } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
+import { Input, Popconfirm, Table, Space, Button, Modal } from "antd";
+import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
-// Data
-const originData = [];
-for (let i = 0; i < 10; i++) {
-  originData.push({
-    key: i.toString(),
-    trainingName: "Pelatihan dan Petunjuk Teknis Pelaporan dan Solusi Permasalahan LAPBUL",
-    description: "32",
-    startDate: `Pelatihan ${i}`,
-    endDate: `Pelatihan ${i}`,
-    time: `Pelatihan ${i}`,
-    location: `Pelatihan ${i}`,
-    image: `Pelatihan ${i}`,
-    pendaftaran: `Pelatihan ${i}`,
-  });
-}
-
-const EditableCell = ({ editing, dataIndex, title, inputType, record, index, children, ...restProps }) => {
-  const inputNode = inputType === "number" ? <InputNumber /> : <Input />;
-  return (
-    <td {...restProps}>
-      {editing ? (
-        <Form.Item
-          name={dataIndex}
-          style={{
-            margin: 0,
-          }}
-          rules={[
-            {
-              required: true,
-              message: `Please Input ${title}!`,
-            },
-          ]}
-        >
-          {inputNode}
-        </Form.Item>
-      ) : (
-        children
-      )}
-    </td>
-  );
-};
+import InputPelatihan from "../Form/InputPelatihan";
+import EditPelatihan from "../Form/EditPelatihan";
 
 const TablePelatihan = () => {
+  // Modal
+  const [isModalOpen1, setIsModalOpen1] = useState(false);
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
+  const showModal1 = () => {
+    setIsModalOpen1(true);
+  };
+
+  const handleOk1 = () => {
+    setIsModalOpen1(false);
+  };
+
+  const handleCancel1 = () => {
+    setIsModalOpen1(false);
+  };
+
+  const showModal2 = () => {
+    setIsModalOpen2(true);
+  };
+
+  const handleOk2 = () => {
+    setIsModalOpen2(false);
+  };
+
+  const handleCancel2 = () => {
+    setIsModalOpen2(false);
+  };
+
   // Search
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
@@ -130,6 +118,25 @@ const TablePelatihan = () => {
       ),
   });
 
+  // Delete
+  const handleDelete = (key) => {
+    const newData = dataSource.filter((item) => item.key !== key);
+    setDataSource(newData);
+  };
+
+  // Table Data
+  const [dataSource, setDataSource] = useState([
+    {
+      trainingName: "Pelatihan",
+      description: "aaaaaaaaaaaaaaaaaaaaaaaaaa",
+      startDate: "2022-11-25",
+      endDate: "2022-11-25",
+      time: "01.20",
+      location: "Bandung",
+      pendaftaran: "2022-11-25",
+    },
+  ]);
+
   // Table
   const columns = [
     {
@@ -202,117 +209,55 @@ const TablePelatihan = () => {
       ...getColumnSearchProps("pendaftaran"),
     },
     {
-      title: "Aksi",
-      dataIndex: "aksi",
-      width: 120,
+      title: "Action",
+      dataIndex: "action",
+      key: "action",
+      width: 80,
       align: "center",
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <span>
-            <Typography.Link
-              onClick={() => save(record.key)}
-              style={{
-                marginRight: 8,
-              }}
-            >
-              Save
-            </Typography.Link>
-            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <a>Cancel</a>
+      render: (_, record) =>
+        dataSource.length >= 1 ? (
+          <Space size="small">
+            <Button icon={<EditOutlined />} onClick={showModal2} />
+            <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
+              <Button type="primary" danger icon={<DeleteOutlined />} />
             </Popconfirm>
-          </span>
-        ) : (
-          <Typography.Link disabled={editingKey !== ""} onClick={() => edit(record)}>
-            Edit
-          </Typography.Link>
-        );
-      },
+          </Space>
+        ) : null,
     },
   ];
 
-  const [form] = Form.useForm();
-  const [data, setData] = useState(originData);
-  const [editingKey, setEditingKey] = useState("");
-  const isEditing = (record) => record.key === editingKey;
-  const edit = (record) => {
-    form.setFieldsValue({
-      trainingName: "",
-      description: "",
-      startDate: "",
-      endDate: "",
-      time: "",
-      location: "",
-      image: "",
-      pendaftaran: "",
-      ...record,
-    });
-    setEditingKey(record.key);
-  };
-  const cancel = () => {
-    setEditingKey("");
-  };
-  const save = async (key) => {
-    try {
-      const row = await form.validateFields();
-      const newData = [...data];
-      const index = newData.findIndex((item) => key === item.key);
-      if (index > -1) {
-        const item = newData[index];
-        newData.splice(index, 1, {
-          ...item,
-          ...row,
-        });
-        setData(newData);
-        setEditingKey("");
-      } else {
-        newData.push(row);
-        setData(newData);
-        setEditingKey("");
-      }
-    } catch (errInfo) {
-      console.log("Validate Failed:", errInfo);
-    }
-  };
-
-  const mergedColumns = columns.map((col) => {
-    if (!col.editable) {
-      return col;
-    }
-    return {
-      ...col,
-      onCell: (record) => ({
-        record,
-        inputType: col.dataIndex === "description" ? "number" : "text",
-        dataIndex: col.dataIndex,
-        title: col.title,
-        editing: isEditing(record),
-      }),
-    };
-  });
   return (
     <>
-      <Form form={form} component={false}>
-        <Table
-          components={{
-            body: {
-              cell: EditableCell,
-            },
-          }}
-          bordered
-          dataSource={data}
-          columns={mergedColumns}
-          rowClassName="editable-row"
-          pagination={{
-            onChange: cancel,
-          }}
-          size="middle"
-          scroll={{
-            x: "calc(1200px + 50%)",
-            y: 500,
-          }}
-        />
-      </Form>
+      <div className="container p-3">
+        <div className="dashboard-card">
+          <div className="flex justify-between mb-3">
+            <div>
+              <h2 className="title font-semibold text-xl text-slate-800">Pelatihan</h2>
+            </div>
+            <div>
+              <Button type="primary" icon={<PlusOutlined />} onClick={showModal1} />
+            </div>
+          </div>
+          <Table
+            bordered
+            dataSource={dataSource}
+            columns={columns}
+            size="middle"
+            scroll={{
+              x: "calc(1200px + 50%)",
+              y: 500,
+            }}
+          />
+
+          <Modal title="Tambah Pelatihan" open={isModalOpen1} width={1000} onOk={handleOk1} onCancel={handleCancel1}>
+            <InputPelatihan />
+          </Modal>
+
+          <Modal title="Edit Pelatihan" open={isModalOpen2} width={1000} onOk={handleOk2} onCancel={handleCancel2}>
+            <EditPelatihan />
+          </Modal>
+        </div>
+      </div>
     </>
   );
 };
