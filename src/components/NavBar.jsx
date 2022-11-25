@@ -1,10 +1,10 @@
 import React, { useState, Fragment } from "react";
-import { Transition, Menu, Disclosure } from "@headlessui/react";
+import { Transition, Disclosure } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/image/logo-ussi.png";
-import { message, Dropdown } from "antd";
+import { message, Dropdown, Space } from "antd";
 import { useSelector } from "react-redux";
-import { RiArrowDownSLine } from "react-icons/ri";
+import { DownOutlined } from '@ant-design/icons';
 import {FaUser} from "react-icons/fa"
 import "../App.css";
 
@@ -37,32 +37,22 @@ function NavBar({ theme }) {
     navigate("/");
     setTimeout(window.location.reload.bind(window.location), 500);
   };
-  const handleButtonClick = (e) => {
-    message.info('Click on left button.');
-    console.log('click left button', e);
-  };
-  const handleMenuClick = (e) => {
-    message.info('Click on menu item.');
-    console.log('click', e);
-  };
   const items = [
-    {
-      label: '1st menu item',
-      key: '1',
-    },
-    {
-      label: '2nd menu item',
-      key: '2',
-    },
-    {
-      label: '3rd menu item',
-      key: '3',
-    },
+      {
+        label: 'Profile',
+        key: '1',
+      },
+      {
+        label: 
+        (
+          <a className={["login hover:text-cyan-500 text-base text-white ", theme === "dark" ? "text-white" : "text-black"].join(" ")} onClick={handleLogout}>
+            Keluar
+        </a>
+        ),
+        key: '2',
+      },
   ];
-  const menuProps = {
-    items,
-    onClick: handleMenuClick,
-  };
+
 
   return (
     <nav className={["absolute top-0 left-0 w-full px-4 z-[9999]", theme === "dark" ? "bg-transparent" : "bg-white shadow-md"].join(" ")}>
@@ -129,12 +119,14 @@ function NavBar({ theme }) {
 
           <div className="hidden md:block ">
             {isLoggedIn ? (
-              <a className={["login hover:text-cyan-500 text-base text-white ", theme === "dark" ? "text-white" : "text-black"].join(" ")} onClick={handleLogout}>
-                {<FaUser />}
-                {/* <Dropdown.Button menu={menuProps} placement="bottom">
-                {<FaUser />}
-               </Dropdown.Button> */}
-              </a>
+                <Dropdown menu={{ items }}>
+                  {/* trigger={['click']} */}
+                 <a onClick={(e) => e.preventDefault()}>
+                   <Space>
+                     {<FaUser />}
+                   </Space>
+                 </a>
+               </Dropdown>
             ) : (
               <Link to="/login">
                 <a className={["login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-2 px-6 ml-5", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Login</a>
