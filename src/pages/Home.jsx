@@ -4,7 +4,6 @@ import Hero from "../components/Home/Hero";
 import About from "../components/Home/About";
 import Divisi from "../components/Home/Divisi";
 import Pelatihan from "../components/Home/Pelatihan";
-import Info from "../components/Home/Info";
 import Gallery from "../components/Home/Gallery";
 import History from "../components/Home/History";
 import Footer from "../components/Footer";
@@ -35,7 +34,6 @@ const Home = () => {
       <About />
       <Divisi />
       <Pelatihan pelatihan={pelatihan} />
-      <Info />
       {/* <div className="bg-gradient-to-b from-slate-100"> */}
       <Gallery />
       <History />
