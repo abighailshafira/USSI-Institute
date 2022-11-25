@@ -6,7 +6,7 @@ import Video3 from "../../assets/video/video4.mp4";
 const Gallery = () => {
   return (
     <>
-      <section className="pt-24">
+      <section className="pt-24 bg-gradient-to-b from-slate-100 to-white">
         <div className="container">
           <div className="w-full px-4">
             <div className="mx-auto text-center mb-16">
