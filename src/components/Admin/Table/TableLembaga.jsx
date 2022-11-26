@@ -243,11 +243,15 @@ const TableLembaga = () => {
   // Table Columns
   const columns = [
     {
+      title: "No",
+      width: 30,
+      align: "center",
+    },
+    {
       title: "Kode",
       dataIndex: "code",
       key: "code",
       width: 60,
-
       sorter: (a, b) => a.code - b.code,
       ...getColumnSearchProps("code"),
     },
@@ -256,7 +260,6 @@ const TableLembaga = () => {
       dataIndex: "institutionName",
       key: "institutionName",
       width: 120,
-
       sorter: (a, b) => a.institutionName.localeCompare(b.institutionName),
       ...getColumnSearchProps("institutionName"),
     },
