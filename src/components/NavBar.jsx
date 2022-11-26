@@ -43,12 +43,12 @@ function NavBar({ theme }) {
         key: '1',
       },
       {
-        label: 
-        (
-          <a className={["login hover:text-cyan-500 text-base text-white ", theme === "dark" ? "text-white" : "text-black"].join(" ")} onClick={handleLogout}>
-            Keluar
-        </a>
-        ),
+        label: ' Logout',
+        // (
+        //   <a className={["login hover:text-cyan-500 text-base text-white ", theme === "dark" ? "text-white" : "text-black"].join(" ")} onClick={handleLogout}>
+        //     Keluar
+        // </a>
+        // ),
         key: '2',
       },
   ];
@@ -114,12 +114,8 @@ function NavBar({ theme }) {
               <Link to="/contact">
                 <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Kontak</a>
               </Link>
-            </div>
-          </div>
 
-          <div className="hidden md:block ">
-            {isLoggedIn ? (
-                <Dropdown menu={{ items }}>
+              <Dropdown menu={{ items }}>
                   {/* trigger={['click']} */}
                  <a onClick={(e) => e.preventDefault()}>
                    <Space>
@@ -127,6 +123,14 @@ function NavBar({ theme }) {
                    </Space>
                  </a>
                </Dropdown>
+            </div>
+          </div>
+
+          <div className="hidden md:block ">
+            {isLoggedIn ? (
+                <a className={["login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-2 px-6 ml-5 ", theme === "dark" ? "text-white" : "text-black"].join(" ")} onClick={handleLogout}>
+                  logout
+              </a>
             ) : (
               <Link to="/login">
                 <a className={["login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-2 px-6 ml-5", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Login</a>
