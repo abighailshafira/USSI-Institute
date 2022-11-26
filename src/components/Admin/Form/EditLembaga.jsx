@@ -51,11 +51,6 @@ const EditLembaga = () => {
             <Select.Option value="1">1</Select.Option>
           </Select>
         </Form.Item>
-        <Form.Item className="flex justify-end">
-          <Button type="primary" className="mt-2">
-            Simpan
-          </Button>
-        </Form.Item>
       </Form>
     </>
   );

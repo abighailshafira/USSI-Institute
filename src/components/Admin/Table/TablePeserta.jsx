@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Space, Table, Button, Input, Tag, Upload } from "antd";
 import { UploadOutlined, SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
+import Swal from "sweetalert2";
 
 const TablePeserta = () => {
   // Search
@@ -13,6 +14,7 @@ const TablePeserta = () => {
     setSearchText(selectedKeys[0]);
     setSearchedColumn(dataIndex);
   };
+
   const handleReset = (clearFilters) => {
     clearFilters();
     setSearchText("");
@@ -272,7 +274,9 @@ const TablePeserta = () => {
       }
       return file;
     });
+
     setFileList(newFileList);
+    Swal.fire({ title: "Berhasil!", text: "Sertifikat berhasil diunggah", icon: "success" });
   };
   const props = {
     action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",

@@ -7,11 +7,42 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { FiHome, FiUser, FiChevronLeft } from "react-icons/fi";
 import { HiOutlineOfficeBuilding, HiOutlineViewGrid } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
+import Swal from "sweetalert2";
+import { Navigate } from "react-router-dom";
 
 const { Header, Content, Sider } = Layout;
 
 const Profile = () => {
+  // Navbar
   const [collapsed, setCollapsed] = useState(false);
+
+  // Submit
+  const handleSubmit = () => {
+    Swal.fire({ title: "Berhasil!", text: "Profil berhasil diperbarui", icon: "success" });
+  };
+
+  // Logout
+  const handleLogout = () => {
+    var toastMixin = Swal.mixin({
+      toast: true,
+      icon: "success",
+      title: "Title",
+      animation: false,
+      position: "top-right",
+      showConfirmButton: false,
+      timer: 800,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+    toastMixin.fire({
+      title: "Berhasil logout",
+    });
+    Navigate("/");
+  };
+
   return (
     <>
       {" "}
@@ -71,7 +102,9 @@ const Profile = () => {
                 <Link to="/dashboard/profile" />
                 Profil
               </Menu.Item>
-              <Menu.Item key="logout">Keluar</Menu.Item>
+              <Menu.Item onClickCapture={handleLogout} key="logout">
+                Keluar
+              </Menu.Item>
             </Menu.SubMenu>
           </Menu>
         </Sider>
@@ -143,7 +176,7 @@ const Profile = () => {
                     </Form.Item>
                     <Form.Item className="flex justify-end">
                       <Button className="mr-3">Reset</Button>
-                      <Button type="primary" className="mt-2">
+                      <Button type="primary" className="mt-2" onClick={handleSubmit}>
                         Simpan
                       </Button>
                     </Form.Item>

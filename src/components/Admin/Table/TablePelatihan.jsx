@@ -4,29 +4,47 @@ import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined } from "@ant
 import Highlighter from "react-highlight-words";
 import InputPelatihan from "../Form/InputPelatihan";
 import EditPelatihan from "../Form/EditPelatihan";
+import Swal from "sweetalert2";
 
 const TablePelatihan = () => {
-  // Modal
+  // Modal input pelatihan
+  const [confirmLoading1, setConfirmLoading1] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
-  const [isModalOpen2, setIsModalOpen2] = useState(false);
   const showModal1 = () => {
     setIsModalOpen1(true);
   };
 
   const handleOk1 = () => {
-    setIsModalOpen1(false);
+    setConfirmLoading1(true);
+    setTimeout(() => {
+      setIsModalOpen1(false);
+      setConfirmLoading1(false);
+    }, 1000);
+
+    Swal.fire({ title: "Berhasil!", text: "Data pelatihan berhasil ditambahkan", icon: "success" });
+    // Swal.fire({ title: "Ups!", text: "Silahkan lengkapi data", icon: "error" });
   };
 
   const handleCancel1 = () => {
     setIsModalOpen1(false);
   };
 
+  // Modal edit pelatihan
+  const [confirmLoading2, setConfirmLoading2] = useState(false);
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
   const showModal2 = () => {
     setIsModalOpen2(true);
   };
 
   const handleOk2 = () => {
-    setIsModalOpen2(false);
+    setConfirmLoading2(true);
+    setTimeout(() => {
+      setIsModalOpen2(false);
+      setConfirmLoading2(false);
+    }, 1000);
+
+    Swal.fire({ title: "Berhasil!", text: "Data pelatihan berhasil diperbarui", icon: "success" });
+    // Swal.fire({ title: "Ups!", text: "Silahkan lengkapi data", icon: "error" });
   };
 
   const handleCancel2 = () => {
@@ -42,6 +60,7 @@ const TablePelatihan = () => {
     setSearchText(selectedKeys[0]);
     setSearchedColumn(dataIndex);
   };
+
   const handleReset = (clearFilters) => {
     clearFilters();
     setSearchText("");
@@ -120,6 +139,20 @@ const TablePelatihan = () => {
 
   // Delete
   const handleDelete = (key) => {
+    // Swal.fire({
+    //   title: "Apakah anda yakin?",
+    //   text: "Data akan dihapus",
+    //   icon: "warning",
+    //   showCancelButton: true,
+    //   confirmButtonColor: "#3085d6",
+    //   cancelButtonColor: "#d33",
+    //   confirmButtonText: "Ya, hapus!",
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     Swal.fire("Berhasil!", "Data pelatihan berhasil dihapus", "success");
+    //   }
+    // });
+
     const newData = dataSource.filter((item) => item.key !== key);
     setDataSource(newData);
   };
@@ -249,11 +282,11 @@ const TablePelatihan = () => {
             }}
           />
 
-          <Modal title="Tambah Pelatihan" open={isModalOpen1} width={1000} onOk={handleOk1} onCancel={handleCancel1}>
+          <Modal title="Tambah Pelatihan" open={isModalOpen1} width={1000} onOk={handleOk1} onCancel={handleCancel1} confirmLoading={confirmLoading1}>
             <InputPelatihan />
           </Modal>
 
-          <Modal title="Edit Pelatihan" open={isModalOpen2} width={1000} onOk={handleOk2} onCancel={handleCancel2}>
+          <Modal title="Edit Pelatihan" open={isModalOpen2} width={1000} onOk={handleOk2} onCancel={handleCancel2} confirmLoading={confirmLoading2}>
             <EditPelatihan />
           </Modal>
         </div>

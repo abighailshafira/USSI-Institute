@@ -1,15 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Space, Table, Button, Input, Popconfirm, Modal, message } from "antd";
-import {
-  EditOutlined,
-  DeleteOutlined,
-  SearchOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, SearchOutlined, PlusOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import axios from "axios";
 import InputLembaga from "../Form/InputLembaga";
 import EditLembaga from "../Form/EditLembaga";
+import Swal from "sweetalert2";
 
 const TableLembaga = () => {
   const [institutions, setInstitutions] = useState([]);
@@ -24,9 +20,11 @@ const TableLembaga = () => {
     CPPhone: "",
     statusSLA: "",
   });
-  // Modal
+
+  // Modal input lembaga
+  const [confirmLoading1, setConfirmLoading1] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
-  const [isModalOpen2, setIsModalOpen2] = useState(false);
+
   const showModal1 = () => {
     setIsModalOpen1(true);
   };
@@ -53,24 +51,39 @@ const TableLembaga = () => {
         } else if (err.request) {
           console.log("err.request ", err.request);
         } else if (err.message) {
-          // do something other than the other two
         }
       });
-    message.success("Lembaga Berhasil Ditambahkan.");
-    setIsModalOpen1(false);
-    console.log(formData);
+    // message.success("Lembaga Berhasil Ditambahkan.");
+    // setIsModalOpen1(false);
+    // console.log(formData);
+    setConfirmLoading1(true);
+    setTimeout(() => {
+      setIsModalOpen1(false);
+      setConfirmLoading1(false);
+    }, 1000);
+
+    Swal.fire({ title: "Berhasil!", text: "Data lembaga berhasil ditambahkan", icon: "success" });
   };
 
   const handleCancel1 = () => {
     setIsModalOpen1(false);
   };
 
+  // Modal edit lembaga
+  const [confirmLoading2, setConfirmLoading2] = useState(false);
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
   const showModal2 = () => {
     setIsModalOpen2(true);
   };
 
   const handleOk2 = () => {
-    setIsModalOpen2(false);
+    setConfirmLoading2(true);
+    setTimeout(() => {
+      setIsModalOpen2(false);
+      setConfirmLoading2(false);
+    }, 1000);
+
+    Swal.fire({ title: "Berhasil!", text: "Data lembaga berhasil diperbarui", icon: "success" });
   };
 
   const handleCancel2 = () => {
@@ -111,12 +124,7 @@ const TableLembaga = () => {
   };
 
   const getColumnSearchProps = (dataIndex) => ({
-    filterDropdown: ({
-      setSelectedKeys,
-      selectedKeys,
-      confirm,
-      clearFilters,
-    }) => (
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
       <div
         style={{
           padding: 8,
@@ -127,9 +135,7 @@ const TableLembaga = () => {
           ref={searchInput}
           placeholder="Search"
           value={selectedKeys[0]}
-          onChange={(e) =>
-            setSelectedKeys(e.target.value ? [e.target.value] : [])
-          }
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
           style={{
             marginBottom: 8,
@@ -166,8 +172,7 @@ const TableLembaga = () => {
         }}
       />
     ),
-    onFilter: (value, record) =>
-      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilter: (value, record) => record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
     onFilterDropdownOpenChange: (visible) => {
       if (visible) {
         setTimeout(() => searchInput.current?.select(), 100);
@@ -191,6 +196,20 @@ const TableLembaga = () => {
 
   // Delete
   const handleDelete = (key) => {
+    Swal.fire({
+      title: "Apakah anda yakin?",
+      text: "Data akan dihapus",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Ya, hapus!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Berhasil!", "Data lembaga berhasil dihapus", "success");
+      }
+    });
+
     const newData = dataSource.filter((item) => item.key !== key);
     setDataSource(newData);
   };
@@ -201,8 +220,7 @@ const TableLembaga = () => {
       key: "1",
       code: "10367",
       institutionName: "BMT HASANA MANDIRI",
-      institutionAddress:
-        "Jl. Solo-wonogiri ruko grogol green garden telukan, grogol, sukoharjo",
+      institutionAddress: "Jl. Solo-wonogiri ruko grogol green garden telukan, grogol, sukoharjo",
       email: "budiadi1968@gmail.com",
       phone: "089649470248",
       CPName: "IBU UMI",
@@ -229,7 +247,7 @@ const TableLembaga = () => {
       dataIndex: "code",
       key: "code",
       width: 60,
-      fixed: "left",
+
       sorter: (a, b) => a.code - b.code,
       ...getColumnSearchProps("code"),
     },
@@ -238,7 +256,7 @@ const TableLembaga = () => {
       dataIndex: "institutionName",
       key: "institutionName",
       width: 120,
-      fixed: "left",
+
       sorter: (a, b) => a.institutionName.localeCompare(b.institutionName),
       ...getColumnSearchProps("institutionName"),
     },
@@ -312,10 +330,7 @@ const TableLembaga = () => {
         dataSource.length >= 1 ? (
           <Space size="small">
             <Button icon={<EditOutlined />} onClick={showModal2} />
-            <Popconfirm
-              title="Sure to delete?"
-              onConfirm={() => handleDelete(record.key)}
-            >
+            <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
               <Button type="primary" danger icon={<DeleteOutlined />} />
             </Popconfirm>
           </Space>
@@ -325,51 +340,35 @@ const TableLembaga = () => {
 
   return (
     <>
-      <div className="dashboard-card mt-10">
-        <div className="flex justify-between mb-3">
-          <div>
-            <h2 className="title font-semibold text-xl text-slate-800">
-              Pengguna
-            </h2>
+      <div className="container p-3">
+        <div className="dashboard-card">
+          <div className="flex justify-between mb-3">
+            <div>
+              <h2 className="title font-semibold text-xl text-slate-800">Lembaga</h2>
+            </div>
+            <div>
+              <Button type="primary" icon={<PlusOutlined />} onClick={showModal1} />
+            </div>
           </div>
-          <div>
-            <Button
-              type="primary"
-              icon={<PlusOutlined />}
-              onClick={showModal1}
-            />
-          </div>
+          <Table
+            columns={columns}
+            dataSource={institutions}
+            bordered
+            size="middle"
+            scroll={{
+              x: "calc(1000px + 50%)",
+              y: 500,
+            }}
+          />
+
+          <Modal title="Tambah Lembaga" open={isModalOpen1} width={800} onOk={handleOk1} onCancel={handleCancel1} confirmLoading={confirmLoading1}>
+            <InputLembaga formData={formData} setFormData={setFormData} />
+          </Modal>
+
+          <Modal title="Edit Lembaga" open={isModalOpen2} width={800} onOk={handleOk2} onCancel={handleCancel2} confirmLoading={confirmLoading2}>
+            <EditLembaga />
+          </Modal>
         </div>
-        <Table
-          columns={columns}
-          dataSource={institutions}
-          bordered
-          size="middle"
-          scroll={{
-            x: "calc(1000px + 50%)",
-            y: 500,
-          }}
-        />
-
-        <Modal
-          title="Tambah Lembaga"
-          open={isModalOpen1}
-          width={800}
-          onOk={handleOk1}
-          onCancel={handleCancel1}
-        >
-          <InputLembaga formData={formData} setFormData={setFormData} />
-        </Modal>
-
-        <Modal
-          title="Edit Lembaga"
-          open={isModalOpen2}
-          width={800}
-          onOk={handleOk2}
-          onCancel={handleCancel2}
-        >
-          <EditLembaga />
-        </Modal>
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input } from "antd";
 
 const inputPengguna = () => {
   return (
@@ -61,11 +61,6 @@ const inputPengguna = () => {
           ]}
         >
           <Input.Password />
-        </Form.Item>
-        <Form.Item className="flex justify-end">
-          <Button type="primary" className="mt-2">
-            Tambah
-          </Button>
         </Form.Item>
       </Form>
     </>

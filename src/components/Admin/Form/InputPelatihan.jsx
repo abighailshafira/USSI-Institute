@@ -115,11 +115,6 @@ const InputPelatihan = () => {
         >
           <DatePicker />
         </Form.Item>
-        <Form.Item className="flex justify-end">
-          <Button type="primary" className="mt-2">
-            Tambah
-          </Button>
-        </Form.Item>
       </Form>
     </>
   );

@@ -148,7 +148,7 @@ const App = () => {
                       <h2 className="title font-semibold text-xl text-slate-800">Rekap Pelatihan</h2>
                     </div>
                     <div>
-                      <DatePicker onChange={onChange} picker="year" />
+                      <DatePicker onChange={onChange} picker="year" placeholder="Pilih tahun" />
                     </div>
                   </div>
 
