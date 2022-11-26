@@ -237,7 +237,7 @@ const TablePelatihan = () => {
       dataIndex: "pendaftaran",
       key: "pendaftaran",
       editable: true,
-      width: 80,
+      width: 100,
       sorter: (a, b) => a.pendaftaran - b.pendaftaran,
       ...getColumnSearchProps("pendaftaran"),
     },
