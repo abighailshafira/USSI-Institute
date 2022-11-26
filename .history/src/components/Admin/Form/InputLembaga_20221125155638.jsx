@@ -89,8 +89,8 @@ const InputLembaga = ({ formData, setFormData }) => {
         <Form.Item name="statusSLA" label="Status SLA">
           <Select
             value={formData.statusSLA}
-            onChange={(value) =>
-              setFormData({ ...formData, statusSLA: value })
+            onChange={(event) =>
+              setFormData({ ...formData, statusSLA: event.target.value })
             }
           >
             <Select.Option value="0">0</Select.Option>
