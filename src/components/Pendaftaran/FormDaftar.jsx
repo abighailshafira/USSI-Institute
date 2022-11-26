@@ -7,6 +7,7 @@ import Personal from "./Steps/Personal";
 import Payment from "./Steps/Payment";
 import { useNavigate } from "react-router-dom";
 import { message } from "antd";
+import Swal from "sweetalert2";
 
 const FormDaftar = () => {
   const [pendaftaran, setPelatihan] = useState([]);
@@ -121,9 +122,9 @@ const FormDaftar = () => {
           // do something other than the other two
         }
       });
-    message.success("Pendaftaran Berhasil.");
+    Swal.fire({ title: "Berhasil!", text: "Pendaftaran berhasil!", icon: "success" });
     navigate("/pendaftaran");
-    setTimeout(window.location.reload.bind(window.location), 500);
+    setTimeout(window.location.reload.bind(window.location), 800);
 
     // getPelatihan(formData);
   };

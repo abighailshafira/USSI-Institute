@@ -74,7 +74,7 @@ const Footer = () => {
 
                 <p className="mb-4">
                   <Link to="/profile">
-                    <a className="text-white hover:text-cyan-500">Profil</a>
+                    <a className="text-white hover:text-cyan-500">Tentang</a>
                   </Link>
                 </p>
 
@@ -126,7 +126,7 @@ const Footer = () => {
             <div className="w-full border-t border-slate-700 text-center p-6">
               <span className="text-slate-500 text-xs font-medium py-5">
                 Copyright © 2022{" "}
-                <a href="#" target="_blank" className="font-bold text-cyan-500 hover:text-sky-600">
+                <a target="_blank" className="font-bold text-cyan-500 hover:text-sky-600">
                   USSI INSTITUTE
                 </a>
                 . All Rights Reserved

@@ -4,9 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/image/logo-ussi.png";
 import { message, Dropdown, Space } from "antd";
 import { useSelector } from "react-redux";
-import { DownOutlined } from '@ant-design/icons';
-import {FaUser} from "react-icons/fa"
+import { DownOutlined } from "@ant-design/icons";
+import { FaUser } from "react-icons/fa";
 import "../App.css";
+import Swal from "sweetalert2";
 
 window.onscroll = function () {
   const header = document.querySelector("nav");
@@ -19,40 +20,52 @@ window.onscroll = function () {
   }
 };
 
-
 function NavBar({ theme }) {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   const isLoggedIn = useSelector((state) => state.auth.accessToken);
   const navigate = useNavigate();
-  
+
   const handleLogout = () => {
     // jsCookie.remove('auth')
     localStorage.removeItem("persist:auth");
-    message.success("Logout Berhasil.");
+    var toastMixin = Swal.mixin({
+      icon: "success",
+      title: "Title",
+      showConfirmButton: false,
+      timer: 800,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+    toastMixin.fire({
+      title: "Berhasil logout!",
+    });
     navigate("/login");
     setTimeout(window.location.reload.bind(window.location), 500);
   };
   const items = [
     {
-      label: 'Profile',
-      key: '1',
+      label: "Profile",
+      key: "1",
     },
     {
-      label: ' Logout',
+      label: " Logout",
       // (
-        //   <a className={["login hover:text-cyan-500 text-base text-white ", theme === "dark" ? "text-white" : "text-black"].join(" ")} onClick={handleLogout}>
-        //     Keluar
-        // </a>
-        // ),
-        key: '2',
-      },
-    ];
-    
-    const links = [
-      { href: "/profile-user", label: "Profile" },
-      { href: "/", label: "Logout", onClick:{handleLogout} },
-    ];
+      //   <a className={["login hover:text-cyan-500 text-base text-white ", theme === "dark" ? "text-white" : "text-black"].join(" ")} onClick={handleLogout}>
+      //     Keluar
+      // </a>
+      // ),
+      key: "2",
+    },
+  ];
+
+  const links = [
+    { href: "/profile-user", label: "Profile" },
+    { href: "/", label: "Logout", onClick: { handleLogout } },
+  ];
 
   return (
     <nav className={["absolute top-0 left-0 w-full px-4 z-[9999]", theme === "dark" ? "bg-transparent" : "bg-white shadow-md"].join(" ")}>
@@ -114,7 +127,7 @@ function NavBar({ theme }) {
               <Link to="/contact">
                 <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Kontak</a>
               </Link>
-             <Menu as="div" className="relative">
+              <Menu as="div" className="relative">
                 <Menu.Button className={["navbar-text inline-flex items-center hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>
                   <FaUser aria-hidden="true" />
                 </Menu.Button>
@@ -143,8 +156,8 @@ function NavBar({ theme }) {
           <div className="hidden md:block ">
             {isLoggedIn ? (
               <a className={["login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-2 px-6 ml-5 ", theme === "dark" ? "text-white" : "text-black"].join(" ")} onClick={handleLogout}>
-                 Logout
-            </a>
+                Logout
+              </a>
             ) : (
               <Link to="/login">
                 <a className={["login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-2 px-6 ml-5", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Login</a>
@@ -221,7 +234,6 @@ function NavBar({ theme }) {
                 <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Kontak</a>
               </Link>
 
-              
               <Menu as="div" className="relative">
                 <Disclosure>
                   <Disclosure.Button className="inline-flex items-center hover:bg-slate-700 hover:text-white text-black px-4 py-2 rounded-md text-base ">

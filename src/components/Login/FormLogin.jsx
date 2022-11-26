@@ -7,6 +7,7 @@ import Image from "../../assets/image/login.png";
 import Home from "../../pages/Home";
 import { setData } from "../../redux/slices/authSlice";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
+import Swal from "sweetalert2";
 
 const FormLogin = () => {
   const [email, setEmail] = useState("");
@@ -40,25 +41,44 @@ const FormLogin = () => {
             })
           );
 
+          var toastMixin = Swal.mixin({
+            icon: "success",
+            title: "Title",
+            showConfirmButton: false,
+            timer: 800,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            },
+          });
+          toastMixin.fire({
+            title: "Login berhasil!",
+          });
           navigate("/");
-          message.success("Login Berhasil.");
           setTimeout(window.location.reload.bind(window.location), 300);
-          // toastMixin.fire({
-          //   animation: true,
-          //   title: "Signed in Successfully",
-          // });
         } else {
-          message.error("Silahkan Cek Email dan Password Anda.");
         }
       })
       .catch((err) => {
         console.log(err);
-        // message.error("This is an error message");
-        // toastMixin.fire({
-        //   icon: "error",
-        //   animation: true,
-        //   title: "Not match!",
-        // });
+        var toastMixin = Swal.mixin({
+          icon: "success",
+          title: "Title",
+          showConfirmButton: false,
+          timer: 1000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+        toastMixin.fire({
+          icon: "error",
+          animation: true,
+          title: "Register gagal!",
+          text: "Cek email dan password anda",
+        });
       });
   };
 

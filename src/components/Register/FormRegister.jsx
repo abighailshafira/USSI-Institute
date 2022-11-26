@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Image from "../../assets/image/register.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Image from "../../assets/image/register.png";
 import { Input, message, Select } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
+import Swal from "sweetalert2";
 
 const FormRegister = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -36,47 +37,68 @@ const FormRegister = () => {
     })
       .then((res) => {
         // console.log(res.data);
+        var toastMixin = Swal.mixin({
+          icon: "success",
+          title: "Title",
+          showConfirmButton: false,
+          timer: 1000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+        toastMixin.fire({
+          title: "Register berhasil",
+        });
+
         navigate("/login");
-        message.success("Register Berhasil.");
       })
       .catch((err) => {
         console.log(err);
-        message.error("Silahkan Cek Email dan Password Anda.");
-        // message.error("This is an error message");
-        // toastMixin.fire({
-        //   icon: "error",
-        //   animation: true,
-        //   title: "Not match!",
-        // });
+        var toastMixin = Swal.mixin({
+          icon: "success",
+          title: "Title",
+          showConfirmButton: false,
+          timer: 1000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+        toastMixin.fire({
+          icon: "error",
+          animation: true,
+          title: "Register gagal!",
+        });
       });
   };
 
   useEffect(() => {
-    getInstitution()
-  }, [])
+    getInstitution();
+  }, []);
 
   const getInstitution = async () => {
-    await axios
-      .get("http://localhost:5000/api/v1/institution")
-      .then((res) => {
-        const getData = res.data.data;
+    await axios.get("http://localhost:5000/api/v1/institution").then((res) => {
+      const getData = res.data.data;
 
-        let pelatihan = [];
-        for(let i = 0; i < getData.length; i++) {
-          pelatihan.push({
-            value: getData[i].institutionName,
-            label: getData[i].institutionName
-          })
-        }
-        // console.log(pelatihan)
-        setInstitutionData(pelatihan);
-        // console.log(getData);
-      });
-  }
+      let pelatihan = [];
+      for (let i = 0; i < getData.length; i++) {
+        pelatihan.push({
+          value: getData[i].institutionName,
+          label: getData[i].institutionName,
+        });
+      }
+      // console.log(pelatihan)
+      setInstitutionData(pelatihan);
+      // console.log(getData);
+    });
+  };
 
   const onChange = (value) => {
     // console.log(`selected ${value}`);
-    setInstitution(value)
+    setInstitution(value);
   };
   const onSearch = (value) => {
     console.log("search:", value);
@@ -88,12 +110,8 @@ const FormRegister = () => {
         <div className="container">
           <div className="w-full px-4">
             <div className="max-w-xl mx-auto text-center mb-10">
-              <h1 className="text-3xl font-bold mb-2 text-slate-800">
-                Register
-              </h1>
-              <p className="text-base text-slate-500">
-                Lorem ipsum dolor sit amet consectetur adipisicing.
-              </p>
+              <h1 className="text-3xl font-bold mb-2 text-slate-800">Register</h1>
+              <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
             </div>
           </div>
 
@@ -115,12 +133,9 @@ const FormRegister = () => {
                     optionFilterProp="children"
                     onChange={onChange}
                     onSearch={onSearch}
-                    filterOption={(input, option) =>
-                      (option?.label ?? "")
-                        .toLowerCase()
-                        .includes(input.toLowerCase())
-                    }
+                    filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
                     options={institutionData}
+                    bordered={false}
                   />
                   {/* <input
                     type="institutionName"
@@ -167,9 +182,7 @@ const FormRegister = () => {
                     style={{
                       borderRadius: "5px",
                     }}
-                    iconRender={(visible) =>
-                      visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-                    }
+                    iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
@@ -186,9 +199,7 @@ const FormRegister = () => {
                 <p className="mt-2 text-slate-500 text-center ">
                   Sudah punya akun?{" "}
                   <Link to="/login">
-                    <a className="text-cyan-500 font-semibold hover:text-sky-600">
-                      Login disini
-                    </a>
+                    <a className="text-cyan-500 font-semibold hover:text-sky-600">Login disini</a>
                   </Link>
                 </p>
               </form>

@@ -39,7 +39,7 @@ const data = [
 const App = () => (
   <>
     <div className="container">
-      <Table className="px-5 pt-10 w-1/2" pagination={false} columns={columns} dataSource={data} />
+      <Table className="px-5 pt-10 w-1/2" pagination={false} columns={columns} dataSource={data} bordered />
     </div>
   </>
 );

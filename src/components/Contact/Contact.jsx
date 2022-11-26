@@ -1,7 +1,9 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
+import Swal from "sweetalert2";
 
 const Contact = () => {
+  // Send email
   const form = useRef();
 
   const sendEmail = (e) => {
@@ -11,9 +13,11 @@ const Contact = () => {
       (result) => {
         console.log(result.text);
         console.log("message sent");
+        Swal.fire({ title: "Berhasil!", text: "Pesan berhasil dikirim", icon: "success" });
       },
       (error) => {
         console.log(error.text);
+        Swal.fire({ title: "Ups!", text: "Pesan gagal dikirim", icon: "success" });
       }
     );
   };
