@@ -8657,6 +8657,13 @@ react-slick@^0.29.0:
     lodash.debounce "^4.0.8"
     resize-observer-polyfill "^1.5.0"
 
+react-sweetalert2@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/react-sweetalert2/-/react-sweetalert2-0.5.2.tgz#83f60963669fd4ab9e193beb7f1c56a1a5934cd7"
+  integrity sha512-6BxyApbQT1prCG5KUBTkc3+64CWpKAJCjd0Bvv+pmwEGYI9QeaDoH/sP8NeM4cMZgEplFsq6B/8noHoF1w/nzA==
+  dependencies:
+    sweetalert2 "^11.3.5"
+
 react-transition-group@^4.3.0, react-transition-group@^4.4.0, react-transition-group@^4.4.5:
   version "4.4.5"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.4.5.tgz#e53d4e3f3344da8521489fbef8f2581d42becdd1"
@@ -9546,6 +9553,11 @@ svgo@^2.7.0:
     csso "^4.2.0"
     picocolors "^1.0.0"
     stable "^0.1.8"
+
+sweetalert2@^11.3.5:
+  version "11.6.14"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.6.14.tgz#7b05dcdd9699e5230ea888b5830cd2d5a97e4a4b"
+  integrity sha512-W8+vtsucIJg5BrFhHcqguNZMzmHGvVZVAYHaMGQ9dzrleOMZcHCGmnB46L9qUNdx5snr1GpMUVFjNuki7EBbuQ==
 
 symbol-tree@^3.2.4:
   version "3.2.4"
