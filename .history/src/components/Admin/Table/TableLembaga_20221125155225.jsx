@@ -1,11 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Space, Table, Button, Input, Popconfirm, Modal, message } from "antd";
-import {
-  EditOutlined,
-  DeleteOutlined,
-  SearchOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
+import { Space, Table, Button, Input, Popconfirm, Modal } from "antd";
+import { EditOutlined, DeleteOutlined, SearchOutlined, PlusOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import axios from "axios";
 import InputLembaga from "../Form/InputLembaga";
@@ -31,34 +26,8 @@ const TableLembaga = () => {
     setIsModalOpen1(true);
   };
 
-  const handleOk1 = (e) => {
-    e.preventDefault();
-    axios({
-      method: "post",
-      url: `http://localhost:5000/api/v1/institution`,
-      data: formData,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    })
-      .then((res) => {
-        //handle success
-        console.log(res);
-        // navigate("/"); ini untuk navigate ke halaman lain
-      })
-      .catch((err) => {
-        if (err.response) {
-          console.log("err.response ", err.response);
-        } else if (err.request) {
-          console.log("err.request ", err.request);
-        } else if (err.message) {
-          // do something other than the other two
-        }
-      });
-    message.success("Lembaga Berhasil Ditambahkan.");
+  const handleOk1 = () => {
     setIsModalOpen1(false);
-    console.log(formData);
   };
 
   const handleCancel1 = () => {
@@ -111,12 +80,7 @@ const TableLembaga = () => {
   };
 
   const getColumnSearchProps = (dataIndex) => ({
-    filterDropdown: ({
-      setSelectedKeys,
-      selectedKeys,
-      confirm,
-      clearFilters,
-    }) => (
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
       <div
         style={{
           padding: 8,
@@ -127,9 +91,7 @@ const TableLembaga = () => {
           ref={searchInput}
           placeholder="Search"
           value={selectedKeys[0]}
-          onChange={(e) =>
-            setSelectedKeys(e.target.value ? [e.target.value] : [])
-          }
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
           style={{
             marginBottom: 8,
@@ -166,8 +128,7 @@ const TableLembaga = () => {
         }}
       />
     ),
-    onFilter: (value, record) =>
-      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilter: (value, record) => record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
     onFilterDropdownOpenChange: (visible) => {
       if (visible) {
         setTimeout(() => searchInput.current?.select(), 100);
@@ -201,8 +162,7 @@ const TableLembaga = () => {
       key: "1",
       code: "10367",
       institutionName: "BMT HASANA MANDIRI",
-      institutionAddress:
-        "Jl. Solo-wonogiri ruko grogol green garden telukan, grogol, sukoharjo",
+      institutionAddress: "Jl. Solo-wonogiri ruko grogol green garden telukan, grogol, sukoharjo",
       email: "budiadi1968@gmail.com",
       phone: "089649470248",
       CPName: "IBU UMI",
@@ -312,10 +272,7 @@ const TableLembaga = () => {
         dataSource.length >= 1 ? (
           <Space size="small">
             <Button icon={<EditOutlined />} onClick={showModal2} />
-            <Popconfirm
-              title="Sure to delete?"
-              onConfirm={() => handleDelete(record.key)}
-            >
+            <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
               <Button type="primary" danger icon={<DeleteOutlined />} />
             </Popconfirm>
           </Space>
@@ -328,16 +285,10 @@ const TableLembaga = () => {
       <div className="dashboard-card mt-10">
         <div className="flex justify-between mb-3">
           <div>
-            <h2 className="title font-semibold text-xl text-slate-800">
-              Pengguna
-            </h2>
+            <h2 className="title font-semibold text-xl text-slate-800">Pengguna</h2>
           </div>
           <div>
-            <Button
-              type="primary"
-              icon={<PlusOutlined />}
-              onClick={showModal1}
-            />
+            <Button type="primary" icon={<PlusOutlined />} onClick={showModal1} />
           </div>
         </div>
         <Table
@@ -351,23 +302,11 @@ const TableLembaga = () => {
           }}
         />
 
-        <Modal
-          title="Tambah Lembaga"
-          open={isModalOpen1}
-          width={800}
-          onOk={handleOk1}
-          onCancel={handleCancel1}
-        >
+        <Modal title="Tambah Lembaga" open={isModalOpen1} width={800} onOk={handleOk1} onCancel={handleCancel1}>
           <InputLembaga formData={formData} setFormData={setFormData} />
         </Modal>
 
-        <Modal
-          title="Edit Lembaga"
-          open={isModalOpen2}
-          width={800}
-          onOk={handleOk2}
-          onCancel={handleCancel2}
-        >
+        <Modal title="Edit Lembaga" open={isModalOpen2} width={800} onOk={handleOk2} onCancel={handleCancel2}>
           <EditLembaga />
         </Modal>
       </div>

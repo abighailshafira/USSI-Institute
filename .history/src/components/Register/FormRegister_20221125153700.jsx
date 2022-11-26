@@ -24,8 +24,6 @@ const FormRegister = () => {
     e.preventDefault();
     const userData = new URLSearchParams();
     //belum masukin nama sama bpr
-    userData.append("name", name);
-    userData.append("institutionName", institution);
     userData.append("email", email);
     userData.append("password", password);
 
@@ -75,8 +73,7 @@ const FormRegister = () => {
   }
 
   const onChange = (value) => {
-    // console.log(`selected ${value}`);
-    setInstitution(value)
+    console.log(`selected ${value}`);
   };
   const onSearch = (value) => {
     console.log("search:", value);

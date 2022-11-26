@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "../../assets/image/register.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -10,7 +10,6 @@ const FormRegister = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [institution, setInstitution] = useState("");
-  const [institutionData, setInstitutionData] = useState([]);
   const [password, setPassword] = useState("");
   //nama bpr
 
@@ -24,8 +23,6 @@ const FormRegister = () => {
     e.preventDefault();
     const userData = new URLSearchParams();
     //belum masukin nama sama bpr
-    userData.append("name", name);
-    userData.append("institutionName", institution);
     userData.append("email", email);
     userData.append("password", password);
 
@@ -51,32 +48,18 @@ const FormRegister = () => {
       });
   };
 
-  useEffect(() => {
-    getInstitution()
-  }, [])
-
   const getInstitution = async () => {
     await axios
       .get("http://localhost:5000/api/v1/institution")
       .then((res) => {
         const getData = res.data.data;
-
-        let pelatihan = [];
-        for(let i = 0; i < getData.length; i++) {
-          pelatihan.push({
-            value: getData[i].institutionName,
-            label: getData[i].institutionName
-          })
-        }
-        // console.log(pelatihan)
-        setInstitutionData(pelatihan);
-        // console.log(getData);
+        setInstitution(getData);
+        console.log(getData);
       });
   }
 
   const onChange = (value) => {
-    // console.log(`selected ${value}`);
-    setInstitution(value)
+    console.log(`selected ${value}`);
   };
   const onSearch = (value) => {
     console.log("search:", value);
@@ -111,7 +94,7 @@ const FormRegister = () => {
                   <Select
                     showSearch
                     className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
-                    placeholder="Pilih nama lembaga"
+                    placeholder="Select a person"
                     optionFilterProp="children"
                     onChange={onChange}
                     onSearch={onSearch}
@@ -120,7 +103,20 @@ const FormRegister = () => {
                         .toLowerCase()
                         .includes(input.toLowerCase())
                     }
-                    options={institutionData}
+                    options={[
+                      {
+                        value: "jack",
+                        label: "Jack",
+                      },
+                      {
+                        value: "lucy",
+                        label: "Lucy",
+                      },
+                      {
+                        value: "tom",
+                        label: "Tom",
+                      },
+                    ]}
                   />
                   {/* <input
                     type="institutionName"

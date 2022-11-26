@@ -24,8 +24,6 @@ const FormRegister = () => {
     e.preventDefault();
     const userData = new URLSearchParams();
     //belum masukin nama sama bpr
-    userData.append("name", name);
-    userData.append("institutionName", institution);
     userData.append("email", email);
     userData.append("password", password);
 
@@ -75,8 +73,7 @@ const FormRegister = () => {
   }
 
   const onChange = (value) => {
-    // console.log(`selected ${value}`);
-    setInstitution(value)
+    console.log(`selected ${value}`);
   };
   const onSearch = (value) => {
     console.log("search:", value);
@@ -111,7 +108,7 @@ const FormRegister = () => {
                   <Select
                     showSearch
                     className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
-                    placeholder="Pilih nama lembaga"
+                    placeholder="Select a person"
                     optionFilterProp="children"
                     onChange={onChange}
                     onSearch={onSearch}
