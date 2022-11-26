@@ -1,10 +1,11 @@
 import React, { useState, Fragment } from "react";
-import { Transition, Menu, Disclosure } from "@headlessui/react";
+import { Transition, Disclosure } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/image/logo-ussi.png";
-import { message } from "antd";
+import { message, Dropdown, Space } from "antd";
 import { useSelector } from "react-redux";
-import { RiArrowDownSLine } from "react-icons/ri";
+import { DownOutlined } from '@ant-design/icons';
+import {FaUser} from "react-icons/fa"
 import "../App.css";
 
 window.onscroll = function () {
@@ -36,6 +37,22 @@ function NavBar({ theme }) {
     navigate("/");
     setTimeout(window.location.reload.bind(window.location), 500);
   };
+  const items = [
+      {
+        label: 'Profile',
+        key: '1',
+      },
+      {
+        label: 
+        (
+          <a className={["login hover:text-cyan-500 text-base text-white ", theme === "dark" ? "text-white" : "text-black"].join(" ")} onClick={handleLogout}>
+            Keluar
+        </a>
+        ),
+        key: '2',
+      },
+  ];
+
 
   return (
     <nav className={["absolute top-0 left-0 w-full px-4 z-[9999]", theme === "dark" ? "bg-transparent" : "bg-white shadow-md"].join(" ")}>
@@ -102,9 +119,14 @@ function NavBar({ theme }) {
 
           <div className="hidden md:block ">
             {isLoggedIn ? (
-              <a className={["login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-2 px-6 ml-5", theme === "dark" ? "text-white" : "text-black"].join(" ")} onClick={handleLogout}>
-                Logout
-              </a>
+                <Dropdown menu={{ items }}>
+                  {/* trigger={['click']} */}
+                 <a onClick={(e) => e.preventDefault()}>
+                   <Space>
+                     {<FaUser />}
+                   </Space>
+                 </a>
+               </Dropdown>
             ) : (
               <Link to="/login">
                 <a className={["login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-2 px-6 ml-5", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Login</a>
