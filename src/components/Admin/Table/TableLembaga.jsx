@@ -6,6 +6,7 @@ import axios from "axios";
 import InputLembaga from "../Form/InputLembaga";
 import EditLembaga from "../Form/EditLembaga";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const TableLembaga = () => {
   const [institutions, setInstitutions] = useState([]);
@@ -20,6 +21,7 @@ const TableLembaga = () => {
     CPPhone: "",
     statusSLA: "",
   });
+  const navigate = useNavigate();
 
   // Modal input lembaga
   const [confirmLoading1, setConfirmLoading1] = useState(false);
@@ -41,9 +43,8 @@ const TableLembaga = () => {
       },
     })
       .then((res) => {
-        //handle success
-        console.log(res);
-        // navigate("/"); ini untuk navigate ke halaman lain
+        // console.log(res);
+        navigate("/dashboard/lembaga");
       })
       .catch((err) => {
         if (err.response) {
