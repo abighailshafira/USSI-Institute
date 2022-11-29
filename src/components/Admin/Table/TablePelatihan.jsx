@@ -1,12 +1,46 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Input, Popconfirm, Table, Space, Button, Modal } from "antd";
 import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import InputPelatihan from "../Form/InputPelatihan";
 import EditPelatihan from "../Form/EditPelatihan";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const TablePelatihan = () => {
+  // Integrasi
+  const [training, setTraining] = useState([]);
+  const [formData, setFormData] = useState({
+    trainingName: "",
+    description: "",
+    startDate: "",
+    endDate: "",
+    time: "",
+    location: "",
+    city: "",
+    img: "",
+    registrationDate: "",
+  });
+
+  useEffect(() => {
+    detailTraining();
+  }, []);
+
+  const detailTraining = async () => {
+    await axios
+      .get("http://localhost:5000/api/v1/detail/training", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        const getData = res.data.data;
+        console.log(getData);
+        setTraining(getData);
+      })
+      .catch((error) => console.log(error));
+  };
+
   // Modal input pelatihan
   const [confirmLoading1, setConfirmLoading1] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
@@ -273,7 +307,7 @@ const TablePelatihan = () => {
           </div>
           <Table
             bordered
-            dataSource={dataSource}
+            dataSource={training}
             columns={columns}
             size="middle"
             scroll={{
