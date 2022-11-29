@@ -1,12 +1,41 @@
-import React, { useRef, useState } from "react";
-import { Space, Table, Button, Form, Modal, Input, Popconfirm } from "antd";
+import React, { useRef, useState, useEffect } from "react";
+import { Space, Table, Button, Modal, Input, Popconfirm } from "antd";
 import { InfoOutlined, DeleteOutlined, SearchOutlined, PlusOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import InputPengguna from "../Form/InputPengguna";
 import InfoPengguna from "../Form/InfoPengguna";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const TablePengguna = () => {
+  // Integrasi
+  const [user, setUser] = useState([]);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    role: "",
+  });
+
+  useEffect(() => {
+    getAdmin();
+  }, []);
+
+  const getAdmin = async () => {
+    await axios
+      .get("http://localhost:5000/api/v1/admin", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        const getData = res.data.data;
+        console.log(getData);
+        setUser(getData);
+      })
+      .catch((error) => console.log(error));
+  };
+
   const [confirmLoading, setConfirmLoading] = useState(false);
 
   // Modal input pengguna
@@ -177,19 +206,19 @@ const TablePengguna = () => {
       ...getColumnSearchProps("code"),
       sorter: (a, b) => a.code.localeCompare(b.code),
     },
-    // {
-    //   title: "Nama",
-    //   dataIndex: "name",
-    //   key: "name",
-    //   width: 300,
-    //   sorter: (a, b) => a.name.localeCompare(b.name),
-    //   ...getColumnSearchProps("name"),
-    // },
+    {
+      title: "Nama",
+      dataIndex: "name",
+      key: "name",
+      width: 300,
+      sorter: (a, b) => a.name.localeCompare(b.name),
+      ...getColumnSearchProps("name"),
+    },
     {
       title: "Email",
       dataIndex: "email",
       key: "email",
-      width: 600,
+      width: 500,
       sorter: (a, b) => a.email.localeCompare(b.email),
       ...getColumnSearchProps("email"),
     },
@@ -220,13 +249,12 @@ const TablePengguna = () => {
             <Button type="primary" icon={<PlusOutlined />} onClick={showModal1} />
           </div>
         </div>
-        <Table bordered dataSource={dataSource} columns={columns} size="middle" />
+        <Table bordered dataSource={user} columns={columns} size="middle" />
       </div>
 
       <Modal title="Tambah Pengguna" open={isModalOpen1} width={800} onOk={handleOk1} onCancel={handleCancel1} confirmLoading={confirmLoading}>
         <InputPengguna />
       </Modal>
-
       <Modal title="Info Pengguna" open={isModalOpen2} onOk={handleOk2} onCancel={handleCancel2}>
         <InfoPengguna />
       </Modal>

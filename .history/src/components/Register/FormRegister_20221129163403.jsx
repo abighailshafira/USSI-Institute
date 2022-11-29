@@ -31,52 +31,52 @@ const FormRegister = () => {
     userData.append("password", password);
     userData.append("institutionId", institution);
 
-    // for (var pair of userData.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    // }
+    for (var pair of userData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
 
-    axios({
-      method: "post",
-      url: `http://localhost:5000/api/v1/register`,
-      data: userData,
-    })
-      .then((res) => {
-        var toastMixin = Swal.mixin({
-          icon: "success",
-          title: "Title",
-          showConfirmButton: false,
-          timer: 1000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener("mouseenter", Swal.stopTimer);
-            toast.addEventListener("mouseleave", Swal.resumeTimer);
-          },
-        });
-        toastMixin.fire({
-          title: "Register berhasil",
-        });
+    // axios({
+    //   method: "post",
+    //   url: `http://localhost:5000/api/v1/register`,
+    //   data: userData,
+    // })
+    //   .then((res) => {
+    //     var toastMixin = Swal.mixin({
+    //       icon: "success",
+    //       title: "Title",
+    //       showConfirmButton: false,
+    //       timer: 1000,
+    //       timerProgressBar: true,
+    //       didOpen: (toast) => {
+    //         toast.addEventListener("mouseenter", Swal.stopTimer);
+    //         toast.addEventListener("mouseleave", Swal.resumeTimer);
+    //       },
+    //     });
+    //     toastMixin.fire({
+    //       title: "Register berhasil",
+    //     });
 
-        navigate("/login");
-      })
-      .catch((err) => {
-        console.log(err);
-        var toastMixin = Swal.mixin({
-          icon: "success",
-          title: "Title",
-          showConfirmButton: false,
-          timer: 1000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener("mouseenter", Swal.stopTimer);
-            toast.addEventListener("mouseleave", Swal.resumeTimer);
-          },
-        });
-        toastMixin.fire({
-          icon: "error",
-          animation: true,
-          title: "Register gagal!",
-        });
-      });
+    //     navigate("/login");
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     var toastMixin = Swal.mixin({
+    //       icon: "success",
+    //       title: "Title",
+    //       showConfirmButton: false,
+    //       timer: 1000,
+    //       timerProgressBar: true,
+    //       didOpen: (toast) => {
+    //         toast.addEventListener("mouseenter", Swal.stopTimer);
+    //         toast.addEventListener("mouseleave", Swal.resumeTimer);
+    //       },
+    //     });
+    //     toastMixin.fire({
+    //       icon: "error",
+    //       animation: true,
+    //       title: "Register gagal!",
+    //     });
+    //   });
   };
 
   useEffect(() => {

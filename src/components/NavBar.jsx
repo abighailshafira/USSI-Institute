@@ -127,7 +127,7 @@ function NavBar({ theme }) {
               <Link to="/contact">
                 <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Kontak</a>
               </Link>
-              <Menu as="div" className="relative">
+              {/* <Menu as="div" className="relative">
                 <Menu.Button className={["navbar-text inline-flex items-center hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>
                   <FaUser aria-hidden="true" />
                 </Menu.Button>
@@ -149,7 +149,7 @@ function NavBar({ theme }) {
                     ))}
                   </Menu.Items>
                 </Transition>
-              </Menu>
+              </Menu> */}
             </div>
           </div>
 

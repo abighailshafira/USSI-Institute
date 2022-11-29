@@ -1,17 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
 function Institution({ formData, setFormData }) {
   const [pelatihan, setPelatihan] = useState([]);
+  const [info, setInfo] = useState({});
 
   const { id } = useParams();
 
   useEffect(() => {
     getPelatihan();
     if (id) {
-      getPelatihanById()
+      getPelatihanById();
     }
+    getPendaftaran();
   }, []);
 
   const getPelatihan = async () => {
@@ -23,15 +26,25 @@ function Institution({ formData, setFormData }) {
   };
 
   const getPelatihanById = async () => {
-    await axios.get(`http://localhost:5000/api/v1/detail/training/${id}`)
-    .then((res) => {
+    await axios.get(`http://localhost:5000/api/v1/detail/training/${id}`).then((res) => {
       const getData = res.data.data;
       setFormData(getData);
       // console.log(res.data.data);
     });
-  }
+  };
 
-  // console.log(pelatihan);
+  const { auth } = JSON.parse(localStorage.getItem("persist:auth"));
+  const { accessToken } = JSON.parse(auth);
+  // console.log(accessToken);
+  const bebas = jwtDecode(accessToken);
+
+  const getPendaftaran = () => {
+    axios.get(`http://localhost:5000/api/v1/manuk/${bebas.id}`).then((res) => {
+      // console.log(res.data.data);
+      setInfo(res.data.data);
+    });
+  };
+
   return (
     <div className="text-slate-800">
       <div className="mb-4">
@@ -62,7 +75,7 @@ function Institution({ formData, setFormData }) {
           className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
           id="institutionName"
           placeholder="Nama Lembaga"
-          value={formData.institutionName}
+          value={info.institutionName}
           onChange={(event) => setFormData({ ...formData, institutionName: event.target.value })}
         />
       </div>
@@ -76,7 +89,7 @@ function Institution({ formData, setFormData }) {
           className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
           id="institutionAddress"
           placeholder="Alamat Lembaga"
-          value={formData.institutionAddress}
+          value={info.institutionAddress}
           onChange={(event) => setFormData({ ...formData, institutionAddress: event.target.value })}
         />
       </div>

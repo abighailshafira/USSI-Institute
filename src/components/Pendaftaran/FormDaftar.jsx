@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from "react";
 import Image from "../../assets/image/pendaftaran.png";
 import axios from "axios";
-import ReactSelect from "react-select";
 import Institution from "./Steps/Institution";
 import Personal from "./Steps/Personal";
 import Payment from "./Steps/Payment";
 import { useNavigate } from "react-router-dom";
-import { message } from "antd";
 import Swal from "sweetalert2";
+import jwtDecode from "jwt-decode";
 
 const FormDaftar = () => {
   const [pendaftaran, setPelatihan] = useState([]);
-  useEffect(() => {}, []);
+  const [info, setInfo] = useState({});
+
+  useEffect(() => {
+    getPendaftaran();
+    setFormData({ userId: info?.User?.id });
+  }, []);
+
   const [formData, setFormData] = useState({
-    trainingName: "",
-    institutionName: "",
-    institutionAddress: "",
-    name: "",
+    userId: info?.User?.id || 0,
     city: "",
     phone: "",
-    // gender: "",
+    gender: "",
     payment: "",
   });
-
+  console.log(info);
   const navigate = useNavigate();
 
   const getPelatihan = async (data) => {
@@ -37,6 +39,18 @@ const FormDaftar = () => {
         console.log(data);
       })
       .catch((error) => console.log(error));
+  };
+
+  const { auth } = JSON.parse(localStorage.getItem("persist:auth"));
+  const { accessToken } = JSON.parse(auth);
+  // console.log(accessToken);
+  const bebas = jwtDecode(accessToken);
+
+  const getPendaftaran = () => {
+    axios.get(`http://localhost:5000/api/v1/manuk/${bebas.id}`).then((res) => {
+      // console.log(res.data.data);
+      setInfo(res.data.data);
+    });
   };
 
   // const [city, setCity] = useState("");
@@ -84,6 +98,7 @@ const FormDaftar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formData);
     // const userData = new URLSearchParams();
     // // console.log(userData);
     // userData.append("trainingName", formData.trainingName);
@@ -123,8 +138,8 @@ const FormDaftar = () => {
         }
       });
     Swal.fire({ title: "Berhasil!", text: "Pendaftaran berhasil!", icon: "success" });
-    navigate("/pendaftaran");
-    setTimeout(window.location.reload.bind(window.location), 800);
+    // navigate("/pendaftaran");
+    // setTimeout(window.location.reload.bind(window.location), 800);
 
     // getPelatihan(formData);
   };
