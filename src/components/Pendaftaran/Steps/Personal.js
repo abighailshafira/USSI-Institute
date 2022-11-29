@@ -1,15 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Radio } from "antd";
+import axios from "axios";
+import jwtDecode from "jwt-decode";
 
 function Personal({ formData, setFormData }) {
   const [value, setValue] = useState(1);
+  const [info, setInfo] = useState({});
+
   const onChange = (e) => {
     console.log("radio checked", e.target.value);
     setValue(e.target.value);
   };
 
+  useEffect(() => {
+    getPendaftaran();
+  }, []);
+
+  const { auth } = JSON.parse(localStorage.getItem("persist:auth"));
+  const { accessToken } = JSON.parse(auth);
+  // console.log(accessToken);
+  const bebas = jwtDecode(accessToken);
+
+  const getPendaftaran = () => {
+    axios.get(`http://localhost:5000/api/v1/manuk/${bebas.id}`).then((res) => {
+      // console.log(res.data.data);
+      setInfo(res.data.data);
+    });
+  };
+
+  console.log(info?.User?.id);
+
   return (
     <div className="text-slate-800">
+      <div className="mb-4">
+        <input
+          type="text"
+          className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
+          id="name"
+          placeholder="Nama Peserta"
+          value={info?.User?.id}
+          onChange={(event) => setFormData({ ...formData, userId: info?.User?.id })}
+          required
+          hidden
+        />
+      </div>
+
       <div className="mb-4">
         <label for="name" className="text-base">
           Nama Peserta
@@ -19,7 +54,7 @@ function Personal({ formData, setFormData }) {
           className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
           id="name"
           placeholder="Nama Peserta"
-          value={formData.name}
+          value={info?.User?.name}
           onChange={(event) => setFormData({ ...formData, name: event.target.value })}
           required
         />
@@ -73,7 +108,7 @@ function Personal({ formData, setFormData }) {
             Jenis Kelamin
           </label>
           <div className="flex items-center space-x-5 py-1.5">
-            <Radio.Group onChange={onChange} value={value}>
+            <Radio.Group onChange={(event) => setFormData({ ...formData, gender: event.target.value })}>
               <Radio value={1}>P</Radio>
               <Radio value={2}>L</Radio>
             </Radio.Group>

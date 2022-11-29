@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Image from "../../assets/image/register.png";
-import { Input, message, Select } from "antd";
+import { Input, Select } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import Swal from "sweetalert2";
 
@@ -13,9 +13,11 @@ const FormRegister = () => {
   const [institution, setInstitution] = useState("");
   const [institutionData, setInstitutionData] = useState([]);
   const [password, setPassword] = useState("");
-  //nama bpr
 
+  console.log(institution);
   const navigate = useNavigate();
+
+  console.log(institutionData);
 
   const toggle = () => {
     setShowPassword(!showPassword);
@@ -24,11 +26,10 @@ const FormRegister = () => {
   const register = async (e) => {
     e.preventDefault();
     const userData = new URLSearchParams();
-    //belum masukin nama sama bpr
     userData.append("name", name);
-    userData.append("institutionName", institution);
     userData.append("email", email);
     userData.append("password", password);
+    userData.append("institutionId", institution);
 
     axios({
       method: "post",
@@ -36,7 +37,6 @@ const FormRegister = () => {
       data: userData,
     })
       .then((res) => {
-        // console.log(res.data);
         var toastMixin = Swal.mixin({
           icon: "success",
           title: "Title",
@@ -86,20 +86,18 @@ const FormRegister = () => {
       let pelatihan = [];
       for (let i = 0; i < getData.length; i++) {
         pelatihan.push({
-          value: getData[i].institutionName,
+          value: getData[i].id,
           label: getData[i].institutionName,
         });
       }
-      // console.log(pelatihan)
       setInstitutionData(pelatihan);
-      // console.log(getData);
     });
   };
 
   const onChange = (value) => {
-    // console.log(`selected ${value}`);
     setInstitution(value);
   };
+
   const onSearch = (value) => {
     console.log("search:", value);
   };
@@ -137,13 +135,6 @@ const FormRegister = () => {
                     options={institutionData}
                     bordered={false}
                   />
-                  {/* <input
-                    type="institutionName"
-                    className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
-                    placeholder="Nama Lembaga"
-                    required
-                    // onChange={(e) => setName(e.target.value)}
-                  /> */}
                 </div>
 
                 <div className="mb-4">
