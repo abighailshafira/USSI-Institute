@@ -6,6 +6,7 @@ import InputPengguna from "../Form/InputPengguna";
 import InfoPengguna from "../Form/InfoPengguna";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const TablePengguna = () => {
   // Integrasi
@@ -14,8 +15,8 @@ const TablePengguna = () => {
     name: "",
     email: "",
     password: "",
-    role: "",
   });
+  const navigate = useNavigate();
 
   useEffect(() => {
     getAdmin();
@@ -44,7 +45,30 @@ const TablePengguna = () => {
     setIsModalOpen1(true);
   };
 
-  const handleOk1 = () => {
+  const handleOk1 = (e) => {
+    e.preventDefault();
+    axios({
+      method: "post",
+      url: `http://localhost:5000/api/v1/register`,
+      data: formData,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        // navigate("/dashboard");
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.log("err.response ", err.response);
+        } else if (err.request) {
+          console.log("err.request ", err.request);
+        } else if (err.message) {
+        }
+      });
+
     setConfirmLoading(true);
     setTimeout(() => {
       setIsModalOpen1(false);
@@ -253,7 +277,7 @@ const TablePengguna = () => {
       </div>
 
       <Modal title="Tambah Pengguna" open={isModalOpen1} width={800} onOk={handleOk1} onCancel={handleCancel1} confirmLoading={confirmLoading}>
-        <InputPengguna />
+        <InputPengguna formData={formData} setFormData={setFormData} />
       </Modal>
       <Modal title="Info Pengguna" open={isModalOpen2} onOk={handleOk2} onCancel={handleCancel2}>
         <InfoPengguna />
