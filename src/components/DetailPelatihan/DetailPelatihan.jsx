@@ -67,12 +67,12 @@ const DetailPelatihan = () => {
                 </p>
                 <p className="text-slate-800 flex items-center text-sm font-medium">
                   <RiUserLocationLine className="w-4 h-4 text-cyan-500 mr-2" />
-                  {data.location}
+                  {data.location}, {data.city}
                 </p>
               </div>
 
               <div>
-                <h2 className="text-xl md:text-2xl text-slate-800 mt-5 md:py-5 py-3">Ready to Participate?</h2>
+                <h2 className="text-xl md:text-2xl text-slate-800 mt-5 md:py-5 py-3">Siap Untuk Bergabung?</h2>
                 <Link to={`/pendaftaran/${data.id}`}>
                   <a className="text-xs md:text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-sky-600 md:py-3 md:px-8 py-2 px-6 rounded-md hover:bg-gradient-to-l hover:to-sky-600 hover:from-cyan-500 transition duration-300 ease-in-out">
                     Daftar Sekarang

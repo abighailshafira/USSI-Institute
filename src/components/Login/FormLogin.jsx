@@ -76,7 +76,7 @@ const FormLogin = () => {
         toastMixin.fire({
           icon: "error",
           animation: true,
-          title: "Register gagal!",
+          title: "Login gagal!",
           text: "Cek email dan password anda",
         });
       });
