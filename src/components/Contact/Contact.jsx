@@ -11,9 +11,8 @@ const Contact = () => {
 
     emailjs.sendForm("service_6t70fcj", "template_i1b6rak", form.current, "-hablRCXNYLfvdviu").then(
       (result) => {
-        console.log(result.text);
-        console.log("message sent");
         Swal.fire({ title: "Berhasil!", text: "Pesan berhasil dikirim", icon: "success" });
+        setTimeout(window.location.reload.bind(window.location), 2000);
       },
       (error) => {
         console.log(error.text);
@@ -36,7 +35,7 @@ const Contact = () => {
 
           <div className="flex flex-wrap justify-center mx-auto rounded-lg shadow-lg bg-white overflow-hidden max-w-4xl">
             <div className="w-full p-7 md:w-1/2 md:p-10">
-              <form ref={form} onSubmit={sendEmail}>
+              <form id="form" ref={form} onSubmit={sendEmail}>
                 <div className="grid grid-cols-2 gap-2 md:gap-4 text-slate-800">
                   <div className="form-group text-base">
                     <label for="name">Nama</label>

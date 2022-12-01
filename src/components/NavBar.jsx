@@ -200,26 +200,26 @@ function NavBar({ theme }) {
                 <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Kontak</a>
               </Link>
 
-              <Menu as="div" className="relative">
-                <Disclosure>
-                  <Disclosure.Button className="inline-flex items-center hover:bg-slate-700 hover:text-white text-black px-4 py-2 rounded-md text-base ">
-                    <FaUser className="ml-2 text-black" aria-hidden="true" />
-                  </Disclosure.Button>
-                  <Disclosure.Panel className="text-gray-500 ml-10">
-                    <Link to="/profile-user">
-                      <a className="hover:bg-slate-700 hover:text-white text-black block px-4 py-2 rounded-md text-base">Profile</a>
-                    </Link>
+              {isLoggedIn ? (
+                <Menu as="div" className="relative">
+                  <Disclosure>
+                    <Disclosure.Button className="inline-flex items-center hover:bg-slate-700 hover:text-white text-black px-4 py-2 rounded-md text-base w-full">Profile</Disclosure.Button>
+                    <Disclosure.Panel className="text-gray-500 ml-10">
+                      <Link to="/profile-user">
+                        <a className="hover:bg-slate-700 hover:text-white text-black block px-4 py-2 rounded-md text-base">Profile</a>
+                      </Link>
 
-                    <Link to="/jadwal-pelatihan">
-                      <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Logout</a>
-                    </Link>
-                  </Disclosure.Panel>
-                </Disclosure>
-              </Menu>
-
-              <Link to="/login">
-                <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Login</a>
-              </Link>
+                      <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base" onClick={handleLogout}>
+                        Logout
+                      </a>
+                    </Disclosure.Panel>
+                  </Disclosure>
+                </Menu>
+              ) : (
+                <Link to="/login">
+                  <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Login</a>
+                </Link>
+              )}
             </div>
           </div>
         )}
