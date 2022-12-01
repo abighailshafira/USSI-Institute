@@ -67,14 +67,14 @@ const TablePengguna = () => {
   };
 
   // Integrais: delete
-  const deleteInstitution = async (id) => {
+  const deleteAdmin = async (id) => {
     await axios.delete(`http://localhost:5000/api/v1/admin/${id}`, {
       headers: {
-        "Content-Type": "application/json",
+        Accept: "application/json",
       },
     });
     getAdmin();
-    Swal.fire("Berhasil Dihapus!", `G - ${id} Berhasil hapus`, "success");
+    Swal.fire("Berhasil Dihapus!", `Admin ${id} Berhasil hapus`, "success");
   };
 
   useEffect(() => {
@@ -272,7 +272,7 @@ const TablePengguna = () => {
           <Space size="middle">
             <Button type="primary" icon={<InfoOutlined />} onClick={showModal2} />
             {/* <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}> */}
-            <Button type="primary" danger icon={<DeleteOutlined />} onClick={deleteInstitution} />
+            <Button type="primary" danger icon={<DeleteOutlined />} onClick={deleteAdmin} />
             {/* </Popconfirm> */}
           </Space>
         ) : null,
