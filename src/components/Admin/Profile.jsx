@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
@@ -9,10 +9,35 @@ import { HiOutlineOfficeBuilding, HiOutlineViewGrid } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
 import Swal from "sweetalert2";
 import { Navigate } from "react-router-dom";
+import axios from "axios";
 
 const { Header, Content, Sider } = Layout;
 
 const Profile = () => {
+  // Integrasi
+  const [users, setUsers] = useState([]);
+  const [info, setInfo] = useState({});
+
+  // Read
+  useEffect(() => {
+    getAdmin();
+  }, []);
+
+  const getAdmin = async () => {
+    await axios
+      .get("http://localhost:5000/api/v1/admin", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        const getData = res.data.data;
+        console.log(getData);
+        setUsers(getData);
+      })
+      .catch((error) => console.log(error));
+  };
+
   // Navbar
   const [collapsed, setCollapsed] = useState(false);
 
@@ -165,13 +190,13 @@ const Profile = () => {
                     <Form.Item label="Kode">
                       <Input disabled={true} />
                     </Form.Item>
-                    <Form.Item label="Nama">
+                    <Form.Item label="Nama" value={info.name}>
                       <Input />
                     </Form.Item>
                     <Form.Item label="Email">
-                      <Input disabled={true} />
+                      <Input disabled={true} value={info.email} />
                     </Form.Item>
-                    <Form.Item label="Password">
+                    <Form.Item label="Password" value={info.password}>
                       <Input />
                     </Form.Item>
                     <Form.Item className="flex justify-end">

@@ -18,12 +18,10 @@ function Personal({ formData, setFormData }) {
 
   const { auth } = JSON.parse(localStorage.getItem("persist:auth"));
   const { accessToken } = JSON.parse(auth);
-  // console.log(accessToken);
   const bebas = jwtDecode(accessToken);
 
   const getPendaftaran = () => {
     axios.get(`http://localhost:5000/api/v1/manuk/${bebas.id}`).then((res) => {
-      // console.log(res.data.data);
       setInfo(res.data.data);
     });
   };

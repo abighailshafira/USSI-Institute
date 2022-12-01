@@ -127,7 +127,18 @@ const TablePengguna = () => {
     }, 2000);
     Swal.fire({ title: "Berhasil!", text: "Akun pengguna berhasil ditambahkan", icon: "success" });
 
-    getAdminById(id);
+    axios
+      .get(`http://localhost:5000/api/v1/admin/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        const getData = res.data.data;
+        console.log(getData);
+        setUsers(getData);
+      })
+      .catch((error) => console.log(error));
   };
 
   const handleCancel2 = () => {
