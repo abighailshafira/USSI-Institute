@@ -11,8 +11,8 @@ const Pelatihan = ({ pelatihan }) => {
 
   return (
     <>
-      <section className="pt-24" id="JadwalPelatihan">
-        <div className="container">
+      <section className="pt-10" id="JadwalPelatihan">
+        <div className="container pt-24 md:pt-24 lg:pb-12">
           <div className="w-full">
             <div className="mx-auto text-center mb-16">
               <h1 className="text-3xl font-bold mb-2 uppercase text-slate-800">Jadwal Pelatihan</h1>
