@@ -53,35 +53,6 @@ const FormDaftar = () => {
     });
   };
 
-  // const [city, setCity] = useState("");
-  // const [getCity, setGetCity] = useState("");
-  // const [selectedCity, setSelectedCity] = useState(null);
-
-  // useEffect(() => {
-  //   apiCity();
-  // }, []);
-
-  // const apiCity = async () => {
-  //   await axios.get(`https://binderbyte.com/wilayah/kabupaten`).then((res) => {
-  //     const getData = res.data.data;
-  //     // setGetCity(getData);
-  //     console.log(getData);
-  //   });
-  // };
-
-  // function handleChangeCity(value) {
-  //   setCity(value.value);
-  //   setSelectedCity(value);
-  // }
-
-  // const optionsCity = getCity.map((d) => {
-  //   return (
-  //     label: d.name,
-  //   value: d.name
-  //   )
-  // })
-
-  // console.log(getCity?.map((d) => d.nama));
   const [page, setPage] = useState(0);
 
   const FormTitles = ["Informasi Lembaga", "Profil Peserta", "Pembayaran"];
@@ -99,20 +70,6 @@ const FormDaftar = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    // const userData = new URLSearchParams();
-    // // console.log(userData);
-    // userData.append("trainingName", formData.trainingName);
-    // userData.append("institutionName", formData.institutionName);
-    // userData.append("institutionAddress", formData.institutionAddress);
-    // userData.append("name", formData.name);
-    // userData.append("city", formData.city);
-    // userData.append("phone", formData.phone);
-    // // userData.append("karyawan", formData.employees);
-    // userData.append("payment", formData.payment);
-
-    // for (var pair of userData.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    // }
 
     axios({
       method: "post",
@@ -126,7 +83,7 @@ const FormDaftar = () => {
       .then((res) => {
         //handle success
         console.log(res);
-        // navigate("/"); ini untuk navigate ke halaman lain
+        navigate("/");
       })
       .catch((err) => {
         if (err.response) {

@@ -6,7 +6,7 @@ import axios from "axios";
 import InputLembaga from "../Form/InputLembaga";
 import EditLembaga from "../Form/EditLembaga";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const TableLembaga = () => {
   const [institutions, setInstitutions] = useState([]);
@@ -21,9 +21,44 @@ const TableLembaga = () => {
     CPPhone: "",
     statusSLA: "",
   });
-  const navigate = useNavigate();
 
-  // Modal input lembaga
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  // Read
+  useEffect(() => {
+    getInstitutions();
+    // getInstitutionsById();
+  }, []);
+
+  const getInstitutions = async () => {
+    await axios
+      .get("http://localhost:5000/api/v1/institution", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        const getData = res.data.data;
+        console.log(getData);
+        setInstitutions(getData);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  // Delete
+  const deleteInstitution = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/v1/institution/${id}`);
+      console.log(institutions.id);
+      getInstitutions();
+      // Swal.fire("Berhasil Dihapus!", `G - ${id} Berhasil hapus`, "success");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Create
   const [confirmLoading1, setConfirmLoading1] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
 
@@ -34,7 +69,7 @@ const TableLembaga = () => {
   const handleOk1 = (e) => {
     e.preventDefault();
     axios({
-      method: "post",
+      method: "put",
       url: `http://localhost:5000/api/v1/institution`,
       data: formData,
       headers: {
@@ -70,19 +105,64 @@ const TableLembaga = () => {
     setIsModalOpen1(false);
   };
 
-  // Modal edit lembaga
+  // const getPendaftaran = () => {
+  //   axios.get(`http://localhost:5000/api/v1/manuk/${bebas.id}`).then((res) => {
+  //     // console.log(res.data.data);
+  //     setInfo(res.data.data);
+  //   });
+  // };
+
+  // Update
+  const getInstitutionsById = async () => {
+    await axios
+      .get(`http://localhost:5000/api/v1/institution/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        const getData = res.data.data;
+        console.log(getData);
+        setInstitutions(getData);
+      })
+      .catch((error) => console.log(error));
+  };
+
   const [confirmLoading2, setConfirmLoading2] = useState(false);
   const [isModalOpen2, setIsModalOpen2] = useState(false);
   const showModal2 = () => {
     setIsModalOpen2(true);
   };
 
-  const handleOk2 = () => {
+  const handleOk2 = (e) => {
+    e.preventDefault();
     setConfirmLoading2(true);
     setTimeout(() => {
       setIsModalOpen2(false);
       setConfirmLoading2(false);
     }, 1000);
+
+    axios({
+      method: "post",
+      url: `http://localhost:5000/api/v1/institution`,
+      data: formData,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    })
+      .then((res) => {
+        // console.log(res);
+        navigate("/dashboard/lembaga");
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.log("err.response ", err.response);
+        } else if (err.request) {
+          console.log("err.request ", err.request);
+        } else if (err.message) {
+        }
+      });
 
     Swal.fire({ title: "Berhasil!", text: "Data lembaga berhasil diperbarui", icon: "success" });
   };
@@ -103,25 +183,6 @@ const TableLembaga = () => {
   const handleReset = (clearFilters) => {
     clearFilters();
     setSearchText("");
-  };
-
-  useEffect(() => {
-    getInstitutions();
-  }, []);
-
-  const getInstitutions = async () => {
-    await axios
-      .get("http://localhost:5000/api/v1/institution", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        const getData = res.data.data;
-        console.log(getData);
-        setInstitutions(getData);
-      })
-      .catch((error) => console.log(error));
   };
 
   const getColumnSearchProps = (dataIndex) => ({
@@ -334,9 +395,9 @@ const TableLembaga = () => {
         dataSource.length >= 1 ? (
           <Space size="small">
             <Button icon={<EditOutlined />} onClick={showModal2} />
-            <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
-              <Button type="primary" danger icon={<DeleteOutlined />} />
-            </Popconfirm>
+            {/* <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}> */}
+            <Button type="primary" danger icon={<DeleteOutlined />} onClick={() => deleteInstitution(institutions.id)} />
+            {/* </Popconfirm> */}
           </Space>
         ) : null,
     },
@@ -370,7 +431,7 @@ const TableLembaga = () => {
           </Modal>
 
           <Modal title="Edit Lembaga" open={isModalOpen2} width={800} onOk={handleOk2} onCancel={handleCancel2} confirmLoading={confirmLoading2}>
-            <EditLembaga />
+            <EditLembaga formData={formData} setFormData={setFormData} />
           </Modal>
         </div>
       </div>

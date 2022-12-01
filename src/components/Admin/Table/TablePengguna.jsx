@@ -6,7 +6,7 @@ import InputPengguna from "../Form/InputPengguna";
 import InfoPengguna from "../Form/InfoPengguna";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const TablePengguna = () => {
   // Integrasi
@@ -17,8 +17,38 @@ const TablePengguna = () => {
     password: "",
     role: "admin",
   });
-
+  const { id } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getAdmin();
+  }, []);
+
+  // Integrais: delete
+  const deleteAdmin = async (id) => {
+    await axios.delete(`http://localhost:5000/api/v1/admin/${id}`, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+    getAdmin();
+    Swal.fire("Berhasil Dihapus!", `Admin ${id} Berhasil hapus`, "success");
+  };
+
+  const getAdmin = async () => {
+    await axios
+      .get("http://localhost:5000/api/v1/admin", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        const getData = res.data.data;
+        console.log(getData);
+        setUsers(getData);
+      })
+      .catch((error) => console.log(error));
+  };
 
   // Modal input pengguna
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -29,6 +59,11 @@ const TablePengguna = () => {
 
   const handleOk1 = (e) => {
     e.preventDefault();
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setIsModalOpen1(false);
+      setConfirmLoading(false);
+    }, 2000);
     axios({
       method: "post",
       url: `http://localhost:5000/api/v1/register`,
@@ -51,12 +86,6 @@ const TablePengguna = () => {
         }
       });
 
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setIsModalOpen1(false);
-      setConfirmLoading(false);
-    }, 1000);
-
     Swal.fire({ title: "Berhasil!", text: "Akun pengguna berhasil ditambahkan", icon: "success" });
 
     // Swal.fire({ title: "Ups!", text: "Silahkan lengkapi data", icon: "error" });
@@ -64,35 +93,6 @@ const TablePengguna = () => {
 
   const handleCancel1 = () => {
     setIsModalOpen1(false);
-  };
-
-  // Integrais: delete
-  const deleteAdmin = async (id) => {
-    await axios.delete(`http://localhost:5000/api/v1/admin/${id}`, {
-      headers: {
-        Accept: "application/json",
-      },
-    });
-    getAdmin();
-    Swal.fire("Berhasil Dihapus!", `Admin ${id} Berhasil hapus`, "success");
-  };
-
-  useEffect(() => {
-    getAdmin();
-  }, []);
-  const getAdmin = async () => {
-    await axios
-      .get("http://localhost:5000/api/v1/admin", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        const getData = res.data.data;
-        console.log(getData);
-        setUsers(getData);
-      })
-      .catch((error) => console.log(error));
   };
 
   // Modal info pengguna
@@ -290,14 +290,14 @@ const TablePengguna = () => {
             <Button type="primary" icon={<PlusOutlined />} onClick={showModal1} />
           </div>
         </div>
-        <Table bordered dataSource={users} columns={columns} size="middle" />
+        <Table bordered dataSource={users} columns={columns} deleteAdmin={deleteAdmin} size="middle" />
       </div>
 
       <Modal title="Tambah Pengguna" open={isModalOpen1} width={800} onOk={handleOk1} onCancel={handleCancel1} confirmLoading={confirmLoading}>
         <InputPengguna formData={formData} setFormData={setFormData} />
       </Modal>
       <Modal title="Info Pengguna" open={isModalOpen2} onOk={handleOk2} onCancel={handleCancel2}>
-        <InfoPengguna />
+        <InfoPengguna formData={formData.id} />
       </Modal>
     </>
   );

@@ -114,7 +114,7 @@ const Dashboard = () => {
               <div className="container p-3">
                 <div>
                   <h1 className="text-3xl mb-2 text-slate-800">Dashboard</h1>
-                  <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis laudantium magnam quaerat?</p>
+                  <p className="text-base text-slate-500">Selamat datang, Admin!</p>
                 </div>
 
                 <TablePengguna />

@@ -40,7 +40,6 @@ const DetailPelatihan = () => {
   };
 
   const startDate = new Date(data.startDate).toLocaleDateString("en-GB", options);
-
   const endDate = new Date(data.endDate).toLocaleDateString("en-GB", options);
   const registrationDate = new Date(data.registrationDate).toLocaleDateString("en-GB", options);
 

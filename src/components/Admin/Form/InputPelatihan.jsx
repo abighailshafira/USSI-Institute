@@ -1,11 +1,10 @@
 import React from "react";
-import { Form, Input, Button, Upload, DatePicker, TimePicker } from "antd";
+import { Form, Input, Upload, DatePicker, TimePicker } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import { FiChevronLeft } from "react-icons/fi";
 
 const { RangePicker } = DatePicker;
 
-const InputPelatihan = () => {
+const InputPelatihan = ({ formData, setFormData }) => {
   // Range time
   const rangeConfig = {
     rules: [
@@ -47,7 +46,7 @@ const InputPelatihan = () => {
             },
           ]}
         >
-          <Input />
+          <Input value={formData.trainingName} onChange={(event) => setFormData({ ...formData, trainingName: event.target.value })} />
         </Form.Item>
         <Form.Item
           name="deskripsi"
@@ -59,7 +58,7 @@ const InputPelatihan = () => {
             },
           ]}
         >
-          <Input.TextArea showCount maxLength={100} />
+          <Input.TextArea showCount maxLength={100} value={formData.description} onChange={(event) => setFormData({ ...formData, description: event.target.value })} />
         </Form.Item>
         <Form.Item name="range-picker" label="Tanggal pelaksanaan" {...rangeConfig}>
           <RangePicker />
@@ -77,7 +76,7 @@ const InputPelatihan = () => {
             },
           ]}
         >
-          <Input />
+          <Input value={formData.location} onChange={(event) => setFormData({ ...formData, location: event.target.value })} />
         </Form.Item>
         <Form.Item
           name="image"

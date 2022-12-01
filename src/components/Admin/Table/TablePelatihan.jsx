@@ -6,6 +6,7 @@ import InputPelatihan from "../Form/InputPelatihan";
 import EditPelatihan from "../Form/EditPelatihan";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const TablePelatihan = () => {
   // Integrasi
@@ -22,24 +23,7 @@ const TablePelatihan = () => {
     registrationDate: "",
   });
 
-  useEffect(() => {
-    detailTraining();
-  }, []);
-
-  const detailTraining = async () => {
-    await axios
-      .get("http://localhost:5000/api/v1/detail/training", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        const getData = res.data.data;
-        console.log(getData);
-        setTraining(getData);
-      })
-      .catch((error) => console.log(error));
-  };
+  const navigate = useNavigate();
 
   // Modal input pelatihan
   const [confirmLoading1, setConfirmLoading1] = useState(false);
@@ -48,7 +32,30 @@ const TablePelatihan = () => {
     setIsModalOpen1(true);
   };
 
-  const handleOk1 = () => {
+  const handleOk1 = (e) => {
+    e.preventDefault();
+    axios({
+      method: "post",
+      url: `http://localhost:5000/api/v1/training`,
+      data: formData,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        navigate("/dashboard/pelatihan");
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.log("err.response ", err.response);
+        } else if (err.request) {
+          console.log("err.request ", err.request);
+        } else if (err.message) {
+        }
+      });
+
     setConfirmLoading1(true);
     setTimeout(() => {
       setIsModalOpen1(false);
@@ -83,6 +90,25 @@ const TablePelatihan = () => {
 
   const handleCancel2 = () => {
     setIsModalOpen2(false);
+  };
+
+  useEffect(() => {
+    detailTraining();
+  }, []);
+
+  const detailTraining = async () => {
+    await axios
+      .get("http://localhost:5000/api/v1/detail/training", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        const getData = res.data.data;
+        console.log(getData);
+        setTraining(getData);
+      })
+      .catch((error) => console.log(error));
   };
 
   // Search
@@ -317,7 +343,7 @@ const TablePelatihan = () => {
           />
 
           <Modal title="Tambah Pelatihan" open={isModalOpen1} width={1000} onOk={handleOk1} onCancel={handleCancel1} confirmLoading={confirmLoading1}>
-            <InputPelatihan />
+            <InputPelatihan formData={formData} setFormData={setFormData} />
           </Modal>
 
           <Modal title="Edit Pelatihan" open={isModalOpen2} width={1000} onOk={handleOk2} onCancel={handleCancel2} confirmLoading={confirmLoading2}>
