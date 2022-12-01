@@ -20,20 +20,11 @@ const TablePengguna = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // Read
   useEffect(() => {
     getAdmin();
+    getAdminById();
   }, []);
-
-  // Integrais: delete
-  const deleteAdmin = async (id) => {
-    await axios.delete(`http://localhost:5000/api/v1/admin/${id}`, {
-      headers: {
-        Accept: "application/json",
-      },
-    });
-    getAdmin();
-    Swal.fire("Berhasil Dihapus!", `Admin ${id} Berhasil hapus`, "success");
-  };
 
   const getAdmin = async () => {
     await axios
@@ -50,6 +41,32 @@ const TablePengguna = () => {
       .catch((error) => console.log(error));
   };
 
+  const getAdminById = async (id) => {
+    await axios
+      .get(`http://localhost:5000/api/v1/admin/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        const getData = res.data.data;
+        console.log(getData);
+        setUsers(getData);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  // Delete
+  const deleteAdmin = async (id) => {
+    await axios.delete(`http://localhost:5000/api/v1/admin/${id}`, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+    getAdmin();
+    Swal.fire("Berhasil Dihapus!", `Admin ${id} Berhasil hapus`, "success");
+  };
+
   // Modal input pengguna
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
@@ -64,6 +81,8 @@ const TablePengguna = () => {
       setIsModalOpen1(false);
       setConfirmLoading(false);
     }, 2000);
+    Swal.fire({ title: "Berhasil!", text: "Akun pengguna berhasil ditambahkan", icon: "success" });
+
     axios({
       method: "post",
       url: `http://localhost:5000/api/v1/register`,
@@ -86,8 +105,6 @@ const TablePengguna = () => {
         }
       });
 
-    Swal.fire({ title: "Berhasil!", text: "Akun pengguna berhasil ditambahkan", icon: "success" });
-
     // Swal.fire({ title: "Ups!", text: "Silahkan lengkapi data", icon: "error" });
   };
 
@@ -101,8 +118,16 @@ const TablePengguna = () => {
     setIsModalOpen2(true);
   };
 
-  const handleOk2 = () => {
-    setIsModalOpen2(false);
+  const handleOk2 = (e) => {
+    e.preventDefault();
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setIsModalOpen2(false);
+      setConfirmLoading(false);
+    }, 2000);
+    Swal.fire({ title: "Berhasil!", text: "Akun pengguna berhasil ditambahkan", icon: "success" });
+
+    getAdminById(id);
   };
 
   const handleCancel2 = () => {
@@ -195,47 +220,8 @@ const TablePengguna = () => {
       ),
   });
 
-  // Delete
-  const handleDelete = async (id) => {
-    // Swal.fire({
-    //   title: "Apakah anda yakin?",
-    //   text: "Data akan dihapus",
-    //   icon: "warning",
-    //   showCancelButton: true,
-    //   confirmButtonColor: "#3085d6",
-    //   cancelButtonColor: "#d33",
-    //   confirmButtonText: "Ya, hapus!",
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     Swal.fire("Berhasil!", "Akun pengguna berhasi dihapus", "success");
-    //   }
-    // });
-    // const newData = dataSource.filter((item) => item.key !== key);
-    // setDataSource(newData);
-    // await axios.delete(`http://localhost:5000/api/v1/admin/${id}`, {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-    // getAdmin();
-    // Swal.fire("Berhasil Dihapus!", `G - ${id} Berhasil hapus`, "success");
-  };
-
   // Table Data
-  const [dataSource, setDataSource] = useState([
-    {
-      key: "1",
-      name: "Abighail Shafira Ihsani",
-      code: "ADMIN-001",
-      email: "abighail@gmail.com",
-    },
-    {
-      key: "2",
-      name: "Alya Chairunnisa Faz",
-      code: "ADMIN-002",
-      email: "alya@gmail.com",
-    },
-  ]);
+  const [dataSource, setDataSource] = useState([]);
 
   // Table Column
   const columns = [
@@ -267,15 +253,12 @@ const TablePengguna = () => {
       title: "Aksi",
       dataIndex: "aksi",
       align: "center",
-      render: (_, record) =>
-        dataSource.length >= 1 ? (
-          <Space size="middle">
-            <Button type="primary" icon={<InfoOutlined />} onClick={showModal2} />
-            {/* <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}> */}
-            <Button type="primary" danger icon={<DeleteOutlined />} onClick={deleteAdmin} />
-            {/* </Popconfirm> */}
-          </Space>
-        ) : null,
+      render: (_, record) => (
+        <Space size="middle">
+          <Button type="primary" icon={<InfoOutlined />} onClick={showModal2} />
+          <Button type="primary" danger icon={<DeleteOutlined />} onClick={() => deleteAdmin(record.id)} />
+        </Space>
+      ),
     },
   ];
 
@@ -297,7 +280,7 @@ const TablePengguna = () => {
         <InputPengguna formData={formData} setFormData={setFormData} />
       </Modal>
       <Modal title="Info Pengguna" open={isModalOpen2} onOk={handleOk2} onCancel={handleCancel2}>
-        <InfoPengguna formData={formData.id} />
+        <InfoPengguna formData={formData} setFormData={setFormData} />
       </Modal>
     </>
   );

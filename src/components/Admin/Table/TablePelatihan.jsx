@@ -6,7 +6,7 @@ import InputPelatihan from "../Form/InputPelatihan";
 import EditPelatihan from "../Form/EditPelatihan";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const TablePelatihan = () => {
   // Integrasi
@@ -22,8 +22,39 @@ const TablePelatihan = () => {
     img: "",
     registrationDate: "",
   });
-
+  const { id } = useParams();
   const navigate = useNavigate();
+
+  // Read
+  useEffect(() => {
+    detailTraining();
+  }, []);
+
+  const detailTraining = async () => {
+    await axios
+      .get("http://localhost:5000/api/v1/detail/training", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        const getData = res.data.data;
+        console.log(getData);
+        setTraining(getData);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  // Delete
+  const deleteTraining = async (id) => {
+    await axios.delete(`http://localhost:5000/api/v1/detail/training/${id}`, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+    detailTraining();
+    Swal.fire("Berhasil Dihapus!", `Pelatihan ${id} Berhasil hapus`, "success");
+  };
 
   // Modal input pelatihan
   const [confirmLoading1, setConfirmLoading1] = useState(false);
@@ -90,25 +121,6 @@ const TablePelatihan = () => {
 
   const handleCancel2 = () => {
     setIsModalOpen2(false);
-  };
-
-  useEffect(() => {
-    detailTraining();
-  }, []);
-
-  const detailTraining = async () => {
-    await axios
-      .get("http://localhost:5000/api/v1/detail/training", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        const getData = res.data.data;
-        console.log(getData);
-        setTraining(getData);
-      })
-      .catch((error) => console.log(error));
   };
 
   // Search
@@ -196,26 +208,6 @@ const TablePelatihan = () => {
         text
       ),
   });
-
-  // Delete
-  const handleDelete = (key) => {
-    // Swal.fire({
-    //   title: "Apakah anda yakin?",
-    //   text: "Data akan dihapus",
-    //   icon: "warning",
-    //   showCancelButton: true,
-    //   confirmButtonColor: "#3085d6",
-    //   cancelButtonColor: "#d33",
-    //   confirmButtonText: "Ya, hapus!",
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     Swal.fire("Berhasil!", "Data pelatihan berhasil dihapus", "success");
-    //   }
-    // });
-
-    const newData = dataSource.filter((item) => item.key !== key);
-    setDataSource(newData);
-  };
 
   // Table Data
   const [dataSource, setDataSource] = useState([
@@ -307,15 +299,12 @@ const TablePelatihan = () => {
       key: "action",
       width: 80,
       align: "center",
-      render: (_, record) =>
-        dataSource.length >= 1 ? (
-          <Space size="small">
-            <Button icon={<EditOutlined />} onClick={showModal2} />
-            <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
-              <Button type="primary" danger icon={<DeleteOutlined />} />
-            </Popconfirm>
-          </Space>
-        ) : null,
+      render: (_, record) => (
+        <Space size="small">
+          <Button icon={<EditOutlined />} onClick={showModal2} />
+          <Button type="primary" danger icon={<DeleteOutlined />} onClick={() => deleteTraining(record.id)} />
+        </Space>
+      ),
     },
   ];
 

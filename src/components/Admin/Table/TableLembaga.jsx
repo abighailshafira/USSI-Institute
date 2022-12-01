@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Space, Table, Button, Input, Popconfirm, Modal } from "antd";
+import { Space, Table, Button, Input, Modal } from "antd";
 import { EditOutlined, DeleteOutlined, SearchOutlined, PlusOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import axios from "axios";
@@ -24,7 +24,6 @@ const TableLembaga = () => {
 
   const navigate = useNavigate();
   const { id } = useParams();
-
   // Read
   useEffect(() => {
     getInstitutions();
@@ -48,14 +47,13 @@ const TableLembaga = () => {
 
   // Delete
   const deleteInstitution = async (id) => {
-    try {
-      await axios.delete(`http://localhost:5000/api/v1/institution/${id}`);
-      console.log(institutions.id);
-      getInstitutions();
-      // Swal.fire("Berhasil Dihapus!", `G - ${id} Berhasil hapus`, "success");
-    } catch (error) {
-      console.log(error);
-    }
+    await axios.delete(`http://localhost:5000/api/v1/institution/${id}`, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+    getInstitutions();
+    Swal.fire("Berhasil Dihapus!", `Lembaga ${id} Berhasil hapus`, "success");
   };
 
   // Create
@@ -68,8 +66,15 @@ const TableLembaga = () => {
 
   const handleOk1 = (e) => {
     e.preventDefault();
+    setConfirmLoading1(true);
+    setTimeout(() => {
+      setIsModalOpen1(false);
+      setConfirmLoading1(false);
+    }, 2000);
+    Swal.fire({ title: "Berhasil!", text: "Data lembaga berhasil ditambahkan", icon: "success" });
+
     axios({
-      method: "put",
+      method: "post",
       url: `http://localhost:5000/api/v1/institution`,
       data: formData,
       headers: {
@@ -88,13 +93,6 @@ const TableLembaga = () => {
         } else if (err.message) {
         }
       });
-    setConfirmLoading1(true);
-    setTimeout(() => {
-      setIsModalOpen1(false);
-      setConfirmLoading1(false);
-    }, 1000);
-
-    Swal.fire({ title: "Berhasil!", text: "Data lembaga berhasil ditambahkan", icon: "success" });
   };
 
   const handleCancel1 = () => {
@@ -380,15 +378,12 @@ const TableLembaga = () => {
       key: "action",
       width: 80,
       align: "center",
-      render: (_, record) =>
-        dataSource.length >= 1 ? (
-          <Space size="small">
-            <Button icon={<EditOutlined />} onClick={showModal2} />
-            {/* <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}> */}
-            <Button type="primary" danger icon={<DeleteOutlined />} onClick={() => deleteInstitution(institutions.id)} />
-            {/* </Popconfirm> */}
-          </Space>
-        ) : null,
+      render: (_, record) => (
+        <Space size="small">
+          <Button icon={<EditOutlined />} onClick={showModal2} />
+          <Button type="primary" danger icon={<DeleteOutlined />} onClick={() => deleteInstitution(record.id)} />
+        </Space>
+      ),
     },
   ];
 
