@@ -10,36 +10,18 @@ import { useNavigate } from "react-router-dom";
 
 const TablePengguna = () => {
   // Integrasi
-  const [user, setUser] = useState([]);
+  const [users, setUsers] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
+    role: "admin",
   });
+
   const navigate = useNavigate();
 
-  useEffect(() => {
-    getAdmin();
-  }, []);
-
-  const getAdmin = async () => {
-    await axios
-      .get("http://localhost:5000/api/v1/admin", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        const getData = res.data.data;
-        console.log(getData);
-        setUser(getData);
-      })
-      .catch((error) => console.log(error));
-  };
-
-  const [confirmLoading, setConfirmLoading] = useState(false);
-
   // Modal input pengguna
+  const [confirmLoading, setConfirmLoading] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const showModal1 = () => {
     setIsModalOpen1(true);
@@ -58,7 +40,7 @@ const TablePengguna = () => {
     })
       .then((res) => {
         console.log(res);
-        // navigate("/dashboard");
+        navigate("/dashboard");
       })
       .catch((err) => {
         if (err.response) {
@@ -82,6 +64,35 @@ const TablePengguna = () => {
 
   const handleCancel1 = () => {
     setIsModalOpen1(false);
+  };
+
+  // Integrais: delete
+  const deleteInstitution = async (id) => {
+    await axios.delete(`http://localhost:5000/api/v1/admin/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    getAdmin();
+    Swal.fire("Berhasil Dihapus!", `G - ${id} Berhasil hapus`, "success");
+  };
+
+  useEffect(() => {
+    getAdmin();
+  }, []);
+  const getAdmin = async () => {
+    await axios
+      .get("http://localhost:5000/api/v1/admin", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        const getData = res.data.data;
+        console.log(getData);
+        setUsers(getData);
+      })
+      .catch((error) => console.log(error));
   };
 
   // Modal info pengguna
@@ -185,7 +196,7 @@ const TablePengguna = () => {
   });
 
   // Delete
-  const handleDelete = (key) => {
+  const handleDelete = async (id) => {
     // Swal.fire({
     //   title: "Apakah anda yakin?",
     //   text: "Data akan dihapus",
@@ -199,9 +210,15 @@ const TablePengguna = () => {
     //     Swal.fire("Berhasil!", "Akun pengguna berhasi dihapus", "success");
     //   }
     // });
-
-    const newData = dataSource.filter((item) => item.key !== key);
-    setDataSource(newData);
+    // const newData = dataSource.filter((item) => item.key !== key);
+    // setDataSource(newData);
+    // await axios.delete(`http://localhost:5000/api/v1/admin/${id}`, {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
+    // getAdmin();
+    // Swal.fire("Berhasil Dihapus!", `G - ${id} Berhasil hapus`, "success");
   };
 
   // Table Data
@@ -254,9 +271,9 @@ const TablePengguna = () => {
         dataSource.length >= 1 ? (
           <Space size="middle">
             <Button type="primary" icon={<InfoOutlined />} onClick={showModal2} />
-            <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
-              <Button type="primary" danger icon={<DeleteOutlined />} />
-            </Popconfirm>
+            {/* <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}> */}
+            <Button type="primary" danger icon={<DeleteOutlined />} onClick={deleteInstitution} />
+            {/* </Popconfirm> */}
           </Space>
         ) : null,
     },
@@ -273,7 +290,7 @@ const TablePengguna = () => {
             <Button type="primary" icon={<PlusOutlined />} onClick={showModal1} />
           </div>
         </div>
-        <Table bordered dataSource={user} columns={columns} size="middle" />
+        <Table bordered dataSource={users} columns={columns} size="middle" />
       </div>
 
       <Modal title="Tambah Pengguna" open={isModalOpen1} width={800} onOk={handleOk1} onCancel={handleCancel1} confirmLoading={confirmLoading}>

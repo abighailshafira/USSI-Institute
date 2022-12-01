@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input } from "antd";
 
-const inputPengguna = () => {
+const inputPengguna = ({ formData, setFormData }) => {
   return (
     <>
       <Form
@@ -32,7 +32,7 @@ const inputPengguna = () => {
             },
           ]}
         >
-          <Input />
+          <Input value={formData.name} onChange={(event) => setFormData({ ...formData, name: event.target.value })} />
         </Form.Item>
         <Form.Item
           name="email"
@@ -48,7 +48,7 @@ const inputPengguna = () => {
             },
           ]}
         >
-          <Input />
+          <Input value={formData.email} onChange={(event) => setFormData({ ...formData, email: event.target.value })} />
         </Form.Item>
         <Form.Item
           name="password"
@@ -60,7 +60,7 @@ const inputPengguna = () => {
             },
           ]}
         >
-          <Input.Password />
+          <Input.Password value={formData.password} onChange={(event) => setFormData({ ...formData, password: event.target.value })} />
         </Form.Item>
       </Form>
     </>
