@@ -53,12 +53,12 @@ const Footer = () => {
               <div className="w-full mb-6 md:w-1/2 lg:w-1/4">
                 <h6 className="uppercase font-semibold mb-4 flex justify-center md:justify-start text-white">Divisi</h6>
                 <p className="mb-4">
-                  <Link to="/detail-divisi">
+                  <Link to="/detail-divisi/ussi-institute">
                     <a className="text-white hover:text-cyan-500 mb-4">USSI Institute</a>
                   </Link>
                 </p>
                 <p className="mb-4">
-                  <Link to="/detail-divisi">
+                  <Link to="/detail-divisi/audit">
                     <a className="text-white hover:text-cyan-500 mb-4">Audit Kepatuhan TI</a>
                   </Link>
                 </p>

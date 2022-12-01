@@ -18,7 +18,8 @@ import PelatihanPage from "./components/Admin/Pelatihan";
 import RekapPelatihanPage from "./components/Admin/RekapPelatihan";
 import PesertaPage from "./components/Admin/Peserta";
 import ProfileAdminPage from "./components/Admin/Profile";
-import DetailDivisiPage from "./pages/DetailDivisiPage";
+import UssiInstitutePage from "./pages/UssiInstitutePage";
+import AuditPage from "./pages/AuditPage";
 
 const RouteApp = () => {
   return (
@@ -30,7 +31,6 @@ const RouteApp = () => {
         <Route path="/pendaftaran" exact element={<PendaftaranPage />} />
         <Route path="/pendaftaran/:id" exact element={<PendaftaranPage />} />
         <Route path="/detail-pelatihan/:id" exact element={<DetailPelatihanPage />} />
-        <Route path="/detail-divisi" exact element={<DetailDivisiPage />} />
         <Route path="/login" exact element={<LoginPage />} />
         <Route path="/register" exact element={<RegisterPage />} />
         <Route path="/profile-user" exact element={<ProfileUserPage />} />
@@ -44,6 +44,9 @@ const RouteApp = () => {
         <Route path="/dashboard/peserta" exact element={<PesertaPage />} />
         <Route path="/dashboard/profile" exact element={<ProfileAdminPage />} />
         <Route path="/dashboard/rekap-pelatihan" exact element={<RekapPelatihanPage />} />
+        <Route path="/detail-divisi/audit" exact element={<AuditPage/>} />
+        <Route path="/detail-divisi/ussi-institute" exact element={<UssiInstitutePage/>} />
+        
       </Routes>
     </>
   );
