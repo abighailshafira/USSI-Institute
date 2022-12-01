@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Image from "../../assets/image/icon-ussi.ico";
 import { BsCalendarRange } from "react-icons/bs";
 import { RiTimeLine, RiUserLocationLine } from "react-icons/ri";
+import { GrDocumentTime } from "react-icons/gr";
 import axios from "axios";
 
 const DetailPelatihan = () => {
@@ -41,6 +42,7 @@ const DetailPelatihan = () => {
   const startDate = new Date(data.startDate).toLocaleDateString("en-GB", options);
 
   const endDate = new Date(data.endDate).toLocaleDateString("en-GB", options);
+  const registrationDate = new Date(data.registrationDate).toLocaleDateString("en-GB", options);
 
   return (
     <>
@@ -69,6 +71,15 @@ const DetailPelatihan = () => {
                   <RiUserLocationLine className="w-4 h-4 text-cyan-500 mr-2" />
                   {data.location}, {data.city}
                 </p>
+              </div>
+              <div className="pt-10">
+                <p className="font-bold">
+                    Batas Daftar :
+                </p>
+                <p className="text-slate-800 flex items-center text-sm font-medium">
+                    <GrDocumentTime className="w-4 h-4 text-cyan-500 mr-2" />
+                    {registrationDate}
+                  </p>
               </div>
 
               <div>
