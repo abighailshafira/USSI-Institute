@@ -9,7 +9,7 @@ const UssiInstitute = () => {
         <div className="container lg:-mb-24">
              <div className="flex flex-wrap">
               <div className="w-full mb-10 lg:w-1/2">
-                <img src={Image2} alt="USSI Institute" className="w-96 mx-auto transition duration-300 ease-in-out" />
+                <img src={Image2} alt="USSI Institute" className="w-80 mx-auto transition duration-300 ease-in-out " />
               </div>
 
               <div className="w-full lg:w-1/2 mt-4">
