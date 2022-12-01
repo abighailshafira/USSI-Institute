@@ -55,8 +55,8 @@ const FormLogin = () => {
           toastMixin.fire({
             title: "Login berhasil!",
           });
-          navigate("/");
           setTimeout(window.location.reload.bind(window.location), 300);
+          navigate("/");
         } else {
         }
       })
@@ -92,7 +92,7 @@ const FormLogin = () => {
         <div className="container">
           <div className="max-w-xl mx-auto text-center mb-10">
             <h1 className="text-3xl font-bold mb-2 text-slate-800">Login</h1>
-            <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+            <p className="text-base text-slate-500">Selamat datang di website USSI Institute</p>
           </div>
 
           <div className="flex flex-wrap items-center justify-center mx-auto rounded-lg shadow-lg bg-white max-w-4xl">

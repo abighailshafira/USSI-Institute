@@ -112,12 +112,8 @@ const FormRegister = () => {
         <div className="container">
           <div className="w-full px-4">
             <div className="max-w-xl mx-auto text-center mb-10">
-              <h1 className="text-3xl font-bold mb-2 text-slate-800">
-                Register
-              </h1>
-              <p className="text-base text-slate-500">
-                Lorem ipsum dolor sit amet consectetur adipisicing.
-              </p>
+              <h1 className="text-3xl font-bold mb-2 text-slate-800">Register</h1>
+              <p className="text-base text-slate-500">Silahkan daftarkan identitas anda</p>
             </div>
           </div>
 
@@ -139,11 +135,7 @@ const FormRegister = () => {
                     optionFilterProp="children"
                     onChange={onChange}
                     onSearch={onSearch}
-                    filterOption={(input, option) =>
-                      (option?.label ?? "")
-                        .toLowerCase()
-                        .includes(input.toLowerCase())
-                    }
+                    filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
                     options={institutionData}
                     bordered={false}
                   />
@@ -185,9 +177,7 @@ const FormRegister = () => {
                     style={{
                       borderRadius: "5px",
                     }}
-                    iconRender={(visible) =>
-                      visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-                    }
+                    iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
@@ -204,9 +194,7 @@ const FormRegister = () => {
                 <p className="mt-2 text-slate-500 text-center ">
                   Sudah punya akun?{" "}
                   <Link to="/login">
-                    <a className="text-cyan-500 font-semibold hover:text-sky-600">
-                      Login disini
-                    </a>
+                    <a className="text-cyan-500 font-semibold hover:text-sky-600">Login disini</a>
                   </Link>
                 </p>
               </form>

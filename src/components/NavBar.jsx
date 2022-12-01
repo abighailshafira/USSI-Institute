@@ -2,9 +2,7 @@ import React, { useState, Fragment } from "react";
 import { Transition, Disclosure, Menu } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/image/logo-ussi.png";
-import { message, Dropdown, Space } from "antd";
 import { useSelector } from "react-redux";
-import { DownOutlined } from "@ant-design/icons";
 import { FaUser } from "react-icons/fa";
 import "../App.css";
 import Swal from "sweetalert2";
@@ -43,8 +41,8 @@ function NavBar({ theme }) {
     toastMixin.fire({
       title: "Berhasil logout!",
     });
-    navigate("/login");
     setTimeout(window.location.reload.bind(window.location), 500);
+    navigate("/");
   };
   const items = [
     {
@@ -60,11 +58,6 @@ function NavBar({ theme }) {
       // ),
       key: "2",
     },
-  ];
-
-  const links = [
-    { href: "/profile-user", label: "Profile" },
-    { href: "/", label: "Logout", onClick: { handleLogout } },
   ];
 
   return (
@@ -93,31 +86,6 @@ function NavBar({ theme }) {
                 <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Pelatihan</a>
               </Link>
 
-              {/* <Menu as="div" className="relative">
-                <Menu.Button className={["navbar-text inline-flex items-center hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>
-                  Pelatihan
-                  <RiArrowDownSLine aria-hidden="true" />
-                </Menu.Button>
-
-                <Transition
-                  as={Fragment}
-                  enter="transition ease-out duration-100"
-                  enterFrom="transform opacity-0 scale-95"
-                  enterTo="transform opacity-100 scale-100"
-                  leave="transition ease-in duration-75"
-                  leaveFrom="transform opacity-100 scale-100"
-                  leaveTo="transform opacity-0 scale-95"
-                >
-                  <Menu.Items className="absolute right-0 mt-6 w-52 origin-top-right rounded-md bg-white shadow-lg p-2">
-                    {links.map((link) => (
-                      <Menu.Item as="a" key={link.href} href={link.href} className="text-black flex w-full items-center px-4 py-2 text-base hover:bg-slate-700 hover:text-white rounded-md">
-                        {link.label}
-                      </Menu.Item>
-                    ))}
-                  </Menu.Items>
-                </Transition>
-              </Menu> */}
-
               <Link to="/pendaftaran">
                 <a href="#" className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>
                   Pendaftaran
@@ -127,7 +95,12 @@ function NavBar({ theme }) {
               <Link to="/contact">
                 <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Kontak</a>
               </Link>
-              {/* <Menu as="div" className="relative">
+            </div>
+          </div>
+
+          <div className="hidden md:block ">
+            {isLoggedIn ? (
+              <Menu as="div" className="relative">
                 <Menu.Button className={["navbar-text inline-flex items-center hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>
                   <FaUser aria-hidden="true" />
                 </Menu.Button>
@@ -142,22 +115,15 @@ function NavBar({ theme }) {
                   leaveTo="transform opacity-0 scale-95"
                 >
                   <Menu.Items className="absolute right-0 mt-6 w-52 origin-top-right rounded-md bg-white shadow-lg p-2">
-                    {links.map((link) => (
-                      <Menu.Item as="a" key={link.href} href={link.href} className="text-black flex w-full items-center px-4 py-2 text-base hover:bg-slate-700 hover:text-white rounded-md">
-                        {link.label}
-                      </Menu.Item>
-                    ))}
+                    <Menu.Item as="a" href="/profile-user" className="text-black flex w-full items-center px-4 py-2 text-base hover:bg-slate-700 hover:text-white rounded-md">
+                      Profile
+                    </Menu.Item>
+                    <Menu.Item as="a" onClick={handleLogout} className="text-black flex w-full items-center px-4 py-2 text-base hover:bg-slate-700 hover:text-white rounded-md">
+                      Logout
+                    </Menu.Item>
                   </Menu.Items>
                 </Transition>
-              </Menu> */}
-            </div>
-          </div>
-
-          <div className="hidden md:block ">
-            {isLoggedIn ? (
-              <a className={["login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-2 px-6 ml-5 ", theme === "dark" ? "text-white" : "text-black"].join(" ")} onClick={handleLogout}>
-                Logout
-              </a>
+              </Menu>
             ) : (
               <Link to="/login">
                 <a className={["login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-2 px-6 ml-5", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Login</a>

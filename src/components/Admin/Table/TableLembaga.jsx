@@ -78,7 +78,6 @@ const TableLembaga = () => {
       },
     })
       .then((res) => {
-        // console.log(res);
         navigate("/dashboard/lembaga");
       })
       .catch((err) => {
@@ -89,9 +88,6 @@ const TableLembaga = () => {
         } else if (err.message) {
         }
       });
-    // message.success("Lembaga Berhasil Ditambahkan.");
-    // setIsModalOpen1(false);
-    // console.log(formData);
     setConfirmLoading1(true);
     setTimeout(() => {
       setIsModalOpen1(false);
@@ -104,13 +100,6 @@ const TableLembaga = () => {
   const handleCancel1 = () => {
     setIsModalOpen1(false);
   };
-
-  // const getPendaftaran = () => {
-  //   axios.get(`http://localhost:5000/api/v1/manuk/${bebas.id}`).then((res) => {
-  //     // console.log(res.data.data);
-  //     setInfo(res.data.data);
-  //   });
-  // };
 
   // Update
   const getInstitutionsById = async () => {
