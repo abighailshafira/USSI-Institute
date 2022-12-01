@@ -45,7 +45,7 @@ const FormLogin = () => {
             icon: "success",
             title: "Title",
             showConfirmButton: false,
-            timer: 800,
+            timer: 1000,
             timerProgressBar: true,
             didOpen: (toast) => {
               toast.addEventListener("mouseenter", Swal.stopTimer);
@@ -55,9 +55,7 @@ const FormLogin = () => {
           toastMixin.fire({
             title: "Login berhasil!",
           });
-          setTimeout(window.location.reload.bind(window.location), 300);
           navigate("/");
-        } else {
         }
       })
       .catch((err) => {

@@ -31,10 +31,6 @@ const FormRegister = () => {
     userData.append("password", password);
     userData.append("institutionId", institution);
 
-    // for (var pair of userData.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    // }
-
     axios({
       method: "post",
       url: `http://localhost:5000/api/v1/register`,
@@ -55,7 +51,6 @@ const FormRegister = () => {
         toastMixin.fire({
           title: "Register berhasil",
         });
-
         navigate("/login");
       })
       .catch((err) => {

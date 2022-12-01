@@ -31,7 +31,7 @@ function NavBar({ theme }) {
       icon: "success",
       title: "Title",
       showConfirmButton: false,
-      timer: 800,
+      timer: 1000,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.addEventListener("mouseenter", Swal.stopTimer);
@@ -41,24 +41,9 @@ function NavBar({ theme }) {
     toastMixin.fire({
       title: "Berhasil logout!",
     });
-    setTimeout(window.location.reload.bind(window.location), 500);
     navigate("/");
+    setTimeout(window.location.reload.bind(window.location), 1000);
   };
-  const items = [
-    {
-      label: "Profile",
-      key: "1",
-    },
-    {
-      label: " Logout",
-      // (
-      //   <a className={["login hover:text-cyan-500 text-base text-white ", theme === "dark" ? "text-white" : "text-black"].join(" ")} onClick={handleLogout}>
-      //     Keluar
-      // </a>
-      // ),
-      key: "2",
-    },
-  ];
 
   return (
     <nav className={["absolute top-0 left-0 w-full px-4 z-[9999]", theme === "dark" ? "bg-transparent" : "bg-white shadow-md"].join(" ")}>
@@ -114,7 +99,7 @@ function NavBar({ theme }) {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items className="absolute right-0 mt-6 w-52 origin-top-right rounded-md bg-white shadow-lg p-2">
+                  <Menu.Items className="absolute right-0 mt-8 w-52 origin-top-right rounded-md bg-white shadow-lg p-2 ">
                     <Menu.Item as="a" href="/profile-user" className="text-black flex w-full items-center px-4 py-2 text-base hover:bg-slate-700 hover:text-white rounded-md">
                       Profile
                     </Menu.Item>
