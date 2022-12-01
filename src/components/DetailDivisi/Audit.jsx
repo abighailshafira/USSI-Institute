@@ -9,7 +9,7 @@ const Audit = () => {
         <div className="container lg:-mb-24">
              <div className="flex flex-wrap">
               <div className="w-full mb-10 lg:w-1/2">
-                <img src={Image1} alt="USSI Institute" className="w-96 mx-auto transition duration-300 ease-in-out" />
+                <img src={Image1} alt="USSI Institute" className="w-60 pt-0 sm:w-72 sm:pt-10 mx-auto transition duration-300 ease-in-out" />
               </div>
 
               <div className="w-full lg:w-1/2 mt-4">
