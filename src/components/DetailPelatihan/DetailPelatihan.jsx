@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Image from "../../assets/image/icon-ussi.ico";
 import { BsCalendarRange } from "react-icons/bs";
 import { RiTimeLine, RiUserLocationLine } from "react-icons/ri";
-import { GrDocumentTime } from "react-icons/gr";
+import { TbCalendarTime } from "react-icons/tb";
 import axios from "axios";
 
 const DetailPelatihan = () => {
@@ -72,18 +72,15 @@ const DetailPelatihan = () => {
                   {data.location}, {data.city}
                 </p>
               </div>
-              <div className="pt-10">
-                <p className="font-bold">
-                    Batas Daftar :
+              <div className="pt-2 text-base font-bold">
+                Batas Pendaftaran :
+                <p className="text-slate-800 flex items-center text-sm font-medium pt-1">
+                  <TbCalendarTime className="w-4 h-4 text-cyan-500 mr-2" /> {registrationDate}
                 </p>
-                <p className="text-slate-800 flex items-center text-sm font-medium">
-                    <GrDocumentTime className="w-4 h-4 text-cyan-500 mr-2" />
-                    {registrationDate}
-                  </p>
               </div>
 
               <div>
-                <h2 className="text-xl md:text-2xl text-slate-800 mt-5 md:py-5 py-3">Siap Untuk Bergabung?</h2>
+                <h2 className="text-xl md:text-2xl text-slate-800 mt-5 py-3">Siap untuk Bergabung?</h2>
                 <Link to={`/pendaftaran/${data.id}`}>
                   <a className="text-xs md:text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-sky-600 md:py-3 md:px-8 py-2 px-6 rounded-md hover:bg-gradient-to-l hover:to-sky-600 hover:from-cyan-500 transition duration-300 ease-in-out">
                     Daftar Sekarang
