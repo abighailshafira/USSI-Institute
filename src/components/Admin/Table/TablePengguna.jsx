@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Space, Table, Button, Modal, Input, Popconfirm } from "antd";
+import { Space, Table, Button, Modal, Input } from "antd";
 import { InfoOutlined, DeleteOutlined, SearchOutlined, PlusOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import InputPengguna from "../Form/InputPengguna";
@@ -12,6 +12,7 @@ const TablePengguna = () => {
   // Integrasi
   const [users, setUsers] = useState([]);
   const [formData, setFormData] = useState({
+    id: "",
     name: "",
     email: "",
     password: "",
@@ -114,31 +115,26 @@ const TablePengguna = () => {
 
   // Modal info pengguna
   const [isModalOpen2, setIsModalOpen2] = useState(false);
-  const showModal2 = () => {
+  const showModal2 = (id) => {
     setIsModalOpen2(true);
+    console.log(id);
+
+    // axios
+    //   .get(`http://localhost:5000/api/v1/admin/${id}`, {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   })
+    //   .then((res) => {
+    //     const getData = res.data.data;
+    //     console.log(getData);
+    //     setUsers(getData);
+    //   })
+    //   .catch((error) => console.log(error));
   };
 
-  const handleOk2 = (e) => {
-    e.preventDefault();
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setIsModalOpen2(false);
-      setConfirmLoading(false);
-    }, 2000);
-    Swal.fire({ title: "Berhasil!", text: "Akun pengguna berhasil ditambahkan", icon: "success" });
-
-    axios
-      .get(`http://localhost:5000/api/v1/admin/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        const getData = res.data.data;
-        console.log(getData);
-        setUsers(getData);
-      })
-      .catch((error) => console.log(error));
+  const handleOk2 = (id) => {
+    setIsModalOpen2(false);
   };
 
   const handleCancel2 = () => {
@@ -238,11 +234,11 @@ const TablePengguna = () => {
   const columns = [
     {
       title: "Kode",
-      dataIndex: "code",
-      key: "code",
+      dataIndex: "id",
+      key: "id",
       width: 150,
-      ...getColumnSearchProps("code"),
-      sorter: (a, b) => a.code.localeCompare(b.code),
+      ...getColumnSearchProps("id"),
+      sorter: (a, b) => a.id.localeCompare(b.id),
     },
     {
       title: "Nama",
@@ -266,7 +262,7 @@ const TablePengguna = () => {
       align: "center",
       render: (_, record) => (
         <Space size="middle">
-          <Button type="primary" icon={<InfoOutlined />} onClick={showModal2} />
+          <Button type="primary" icon={<InfoOutlined />} onClick={() => showModal2(record.id)} />
           <Button type="primary" danger icon={<DeleteOutlined />} onClick={() => deleteAdmin(record.id)} />
         </Space>
       ),
@@ -290,7 +286,7 @@ const TablePengguna = () => {
       <Modal title="Tambah Pengguna" open={isModalOpen1} width={800} onOk={handleOk1} onCancel={handleCancel1} confirmLoading={confirmLoading}>
         <InputPengguna formData={formData} setFormData={setFormData} />
       </Modal>
-      <Modal title="Info Pengguna" open={isModalOpen2} onOk={handleOk2} onCancel={handleCancel2}>
+      <Modal title="Info Pengguna" open={isModalOpen2} onOk={() => handleOk2(users.id)} onCancel={handleCancel2}>
         <InfoPengguna formData={formData} setFormData={setFormData} />
       </Modal>
     </>

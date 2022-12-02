@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Form, Input } from "antd";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
-const InfoPengguna = ({ formData, setFormData }) => {
+const InfoPengguna = () => {
   // Integrasi
   const [user, setUser] = useState({});
+  const { id } = useParams();
 
   useEffect(() => {
     getAdminById();
@@ -53,10 +55,10 @@ const InfoPengguna = ({ formData, setFormData }) => {
           <Input disabled={true} />
         </Form.Item>
         <Form.Item name="name" label="Nama">
-          <Input disabled={true} value={formData.name} onChange={(event) => setFormData({ ...formData, name: event.target.value })} />
+          <Input disabled={true} value={user.name} />
         </Form.Item>
         <Form.Item name="email" label="E-mail">
-          <Input disabled={true} value={formData.email} />
+          <Input disabled={true} value={user.email} />
         </Form.Item>
       </Form>
     </>
