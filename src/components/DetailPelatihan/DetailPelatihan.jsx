@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Image from "../../assets/image/icon-ussi.ico";
-import { BsCalendarRange } from "react-icons/bs";
-import { RiTimeLine, RiUserLocationLine } from "react-icons/ri";
-import { TbCalendarTime } from "react-icons/tb";
 import axios from "axios";
+import { RiTimeLine, RiUserLocationLine } from "react-icons/ri";
+import { BsCalendarRange } from "react-icons/bs";
+import { TbCalendarTime } from "react-icons/tb";
+import Image from "../../assets/image/icon-ussi.ico";
 
 const DetailPelatihan = () => {
   const [data, setData] = useState("");
@@ -14,12 +14,12 @@ const DetailPelatihan = () => {
     getDetailPelatihan();
   }, []);
 
+  // Read Data
   const getDetailPelatihan = async () => {
     await axios
       .get(`http://localhost:5000/api/v1/detail/training/${id}`, {
         headers: {
           Accept: "application/json",
-          // Authorization: `Bearer ${auth.token}`,
         },
       })
       .then(function (res) {
@@ -28,20 +28,20 @@ const DetailPelatihan = () => {
         console.log(getData);
       })
       .catch((err) => {
-        // Jika Gagal
+        console.log(err);
       });
   };
 
   const options = {
-    weekday: "short",
-    year: "numeric",
-    month: "long",
+    weekday: "long",
     day: "numeric",
+    month: "long",
+    year: "numeric",
   };
 
-  const startDate = new Date(data.startDate).toLocaleDateString("en-GB", options);
-  const endDate = new Date(data.endDate).toLocaleDateString("en-GB", options);
-  const registrationDate = new Date(data.registrationDate).toLocaleDateString("en-GB", options);
+  const startDate = new Date(data.startDate).toLocaleDateString("id", options);
+  const endDate = new Date(data.endDate).toLocaleDateString("id", options);
+  const registrationDate = new Date(data.registrationDate).toLocaleDateString("id", options);
 
   return (
     <>
@@ -63,15 +63,14 @@ const DetailPelatihan = () => {
                 </p>
                 <p className="text-slate-800 flex items-center text-sm font-medium">
                   <RiTimeLine className="w-4 h-4 text-cyan-500 mr-2" />
-                  {/* belum ada Waktu dari BE */}
-                  10.00 WIB
+                  {data.time} WIB
                 </p>
                 <p className="text-slate-800 flex items-center text-sm font-medium">
                   <RiUserLocationLine className="w-4 h-4 text-cyan-500 mr-2" />
                   {data.location}, {data.city}
                 </p>
               </div>
-              <div className="pt-2 text-base font-bold">
+              <div className="pt-2 text-base font-semibold">
                 Batas Pendaftaran :
                 <p className="text-slate-800 flex items-center text-sm font-medium pt-1">
                   <TbCalendarTime className="w-4 h-4 text-cyan-500 mr-2" /> {registrationDate}
@@ -81,7 +80,7 @@ const DetailPelatihan = () => {
               <div>
                 <h2 className="text-xl md:text-2xl text-slate-800 mt-5 py-3">Siap untuk Bergabung?</h2>
                 <Link to={`/pendaftaran/${data.id}`}>
-                  <a className="text-xs md:text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-sky-600 md:py-3 md:px-8 py-2 px-6 rounded-md hover:bg-gradient-to-l hover:to-sky-600 hover:from-cyan-500 transition duration-300 ease-in-out">
+                  <a className="text-xs md:text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-sky-600 md:py-3 md:px-8 py-2 px-6 rounded-md hover:text-white hover:bg-gradient-to-l hover:to-sky-600 hover:from-cyan-500 transition duration-300 ease-in-out">
                     Daftar Sekarang
                   </a>
                 </Link>
