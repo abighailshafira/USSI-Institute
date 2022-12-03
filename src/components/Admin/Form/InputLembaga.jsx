@@ -11,13 +11,28 @@ const InputLembaga = ({ formData, setFormData }) => {
         layout="horizontal"
         labelAlign="left"
       >
-        <Form.Item name="code" label="Kode Lembaga">
+        <Form.Item name="code" label="Kode Lembaga"           
+          rules={[
+            {
+              required: true,
+            },
+          ]}>
           <Input value={formData.code} onChange={(event) => setFormData({ ...formData, code: event.target.value })} />
         </Form.Item>
-        <Form.Item name="institutionName" label="Nama Lembaga">
+        <Form.Item name="institutionName" label="Nama Lembaga"          
+           rules={[
+            {
+              required: true,
+            },
+          ]}>
           <Input value={formData.institutionName} onChange={(event) => setFormData({ ...formData, institutionName: event.target.value })} />
         </Form.Item>
-        <Form.Item name="institutionAddress" label="Alamat Lembaga">
+        <Form.Item name="institutionAddress" label="Alamat Lembaga"          
+           rules={[
+            {
+              required: true,
+            },
+          ]}>
           <Input
             value={formData.institutionAddress}
             onChange={(event) =>
@@ -28,13 +43,28 @@ const InputLembaga = ({ formData, setFormData }) => {
             }
           />
         </Form.Item>
-        <Form.Item name="province" label="Provinsi">
+        <Form.Item name="province" label="Provinsi"          
+           rules={[
+            {
+              required: true,
+            },
+          ]}>
           <Input value={formData.province} onChange={(event) => setFormData({ ...formData, province: event.target.value })} />
         </Form.Item>
-        <Form.Item name="email" label="E-mail">
+        <Form.Item name="email" label="E-mail"           
+          rules={[
+            {
+              required: true,
+            },
+          ]}>
           <Input value={formData.email} onChange={(event) => setFormData({ ...formData, email: event.target.value })} />
         </Form.Item>
-        <Form.Item name="phone" label="Phone Number">
+        <Form.Item name="phone" label="Phone Number"         
+          rules={[
+            {
+              required: true,
+            },
+          ]}>
           <Input
             addonBefore="+62"
             style={{
@@ -44,10 +74,20 @@ const InputLembaga = ({ formData, setFormData }) => {
             onChange={(event) => setFormData({ ...formData, phone: event.target.value })}
           />
         </Form.Item>
-        <Form.Item name="CPName" label="Nama CP">
+        <Form.Item name="CPName" label="Nama CP"          
+           rules={[
+            {
+              required: true,
+            },
+          ]}>
           <Input value={formData.CPName} onChange={(event) => setFormData({ ...formData, CPName: event.target.value })} />
         </Form.Item>
-        <Form.Item name="CPPhone" label="Kontak CP">
+        <Form.Item name="CPPhone" label="Kontak CP"          
+           rules={[
+            {
+              required: true,
+            },
+          ]}>
           <Input
             addonBefore="+62"
             style={{
@@ -57,7 +97,12 @@ const InputLembaga = ({ formData, setFormData }) => {
             onChange={(event) => setFormData({ ...formData, CPPhone: event.target.value })}
           />
         </Form.Item>
-        <Form.Item name="statusSLA" label="Status SLA">
+        <Form.Item name="statusSLA" label="Status SLA"           
+          rules={[
+            {
+              required: true,
+            },
+          ]}>
           <Select value={formData.statusSLA} onChange={(value) => setFormData({ ...formData, statusSLA: value })}>
             <Select.Option value="0">0</Select.Option>
             <Select.Option value="1">1</Select.Option>
