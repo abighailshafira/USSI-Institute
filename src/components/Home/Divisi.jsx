@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import Image1 from "../../assets/image/logo-audit.png";
 import Image2 from "../../assets/image/divisi-ussi.png";
 
-const Divisi = ({data}) => {
+const Divisi = () => {
   return (
     <>
       <section className="py-36 mt-36 bg-slate-100">
-        <div className="container text-slate-800 text-center">  
+        <div className="container text-slate-800 text-center">
           <div className="grid lg:gap-x-12 lg:grid-cols-2">
             <div className="mb-24 lg:mb-0">
               <div className="rounded-lg shadow-lg h-full block bg-white">

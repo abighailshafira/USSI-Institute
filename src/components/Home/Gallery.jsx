@@ -27,6 +27,7 @@ const Gallery = () => {
                   </div>
                 </div>
               </div>
+
               <div className="w-full px-4 lg:w-1/2 xl:w-1/3">
                 <div className="bg-white rounded-md shadow-lg overflow-hidden mb-10">
                   <video className="w-full" controls autoPlay muted loop>
@@ -38,6 +39,7 @@ const Gallery = () => {
                   </div>
                 </div>
               </div>
+
               <div className="w-full px-4 lg:w-1/2 xl:w-1/3">
                 <div className="bg-white rounded-md shadow-lg overflow-hidden mb-10">
                   <img src="https://source.unsplash.com/360x200?programming" alt="Pelatihan dan Trial Error Obox OJK II" className="w-full" />
@@ -47,6 +49,7 @@ const Gallery = () => {
                   </div>
                 </div>
               </div>
+
               <div className="w-full px-4 lg:w-1/2 xl:w-1/3">
                 <div className="bg-white rounded-md shadow-lg overflow-hidden mb-10">
                   <video className="w-full" controls autoPlay muted loop>

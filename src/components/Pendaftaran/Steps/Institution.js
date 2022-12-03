@@ -6,7 +6,6 @@ import jwtDecode from "jwt-decode";
 function Institution({ formData, setFormData }) {
   const [pelatihan, setPelatihan] = useState([]);
   const [info, setInfo] = useState({});
-
   const { id } = useParams();
 
   useEffect(() => {
@@ -17,6 +16,12 @@ function Institution({ formData, setFormData }) {
     getPendaftaran();
   }, []);
 
+  const { auth } = JSON.parse(localStorage.getItem("persist:auth"));
+  const { accessToken } = JSON.parse(auth);
+  // console.log(accessToken);
+  const bebas = jwtDecode(accessToken);
+
+  // Read Data Pelatihan
   const getPelatihan = async () => {
     await axios.get("http://localhost:5000/api/v1/detail/training").then((res) => {
       const getData = res.data.data;
@@ -25,6 +30,7 @@ function Institution({ formData, setFormData }) {
     });
   };
 
+  // Read Data Pelatihan berdasarkan Id
   const getPelatihanById = async () => {
     await axios.get(`http://localhost:5000/api/v1/detail/training/${id}`).then((res) => {
       const getData = res.data.data;
@@ -33,11 +39,7 @@ function Institution({ formData, setFormData }) {
     });
   };
 
-  const { auth } = JSON.parse(localStorage.getItem("persist:auth"));
-  const { accessToken } = JSON.parse(auth);
-  // console.log(accessToken);
-  const bebas = jwtDecode(accessToken);
-
+  // Read Data Pendaftaran
   const getPendaftaran = () => {
     axios.get(`http://localhost:5000/api/v1/manuk/${bebas.id}`).then((res) => {
       // console.log(res.data.data);
@@ -57,7 +59,7 @@ function Institution({ formData, setFormData }) {
           value={formData.trainingName}
           onChange={(event) => setFormData({ ...formData, trainingName: event.target.value })}
         >
-          <option selected></option>
+          <option selected>Pilih Pelatihan</option>
           {pelatihan.map((d) => (
             <option value={d.trainingName}>{d.trainingName}</option>
           ))}

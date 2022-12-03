@@ -20,13 +20,14 @@ function Personal({ formData, setFormData }) {
   const { accessToken } = JSON.parse(auth);
   const bebas = jwtDecode(accessToken);
 
+  // Read Data Pendaftaran
   const getPendaftaran = () => {
     axios.get(`http://localhost:5000/api/v1/manuk/${bebas.id}`).then((res) => {
       setInfo(res.data.data);
     });
   };
 
-  console.log(info?.User?.id);
+  // console.log(info?.User?.id);
 
   return (
     <div className="text-slate-800">
@@ -71,19 +72,6 @@ function Personal({ formData, setFormData }) {
           onChange={(event) => setFormData({ ...formData, city: event.target.value })}
           required
         />
-        {/* <ReactSelect
-            id="city"
-            className="basic-single"
-            placeholder="Pilih Kota ..."
-            classNamePrefix="select"
-            // value={selectedCity}
-            // isLoading={isLoading}
-            getOptionLabel={(e) => e.name}
-            getOptionValue={(e) => e.id}
-            isSearchable
-            // options={getCity}
-            // onChange={handleChangeCity}
-          /> */}
       </div>
 
       <div className="grid grid-cols-2 gap-2 md:gap-4">
@@ -101,14 +89,15 @@ function Personal({ formData, setFormData }) {
             required
           />
         </div>
+
         <div className="form-group mb-4">
           <label for="gender" className="text-base">
             Jenis Kelamin
           </label>
           <div className="flex items-center space-x-5 py-1.5">
             <Radio.Group onChange={(event) => setFormData({ ...formData, gender: event.target.value })}>
-              <Radio value={1}>P</Radio>
-              <Radio value={2}>L</Radio>
+              <Radio value={"P"}>P</Radio>
+              <Radio value={"L"}>L</Radio>
             </Radio.Group>
           </div>
         </div>

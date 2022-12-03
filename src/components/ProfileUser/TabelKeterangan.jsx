@@ -1,5 +1,5 @@
-import { Space, Table, Tag } from "antd";
 import React from "react";
+import { Table } from "antd";
 
 const columns = [
   {
@@ -36,10 +36,11 @@ const data = [
     keterangan: "Menunggu hasil ujian",
   },
 ];
+
 const App = () => (
   <>
     <div className="container">
-      <Table className="px-5 pt-10 w-1/2" pagination={false} columns={columns} dataSource={data} bordered />
+      <Table className="px-5 w-1/2" pagination={false} columns={columns} dataSource={data} bordered />
     </div>
   </>
 );
