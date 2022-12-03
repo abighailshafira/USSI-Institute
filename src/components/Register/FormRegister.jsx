@@ -7,21 +7,16 @@ import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import Swal from "sweetalert2";
 
 const FormRegister = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [institution, setInstitution] = useState("");
   const [institutionData, setInstitutionData] = useState([]);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log(institution);
   const navigate = useNavigate();
 
-  console.log(institutionData);
-
-  const toggle = () => {
-    setShowPassword(!showPassword);
-  };
+  // console.log(institution);
+  // console.log(institutionData);
 
   const register = async (e) => {
     e.preventDefault();
@@ -69,7 +64,7 @@ const FormRegister = () => {
         });
         toastMixin.fire({
           icon: "error",
-          animation: true,
+          // animation: true,
           title: "Register Gagal",
         });
       });
@@ -134,6 +129,7 @@ const FormRegister = () => {
                     filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
                     options={institutionData}
                     bordered={false}
+                    required
                   />
                 </div>
 
