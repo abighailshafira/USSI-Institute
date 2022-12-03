@@ -1,13 +1,13 @@
-import { Input, message } from "antd";
-import axios from "axios";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import Image from "../../assets/image/login.png";
-import Home from "../../pages/Home";
+import { useDispatch, useSelector } from "react-redux";
 import { setData } from "../../redux/slices/authSlice";
+import axios from "axios";
+import { Input } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import Swal from "sweetalert2";
+import Image from "../../assets/image/login.png";
+import Home from "../../pages/Home";
 
 const FormLogin = () => {
   const [email, setEmail] = useState("");
@@ -73,7 +73,6 @@ const FormLogin = () => {
         });
         toastMixin.fire({
           icon: "error",
-          animation: true,
           title: "Login gagal!",
           text: "Cek email dan password anda",
         });

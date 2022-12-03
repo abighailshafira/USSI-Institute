@@ -1,10 +1,10 @@
 import React, { useState, Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Logo from "../assets/image/logo-ussi.png";
 import { Transition, Disclosure, Menu } from "@headlessui/react";
 import { FaUser } from "react-icons/fa";
 import Swal from "sweetalert2";
+import Logo from "../assets/image/logo-ussi.png";
 import "../App.css";
 
 window.onscroll = function () {
@@ -71,9 +71,15 @@ function NavBar({ theme }) {
                 <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Pelatihan</a>
               </Link>
 
-              <Link to="/pendaftaran">
-                <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Pendaftaran</a>
-              </Link>
+              {isLoggedIn ? (
+                <Link to="/pendaftaran">
+                  <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Pendaftaran</a>
+                </Link>
+              ) : (
+                <Link to="/login">
+                  <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Pendaftaran</a>
+                </Link>
+              )}
 
               <Link to="/kontak">
                 <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Kontak</a>
@@ -156,11 +162,15 @@ function NavBar({ theme }) {
               <Link to="/jadwal-pelatihan">
                 <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pelatihan</a>
               </Link>
-
-              <Link to="/pendaftaran">
-                <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pendaftaran</a>
-              </Link>
-
+              {isLoggedIn ? (
+                <Link to="/pendaftaran">
+                  <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pendaftaran</a>
+                </Link>
+              ) : (
+                <Link to="/login">
+                  <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pendaftaran</a>
+                </Link>
+              )}
               <Link to="/kontak">
                 <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Kontak</a>
               </Link>
