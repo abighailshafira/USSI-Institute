@@ -73,7 +73,7 @@ const Footer = () => {
                 </p>
 
                 <p className="mb-4">
-                  <Link to="/profile">
+                  <Link to="/tentang">
                     <a className="text-white hover:text-cyan-500">Tentang</a>
                   </Link>
                 </p>
@@ -91,7 +91,7 @@ const Footer = () => {
                 </p>
 
                 <p className="mb-4">
-                  <Link to="/contact">
+                  <Link to="/kontak">
                     <a className="text-white hover:text-cyan-500">Kontak</a>
                   </Link>
                 </p>
