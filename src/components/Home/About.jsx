@@ -38,7 +38,6 @@ const About = () => {
 
               <div>
                 <h3 className="text-2xl font-bold mb-3 text-slate-800">Tujuan Kami</h3>
-
                 <p className="text-slate-500 text-base">
                   Tujuan yang kami harapkan setelah mengikuti pendidikan dan pelatihan yang diselenggarakan USSI INSTITUTE adalah untuk <b>membangun sistem pelayanan prima</b>, dengan memberikan layanan cepat, tepat, skala prioritas dan
                   waktu tanggap yang sesuai mutu internasional.
@@ -65,7 +64,6 @@ const About = () => {
 
               <div className="md:order-1">
                 <h3 className="text-2xl font-bold mb-3 text-slate-800">Komitmen Kami</h3>
-
                 <p className="text-slate-500 text-base">
                   Kami selaku vendor penyedia jasa corebanking system teknologi informasi memiliki komitmen untuk <b>menciptakan sumberdaya</b> yang handal, profesional, memiliki integritas, loyalitas dan jiwa kepemimpinan.
                 </p>

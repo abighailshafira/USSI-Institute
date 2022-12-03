@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Image from "../../assets/image/pendaftaran.png";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import jwtDecode from "jwt-decode";
+import Swal from "sweetalert2";
 import Institution from "./Steps/Institution";
 import Personal from "./Steps/Personal";
 import Payment from "./Steps/Payment";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import jwtDecode from "jwt-decode";
+import Image from "../../assets/image/pendaftaran.png";
 
 const FormDaftar = () => {
-  const [pendaftaran, setPelatihan] = useState([]);
   const [info, setInfo] = useState({});
-
-  useEffect(() => {
-    getPendaftaran();
-    setFormData({ userId: info?.User?.id });
-  }, []);
-
   const [formData, setFormData] = useState({
     userId: info?.User?.id || 0,
     city: "",
@@ -24,39 +17,27 @@ const FormDaftar = () => {
     gender: "",
     payment: "",
   });
-  console.log(info);
+
   const navigate = useNavigate();
 
-  const getPelatihan = async (data) => {
-    await axios
-      .post("http://localhost:5000/api/v1/registration", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        data: data,
-      })
-      .then((res) => {
-        console.log(data);
-      })
-      .catch((error) => console.log(error));
-  };
+  useEffect(() => {
+    getPendaftaran();
+    setFormData({ userId: info?.User?.id });
+  }, []);
 
   const { auth } = JSON.parse(localStorage.getItem("persist:auth"));
   const { accessToken } = JSON.parse(auth);
-  // console.log(accessToken);
   const bebas = jwtDecode(accessToken);
 
   const getPendaftaran = () => {
     axios.get(`http://localhost:5000/api/v1/manuk/${bebas.id}`).then((res) => {
-      // console.log(res.data.data);
       setInfo(res.data.data);
     });
   };
 
+  // Display pages
   const [page, setPage] = useState(0);
-
   const FormTitles = ["Informasi Lembaga", "Profil Peserta", "Pembayaran"];
-
   const PageDisplay = () => {
     if (page === 0) {
       return <Institution formData={formData} setFormData={setFormData} />;
@@ -67,9 +48,9 @@ const FormDaftar = () => {
     }
   };
 
+  // Submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
 
     axios({
       method: "post",
@@ -81,8 +62,19 @@ const FormDaftar = () => {
       },
     })
       .then((res) => {
-        //handle success
         console.log(res);
+        Swal.fire({
+          title: "Berhasil!",
+          text: "Pendaftaran berhasil!",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
         navigate("/");
       })
       .catch((err) => {
@@ -94,46 +86,10 @@ const FormDaftar = () => {
           // do something other than the other two
         }
       });
-    Swal.fire({ title: "Berhasil!", text: "Pendaftaran berhasil!", icon: "success" });
-    // navigate("/pendaftaran");
-    // setTimeout(window.location.reload.bind(window.location), 800);
-
-    // getPelatihan(formData);
   };
 
   return (
     <>
-      {/* <section id="form-daftar" className="pt-36">
-        <div className="container">
-          <div className="flex flex-wrap justify-center items-center rounded-lg shadow-xl bg-white mx-auto">
-            <div className="w-full p-10 md:w-1/2">
-              <form>
-                <div className="grid grid-cols-2 gap-2 md:gap-4">
-                  <div className="form-group mb-4">
-                    <label for="asalKota" className="text-base">
-                      Asal Kota
-                    </label>
-                    <ReactSelect
-                      className="basic-single"
-                      placeholder="Pilih Kota ..."
-                      classNamePrefix="select"
-                      // value={selectedCity}
-                      // isLoading={isLoading}
-                      getOptionLabel={(e) => e.name}
-                      getOptionValue={(e) => e.id}
-                      isSearchable
-                      options={getCity}
-                      // onChange={handleChangeCity}
-                    />
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <br />
-      </section> */}
-
       <section id="form-daftar" className="pt-36">
         <div className="container max-w-6xl">
           <div className="w-full px-4">
@@ -185,34 +141,12 @@ const FormDaftar = () => {
                   <button
                     className="px-6 py-2.5 bg-cyan-500 text-white font-semibold text-sm leading-tight rounded-md cursor-pointer hover:bg-cyan-600 transition duration-300 ease-in-out"
                     onClick={() => {
-                      // if (page === FormTitles.length - 1) {
-                      // alert("FORM SUBMITTED");
-                      // console.log(formData);
-
-                      // } else {
                       setPage((currPage) => currPage + 1);
-                      // }
                     }}
                   >
                     Selanjutnya
                   </button>
                 )}
-                {/* <form onSubmit={}>
-                  <button
-                    className="px-6 py-2.5 bg-cyan-500 text-white font-semibold text-sm leading-tight rounded-md cursor-pointer hover:bg-cyan-600 transition duration-300 ease-in-out"
-                    onClick={() => {
-                      if (page === FormTitles.length - 1) {
-                        alert("FORM SUBMITTED");
-                        // console.log(formData);
-                        getPelatihan();
-                      } else {
-                        setPage((currPage) => currPage + 1);
-                      }
-                    }}
-                  >
-                    {page === FormTitles.length - 1 ? "Daftar" : "Selanjutnya"}
-                  </button>
-                </form> */}
               </div>
             </div>
           </div>

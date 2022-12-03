@@ -51,12 +51,7 @@ const InputLembaga = ({ formData, setFormData }) => {
           ]}>
           <Input value={formData.province} onChange={(event) => setFormData({ ...formData, province: event.target.value })} />
         </Form.Item>
-        <Form.Item name="email" label="E-mail"           
-          rules={[
-            {
-              required: true,
-            },
-          ]}>
+        <Form.Item name="email" label="Email">
           <Input value={formData.email} onChange={(event) => setFormData({ ...formData, email: event.target.value })} />
         </Form.Item>
         <Form.Item name="phone" label="Phone Number"         

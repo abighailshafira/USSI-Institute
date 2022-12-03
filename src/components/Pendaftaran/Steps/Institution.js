@@ -1,12 +1,11 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 import jwtDecode from "jwt-decode";
 
 function Institution({ formData, setFormData }) {
   const [pelatihan, setPelatihan] = useState([]);
   const [info, setInfo] = useState({});
-
   const { id } = useParams();
 
   useEffect(() => {
@@ -17,6 +16,12 @@ function Institution({ formData, setFormData }) {
     getPendaftaran();
   }, []);
 
+  const { auth } = JSON.parse(localStorage.getItem("persist:auth"));
+  const { accessToken } = JSON.parse(auth);
+  // console.log(accessToken);
+  const bebas = jwtDecode(accessToken);
+
+  // Read Data Pelatihan
   const getPelatihan = async () => {
     await axios.get("http://localhost:5000/api/v1/detail/training").then((res) => {
       const getData = res.data.data;
@@ -25,6 +30,7 @@ function Institution({ formData, setFormData }) {
     });
   };
 
+  // Read Data Pelatihan berdasarkan Id
   const getPelatihanById = async () => {
     await axios.get(`http://localhost:5000/api/v1/detail/training/${id}`).then((res) => {
       const getData = res.data.data;
@@ -33,11 +39,7 @@ function Institution({ formData, setFormData }) {
     });
   };
 
-  const { auth } = JSON.parse(localStorage.getItem("persist:auth"));
-  const { accessToken } = JSON.parse(auth);
-  // console.log(accessToken);
-  const bebas = jwtDecode(accessToken);
-
+  // Read Data Pendaftaran
   const getPendaftaran = () => {
     axios.get(`http://localhost:5000/api/v1/manuk/${bebas.id}`).then((res) => {
       // console.log(res.data.data);
@@ -57,12 +59,10 @@ function Institution({ formData, setFormData }) {
           value={formData.trainingName}
           onChange={(event) => setFormData({ ...formData, trainingName: event.target.value })}
         >
-          <option selected>-</option>
+          <option selected>Pilih Pelatihan</option>
           {pelatihan.map((d) => (
             <option value={d.trainingName}>{d.trainingName}</option>
           ))}
-          {/* <option value="2">Two</option>
-          <option value="3">Three</option> */}
         </select>
       </div>
 
@@ -75,6 +75,7 @@ function Institution({ formData, setFormData }) {
           className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
           id="institutionName"
           placeholder="Nama Lembaga"
+          disabled={true}
           value={info.institutionName}
           onChange={(event) => setFormData({ ...formData, institutionName: event.target.value })}
         />
@@ -89,6 +90,7 @@ function Institution({ formData, setFormData }) {
           className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
           id="institutionAddress"
           placeholder="Alamat Lembaga"
+          disabled={true}
           value={info.institutionAddress}
           onChange={(event) => setFormData({ ...formData, institutionAddress: event.target.value })}
         />

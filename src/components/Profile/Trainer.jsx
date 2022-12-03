@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
+import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 import Image1 from "../../assets/image/trainer-1.jpg";
 import Image2 from "../../assets/image/trainer-2.jpg";
-import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 
 const NextArrow = ({ onClick }) => {
   return (
