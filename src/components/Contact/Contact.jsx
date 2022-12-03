@@ -11,12 +11,24 @@ const Contact = () => {
 
     emailjs.sendForm("service_6t70fcj", "template_i1b6rak", form.current, "-hablRCXNYLfvdviu").then(
       (result) => {
-        Swal.fire({ title: "Berhasil!", text: "Pesan berhasil dikirim", icon: "success" });
-        setTimeout(window.location.reload.bind(window.location), 2000);
+        console.log(result.text);
+        Swal.fire({
+          title: "Berhasil!",
+          text: "Pesan berhasil dikirim",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+        e.target.reset();
       },
       (error) => {
         console.log(error.text);
-        Swal.fire({ title: "Ups!", text: "Pesan gagal dikirim", icon: "success" });
+        Swal.fire({ title: "Ups!", text: "Pesan gagal dikirim", icon: "error" });
       }
     );
   };

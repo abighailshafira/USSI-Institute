@@ -11,6 +11,7 @@ import { useNavigate, useParams } from "react-router-dom";
 const TablePengguna = () => {
   // Integrasi
   const [users, setUsers] = useState([]);
+  const [detail, setDetail] = useState({});
   const [formData, setFormData] = useState({
     id: "",
     name: "",
@@ -24,7 +25,7 @@ const TablePengguna = () => {
   // Read
   useEffect(() => {
     getAdmin();
-    getAdminById();
+    // getAdminById();
   }, []);
 
   const getAdmin = async () => {
@@ -51,8 +52,8 @@ const TablePengguna = () => {
       })
       .then((res) => {
         const getData = res.data.data;
-        console.log(getData);
-        setUsers(getData);
+        // console.log(getData);
+        setDetail(getData);
       })
       .catch((error) => console.log(error));
   };
@@ -82,7 +83,7 @@ const TablePengguna = () => {
       setIsModalOpen1(false);
       setConfirmLoading(false);
     }, 2000);
-    Swal.fire({ title: "Berhasil!", text: "Akun pengguna berhasil ditambahkan", icon: "success" });
+    // Swal.fire({ title: "Berhasil!", text: "Akun pengguna berhasil ditambahkan", icon: "success" });
 
     axios({
       method: "post",
@@ -94,16 +95,40 @@ const TablePengguna = () => {
       },
     })
       .then((res) => {
-        console.log(res);
+        var toastMixin = Swal.mixin({
+          icon: "success",
+          title: "Title",
+          showConfirmButton: false,
+          timer: 1000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+        toastMixin.fire({
+          title: res.data.message,
+        });
         navigate("/dashboard");
       })
       .catch((err) => {
-        if (err.response) {
-          console.log("err.response ", err.response);
-        } else if (err.request) {
-          console.log("err.request ", err.request);
-        } else if (err.message) {
-        }
+        console.log(err);
+        var toastMixin = Swal.mixin({
+          icon: "success",
+          title: "Title",
+          showConfirmButton: false,
+          timer: 1000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+        toastMixin.fire({
+          icon: "error",
+          animation: true,
+          title: "Register Gagal",
+        });
       });
 
     // Swal.fire({ title: "Ups!", text: "Silahkan lengkapi data", icon: "error" });
@@ -115,11 +140,12 @@ const TablePengguna = () => {
 
   // Modal info pengguna
   const [isModalOpen2, setIsModalOpen2] = useState(false);
-  const showModal2 = (id) => {
+  const showModal2 = async (id) => {
     setIsModalOpen2(true);
     console.log(id);
+    getAdminById(id);
 
-    // axios
+    // await axios
     //   .get(`http://localhost:5000/api/v1/admin/${id}`, {
     //     headers: {
     //       "Content-Type": "application/json",
@@ -127,11 +153,14 @@ const TablePengguna = () => {
     //   })
     //   .then((res) => {
     //     const getData = res.data.data;
-    //     console.log(getData);
-    //     setUsers(getData);
+    //     // console.log(getData);
+
+    //     setDetail(getData);
     //   })
     //   .catch((error) => console.log(error));
   };
+
+  // console.log(detail);
 
   const handleOk2 = (id) => {
     setIsModalOpen2(false);
@@ -264,6 +293,7 @@ const TablePengguna = () => {
         <Space size="middle">
           <Button type="primary" icon={<InfoOutlined />} onClick={() => showModal2(record.id)} />
           <Button type="primary" danger icon={<DeleteOutlined />} onClick={() => deleteAdmin(record.id)} />
+          {/* {console.log(record.id)} */}
         </Space>
       ),
     },
@@ -283,11 +313,11 @@ const TablePengguna = () => {
         <Table bordered dataSource={users} columns={columns} deleteAdmin={deleteAdmin} size="middle" />
       </div>
 
-      <Modal title="Tambah Pengguna" open={isModalOpen1} width={800} onOk={handleOk1} onCancel={handleCancel1} confirmLoading={confirmLoading}>
+      <Modal title="Tambah Pengguna" open={isModalOpen1} onOk={handleOk1} onCancel={handleCancel1} confirmLoading={confirmLoading}>
         <InputPengguna formData={formData} setFormData={setFormData} />
       </Modal>
       <Modal title="Info Pengguna" open={isModalOpen2} onOk={() => handleOk2(users.id)} onCancel={handleCancel2}>
-        <InfoPengguna formData={formData} setFormData={setFormData} />
+        <InfoPengguna detail={detail} setDetail={setDetail} />
       </Modal>
     </>
   );

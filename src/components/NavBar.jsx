@@ -1,11 +1,11 @@
 import React, { useState, Fragment } from "react";
-import { Transition, Disclosure, Menu } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "../assets/image/logo-ussi.png";
 import { useSelector } from "react-redux";
+import Logo from "../assets/image/logo-ussi.png";
+import { Transition, Disclosure, Menu } from "@headlessui/react";
 import { FaUser } from "react-icons/fa";
-import "../App.css";
 import Swal from "sweetalert2";
+import "../App.css";
 
 window.onscroll = function () {
   const header = document.querySelector("nav");
@@ -31,7 +31,7 @@ function NavBar({ theme }) {
       icon: "success",
       title: "Title",
       showConfirmButton: false,
-      timer: 1000,
+      timer: 1500,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.addEventListener("mouseenter", Swal.stopTimer);
@@ -63,7 +63,7 @@ function NavBar({ theme }) {
                 <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Beranda</a>
               </Link>
 
-              <Link to="/profile">
+              <Link to="/tentang">
                 <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Tentang</a>
               </Link>
 
@@ -72,12 +72,10 @@ function NavBar({ theme }) {
               </Link>
 
               <Link to="/pendaftaran">
-                <a href="#" className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>
-                  Pendaftaran
-                </a>
+                <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Pendaftaran</a>
               </Link>
 
-              <Link to="/contact">
+              <Link to="/kontak">
                 <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Kontak</a>
               </Link>
             </div>
@@ -151,7 +149,7 @@ function NavBar({ theme }) {
                 <a className="hover:bg-slate-700 hover:text-white text-black block px-4 py-2 rounded-md text-base">Beranda</a>
               </Link>
 
-              <Link to="/profile">
+              <Link to="/tentang">
                 <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Tentang</a>
               </Link>
 
@@ -159,29 +157,11 @@ function NavBar({ theme }) {
                 <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pelatihan</a>
               </Link>
 
-              {/* <Menu as="div" className="relative">
-                <Disclosure>
-                  <Disclosure.Button className="inline-flex items-center hover:bg-slate-700 hover:text-white text-black px-4 py-2 rounded-md text-base ">
-                    Pelatihan
-                    <RiArrowDownSLine className="ml-2 text-black" aria-hidden="true" />
-                  </Disclosure.Button>
-                  <Disclosure.Panel className="text-gray-500 ml-10">
-                    <Link to="/pelatihan">
-                      <a className="hover:bg-slate-700 hover:text-white text-black block px-4 py-2 rounded-md text-base">Pelatihan</a>
-                    </Link>
-
-                    <Link to="/jadwal-pelatihan">
-                      <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Jadwal Pelatihan</a>
-                    </Link>
-                  </Disclosure.Panel>
-                </Disclosure>
-              </Menu> */}
-
               <Link to="/pendaftaran">
                 <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pendaftaran</a>
               </Link>
 
-              <Link to="/contact">
+              <Link to="/kontak">
                 <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Kontak</a>
               </Link>
 
