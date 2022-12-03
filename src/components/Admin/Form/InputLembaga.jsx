@@ -31,7 +31,7 @@ const InputLembaga = ({ formData, setFormData }) => {
         <Form.Item name="province" label="Provinsi">
           <Input value={formData.province} onChange={(event) => setFormData({ ...formData, province: event.target.value })} />
         </Form.Item>
-        <Form.Item name="email" label="E-mail">
+        <Form.Item name="email" label="Email">
           <Input value={formData.email} onChange={(event) => setFormData({ ...formData, email: event.target.value })} />
         </Form.Item>
         <Form.Item name="phone" label="Phone Number">

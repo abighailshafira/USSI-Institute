@@ -36,7 +36,7 @@ const inputPengguna = ({ formData, setFormData }) => {
         </Form.Item>
         <Form.Item
           name="email"
-          label="E-mail"
+          label="Email"
           rules={[
             {
               type: "email",

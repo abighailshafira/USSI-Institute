@@ -313,7 +313,7 @@ const TablePengguna = () => {
         <Table bordered dataSource={users} columns={columns} deleteAdmin={deleteAdmin} size="middle" />
       </div>
 
-      <Modal title="Tambah Pengguna" open={isModalOpen1} onOk={handleOk1} onCancel={handleCancel1} confirmLoading={confirmLoading}>
+      <Modal title="Tambah Pengguna" open={isModalOpen1} width={700} onOk={handleOk1} onCancel={handleCancel1} confirmLoading={confirmLoading}>
         <InputPengguna formData={formData} setFormData={setFormData} />
       </Modal>
       <Modal title="Info Pengguna" open={isModalOpen2} onOk={() => handleOk2(users.id)} onCancel={handleCancel2}>

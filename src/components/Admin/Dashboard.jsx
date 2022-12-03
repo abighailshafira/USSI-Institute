@@ -8,30 +8,43 @@ import { FiHome, FiUser } from "react-icons/fi";
 import { HiOutlineOfficeBuilding, HiOutlineViewGrid } from "react-icons/hi";
 import { TbCertificate } from "react-icons/tb";
 import TablePengguna from "./Table/TablePengguna";
-
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 const { Header, Content, Sider } = Layout;
 
 const Dashboard = () => {
   // Navbar
   const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
+
+  // Handle Logout
+  const handleLogout = () => {
+    // jsCookie.remove('auth')
+    // localStorage.removeItem("persist:auth");
+    var toastMixin = Swal.mixin({
+      toast: true,
+      icon: "success",
+      title: "Title",
+      animation: false,
+      position: "top-right",
+      showConfirmButton: false,
+      timer: 800,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+    toastMixin.fire({
+      title: "Berhasil logout",
+    });
+    // navigate("/login");
+  };
 
   return (
     <>
       <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-          width={230}
-          breakpoint="lg"
-          collapsedWidth="100"
-          style={
-            {
-              // height: "100%",
-              // borderRight: 0,
-            }
-          }
-        >
+        <Sider trigger={null} collapsible collapsed={collapsed} width={230} breakpoint="lg" collapsedWidth="100">
           <div className="logo">
             <Link to="/dashboard">
               <a className="py-6 flex justify-center">
@@ -40,12 +53,7 @@ const Dashboard = () => {
             </Link>
           </div>
 
-          <Menu
-            mode="inline"
-            theme="dark"
-            defaultSelectedKeys={["dashboard"]}
-            // selectedKeys={[location.pathname]}
-          >
+          <Menu mode="inline" theme="dark" defaultSelectedKeys={["dashboard"]}>
             <Menu.Item key="dashboard" icon={<FiHome />}>
               <Link to="/dashboard" />
               Dashboard
@@ -73,7 +81,9 @@ const Dashboard = () => {
                 <Link to="/dashboard/profile" />
                 Profil
               </Menu.Item>
-              <Menu.Item key="logout">Keluar</Menu.Item>
+              <Menu.Item key="logout" onClick={handleLogout}>
+                Keluar
+              </Menu.Item>
             </Menu.SubMenu>
           </Menu>
         </Sider>
