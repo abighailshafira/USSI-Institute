@@ -19,7 +19,7 @@ const TablePelatihan = () => {
     time: "",
     location: "",
     city: "",
-    img: "",
+    img: [],
     registrationDate: "",
   });
   const { id } = useParams();
@@ -65,6 +65,12 @@ const TablePelatihan = () => {
 
   const handleOk1 = (e) => {
     e.preventDefault();
+    setConfirmLoading1(true);
+    setTimeout(() => {
+      setIsModalOpen1(false);
+      setConfirmLoading1(false);
+    }, 2000);
+    // console.log(formData);
     axios({
       method: "post",
       url: `http://localhost:5000/api/v1/training`,
@@ -75,26 +81,43 @@ const TablePelatihan = () => {
       },
     })
       .then((res) => {
-        console.log(res);
+        var toastMixin = Swal.mixin({
+          icon: "success",
+          title: "Title",
+          showConfirmButton: false,
+          timer: 1000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+        toastMixin.fire({
+          title: res.data.message,
+        });
         navigate("/dashboard/pelatihan");
       })
       .catch((err) => {
-        if (err.response) {
-          console.log("err.response ", err.response);
-        } else if (err.request) {
-          console.log("err.request ", err.request);
-        } else if (err.message) {
-        }
+        console.log(err);
+        var toastMixin = Swal.mixin({
+          icon: "success",
+          title: "Title",
+          showConfirmButton: false,
+          timer: 1000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+        toastMixin.fire({
+          icon: "error",
+          animation: true,
+          title: "Register Gagal",
+        });
       });
 
-    setConfirmLoading1(true);
-    setTimeout(() => {
-      setIsModalOpen1(false);
-      setConfirmLoading1(false);
-    }, 1000);
-
-    Swal.fire({ title: "Berhasil!", text: "Data pelatihan berhasil ditambahkan", icon: "success" });
-    // Swal.fire({ title: "Ups!", text: "Silahkan lengkapi data", icon: "error" });
+    // Swal.fire({ title: "Berhasil!", text: "Data pelatihan berhasil ditambahkan", icon: "success" });
   };
 
   const handleCancel1 = () => {

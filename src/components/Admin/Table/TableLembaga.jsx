@@ -10,6 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const TableLembaga = () => {
   const [institutions, setInstitutions] = useState([]);
+  const [detail, setDetail] = useState({});
   const [formData, setFormData] = useState({
     code: "",
     institutionName: "",
@@ -100,7 +101,7 @@ const TableLembaga = () => {
   };
 
   // Update
-  const getInstitutionsById = async () => {
+  const getInstitutionsById = async (id) => {
     await axios
       .get(`http://localhost:5000/api/v1/institution/${id}`, {
         headers: {
@@ -109,16 +110,18 @@ const TableLembaga = () => {
       })
       .then((res) => {
         const getData = res.data.data;
-        console.log(getData);
-        setInstitutions(getData);
+        // console.log(getData);
+        setDetail(getData);
       })
       .catch((error) => console.log(error));
   };
 
   const [confirmLoading2, setConfirmLoading2] = useState(false);
   const [isModalOpen2, setIsModalOpen2] = useState(false);
-  const showModal2 = () => {
+  const showModal2 = async (id) => {
     setIsModalOpen2(true);
+    console.log(id);
+    await getInstitutionsById(id);
   };
 
   const handleOk2 = (e) => {
@@ -130,7 +133,7 @@ const TableLembaga = () => {
     }, 1000);
 
     axios({
-      method: "post",
+      method: "put",
       url: `http://localhost:5000/api/v1/institution`,
       data: formData,
       headers: {
@@ -380,8 +383,9 @@ const TableLembaga = () => {
       align: "center",
       render: (_, record) => (
         <Space size="small">
-          <Button icon={<EditOutlined />} onClick={showModal2} />
+          <Button icon={<EditOutlined />} onClick={() => showModal2(record.id)} />
           <Button type="primary" danger icon={<DeleteOutlined />} onClick={() => deleteInstitution(record.id)} />
+          {/* {console.log(record.id)} */}
         </Space>
       ),
     },
@@ -415,7 +419,7 @@ const TableLembaga = () => {
           </Modal>
 
           <Modal title="Edit Lembaga" open={isModalOpen2} width={800} onOk={handleOk2} onCancel={handleCancel2} confirmLoading={confirmLoading2}>
-            <EditLembaga formData={formData} setFormData={setFormData} />
+            <EditLembaga detail={detail} formData={formData} setFormData={setFormData} />
           </Modal>
         </div>
       </div>

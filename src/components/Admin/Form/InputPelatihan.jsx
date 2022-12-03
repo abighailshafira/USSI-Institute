@@ -27,6 +27,8 @@ const InputPelatihan = ({ formData, setFormData }) => {
     ],
   };
 
+  console.log(formData);
+
   return (
     <>
       <Form
@@ -61,10 +63,10 @@ const InputPelatihan = ({ formData, setFormData }) => {
           <Input.TextArea showCount maxLength={100} value={formData.description} onChange={(event) => setFormData({ ...formData, description: event.target.value })} />
         </Form.Item>
         <Form.Item name="range-picker" label="Tanggal pelaksanaan" {...rangeConfig}>
-          <RangePicker />
+          <RangePicker value={formData.startDate} onChange={(event) => setFormData({ ...formData, startDate: event.target.value })} />
         </Form.Item>
         <Form.Item name="time-picker" label="Waktu Pelaksanaan" {...config}>
-          <TimePicker />
+          <TimePicker value={formData.time} onChange={(event) => setFormData({ ...formData, time: event.target.value })} />
         </Form.Item>
         <Form.Item
           name="location"
@@ -89,7 +91,7 @@ const InputPelatihan = ({ formData, setFormData }) => {
             },
           ]}
         >
-          <Upload action="/upload.do" listType="picture-card">
+          <Upload action="/upload.do" listType="picture-card" value={formData.img} onChange={(event) => setFormData({ ...formData, img: event.target.value })}>
             <div>
               <PlusOutlined />
               <div
@@ -112,7 +114,7 @@ const InputPelatihan = ({ formData, setFormData }) => {
             },
           ]}
         >
-          <DatePicker />
+          <DatePicker value={formData.registrationDate} onChange={(event) => setFormData({ ...formData, registrationDate: event.target.value })} />
         </Form.Item>
       </Form>
     </>

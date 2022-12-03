@@ -29,6 +29,7 @@ const FormRegister = () => {
     userData.append("name", name);
     userData.append("email", email);
     userData.append("password", password);
+    userData.append("role", "member");
     userData.append("institutionId", institution);
 
     axios({
@@ -49,7 +50,7 @@ const FormRegister = () => {
           },
         });
         toastMixin.fire({
-          title: "Register berhasil",
+          title: res.data.message,
         });
         navigate("/login");
       })
@@ -69,7 +70,7 @@ const FormRegister = () => {
         toastMixin.fire({
           icon: "error",
           animation: true,
-          title: "Register gagal!",
+          title: "Register Gagal",
         });
       });
   };
