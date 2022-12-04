@@ -1,8 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Image from "../assets/image/icon-ussi.ico";
 
+
 const Footer = () => {
+  
+  const isLoggedIn = useSelector((state) => state.auth.accessToken);
+
   return (
     <>
       <footer>
@@ -85,9 +90,15 @@ const Footer = () => {
                 </p>
 
                 <p className="mb-4">
-                  <Link to="/pendaftaran">
-                    <a className="text-white hover:text-cyan-500">Pendaftaran</a>
-                  </Link>
+                  {isLoggedIn? (
+                    <Link to="/pendaftaran">
+                      <a className="text-white hover:text-cyan-500">Pendaftaran</a>
+                    </Link>
+                  ):(
+                    <Link to="/login">
+                      <a className="text-white hover:text-cyan-500">Pendaftaran</a>
+                    </Link>
+                  )}
                 </p>
 
                 <p className="mb-4">
