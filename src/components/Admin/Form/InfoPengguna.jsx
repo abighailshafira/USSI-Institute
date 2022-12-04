@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Form, Input } from "antd";
-import axios from "axios";
+// import axios from "axios";
 
 const InfoPengguna = ({ detail }) => {
-  // Integrasi
   // const [user, setUser] = useState({});
-  // console.log(formData);
+
+  // Integrasi
   // useEffect(() => {
   //   getAdminById();
   // }, []);
@@ -43,8 +43,8 @@ const InfoPengguna = ({ detail }) => {
 
   return (
     <>
-      <p>{detail?.name}</p>
-      {/* <Form
+      {/* <p>{detail?.name}</p> */}
+      <Form
         labelCol={{
           span: 4,
         }}
@@ -60,7 +60,7 @@ const InfoPengguna = ({ detail }) => {
         <Form.Item name="email" label="E-mail">
           <Input value={detail?.email} />
         </Form.Item>
-      </Form> */}
+      </Form>
     </>
   );
 };

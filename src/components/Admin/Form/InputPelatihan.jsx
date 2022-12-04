@@ -11,7 +11,7 @@ const InputPelatihan = ({ formData, setFormData }) => {
       {
         type: "array",
         required: true,
-        message: "Please select time!",
+        message: "Input tanggal pelaksanaan pelatihan!",
       },
     ],
   };
@@ -22,12 +22,10 @@ const InputPelatihan = ({ formData, setFormData }) => {
       {
         type: "object",
         required: true,
-        message: "Please select time!",
+        message: "Input waktu pelaksanaan pelatihan!",
       },
     ],
   };
-
-  console.log(formData);
 
   return (
     <>
@@ -44,7 +42,7 @@ const InputPelatihan = ({ formData, setFormData }) => {
           rules={[
             {
               required: true,
-              message: "Please input Intro",
+              message: "Input nama pelatihan!",
             },
           ]}
         >
@@ -56,7 +54,7 @@ const InputPelatihan = ({ formData, setFormData }) => {
           rules={[
             {
               required: true,
-              message: "Please input Intro",
+              message: "Input deskripsi pelatihan!",
             },
           ]}
         >
@@ -74,7 +72,7 @@ const InputPelatihan = ({ formData, setFormData }) => {
           rules={[
             {
               required: true,
-              message: "Please input Intro",
+              message: "Input lokasi pelatihan!",
             },
           ]}
         >
@@ -87,7 +85,7 @@ const InputPelatihan = ({ formData, setFormData }) => {
           rules={[
             {
               required: true,
-              message: "Please input Intro",
+              message: "Input gambar!",
             },
           ]}
         >
@@ -110,7 +108,7 @@ const InputPelatihan = ({ formData, setFormData }) => {
           rules={[
             {
               required: true,
-              message: "Please input Intro",
+              message: "Input batas tanggal pendaftaran!",
             },
           ]}
         >

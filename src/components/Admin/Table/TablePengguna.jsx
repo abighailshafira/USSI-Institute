@@ -1,15 +1,14 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Space, Table, Button, Modal, Input } from "antd";
+import { useNavigate, useParams } from "react-router-dom";
 import { InfoOutlined, DeleteOutlined, SearchOutlined, PlusOutlined } from "@ant-design/icons";
+import axios from "axios";
+import Swal from "sweetalert2";
 import Highlighter from "react-highlight-words";
 import InputPengguna from "../Form/InputPengguna";
 import InfoPengguna from "../Form/InfoPengguna";
-import Swal from "sweetalert2";
-import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
 
 const TablePengguna = () => {
-  // Integrasi
   const [users, setUsers] = useState([]);
   const [detail, setDetail] = useState({});
   const [formData, setFormData] = useState({
@@ -19,15 +18,17 @@ const TablePengguna = () => {
     password: "",
     role: "admin",
   });
+
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Read
+  // Integrasi
   useEffect(() => {
     getAdmin();
     // getAdminById();
   }, []);
 
+  // Read Data Admin
   const getAdmin = async () => {
     await axios
       .get("http://localhost:5000/api/v1/admin", {
@@ -43,6 +44,7 @@ const TablePengguna = () => {
       .catch((error) => console.log(error));
   };
 
+  // Read Data Admin by Id
   const getAdminById = async (id) => {
     await axios
       .get(`http://localhost:5000/api/v1/admin/${id}`, {
@@ -58,7 +60,7 @@ const TablePengguna = () => {
       .catch((error) => console.log(error));
   };
 
-  // Delete
+  // Delete Data
   const deleteAdmin = async (id) => {
     await axios.delete(`http://localhost:5000/api/v1/admin/${id}`, {
       headers: {
@@ -69,7 +71,7 @@ const TablePengguna = () => {
     Swal.fire("Berhasil Dihapus!", `Admin ${id} Berhasil hapus`, "success");
   };
 
-  // Modal input pengguna
+  // Modal Input Pengguna
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const showModal1 = () => {
@@ -83,7 +85,6 @@ const TablePengguna = () => {
       setIsModalOpen1(false);
       setConfirmLoading(false);
     }, 2000);
-    // Swal.fire({ title: "Berhasil!", text: "Akun pengguna berhasil ditambahkan", icon: "success" });
 
     axios({
       method: "post",
@@ -130,7 +131,6 @@ const TablePengguna = () => {
           title: "Register Gagal",
         });
       });
-
     // Swal.fire({ title: "Ups!", text: "Silahkan lengkapi data", icon: "error" });
   };
 
@@ -138,7 +138,7 @@ const TablePengguna = () => {
     setIsModalOpen1(false);
   };
 
-  // Modal info pengguna
+  // Modal Info Pengguna
   const [isModalOpen2, setIsModalOpen2] = useState(false);
   const showModal2 = async (id) => {
     setIsModalOpen2(true);
@@ -159,8 +159,6 @@ const TablePengguna = () => {
     //   })
     //   .catch((error) => console.log(error));
   };
-
-  // console.log(detail);
 
   const handleOk2 = (id) => {
     setIsModalOpen2(false);
@@ -316,6 +314,7 @@ const TablePengguna = () => {
       <Modal title="Tambah Pengguna" open={isModalOpen1} width={700} onOk={handleOk1} onCancel={handleCancel1} confirmLoading={confirmLoading}>
         <InputPengguna formData={formData} setFormData={setFormData} />
       </Modal>
+
       <Modal title="Info Pengguna" open={isModalOpen2} onOk={() => handleOk2(users.id)} onCancel={handleCancel2}>
         <InfoPengguna detail={detail} setDetail={setDetail} />
       </Modal>

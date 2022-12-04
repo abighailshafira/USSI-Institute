@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
 import { Layout, Menu, Space } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { FiHome, FiUser } from "react-icons/fi";
 import { HiOutlineOfficeBuilding, HiOutlineViewGrid } from "react-icons/hi";
+import { FiHome, FiUser } from "react-icons/fi";
 import { TbCertificate } from "react-icons/tb";
 import TableLembaga from "./Table/TableLembaga";
+import Logo from "../../assets/image/logo-ussi.png";
 
 const { Header, Content, Sider } = Layout;
 
@@ -17,22 +17,8 @@ const Lembaga = () => {
 
   return (
     <>
-      {" "}
       <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-          width={230}
-          breakpoint="lg"
-          collapsedWidth="100"
-          style={
-            {
-              // height: "100%",
-              // borderRight: 0,
-            }
-          }
-        >
+        <Sider trigger={null} collapsible collapsed={collapsed} width={230} breakpoint="lg" collapsedWidth="100">
           <div className="logo">
             <Link to="/dashboard">
               <a className="py-6 flex justify-center">
@@ -41,12 +27,7 @@ const Lembaga = () => {
             </Link>
           </div>
 
-          <Menu
-            mode="inline"
-            theme="dark"
-            defaultSelectedKeys={["lembaga"]}
-            // selectedKeys={[location.pathname]}
-          >
+          <Menu mode="inline" theme="dark" defaultSelectedKeys={["lembaga"]}>
             <Menu.Item key="dashboard" icon={<FiHome />}>
               <Link to="/dashboard" />
               Dashboard
