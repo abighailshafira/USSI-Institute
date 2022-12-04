@@ -11,7 +11,6 @@ import Logo from "../../assets/image/logo-ussi.png";
 
 const { Header, Content, Sider } = Layout;
 
-//contoh data tabel dan response BE
 // const dataPelatihan = [
 //   {
 //     id: 1,
