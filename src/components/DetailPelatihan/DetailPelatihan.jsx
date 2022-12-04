@@ -5,10 +5,12 @@ import { RiTimeLine, RiUserLocationLine } from "react-icons/ri";
 import { BsCalendarRange } from "react-icons/bs";
 import { TbCalendarTime } from "react-icons/tb";
 import Image from "../../assets/image/icon-ussi.ico";
+import { useSelector } from "react-redux";
 
 const DetailPelatihan = () => {
   const [data, setData] = useState("");
   const { id } = useParams();
+  const isLoggedIn = useSelector((state) => state.auth.accessToken);
 
   useEffect(() => {
     getDetailPelatihan();
@@ -79,11 +81,20 @@ const DetailPelatihan = () => {
 
               <div>
                 <h2 className="text-xl md:text-2xl text-slate-800 mt-5 py-3">Siap untuk Bergabung?</h2>
-                <Link to={`/pendaftaran/${data.id}`}>
-                  <a className="text-xs md:text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-sky-600 md:py-3 md:px-8 py-2 px-6 rounded-md hover:text-white hover:bg-gradient-to-l hover:to-sky-600 hover:from-cyan-500 transition duration-300 ease-in-out">
-                    Daftar Sekarang
-                  </a>
-                </Link>
+                {isLoggedIn? (
+                  <Link to={`/pendaftaran/${data.id}`}>
+                    <a className="text-xs md:text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-sky-600 md:py-3 md:px-8 py-2 px-6 rounded-md hover:text-white hover:bg-gradient-to-l hover:to-sky-600 hover:from-cyan-500 transition duration-300 ease-in-out">
+                      Daftar Sekarang
+                    </a>
+                  </Link>
+
+                ):(
+                  <Link to="/login">
+                    <a className="text-xs md:text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-sky-600 md:py-3 md:px-8 py-2 px-6 rounded-md hover:text-white hover:bg-gradient-to-l hover:to-sky-600 hover:from-cyan-500 transition duration-300 ease-in-out">
+                      Daftar Sekarang
+                    </a>
+                  </Link>
+                )}
               </div>
             </div>
 
