@@ -1,7 +1,6 @@
 import React from "react";
-import { Form, Input, Button, Upload, DatePicker, TimePicker } from "antd";
+import { Form, Input, Upload, DatePicker, TimePicker } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import { FiChevronLeft } from "react-icons/fi";
 
 const { RangePicker } = DatePicker;
 
@@ -12,7 +11,7 @@ const EditPelatihan = () => {
       {
         type: "array",
         required: true,
-        message: "Please select time!",
+        message: "Input tanggal pelaksanaan pelatihan!",
       },
     ],
   };
@@ -23,14 +22,13 @@ const EditPelatihan = () => {
       {
         type: "object",
         required: true,
-        message: "Please select time!",
+        message: "Input waktu pelaksanaan pelatihan!",
       },
     ],
   };
 
   return (
     <>
-      {" "}
       <Form
         labelCol={{
           span: 4,
@@ -44,7 +42,7 @@ const EditPelatihan = () => {
           rules={[
             {
               required: true,
-              message: "Please input Intro",
+              message: "Input nama pelatihan!",
             },
           ]}
         >
@@ -56,7 +54,7 @@ const EditPelatihan = () => {
           rules={[
             {
               required: true,
-              message: "Please input Intro",
+              message: "Input deskripsi pelatihan!",
             },
           ]}
         >
@@ -74,7 +72,7 @@ const EditPelatihan = () => {
           rules={[
             {
               required: true,
-              message: "Please input Intro",
+              message: "Input lokasi pelatihan!",
             },
           ]}
         >
@@ -87,7 +85,7 @@ const EditPelatihan = () => {
           rules={[
             {
               required: true,
-              message: "Please input Intro",
+              message: "Input gambar!",
             },
           ]}
         >
@@ -110,7 +108,7 @@ const EditPelatihan = () => {
           rules={[
             {
               required: true,
-              message: "Please input Intro",
+              message: "Input batas tanggal pendaftaran!",
             },
           ]}
         >

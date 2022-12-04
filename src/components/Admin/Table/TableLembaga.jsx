@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Space, Table, Button, Input, Modal } from "antd";
 import { EditOutlined, DeleteOutlined, SearchOutlined, PlusOutlined } from "@ant-design/icons";
-import Highlighter from "react-highlight-words";
 import axios from "axios";
+import Swal from "sweetalert2";
+import Highlighter from "react-highlight-words";
 import InputLembaga from "../Form/InputLembaga";
 import EditLembaga from "../Form/EditLembaga";
-import Swal from "sweetalert2";
-import { useNavigate, useParams } from "react-router-dom";
 
 const TableLembaga = () => {
   const [institutions, setInstitutions] = useState([]);
@@ -22,15 +22,16 @@ const TableLembaga = () => {
     CPPhone: "",
     statusSLA: "",
   });
-
   const navigate = useNavigate();
   const { id } = useParams();
-  // Read
+
+  // Integrasi
   useEffect(() => {
     getInstitutions();
     // getInstitutionsById();
   }, []);
 
+  // Read Data Lembaga
   const getInstitutions = async () => {
     await axios
       .get("http://localhost:5000/api/v1/institution", {
@@ -46,7 +47,7 @@ const TableLembaga = () => {
       .catch((error) => console.log(error));
   };
 
-  // Delete
+  // Delete Data
   const deleteInstitution = async (id) => {
     await axios.delete(`http://localhost:5000/api/v1/institution/${id}`, {
       headers: {
@@ -57,7 +58,7 @@ const TableLembaga = () => {
     Swal.fire("Berhasil Dihapus!", `Lembaga ${id} Berhasil hapus`, "success");
   };
 
-  // Create
+  //Modal Input Lembaga
   const [confirmLoading1, setConfirmLoading1] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
 
@@ -100,7 +101,7 @@ const TableLembaga = () => {
     setIsModalOpen1(false);
   };
 
-  // Update
+  // Read Data Lembaga by Id
   const getInstitutionsById = async (id) => {
     await axios
       .get(`http://localhost:5000/api/v1/institution/${id}`, {
@@ -110,7 +111,6 @@ const TableLembaga = () => {
       })
       .then((res) => {
         const getData = res.data.data;
-        // console.log(getData);
         setDetail(getData);
       })
       .catch((error) => console.log(error));
@@ -142,7 +142,6 @@ const TableLembaga = () => {
       },
     })
       .then((res) => {
-        // console.log(res);
         navigate("/dashboard/lembaga");
       })
       .catch((err) => {
@@ -246,59 +245,16 @@ const TableLembaga = () => {
       ),
   });
 
-  // Delete
-  const handleDelete = (key) => {
-    Swal.fire({
-      title: "Apakah anda yakin?",
-      text: "Data akan dihapus",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Ya, hapus!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Berhasil!", "Data lembaga berhasil dihapus", "success");
-      }
-    });
-
-    const newData = dataSource.filter((item) => item.key !== key);
-    setDataSource(newData);
-  };
-
   // Table Data
-  const [dataSource, setDataSource] = useState([
-    {
-      key: "1",
-      code: "10367",
-      institutionName: "BMT HASANA MANDIRI",
-      institutionAddress: "Jl. Solo-wonogiri ruko grogol green garden telukan, grogol, sukoharjo",
-      email: "budiadi1968@gmail.com",
-      phone: "089649470248",
-      CPName: "IBU UMI",
-      CPPhone: "089649470248",
-      statusSLA: "1",
-    },
-    {
-      key: "2",
-      code: "10313",
-      institutionName: "Credit Union - Puskhat",
-      institutionAddress: "Jl MT Haryono, Rukan 1-2 Pontianak Selatan, 78121",
-      email: "puskhatmail@gmail.com",
-      phone: "089649470248",
-      CPName: "IBU UMI",
-      CPPhone: "089649470248",
-      statusSLA: "0",
-    },
-  ]);
+  const [dataSource, setDataSource] = useState([]);
 
   // Table Columns
   const columns = [
-    // {
-    //   title: "No",
-    //   width: 30,
-    //   align: "center",
-    // },
+    {
+      title: "No",
+      width: 30,
+      align: "center",
+    },
     {
       title: "Kode",
       dataIndex: "code",
@@ -385,7 +341,6 @@ const TableLembaga = () => {
         <Space size="small">
           <Button icon={<EditOutlined />} onClick={() => showModal2(record.id)} />
           <Button type="primary" danger icon={<DeleteOutlined />} onClick={() => deleteInstitution(record.id)} />
-          {/* {console.log(record.id)} */}
         </Space>
       ),
     },

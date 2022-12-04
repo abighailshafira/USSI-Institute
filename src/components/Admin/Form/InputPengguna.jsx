@@ -28,7 +28,7 @@ const inputPengguna = ({ formData, setFormData }) => {
           rules={[
             {
               required: true,
-              message: "Please input your Name!",
+              message: "Input nama Anda!",
             },
           ]}
         >
@@ -40,11 +40,11 @@ const inputPengguna = ({ formData, setFormData }) => {
           rules={[
             {
               type: "email",
-              message: "The input is not valid E-mail!",
+              message: "Email tidak valid.",
             },
             {
               required: true,
-              message: "Please input your E-mail!",
+              message: "Input email Anda",
             },
           ]}
         >
@@ -56,7 +56,7 @@ const inputPengguna = ({ formData, setFormData }) => {
           rules={[
             {
               required: true,
-              message: "Please input your password!",
+              message: "Input password Anda!",
             },
           ]}
         >

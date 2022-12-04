@@ -1,28 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import Logo from "../../assets/image/logo-ussi.png";
+import { Link, Navigate } from "react-router-dom";
 import "antd/dist/antd.css";
 import { Form, Input, Layout, Menu, Space, Image, Button } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { FiHome, FiUser, FiChevronLeft } from "react-icons/fi";
 import { HiOutlineOfficeBuilding, HiOutlineViewGrid } from "react-icons/hi";
+import { FiHome, FiUser, FiChevronLeft } from "react-icons/fi";
 import { TbCertificate } from "react-icons/tb";
-import Swal from "sweetalert2";
-import { Navigate } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
+import Logo from "../../assets/image/logo-ussi.png";
 
 const { Header, Content, Sider } = Layout;
 
 const Profile = () => {
-  // Integrasi
+  // Navbar
+  const [collapsed, setCollapsed] = useState(false);
+
   const [users, setUsers] = useState([]);
   const [info, setInfo] = useState({});
 
-  // Read
+  // Integrasi
   useEffect(() => {
     getAdmin();
   }, []);
 
+  // Read Data
   const getAdmin = async () => {
     await axios
       .get("http://localhost:5000/api/v1/admin", {
@@ -37,9 +39,6 @@ const Profile = () => {
       })
       .catch((error) => console.log(error));
   };
-
-  // Navbar
-  const [collapsed, setCollapsed] = useState(false);
 
   // Submit
   const handleSubmit = () => {
@@ -70,22 +69,8 @@ const Profile = () => {
 
   return (
     <>
-      {" "}
       <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-          width={230}
-          breakpoint="lg"
-          collapsedWidth="100"
-          style={
-            {
-              // height: "100%",
-              // borderRight: 0,
-            }
-          }
-        >
+        <Sider trigger={null} collapsible collapsed={collapsed} width={230} breakpoint="lg" collapsedWidth="100">
           <div className="logo">
             <Link to="/dashboard">
               <a className="py-6 flex justify-center">
@@ -94,12 +79,7 @@ const Profile = () => {
             </Link>
           </div>
 
-          <Menu
-            mode="inline"
-            theme="dark"
-            defaultSelectedKeys={["profil"]}
-            // selectedKeys={[location.pathname]}
-          >
+          <Menu mode="inline" theme="dark" defaultSelectedKeys={["profil"]}>
             <Menu.Item key="dashboard" icon={<FiHome />}>
               <Link to="/dashboard" />
               Dashboard

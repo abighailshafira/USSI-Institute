@@ -1,15 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Input, Popconfirm, Table, Space, Button, Modal } from "antd";
+import { useNavigate, useParams } from "react-router-dom";
+import { Input, Table, Space, Button, Modal } from "antd";
 import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import axios from "axios";
+import Swal from "sweetalert2";
 import Highlighter from "react-highlight-words";
 import InputPelatihan from "../Form/InputPelatihan";
 import EditPelatihan from "../Form/EditPelatihan";
-import Swal from "sweetalert2";
-import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
 
 const TablePelatihan = () => {
-  // Integrasi
   const [training, setTraining] = useState([]);
   const [formData, setFormData] = useState({
     trainingName: "",
@@ -25,11 +24,12 @@ const TablePelatihan = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Read
+  // Integrasi
   useEffect(() => {
     detailTraining();
   }, []);
 
+  // Read Detail Pelatihan
   const detailTraining = async () => {
     await axios
       .get("http://localhost:5000/api/v1/detail/training", {
@@ -45,7 +45,7 @@ const TablePelatihan = () => {
       .catch((error) => console.log(error));
   };
 
-  // Delete
+  // Delete Data
   const deleteTraining = async (id) => {
     await axios.delete(`http://localhost:5000/api/v1/detail/training/${id}`, {
       headers: {
@@ -56,7 +56,7 @@ const TablePelatihan = () => {
     Swal.fire("Berhasil Dihapus!", `Pelatihan ${id} Berhasil hapus`, "success");
   };
 
-  // Modal input pelatihan
+  // Modal Input Pelatihan
   const [confirmLoading1, setConfirmLoading1] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const showModal1 = () => {
@@ -70,7 +70,6 @@ const TablePelatihan = () => {
       setIsModalOpen1(false);
       setConfirmLoading1(false);
     }, 2000);
-    // console.log(formData);
     axios({
       method: "post",
       url: `http://localhost:5000/api/v1/training`,
@@ -124,7 +123,7 @@ const TablePelatihan = () => {
     setIsModalOpen1(false);
   };
 
-  // Modal edit pelatihan
+  // Modal Edit Pelatihan
   const [confirmLoading2, setConfirmLoading2] = useState(false);
   const [isModalOpen2, setIsModalOpen2] = useState(false);
   const showModal2 = () => {
@@ -233,17 +232,7 @@ const TablePelatihan = () => {
   });
 
   // Table Data
-  const [dataSource, setDataSource] = useState([
-    {
-      trainingName: "Pelatihan",
-      description: "aaaaaaaaaaaaaaaaaaaaaaaaaa",
-      startDate: "2022-11-25",
-      endDate: "2022-11-25",
-      time: "01.20",
-      location: "Bandung",
-      pendaftaran: "2022-11-25",
-    },
-  ]);
+  const [dataSource, setDataSource] = useState([]);
 
   // Table
   const columns = [
