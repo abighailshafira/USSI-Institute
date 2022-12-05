@@ -23,7 +23,7 @@ const Pelatihan = ({ pelatihan }) => {
                 return (
                   <div className="w-full px-4 md:w-1/2 lg:w-1/3 xl:w-1/4">
                     <div className="bg-white rounded-md shadow-lg overflow-hidden mb-5 md:mb-10">
-                      <img src={item.img} alt="Pelatihan" className="w-full" />
+                      <img src="https://source.unsplash.com/360x200?programming" alt="Pelatihan" className="w-full" />
 
                       <div className="p-8 text-center">
                         <h3 className="text-lg font-semibold truncate mb-0">{item.trainingName}</h3>

@@ -8,7 +8,7 @@ const ErrorPage = () => {
       <Result
         status="404"
         title="404"
-        subTitle="Sorry, the kontolss meet the heunceut."
+        subTitle="Sorry, page not found."
         extra={
           <Link to="/">
             <Button type="primary">Back Home</Button>
