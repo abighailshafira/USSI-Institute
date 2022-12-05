@@ -18,32 +18,35 @@ import PelatihanPage from "./components/Admin/Pelatihan";
 import RekapPelatihanPage from "./components/Admin/RekapPelatihan";
 import PesertaPage from "./components/Admin/Peserta";
 import ProfileAdminPage from "./components/Admin/Profile";
-import DetailDivisiPage from "./pages/DetailDivisiPage";
+import UssiInstitutePage from "./pages/UssiInstitutePage";
+import AuditPage from "./pages/AuditPage";
 
 const RouteApp = () => {
   return (
     <>
       <Routes>
         <Route path="/" exact element={<Home />} />
-        <Route path="/contact" exact element={<ContactPage />} />
-        <Route path="/profile" exact element={<ProfilePage />} />
-        <Route path="/pendaftaran" exact element={<PendaftaranPage />} />
-        <Route path="/pendaftaran/:id" exact element={<PendaftaranPage />} />
-        <Route path="/detail-pelatihan/:id" exact element={<DetailPelatihanPage />} />
-        <Route path="/detail-divisi" exact element={<DetailDivisiPage />} />
         <Route path="/login" exact element={<LoginPage />} />
         <Route path="/register" exact element={<RegisterPage />} />
-        <Route path="/profile-user" exact element={<ProfileUserPage />} />
-        <Route path="/pelatihan" exact element={<Pelatihan />} />
         <Route path="/forgot-password" exact element={<ForgotPasswordPage />} />
-        <Route path="/reset-password" exact element={<ResetPasswordPage />} />
+
+        <Route path="/tentang" exact element={<ProfilePage />} />
         <Route path="/jadwal-pelatihan" exact element={<JadwalPelatihanPage />} />
+        <Route path="/detail-pelatihan/:id" exact element={<DetailPelatihanPage />} />
+        <Route path="/pendaftaran" exact element={<PendaftaranPage />} />
+        <Route path="/pendaftaran/:id" exact element={<PendaftaranPage />} />
+        <Route path="/kontak" exact element={<ContactPage />} />
+        <Route path="/profile-user" exact element={<ProfileUserPage />} />
+        <Route path="/detail-divisi/audit" exact element={<AuditPage />} />
+        <Route path="/detail-divisi/ussi-institute" exact element={<UssiInstitutePage />} />
+        {/* <Route path="/reset-password" exact element={<ResetPasswordPage />} /> */}
+
         <Route path="/dashboard" exact element={<DashboardPage />} />
-        <Route path="/dashboard/lembaga" exact element={<LembagaPage />} />
         <Route path="/dashboard/pelatihan" exact element={<PelatihanPage />} />
+        <Route path="/dashboard/rekap-pelatihan" exact element={<RekapPelatihanPage />} />
+        <Route path="/dashboard/lembaga" exact element={<LembagaPage />} />
         <Route path="/dashboard/peserta" exact element={<PesertaPage />} />
         <Route path="/dashboard/profile" exact element={<ProfileAdminPage />} />
-        <Route path="/dashboard/rekap-pelatihan" exact element={<RekapPelatihanPage />} />
       </Routes>
     </>
   );

@@ -20,7 +20,7 @@ const Divisi = () => {
                   <h3 className="text-2xl font-bold text-cyan-500 mb-3">USSI Institute</h3>
                   <p className="text-slate-500 text-base mb-0">Divisi</p>
                   <h4 className="text-lg font-medium mb-8">Pelatihan dan Sertifikasi</h4>
-                  <Link to="/detail-divisi">
+                  <Link to="/detail-divisi/ussi-institute">
                     <a className=" text-sm font-semibold text-white bg-cyan-500 py-3 px-8 rounded-md shadow-md hover:bg-cyan-600 hover:text-white duration-300 transition">Selengkapnya</a>
                   </Link>
                 </div>
@@ -37,7 +37,7 @@ const Divisi = () => {
                 <h3 className="text-2xl font-bold text-cyan-500 mb-3">Audit Kepatuhan TI</h3>
                 <p className="text-slate-500 text-base mb-0">Divisi</p>
                 <h4 className="text-lg font-medium mb-8">Audit Kepatuhan Teknologi Informasi</h4>
-                <Link to="/detail-divisi">
+                <Link to="/detail-divisi/audit">
                   <a className=" text-sm font-semibold text-white bg-cyan-500 py-3 px-8 rounded-md shadow-md hover:bg-cyan-600 hover:text-white duration-300 transition">Selengkapnya</a>
                 </Link>
               </div>

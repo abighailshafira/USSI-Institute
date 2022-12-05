@@ -1,14 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Space, Table, Button, Input, Popconfirm, Modal, message } from "antd";
+import { useNavigate, useParams } from "react-router-dom";
+import { Space, Table, Button, Input, Modal } from "antd";
 import { EditOutlined, DeleteOutlined, SearchOutlined, PlusOutlined } from "@ant-design/icons";
-import Highlighter from "react-highlight-words";
 import axios from "axios";
+import Swal from "sweetalert2";
+import Highlighter from "react-highlight-words";
 import InputLembaga from "../Form/InputLembaga";
 import EditLembaga from "../Form/EditLembaga";
-import Swal from "sweetalert2";
 
 const TableLembaga = () => {
   const [institutions, setInstitutions] = useState([]);
+  const [detail, setDetail] = useState({});
   const [formData, setFormData] = useState({
     code: "",
     institutionName: "",
@@ -20,8 +22,43 @@ const TableLembaga = () => {
     CPPhone: "",
     statusSLA: "",
   });
+  const navigate = useNavigate();
+  const { id } = useParams();
 
-  // Modal input lembaga
+  // Integrasi
+  useEffect(() => {
+    getInstitutions();
+    // getInstitutionsById();
+  }, []);
+
+  // Read Data Lembaga
+  const getInstitutions = async () => {
+    await axios
+      .get("http://localhost:5000/api/v1/institution", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        const getData = res.data.data;
+        console.log(getData);
+        setInstitutions(getData);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  // Delete Data
+  const deleteInstitution = async (id) => {
+    await axios.delete(`http://localhost:5000/api/v1/institution/${id}`, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+    getInstitutions();
+    Swal.fire("Berhasil Dihapus!", `Lembaga ${id} Berhasil hapus`, "success");
+  };
+
+  //Modal Input Lembaga
   const [confirmLoading1, setConfirmLoading1] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
 
@@ -31,6 +68,13 @@ const TableLembaga = () => {
 
   const handleOk1 = (e) => {
     e.preventDefault();
+    setConfirmLoading1(true);
+    setTimeout(() => {
+      setIsModalOpen1(false);
+      setConfirmLoading1(false);
+    }, 2000);
+    Swal.fire({ title: "Berhasil!", text: "Data lembaga berhasil ditambahkan", icon: "success" });
+
     axios({
       method: "post",
       url: `http://localhost:5000/api/v1/institution`,
@@ -41,9 +85,7 @@ const TableLembaga = () => {
       },
     })
       .then((res) => {
-        //handle success
-        console.log(res);
-        // navigate("/"); ini untuk navigate ke halaman lain
+        navigate("/dashboard/lembaga");
       })
       .catch((err) => {
         if (err.response) {
@@ -53,35 +95,63 @@ const TableLembaga = () => {
         } else if (err.message) {
         }
       });
-    // message.success("Lembaga Berhasil Ditambahkan.");
-    // setIsModalOpen1(false);
-    // console.log(formData);
-    setConfirmLoading1(true);
-    setTimeout(() => {
-      setIsModalOpen1(false);
-      setConfirmLoading1(false);
-    }, 1000);
-
-    Swal.fire({ title: "Berhasil!", text: "Data lembaga berhasil ditambahkan", icon: "success" });
   };
 
   const handleCancel1 = () => {
     setIsModalOpen1(false);
   };
 
-  // Modal edit lembaga
-  const [confirmLoading2, setConfirmLoading2] = useState(false);
-  const [isModalOpen2, setIsModalOpen2] = useState(false);
-  const showModal2 = () => {
-    setIsModalOpen2(true);
+  // Read Data Lembaga by Id
+  const getInstitutionsById = async (id) => {
+    await axios
+      .get(`http://localhost:5000/api/v1/institution/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        const getData = res.data.data;
+        setDetail(getData);
+      })
+      .catch((error) => console.log(error));
   };
 
-  const handleOk2 = () => {
+  const [confirmLoading2, setConfirmLoading2] = useState(false);
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
+  const showModal2 = async (id) => {
+    setIsModalOpen2(true);
+    console.log(id);
+    await getInstitutionsById(id);
+  };
+
+  const handleOk2 = (e) => {
+    e.preventDefault();
     setConfirmLoading2(true);
     setTimeout(() => {
       setIsModalOpen2(false);
       setConfirmLoading2(false);
     }, 1000);
+
+    axios({
+      method: "put",
+      url: `http://localhost:5000/api/v1/institution`,
+      data: formData,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    })
+      .then((res) => {
+        navigate("/dashboard/lembaga");
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.log("err.response ", err.response);
+        } else if (err.request) {
+          console.log("err.request ", err.request);
+        } else if (err.message) {
+        }
+      });
 
     Swal.fire({ title: "Berhasil!", text: "Data lembaga berhasil diperbarui", icon: "success" });
   };
@@ -102,25 +172,6 @@ const TableLembaga = () => {
   const handleReset = (clearFilters) => {
     clearFilters();
     setSearchText("");
-  };
-
-  useEffect(() => {
-    getInstitutions();
-  }, []);
-
-  const getInstitutions = async () => {
-    await axios
-      .get("http://localhost:5000/api/v1/institution", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        const getData = res.data.data;
-        console.log(getData);
-        setInstitutions(getData);
-      })
-      .catch((error) => console.log(error));
   };
 
   const getColumnSearchProps = (dataIndex) => ({
@@ -194,51 +245,8 @@ const TableLembaga = () => {
       ),
   });
 
-  // Delete
-  const handleDelete = (key) => {
-    Swal.fire({
-      title: "Apakah anda yakin?",
-      text: "Data akan dihapus",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Ya, hapus!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Berhasil!", "Data lembaga berhasil dihapus", "success");
-      }
-    });
-
-    const newData = dataSource.filter((item) => item.key !== key);
-    setDataSource(newData);
-  };
-
   // Table Data
-  const [dataSource, setDataSource] = useState([
-    {
-      key: "1",
-      code: "10367",
-      institutionName: "BMT HASANA MANDIRI",
-      institutionAddress: "Jl. Solo-wonogiri ruko grogol green garden telukan, grogol, sukoharjo",
-      email: "budiadi1968@gmail.com",
-      phone: "089649470248",
-      CPName: "IBU UMI",
-      CPPhone: "089649470248",
-      statusSLA: "1",
-    },
-    {
-      key: "2",
-      code: "10313",
-      institutionName: "Credit Union - Puskhat",
-      institutionAddress: "Jl MT Haryono, Rukan 1-2 Pontianak Selatan, 78121",
-      email: "puskhatmail@gmail.com",
-      phone: "089649470248",
-      CPName: "IBU UMI",
-      CPPhone: "089649470248",
-      statusSLA: "0",
-    },
-  ]);
+  const [dataSource, setDataSource] = useState([]);
 
   // Table Columns
   const columns = [
@@ -329,15 +337,12 @@ const TableLembaga = () => {
       key: "action",
       width: 80,
       align: "center",
-      render: (_, record) =>
-        dataSource.length >= 1 ? (
-          <Space size="small">
-            <Button icon={<EditOutlined />} onClick={showModal2} />
-            <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
-              <Button type="primary" danger icon={<DeleteOutlined />} />
-            </Popconfirm>
-          </Space>
-        ) : null,
+      render: (_, record) => (
+        <Space size="small">
+          <Button icon={<EditOutlined />} onClick={() => showModal2(record.id)} />
+          <Button type="primary" danger icon={<DeleteOutlined />} onClick={() => deleteInstitution(record.id)} />
+        </Space>
+      ),
     },
   ];
 
@@ -369,7 +374,7 @@ const TableLembaga = () => {
           </Modal>
 
           <Modal title="Edit Lembaga" open={isModalOpen2} width={800} onOk={handleOk2} onCancel={handleCancel2} confirmLoading={confirmLoading2}>
-            <EditLembaga />
+            <EditLembaga detail={detail} formData={formData} setFormData={setFormData} />
           </Modal>
         </div>
       </div>

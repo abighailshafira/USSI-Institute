@@ -1,38 +1,68 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Image from "../../assets/image/register.png";
 import { Input, Select } from "antd";
-import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
+import { EyeInvisibleOutlined, EyeTwoTone, InfoCircleOutlined } from "@ant-design/icons";
 import Swal from "sweetalert2";
 
+const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+
 const FormRegister = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [institution, setInstitution] = useState("");
   const [institutionData, setInstitutionData] = useState([]);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log(institution);
   const navigate = useNavigate();
 
-  console.log(institutionData);
+  // console.log(institution);
+  // console.log(institutionData);
+  const onSubmit = (data) => {
+    console.log(data);
+  }
 
-  const toggle = () => {
-    setShowPassword(!showPassword);
-  };
+  const userRef = useRef();
+  const errRef = useRef();
 
-  const register = async (e) => {
+  const [user, setUser] = useState('');
+  const [validName, setValidName] = useState(false);
+  const [userFocus, setUserFocus] = useState(false);
+
+  const [pwd, setPwd] = useState('');
+  const [validPwd, setValidPwd] = useState(false);
+  const [pwdFocus, setPwdFocus] = useState(false);
+
+  const [errMsg, setErrMsg] = useState('');
+  const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+      userRef.current.focus();
+  }, [])
+
+  useEffect(() => {
+      setValidName(USER_REGEX.test(user));
+  }, [user])
+
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const userData = new URLSearchParams();
     userData.append("name", name);
     userData.append("email", email);
     userData.append("password", password);
+    userData.append("role", "member");
     userData.append("institutionId", institution);
 
-    // for (var pair of userData.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
+    // const v1 = USER_REGEX.test(user);
+    // const v2 = PWD_REGEX.test(pwd);
+
+    // if (!v1 || !v2) {
+    //     setErrMsg("Invalid Entry");
+    //     return;
     // }
 
     axios({
@@ -53,9 +83,11 @@ const FormRegister = () => {
           },
         });
         toastMixin.fire({
-          title: "Register berhasil",
+          title: res.data.message,
         });
 
+        // setUser('');
+        // setPwd('');
         navigate("/login");
       })
       .catch((err) => {
@@ -73,8 +105,8 @@ const FormRegister = () => {
         });
         toastMixin.fire({
           icon: "error",
-          animation: true,
-          title: "Register gagal!",
+          // animation: true,
+          title: "Register Gagal",
         });
       });
   };
@@ -108,16 +140,21 @@ const FormRegister = () => {
 
   return (
     <>
-      <section className="pt-36">
+     {success ? (
+        <section>
+         <h1>Success!</h1>
+          <p>
+            <a href="#">Sign In</a>
+          </p>
+        </section>
+      ) 
+      :(<section className="pt-36">
+        <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
         <div className="container">
           <div className="w-full px-4">
             <div className="max-w-xl mx-auto text-center mb-10">
-              <h1 className="text-3xl font-bold mb-2 text-slate-800">
-                Register
-              </h1>
-              <p className="text-base text-slate-500">
-                Lorem ipsum dolor sit amet consectetur adipisicing.
-              </p>
+              <h1 className="text-3xl font-bold mb-2 text-slate-800">Register</h1>
+              <p className="text-base text-slate-500">Silahkan daftarkan identitas anda</p>
             </div>
           </div>
 
@@ -127,47 +164,50 @@ const FormRegister = () => {
             </div>
 
             <div className="w-full md:w-1/2 p-10 text-slate-800">
-              <form>
+              <form id="form" onSubmit={handleSubmit}>
                 <div className="mb-4">
-                  <label for="institutionName" className="text-base">
+                  <label htmlFor="namaLembaga"className="text-base">
                     Nama Lembaga
                   </label>
                   <Select
+                    name="namaLembaga"
                     showSearch
                     className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
                     placeholder="Pilih nama lembaga"
                     optionFilterProp="children"
                     onChange={onChange}
                     onSearch={onSearch}
-                    filterOption={(input, option) =>
-                      (option?.label ?? "")
-                        .toLowerCase()
-                        .includes(input.toLowerCase())
-                    }
+                    filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
                     options={institutionData}
                     bordered={false}
+                    required
                   />
                 </div>
 
-                <div className="mb-4">
-                  <label for="name" className="text-base">
+                <div className="mb-4 form-group text-base">
+                  <label htmlFor="namaLengkap" className="text-base">
                     Nama Lengkap
                   </label>
                   <input
-                    type="name"
+                    type="text"
+                    id="name"
                     className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
                     placeholder="Nama Lengkap"
-                    required
                     onChange={(e) => setName(e.target.value)}
+                    ref={userRef}
+                    // autoComplete="off"
+                    // value={user}
+                    required
                   />
                 </div>
 
-                <div className="mb-4">
-                  <label for="email" className="text-base">
+                <div className="mb-4 form-group">
+                  <label htmlFor="email" className="text-base">
                     Email
                   </label>
                   <input
                     type="email"
+                    id="email"
                     className="form-control block w-full px-3 py-1.5 text-sm bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
                     placeholder="Email"
                     required
@@ -175,28 +215,30 @@ const FormRegister = () => {
                   />
                 </div>
 
-                <div className="mb-4">
-                  <label for="password" className="text-base">
+                <div className="mb-4 form-group text-base">
+                  <label htmlFor="password" className="text-base">
                     Password
                   </label>
 
                   <Input.Password
                     placeholder="Password"
+                    type="text"
+                    id="password"
                     style={{
                       borderRadius: "5px",
                     }}
-                    iconRender={(visible) =>
-                      visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-                    }
+                    iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                     onChange={(e) => setPassword(e.target.value)}
+                    // value={pwd}
                     required
                   />
                 </div>
 
                 <button
                   type="submit"
-                  onClick={register}
+                  // onClick={handleSubmit}
                   className="w-full px-6 py-2.5 text-white font-medium text-base tracking-wide leading-snug rounded-md bg-gradient-to-r from-cyan-500 to-sky-600 hover:bg-gradient-to-l hover:to-sky-600 hover:from-cyan-500 transition duration-300 ease-in-out"
+                  // disabled={!validName || !validPwd ? true : false}
                 >
                   Register
                 </button>
@@ -204,9 +246,7 @@ const FormRegister = () => {
                 <p className="mt-2 text-slate-500 text-center ">
                   Sudah punya akun?{" "}
                   <Link to="/login">
-                    <a className="text-cyan-500 font-semibold hover:text-sky-600">
-                      Login disini
-                    </a>
+                    <a className="text-cyan-500 font-semibold hover:text-sky-600">Login disini</a>
                   </Link>
                 </p>
               </form>
@@ -214,6 +254,7 @@ const FormRegister = () => {
           </div>
         </div>
       </section>
+    )}
     </>
   );
 };

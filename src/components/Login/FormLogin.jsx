@@ -1,13 +1,13 @@
-import { Input, message } from "antd";
-import axios from "axios";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import Image from "../../assets/image/login.png";
-import Home from "../../pages/Home";
+import { useDispatch, useSelector } from "react-redux";
 import { setData } from "../../redux/slices/authSlice";
+import axios from "axios";
+import { Input } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import Swal from "sweetalert2";
+import Image from "../../assets/image/login.png";
+import Home from "../../pages/Home";
 
 const FormLogin = () => {
   const [email, setEmail] = useState("");
@@ -45,7 +45,7 @@ const FormLogin = () => {
             icon: "success",
             title: "Title",
             showConfirmButton: false,
-            timer: 800,
+            timer: 1000,
             timerProgressBar: true,
             didOpen: (toast) => {
               toast.addEventListener("mouseenter", Swal.stopTimer);
@@ -56,8 +56,6 @@ const FormLogin = () => {
             title: "Login berhasil!",
           });
           navigate("/");
-          setTimeout(window.location.reload.bind(window.location), 300);
-        } else {
         }
       })
       .catch((err) => {
@@ -75,8 +73,7 @@ const FormLogin = () => {
         });
         toastMixin.fire({
           icon: "error",
-          animation: true,
-          title: "Register gagal!",
+          title: "Login gagal!",
           text: "Cek email dan password anda",
         });
       });
@@ -92,7 +89,7 @@ const FormLogin = () => {
         <div className="container">
           <div className="max-w-xl mx-auto text-center mb-10">
             <h1 className="text-3xl font-bold mb-2 text-slate-800">Login</h1>
-            <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+            <p className="text-base text-slate-500">Selamat datang di website USSI Institute</p>
           </div>
 
           <div className="flex flex-wrap items-center justify-center mx-auto rounded-lg shadow-lg bg-white max-w-4xl">

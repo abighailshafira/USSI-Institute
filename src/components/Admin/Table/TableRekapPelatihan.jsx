@@ -107,6 +107,91 @@ const TableRekapPelatihan = () => {
       institutionName: "PT BPR ANUGERAH HARTA KALIWUNGU",
       participant: 1,
     },
+    {
+      key: "4",
+      institutionName: "PT BPR DIAN FARAQO GEMILANG",
+      participant: 1,
+    },
+    {
+      key: "5",
+      institutionName: "PT. BPR Sentral Mitra Sejahtera",
+      participant: 1,
+    },
+    {
+      key: "6",
+      institutionName: "Perumda BPR Majalengka",
+      participant: 1,
+    },
+    {
+      key: "7",
+      institutionName: "BPR Asri Cikupa Karya",
+      participant: 1,
+    },
+    {
+      key: "8",
+      institutionName: "PT BPR Majalengka Jabar",
+      participant: 0,
+    },
+    {
+      key: "9",
+      institutionName: "PT. BPR NATASHA BINTANG ANUGRAH",
+      participant: 1,
+    },
+    {
+      key: "10",
+      institutionName: "PT BPR BKK Purworejo (Perseroda)",
+      participant: 1,
+    },
+    {
+      key: "11",
+      institutionName: "PT BPR BKK CILACAP (Perseroda)",
+      participant: 1,
+    },
+    {
+      key: "12",
+      institutionName: "PD BPR BANK KEBUMEN",
+      participant: 1,
+    },
+    {
+      key: "13",
+      institutionName: "PT. BPR HARTASARANA",
+      participant: 1,
+    },
+    {
+      key: "14",
+      institutionName: "PERUMDA BPR BANK PASAR KABUPATEN TEMANGGUNG",
+      participant: 1,
+    },
+    {
+      key: "15",
+      institutionName: "PT BPR Bumi Sediaguna",
+      participant: 1,
+    },
+    {
+      key: "16",
+      institutionName: "PT. BPR ARTHA KRAMAT",
+      participant: 3,
+    },
+    {
+      key: "17",
+      institutionName: "PT. BPR LAWU ARTHA",
+      participant: 1,
+    },
+    {
+      key: "18",
+      institutionName: "PT. BPR DARBENI RIZKI",
+      participant: 0,
+    },
+    {
+      key: "19",
+      institutionName: "PT. BPR MULTI ARTHANUSA",
+      participant: 1,
+    },
+    {
+      key: "20",
+      institutionName: "PT. BPR Handalan Danagraha",
+      participant: 0,
+    },
   ]);
 
   // Table Column

@@ -167,7 +167,7 @@ const App = () => {
 
   // Table data
   const data = [];
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 5; i++) {
     data.push({
       number: i + 1,
       trainingName: "Pelatihan Sertifikasi Teknisi Muda Jaringan Komputer",
@@ -183,7 +183,7 @@ const App = () => {
         <div className="w-full px-4">
           <div className="mb-10">
             <h1 className="text-3xl font-bold mb-2 text-slate-800">Kegiatan Peserta</h1>
-            <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis laudantium magnam quaerat?</p>
+            <p className="text-base text-slate-500">Pelatihan yang diikuti di USSI Institute</p>
           </div>
         </div>
 

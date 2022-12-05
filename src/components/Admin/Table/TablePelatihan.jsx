@@ -1,35 +1,129 @@
-import React, { useState, useRef } from "react";
-import { Input, Popconfirm, Table, Space, Button, Modal } from "antd";
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Input, Table, Space, Button, Modal } from "antd";
 import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import axios from "axios";
+import Swal from "sweetalert2";
 import Highlighter from "react-highlight-words";
 import InputPelatihan from "../Form/InputPelatihan";
 import EditPelatihan from "../Form/EditPelatihan";
-import Swal from "sweetalert2";
 
 const TablePelatihan = () => {
-  // Modal input pelatihan
+  const [training, setTraining] = useState([]);
+  const [formData, setFormData] = useState({
+    trainingName: "",
+    description: "",
+    startDate: "",
+    endDate: "",
+    time: "",
+    location: "",
+    city: "",
+    img: [],
+    registrationDate: "",
+  });
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  // Integrasi
+  useEffect(() => {
+    detailTraining();
+  }, []);
+
+  // Read Detail Pelatihan
+  const detailTraining = async () => {
+    await axios
+      .get("http://localhost:5000/api/v1/detail/training", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        const getData = res.data.data;
+        console.log(getData);
+        setTraining(getData);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  // Delete Data
+  const deleteTraining = async (id) => {
+    await axios.delete(`http://localhost:5000/api/v1/detail/training/${id}`, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+    detailTraining();
+    Swal.fire("Berhasil Dihapus!", `Pelatihan ${id} Berhasil hapus`, "success");
+  };
+
+  // Modal Input Pelatihan
   const [confirmLoading1, setConfirmLoading1] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const showModal1 = () => {
     setIsModalOpen1(true);
   };
 
-  const handleOk1 = () => {
+  const handleOk1 = (e) => {
+    e.preventDefault();
     setConfirmLoading1(true);
     setTimeout(() => {
       setIsModalOpen1(false);
       setConfirmLoading1(false);
-    }, 1000);
+    }, 2000);
+    axios({
+      method: "post",
+      url: `http://localhost:5000/api/v1/training`,
+      data: formData,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    })
+      .then((res) => {
+        var toastMixin = Swal.mixin({
+          icon: "success",
+          title: "Title",
+          showConfirmButton: false,
+          timer: 1000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+        toastMixin.fire({
+          title: res.data.message,
+        });
+        navigate("/dashboard/pelatihan");
+      })
+      .catch((err) => {
+        console.log(err);
+        var toastMixin = Swal.mixin({
+          icon: "success",
+          title: "Title",
+          showConfirmButton: false,
+          timer: 1000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+        toastMixin.fire({
+          icon: "error",
+          animation: true,
+          title: "Register Gagal",
+        });
+      });
 
-    Swal.fire({ title: "Berhasil!", text: "Data pelatihan berhasil ditambahkan", icon: "success" });
-    // Swal.fire({ title: "Ups!", text: "Silahkan lengkapi data", icon: "error" });
+    // Swal.fire({ title: "Berhasil!", text: "Data pelatihan berhasil ditambahkan", icon: "success" });
   };
 
   const handleCancel1 = () => {
     setIsModalOpen1(false);
   };
 
-  // Modal edit pelatihan
+  // Modal Edit Pelatihan
   const [confirmLoading2, setConfirmLoading2] = useState(false);
   const [isModalOpen2, setIsModalOpen2] = useState(false);
   const showModal2 = () => {
@@ -137,38 +231,8 @@ const TablePelatihan = () => {
       ),
   });
 
-  // Delete
-  const handleDelete = (key) => {
-    // Swal.fire({
-    //   title: "Apakah anda yakin?",
-    //   text: "Data akan dihapus",
-    //   icon: "warning",
-    //   showCancelButton: true,
-    //   confirmButtonColor: "#3085d6",
-    //   cancelButtonColor: "#d33",
-    //   confirmButtonText: "Ya, hapus!",
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     Swal.fire("Berhasil!", "Data pelatihan berhasil dihapus", "success");
-    //   }
-    // });
-
-    const newData = dataSource.filter((item) => item.key !== key);
-    setDataSource(newData);
-  };
-
   // Table Data
-  const [dataSource, setDataSource] = useState([
-    {
-      trainingName: "Pelatihan",
-      description: "aaaaaaaaaaaaaaaaaaaaaaaaaa",
-      startDate: "2022-11-25",
-      endDate: "2022-11-25",
-      time: "01.20",
-      location: "Bandung",
-      pendaftaran: "2022-11-25",
-    },
-  ]);
+  const [dataSource, setDataSource] = useState([]);
 
   // Table
   const columns = [
@@ -247,15 +311,12 @@ const TablePelatihan = () => {
       key: "action",
       width: 80,
       align: "center",
-      render: (_, record) =>
-        dataSource.length >= 1 ? (
-          <Space size="small">
-            <Button icon={<EditOutlined />} onClick={showModal2} />
-            <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
-              <Button type="primary" danger icon={<DeleteOutlined />} />
-            </Popconfirm>
-          </Space>
-        ) : null,
+      render: (_, record) => (
+        <Space size="small">
+          <Button icon={<EditOutlined />} onClick={showModal2} />
+          <Button type="primary" danger icon={<DeleteOutlined />} onClick={() => deleteTraining(record.id)} />
+        </Space>
+      ),
     },
   ];
 
@@ -273,7 +334,7 @@ const TablePelatihan = () => {
           </div>
           <Table
             bordered
-            dataSource={dataSource}
+            dataSource={training}
             columns={columns}
             size="middle"
             scroll={{
@@ -283,7 +344,7 @@ const TablePelatihan = () => {
           />
 
           <Modal title="Tambah Pelatihan" open={isModalOpen1} width={1000} onOk={handleOk1} onCancel={handleCancel1} confirmLoading={confirmLoading1}>
-            <InputPelatihan />
+            <InputPelatihan formData={formData} setFormData={setFormData} />
           </Modal>
 
           <Modal title="Edit Pelatihan" open={isModalOpen2} width={1000} onOk={handleOk2} onCancel={handleCancel2} confirmLoading={confirmLoading2}>

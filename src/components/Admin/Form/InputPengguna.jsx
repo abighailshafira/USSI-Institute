@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input } from "antd";
 
-const inputPengguna = () => {
+const inputPengguna = ({ formData, setFormData }) => {
   return (
     <>
       <Form
@@ -28,27 +28,27 @@ const inputPengguna = () => {
           rules={[
             {
               required: true,
-              message: "Please input your Name!",
+              message: "Input nama Anda!",
             },
           ]}
         >
-          <Input />
+          <Input value={formData.name} onChange={(event) => setFormData({ ...formData, name: event.target.value })} />
         </Form.Item>
         <Form.Item
           name="email"
-          label="E-mail"
+          label="Email"
           rules={[
             {
               type: "email",
-              message: "The input is not valid E-mail!",
+              message: "Email tidak valid.",
             },
             {
               required: true,
-              message: "Please input your E-mail!",
+              message: "Input email Anda",
             },
           ]}
         >
-          <Input />
+          <Input value={formData.email} onChange={(event) => setFormData({ ...formData, email: event.target.value })} />
         </Form.Item>
         <Form.Item
           name="password"
@@ -56,11 +56,11 @@ const inputPengguna = () => {
           rules={[
             {
               required: true,
-              message: "Please input your password!",
+              message: "Input password Anda!",
             },
           ]}
         >
-          <Input.Password />
+          <Input.Password value={formData.password} onChange={(event) => setFormData({ ...formData, password: event.target.value })} />
         </Form.Item>
       </Form>
     </>

@@ -1,18 +1,17 @@
 import React from "react";
-import { Form, Input, Button, Upload, DatePicker, TimePicker } from "antd";
+import { Form, Input, Upload, DatePicker, TimePicker } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import { FiChevronLeft } from "react-icons/fi";
 
 const { RangePicker } = DatePicker;
 
-const InputPelatihan = () => {
+const InputPelatihan = ({ formData, setFormData }) => {
   // Range time
   const rangeConfig = {
     rules: [
       {
         type: "array",
         required: true,
-        message: "Please select time!",
+        message: "Input tanggal pelaksanaan pelatihan!",
       },
     ],
   };
@@ -23,7 +22,7 @@ const InputPelatihan = () => {
       {
         type: "object",
         required: true,
-        message: "Please select time!",
+        message: "Input waktu pelaksanaan pelatihan!",
       },
     ],
   };
@@ -43,11 +42,11 @@ const InputPelatihan = () => {
           rules={[
             {
               required: true,
-              message: "Please input Intro",
+              message: "Input nama pelatihan!",
             },
           ]}
         >
-          <Input />
+          <Input value={formData.trainingName} onChange={(event) => setFormData({ ...formData, trainingName: event.target.value })} />
         </Form.Item>
         <Form.Item
           name="deskripsi"
@@ -55,17 +54,17 @@ const InputPelatihan = () => {
           rules={[
             {
               required: true,
-              message: "Please input Intro",
+              message: "Input deskripsi pelatihan!",
             },
           ]}
         >
-          <Input.TextArea showCount maxLength={100} />
+          <Input.TextArea showCount maxLength={100} value={formData.description} onChange={(event) => setFormData({ ...formData, description: event.target.value })} />
         </Form.Item>
         <Form.Item name="range-picker" label="Tanggal pelaksanaan" {...rangeConfig}>
-          <RangePicker />
+          <RangePicker value={formData.startDate} onChange={(event) => setFormData({ ...formData, startDate: event.target.value })} />
         </Form.Item>
         <Form.Item name="time-picker" label="Waktu Pelaksanaan" {...config}>
-          <TimePicker />
+          <TimePicker value={formData.time} onChange={(event) => setFormData({ ...formData, time: event.target.value })} />
         </Form.Item>
         <Form.Item
           name="location"
@@ -73,11 +72,11 @@ const InputPelatihan = () => {
           rules={[
             {
               required: true,
-              message: "Please input Intro",
+              message: "Input lokasi pelatihan!",
             },
           ]}
         >
-          <Input />
+          <Input value={formData.location} onChange={(event) => setFormData({ ...formData, location: event.target.value })} />
         </Form.Item>
         <Form.Item
           name="image"
@@ -86,11 +85,11 @@ const InputPelatihan = () => {
           rules={[
             {
               required: true,
-              message: "Please input Intro",
+              message: "Input gambar!",
             },
           ]}
         >
-          <Upload action="/upload.do" listType="picture-card">
+          <Upload action="/upload.do" listType="picture-card" value={formData.img} onChange={(event) => setFormData({ ...formData, img: event.target.value })}>
             <div>
               <PlusOutlined />
               <div
@@ -109,11 +108,11 @@ const InputPelatihan = () => {
           rules={[
             {
               required: true,
-              message: "Please input Intro",
+              message: "Input batas tanggal pendaftaran!",
             },
           ]}
         >
-          <DatePicker />
+          <DatePicker value={formData.registrationDate} onChange={(event) => setFormData({ ...formData, registrationDate: event.target.value })} />
         </Form.Item>
       </Form>
     </>

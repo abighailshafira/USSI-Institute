@@ -1,17 +1,16 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/image/logo-ussi.png";
 import "antd/dist/antd.css";
 import { Layout, Menu, Space, DatePicker } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { FiHome, FiUser } from "react-icons/fi";
 import { HiOutlineOfficeBuilding, HiOutlineViewGrid } from "react-icons/hi";
+import { FiHome, FiUser } from "react-icons/fi";
 import { TbCertificate } from "react-icons/tb";
 import TableRekapPelatihan from "./Table/TableRekapPelatihan";
+import Logo from "../../assets/image/logo-ussi.png";
 
 const { Header, Content, Sider } = Layout;
 
-//contoh data tabel dan response BE
 // const dataPelatihan = [
 //   {
 //     id: 1,
@@ -38,6 +37,7 @@ const { Header, Content, Sider } = Layout;
 //     ],
 //   },
 // ];
+
 const onChange = (date, dateString) => {
   console.log(date, dateString);
 };
@@ -46,22 +46,8 @@ const App = () => {
   const [collapsed, setCollapsed] = useState(false);
   return (
     <>
-      {" "}
       <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-          width={230}
-          breakpoint="lg"
-          collapsedWidth="100"
-          style={
-            {
-              // height: "100%",
-              // borderRight: 0,
-            }
-          }
-        >
+        <Sider trigger={null} collapsible collapsed={collapsed} width={230} breakpoint="lg" collapsedWidth="100">
           <div className="logo">
             <Link to="/dashboard">
               <a className="py-6 flex justify-center">
@@ -70,12 +56,7 @@ const App = () => {
             </Link>
           </div>
 
-          <Menu
-            mode="inline"
-            theme="dark"
-            defaultSelectedKeys={["rekapPelatihan"]}
-            // selectedKeys={[location.pathname]}
-          >
+          <Menu mode="inline" theme="dark" defaultSelectedKeys={["rekapPelatihan"]}>
             <Menu.Item key="dashboard" icon={<FiHome />}>
               <Link to="/dashboard" />
               Dashboard

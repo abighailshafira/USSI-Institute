@@ -1,13 +1,11 @@
 import React, { useState, Fragment } from "react";
-import { Transition, Disclosure, Menu } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "../assets/image/logo-ussi.png";
-import { message, Dropdown, Space } from "antd";
 import { useSelector } from "react-redux";
-import { DownOutlined } from "@ant-design/icons";
+import { Transition, Disclosure, Menu } from "@headlessui/react";
 import { FaUser } from "react-icons/fa";
-import "../App.css";
 import Swal from "sweetalert2";
+import Logo from "../assets/image/logo-ussi.png";
+import "../App.css";
 
 window.onscroll = function () {
   const header = document.querySelector("nav");
@@ -33,7 +31,7 @@ function NavBar({ theme }) {
       icon: "success",
       title: "Title",
       showConfirmButton: false,
-      timer: 800,
+      timer: 1500,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.addEventListener("mouseenter", Swal.stopTimer);
@@ -43,29 +41,9 @@ function NavBar({ theme }) {
     toastMixin.fire({
       title: "Berhasil logout!",
     });
-    navigate("/login");
-    setTimeout(window.location.reload.bind(window.location), 500);
+    navigate("/");
+    setTimeout(window.location.reload.bind(window.location), 1000);
   };
-  const items = [
-    {
-      label: "Profile",
-      key: "1",
-    },
-    {
-      label: " Logout",
-      // (
-      //   <a className={["login hover:text-cyan-500 text-base text-white ", theme === "dark" ? "text-white" : "text-black"].join(" ")} onClick={handleLogout}>
-      //     Keluar
-      // </a>
-      // ),
-      key: "2",
-    },
-  ];
-
-  const links = [
-    { href: "/profile-user", label: "Profile" },
-    { href: "/", label: "Logout", onClick: { handleLogout } },
-  ];
 
   return (
     <nav className={["absolute top-0 left-0 w-full px-4 z-[9999]", theme === "dark" ? "bg-transparent" : "bg-white shadow-md"].join(" ")}>
@@ -85,7 +63,7 @@ function NavBar({ theme }) {
                 <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Beranda</a>
               </Link>
 
-              <Link to="/profile">
+              <Link to="/tentang">
                 <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Tentang</a>
               </Link>
 
@@ -93,41 +71,25 @@ function NavBar({ theme }) {
                 <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Pelatihan</a>
               </Link>
 
-              {/* <Menu as="div" className="relative">
-                <Menu.Button className={["navbar-text inline-flex items-center hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>
-                  Pelatihan
-                  <RiArrowDownSLine aria-hidden="true" />
-                </Menu.Button>
+              {isLoggedIn ? (
+                <Link to="/pendaftaran">
+                  <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Pendaftaran</a>
+                </Link>
+              ) : (
+                <Link to="/login">
+                  <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Pendaftaran</a>
+                </Link>
+              )}
 
-                <Transition
-                  as={Fragment}
-                  enter="transition ease-out duration-100"
-                  enterFrom="transform opacity-0 scale-95"
-                  enterTo="transform opacity-100 scale-100"
-                  leave="transition ease-in duration-75"
-                  leaveFrom="transform opacity-100 scale-100"
-                  leaveTo="transform opacity-0 scale-95"
-                >
-                  <Menu.Items className="absolute right-0 mt-6 w-52 origin-top-right rounded-md bg-white shadow-lg p-2">
-                    {links.map((link) => (
-                      <Menu.Item as="a" key={link.href} href={link.href} className="text-black flex w-full items-center px-4 py-2 text-base hover:bg-slate-700 hover:text-white rounded-md">
-                        {link.label}
-                      </Menu.Item>
-                    ))}
-                  </Menu.Items>
-                </Transition>
-              </Menu> */}
-
-              <Link to="/pendaftaran">
-                <a href="#" className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>
-                  Pendaftaran
-                </a>
-              </Link>
-
-              <Link to="/contact">
+              <Link to="/kontak">
                 <a className={["hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Kontak</a>
               </Link>
-              {/* <Menu as="div" className="relative">
+            </div>
+          </div>
+
+          <div className="hidden md:block ">
+            {isLoggedIn ? (
+              <Menu as="div" className="relative">
                 <Menu.Button className={["navbar-text inline-flex items-center hover:text-cyan-500 px-3 py-2 text-base text-white", theme === "dark" ? "text-white" : "text-black"].join(" ")}>
                   <FaUser aria-hidden="true" />
                 </Menu.Button>
@@ -141,23 +103,16 @@ function NavBar({ theme }) {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items className="absolute right-0 mt-6 w-52 origin-top-right rounded-md bg-white shadow-lg p-2">
-                    {links.map((link) => (
-                      <Menu.Item as="a" key={link.href} href={link.href} className="text-black flex w-full items-center px-4 py-2 text-base hover:bg-slate-700 hover:text-white rounded-md">
-                        {link.label}
-                      </Menu.Item>
-                    ))}
+                  <Menu.Items className="absolute right-0 mt-8 w-52 origin-top-right rounded-md bg-white shadow-lg p-2 ">
+                    <Menu.Item as="a" href="/profile-user" className="text-black flex w-full items-center px-4 py-2 text-base hover:bg-slate-700 hover:text-white rounded-md">
+                      Profile
+                    </Menu.Item>
+                    <Menu.Item as="a" onClick={handleLogout} className="text-black flex w-full items-center px-4 py-2 text-base hover:bg-slate-700 hover:text-white rounded-md">
+                      Logout
+                    </Menu.Item>
                   </Menu.Items>
                 </Transition>
-              </Menu> */}
-            </div>
-          </div>
-
-          <div className="hidden md:block ">
-            {isLoggedIn ? (
-              <a className={["login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-2 px-6 ml-5 ", theme === "dark" ? "text-white" : "text-black"].join(" ")} onClick={handleLogout}>
-                Logout
-              </a>
+              </Menu>
             ) : (
               <Link to="/login">
                 <a className={["login hover:text-cyan-500 text-base text-white border-2 border-cyan-500 rounded-full py-2 px-6 ml-5", theme === "dark" ? "text-white" : "text-black"].join(" ")}>Login</a>
@@ -200,60 +155,46 @@ function NavBar({ theme }) {
                 <a className="hover:bg-slate-700 hover:text-white text-black block px-4 py-2 rounded-md text-base">Beranda</a>
               </Link>
 
-              <Link to="/profile">
+              <Link to="/tentang">
                 <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Tentang</a>
               </Link>
 
               <Link to="/jadwal-pelatihan">
                 <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pelatihan</a>
               </Link>
-
-              {/* <Menu as="div" className="relative">
-                <Disclosure>
-                  <Disclosure.Button className="inline-flex items-center hover:bg-slate-700 hover:text-white text-black px-4 py-2 rounded-md text-base ">
-                    Pelatihan
-                    <RiArrowDownSLine className="ml-2 text-black" aria-hidden="true" />
-                  </Disclosure.Button>
-                  <Disclosure.Panel className="text-gray-500 ml-10">
-                    <Link to="/pelatihan">
-                      <a className="hover:bg-slate-700 hover:text-white text-black block px-4 py-2 rounded-md text-base">Pelatihan</a>
-                    </Link>
-
-                    <Link to="/jadwal-pelatihan">
-                      <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Jadwal Pelatihan</a>
-                    </Link>
-                  </Disclosure.Panel>
-                </Disclosure>
-              </Menu> */}
-
-              <Link to="/pendaftaran">
-                <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pendaftaran</a>
-              </Link>
-
-              <Link to="/contact">
+              {isLoggedIn ? (
+                <Link to="/pendaftaran">
+                  <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pendaftaran</a>
+                </Link>
+              ) : (
+                <Link to="/login">
+                  <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Pendaftaran</a>
+                </Link>
+              )}
+              <Link to="/kontak">
                 <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Kontak</a>
               </Link>
 
-              <Menu as="div" className="relative">
-                <Disclosure>
-                  <Disclosure.Button className="inline-flex items-center hover:bg-slate-700 hover:text-white text-black px-4 py-2 rounded-md text-base ">
-                    <FaUser className="ml-2 text-black" aria-hidden="true" />
-                  </Disclosure.Button>
-                  <Disclosure.Panel className="text-gray-500 ml-10">
-                    <Link to="/profile-user">
-                      <a className="hover:bg-slate-700 hover:text-white text-black block px-4 py-2 rounded-md text-base">Profile</a>
-                    </Link>
+              {isLoggedIn ? (
+                <Menu as="div" className="relative">
+                  <Disclosure>
+                    <Disclosure.Button className="inline-flex items-center hover:bg-slate-700 hover:text-white text-black px-4 py-2 rounded-md text-base w-full">Profile</Disclosure.Button>
+                    <Disclosure.Panel className="text-gray-500 ml-10">
+                      <Link to="/profile-user">
+                        <a className="hover:bg-slate-700 hover:text-white text-black block px-4 py-2 rounded-md text-base">Profile</a>
+                      </Link>
 
-                    <Link to="/jadwal-pelatihan">
-                      <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Logout</a>
-                    </Link>
-                  </Disclosure.Panel>
-                </Disclosure>
-              </Menu>
-
-              <Link to="/login">
-                <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Login</a>
-              </Link>
+                      <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base" onClick={handleLogout}>
+                        Logout
+                      </a>
+                    </Disclosure.Panel>
+                  </Disclosure>
+                </Menu>
+              ) : (
+                <Link to="/login">
+                  <a className="text-black hover:bg-slate-700 hover:text-white block px-4 py-2 rounded-md text-base">Login</a>
+                </Link>
+              )}
             </div>
           </div>
         )}

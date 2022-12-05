@@ -1,37 +1,50 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Logo from "../../assets/image/logo-ussi.png";
+import { Link, useNavigate } from "react-router-dom";
 import "antd/dist/antd.css";
 import { Layout, Menu, Space } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { FiHome, FiUser } from "react-icons/fi";
 import { HiOutlineOfficeBuilding, HiOutlineViewGrid } from "react-icons/hi";
+import { FiHome, FiUser } from "react-icons/fi";
 import { TbCertificate } from "react-icons/tb";
+import Swal from "sweetalert2";
 import TablePengguna from "./Table/TablePengguna";
+import Logo from "../../assets/image/logo-ussi.png";
 
 const { Header, Content, Sider } = Layout;
 
 const Dashboard = () => {
   // Navbar
   const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
+
+  // Handle Logout
+  const handleLogout = () => {
+    // jsCookie.remove('auth')
+    // localStorage.removeItem("persist:auth");
+    var toastMixin = Swal.mixin({
+      toast: true,
+      icon: "success",
+      title: "Title",
+      animation: false,
+      position: "top-right",
+      showConfirmButton: false,
+      timer: 800,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+    toastMixin.fire({
+      title: "Berhasil logout",
+    });
+    // navigate("/login");
+  };
 
   return (
     <>
       <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-          width={230}
-          breakpoint="lg"
-          collapsedWidth="100"
-          style={
-            {
-              // height: "100%",
-              // borderRight: 0,
-            }
-          }
-        >
+        <Sider trigger={null} collapsible collapsed={collapsed} width={230} breakpoint="lg" collapsedWidth="100">
           <div className="logo">
             <Link to="/dashboard">
               <a className="py-6 flex justify-center">
@@ -40,12 +53,7 @@ const Dashboard = () => {
             </Link>
           </div>
 
-          <Menu
-            mode="inline"
-            theme="dark"
-            defaultSelectedKeys={["dashboard"]}
-            // selectedKeys={[location.pathname]}
-          >
+          <Menu mode="inline" theme="dark" defaultSelectedKeys={["dashboard"]}>
             <Menu.Item key="dashboard" icon={<FiHome />}>
               <Link to="/dashboard" />
               Dashboard
@@ -73,7 +81,9 @@ const Dashboard = () => {
                 <Link to="/dashboard/profile" />
                 Profil
               </Menu.Item>
-              <Menu.Item key="logout">Keluar</Menu.Item>
+              <Menu.Item key="logout" onClick={handleLogout}>
+                Keluar
+              </Menu.Item>
             </Menu.SubMenu>
           </Menu>
         </Sider>
@@ -114,7 +124,7 @@ const Dashboard = () => {
               <div className="container p-3">
                 <div>
                   <h1 className="text-3xl mb-2 text-slate-800">Dashboard</h1>
-                  <p className="text-base text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis laudantium magnam quaerat?</p>
+                  <p className="text-base text-slate-500">Selamat datang, Admin!</p>
                 </div>
 
                 <TablePengguna />

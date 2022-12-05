@@ -34,10 +34,8 @@ const Home = () => {
       <About />
       <Divisi />
       <Pelatihan pelatihan={pelatihan} />
-      {/* <div className="bg-gradient-to-b from-slate-100"> */}
       <Gallery />
       <History />
-      {/* </div> */}
       <FloatingButton />
       <Footer />
     </>
