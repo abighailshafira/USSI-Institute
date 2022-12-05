@@ -91,7 +91,6 @@ function Institution({ formData, setFormData }) {
           id="institutionAddress"
           placeholder="Alamat Lembaga"
           value={info.institutionAddress}
-          disabled
           onChange={(event) => setFormData({ ...formData, institutionAddress: event.target.value })}
         />
       </div>
