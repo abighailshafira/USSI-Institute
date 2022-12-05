@@ -20,7 +20,7 @@ const inputPengguna = ({ formData, setFormData }) => {
             },
           ]}
         >
-          <Input disabled={true} />
+          <input disabled={true} />
         </Form.Item>
         <Form.Item
           name="name"
@@ -32,7 +32,7 @@ const inputPengguna = ({ formData, setFormData }) => {
             },
           ]}
         >
-          <Input value={formData.name} onChange={(event) => setFormData({ ...formData, name: event.target.value })} />
+          <input value={formData.name} onChange={(event) => setFormData({ ...formData, name: event.target.value })} />
         </Form.Item>
         <Form.Item
           name="email"
@@ -48,7 +48,7 @@ const inputPengguna = ({ formData, setFormData }) => {
             },
           ]}
         >
-          <Input value={formData.email} onChange={(event) => setFormData({ ...formData, email: event.target.value })} />
+          <input value={formData.email} onChange={(event) => setFormData({ ...formData, email: event.target.value })} />
         </Form.Item>
         <Form.Item
           name="password"

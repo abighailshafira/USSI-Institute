@@ -316,7 +316,7 @@ const TablePengguna = () => {
       </Modal>
 
       <Modal title="Info Pengguna" open={isModalOpen2} onOk={() => handleOk2(users.id)} onCancel={handleCancel2}>
-        <InfoPengguna detail={detail} setDetail={setDetail} />
+        <InfoPengguna detail={detail} formData={formData} setFormData={setFormData} />
       </Modal>
     </>
   );

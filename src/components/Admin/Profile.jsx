@@ -8,11 +8,18 @@ import { FiHome, FiUser, FiChevronLeft } from "react-icons/fi";
 import { TbCertificate } from "react-icons/tb";
 import axios from "axios";
 import Swal from "sweetalert2";
+import jwtDecode from "jwt-decode";
+// import bcrypt from "bcrypt";
 import Logo from "../../assets/image/logo-ussi.png";
 
 const { Header, Content, Sider } = Layout;
 
 const Profile = () => {
+  const profile = JSON.parse(localStorage.getItem("persist:auth"));
+  const token = JSON.parse(profile.auth);
+  console.log(token.accessToken);
+  const { id } = jwtDecode(token.accessToken);
+
   // Navbar
   const [collapsed, setCollapsed] = useState(false);
 
@@ -21,13 +28,13 @@ const Profile = () => {
 
   // Integrasi
   useEffect(() => {
-    getAdmin();
+    getAdmin(id);
   }, []);
 
   // Read Data
-  const getAdmin = async () => {
+  const getAdmin = async (id) => {
     await axios
-      .get("http://localhost:5000/api/v1/admin", {
+      .get(`http://localhost:5000/api/v1/admin/${id}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -66,6 +73,8 @@ const Profile = () => {
     });
     Navigate("/");
   };
+
+  console.log(users);
 
   return (
     <>
@@ -168,17 +177,15 @@ const Profile = () => {
                     labelAlign="left"
                   >
                     <Form.Item label="Kode">
-                      <Input disabled={true} />
+                      <Input disabled={true} value={users.id} />
                     </Form.Item>
-                    <Form.Item label="Nama" value={info.name}>
-                      <Input />
+                    <Form.Item label="Nama">
+                      <Input value={users.name} />
                     </Form.Item>
                     <Form.Item label="Email">
-                      <Input disabled={true} value={info.email} />
+                      <Input disabled={true} value={users.email} />
                     </Form.Item>
-                    <Form.Item label="Password" value={info.password}>
-                      <Input />
-                    </Form.Item>
+                    {/* <Form.Item label="Password"><Input value={bcrypt(users.password)} /></Form.Item> */}
                     <Form.Item className="flex justify-end">
                       <Button className="mr-3">Reset</Button>
                       <Button type="primary" className="mt-2" onClick={handleSubmit}>

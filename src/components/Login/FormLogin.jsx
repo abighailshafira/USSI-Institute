@@ -60,7 +60,11 @@ const FormLogin = () => {
           toastMixin.fire({
             title: "Login berhasil!",
           });
-          navigate("/");
+          if (user.role === "admin") {
+            navigate("/dashboard");
+          } else {
+            navigate("/");
+          }
         }
       })
       .catch((err) => {
@@ -94,9 +98,7 @@ const FormLogin = () => {
         <div className="container">
           <div className="max-w-xl mx-auto text-center mb-10">
             <h1 className="text-3xl font-bold mb-2 text-slate-800">Login</h1>
-            <p className="text-base text-slate-500">
-              Selamat datang di website USSI Institute
-            </p>
+            <p className="text-base text-slate-500">Selamat datang di website USSI Institute</p>
           </div>
 
           <div className="flex flex-wrap items-center justify-center mx-auto rounded-lg shadow-lg bg-white max-w-4xl">
@@ -129,9 +131,7 @@ const FormLogin = () => {
                     style={{
                       borderRadius: "5px",
                     }}
-                    iconRender={(visible) =>
-                      visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-                    }
+                    iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
@@ -144,18 +144,13 @@ const FormLogin = () => {
                       id="flexCheckChecked"
                       value=""
                     />
-                    <label
-                      className="form-check-label inline-block text-slate-500"
-                      for="flexCheckChecked"
-                    >
+                    <label className="form-check-label inline-block text-slate-500" for="flexCheckChecked">
                       Remember me
                     </label>
                   </div>
 
                   <Link to="/forgot-password">
-                    <a className="text-cyan-500 hover:text-sky-600">
-                      Forgot password?
-                    </a>
+                    <a className="text-cyan-500 hover:text-sky-600">Forgot password?</a>
                   </Link>
                 </div>
 
@@ -170,9 +165,7 @@ const FormLogin = () => {
                 <p className="mt-2 text-slate-500 text-center">
                   Belum punya akun?{" "}
                   <Link to="/register">
-                    <a className="text-cyan-500 font-semibold hover:text-sky-600">
-                      Register disini
-                    </a>
+                    <a className="text-cyan-500 font-semibold hover:text-sky-600">Register disini</a>
                   </Link>
                 </p>
               </form>

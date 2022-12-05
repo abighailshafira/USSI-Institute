@@ -1,49 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Form, Input } from "antd";
-// import axios from "axios";
 
-const InfoPengguna = ({ detail }) => {
-  // const [user, setUser] = useState({});
-
-  // Integrasi
-  // useEffect(() => {
-  //   getAdminById();
-  // }, []);
-
-  // const getAdminById = async (id) => {
-  //   await axios
-  //     .get(`http://localhost:5000/api/v1/admin/${id}`, {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //     .then((res) => {
-  //       const getData = res.data.data;
-  //       console.log(getData);
-  //       setUser(getData);
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
-
-  // const getAdmin = async () => {
-  //   await axios
-  //     .get("http://localhost:5000/api/v1/admin", {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //     .then((res) => {
-  //       const getData = res.data.data;
-  //       console.log(getData);
-  //       setUser(getData);
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
-  console.log(detail?.name);
+const InfoPengguna = ({ detail, setFormData, formData }) => {
+  const [user, setUser] = useState({});
 
   return (
     <>
-      {/* <p>{detail?.name}</p> */}
       <Form
         labelCol={{
           span: 4,
@@ -52,13 +14,13 @@ const InfoPengguna = ({ detail }) => {
         labelAlign="left"
       >
         <Form.Item label="Kode">
-          <Input disabled={true} />
+          <Input disabled={true} value={detail?.id} onChange={(event) => setFormData({ ...formData, id: event.target.value })} />
         </Form.Item>
-        <Form.Item name="name" label="Nama">
-          <Input value={detail?.name} />
+        <Form.Item label="Nama">
+          <Input value={detail?.name} onChange={(event) => setFormData({ ...formData, name: event.target.value })} />
         </Form.Item>
-        <Form.Item name="email" label="E-mail">
-          <Input value={detail?.email} />
+        <Form.Item label="Email">
+          <Input value={detail?.email} onChange={(event) => setFormData({ ...formData, email: event.target.value })} />
         </Form.Item>
       </Form>
     </>

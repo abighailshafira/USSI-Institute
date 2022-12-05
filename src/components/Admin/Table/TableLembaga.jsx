@@ -251,11 +251,6 @@ const TableLembaga = () => {
   // Table Columns
   const columns = [
     {
-      title: "No",
-      width: 30,
-      align: "center",
-    },
-    {
       title: "Kode",
       dataIndex: "code",
       key: "code",
