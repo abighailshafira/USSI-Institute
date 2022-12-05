@@ -42,9 +42,16 @@ const FormLogin = () => {
           dispatch(
             setData({
               accessToken: res.data.accessToken,
+            })
+          );
+
+          dispatch(
+            setData({
               role: user.role,
             })
           );
+
+          
 
           var toastMixin = Swal.mixin({
             icon: "success",

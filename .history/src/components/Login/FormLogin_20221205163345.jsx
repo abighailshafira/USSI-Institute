@@ -36,15 +36,15 @@ const FormLogin = () => {
       .then((res) => {
         // console.log(res.data);
         if (res.data.statusCode === 200) {
-          const token = res.data.accessToken;
-          const user = jwtDecode(token);
-
           dispatch(
             setData({
               accessToken: res.data.accessToken,
-              role: user.role,
             })
           );
+
+          const token = res.data.accessToken;
+          const user = jwtDecode(token);
+          console.log(user)
 
           var toastMixin = Swal.mixin({
             icon: "success",

@@ -74,7 +74,7 @@ const RouteApp = () => {
   return (
     <>
       <Routes>
-        {isAdmin === "admin" ? adminRoute : guestRoute}
+        {isAdmin ? adminRoute == "admin" : guestRoute}
 
         <Route path="/" exact element={<Home />} />
         <Route path="/login" exact element={<LoginPage />} />

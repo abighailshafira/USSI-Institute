@@ -4,8 +4,7 @@ const initialState = {
     accessToken: localStorage.getItem("accessToken"),
     // isAdmin: false,
     email: "",
-    password: "",
-    role: "",
+    password: ""
 }
 
 export const authSlice = createSlice({
@@ -19,10 +18,10 @@ export const authSlice = createSlice({
             state.email = action.payload;
         },
         setPassword: (state, action) => {
-            state.password = action.payload;
+            state.name = action.payload;
         },
         setRole: (state, action) => {
-            state.role = action.payload;
+            state.name = action.payload;
         },
         setData: (state, action) => {
             return {

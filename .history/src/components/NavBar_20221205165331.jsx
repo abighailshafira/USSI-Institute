@@ -172,7 +172,7 @@ function NavBar({ theme }) {
                         Profile
                       </Menu.Item>
                     </Link>
-                    {isAdmin === "admin" ? (
+                    {isAdmin ? (
                       <Link to="/dashboard">
                         <Menu.Item
                           as="a"

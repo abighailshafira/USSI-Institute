@@ -26,19 +26,22 @@ import jwtDecode from "jwt-decode";
 
 const RouteApp = () => {
   const [isAdmin, setIsAdmin] = useState();
+  const isLoggedIn= useSelector((state) => state.auth.accessToken);
+  // const navigate = useNavigate();
 
-  const admin = useSelector((state) => state.auth.role);
+  const user = jwtDecode(isLoggedIn);
+  console.log(user.role)
 
   useEffect(() => {
-    setIsAdmin(admin);
+    getAdmin();
+  }, []);
 
-  }, [admin]);
-
-  // console.log(admin);
-
-  // const user = jwtDecode(admin);
-  //   // console.log(user.role)
-  //   setIsAdmin(user.role);
+  const getAdmin = async () => {
+    await axios.get(`http://localhost:5000/api/v1/admin`).then((res) => {
+      // console.log(res.data.data);
+      setIsAdmin(res.data.data);
+    });
+  }
 
   const adminRoute = <>
     <Route path="/dashboard" exact element={<DashboardPage />} />
@@ -74,13 +77,12 @@ const RouteApp = () => {
   return (
     <>
       <Routes>
-        {isAdmin === "admin" ? adminRoute : guestRoute}
-
         <Route path="/" exact element={<Home />} />
         <Route path="/login" exact element={<LoginPage />} />
         <Route path="/register" exact element={<RegisterPage />} />
         <Route path="/forgot-password" exact element={<ForgotPasswordPage />} />
 
+        {isAdmin ? adminRoute : guestRoute}
 
         {/* <Route path="/tentang" exact element={<ProfilePage />} />
         <Route path="/jadwal-pelatihan" exact element={<JadwalPelatihanPage />} />

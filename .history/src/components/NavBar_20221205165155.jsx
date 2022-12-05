@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Transition, Disclosure, Menu } from "@headlessui/react";
@@ -44,14 +44,6 @@ function NavBar({ theme }) {
     navigate("/");
     setTimeout(window.location.reload.bind(window.location), 1000);
   };
-
-  const [isAdmin, setIsAdmin] = useState();
-
-  const admin = useSelector((state) => state.auth.role);
-
-  useEffect(() => {
-    setIsAdmin(admin);
-  }, [admin]);
 
   return (
     <nav
@@ -172,16 +164,14 @@ function NavBar({ theme }) {
                         Profile
                       </Menu.Item>
                     </Link>
-                    {isAdmin === "admin" ? (
-                      <Link to="/dashboard">
-                        <Menu.Item
-                          as="a"
-                          className="text-black flex w-full items-center px-4 py-2 text-base hover:bg-slate-700 hover:text-white rounded-md"
-                        >
-                          Dashboard
-                        </Menu.Item>
-                      </Link>
-                    ) : null}
+                    <Link to="/dashboard">
+                      <Menu.Item
+                        as="a"
+                        className="text-black flex w-full items-center px-4 py-2 text-base hover:bg-slate-700 hover:text-white rounded-md"
+                      >
+                        Dashboard
+                      </Menu.Item>
+                    </Link>
                     <Menu.Item
                       as="a"
                       onClick={handleLogout}

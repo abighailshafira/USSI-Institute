@@ -22,7 +22,7 @@ export const authSlice = createSlice({
             state.password = action.payload;
         },
         setRole: (state, action) => {
-            state.role = action.payload;
+            state.role = action.role;
         },
         setData: (state, action) => {
             return {

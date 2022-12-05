@@ -28,11 +28,7 @@ const RouteApp = () => {
   const [isAdmin, setIsAdmin] = useState();
 
   const admin = useSelector((state) => state.auth.role);
-
-  useEffect(() => {
-    setIsAdmin(admin);
-
-  }, [admin]);
+  setIsAdmin(admin);
 
   // console.log(admin);
 
@@ -74,7 +70,7 @@ const RouteApp = () => {
   return (
     <>
       <Routes>
-        {isAdmin === "admin" ? adminRoute : guestRoute}
+        {isAdmin ? adminRoute === "admin" : guestRoute}
 
         <Route path="/" exact element={<Home />} />
         <Route path="/login" exact element={<LoginPage />} />

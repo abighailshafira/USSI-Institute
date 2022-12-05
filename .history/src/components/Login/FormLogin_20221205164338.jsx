@@ -45,6 +45,7 @@ const FormLogin = () => {
               role: user.role,
             })
           );
+          console.log(setData);
 
           var toastMixin = Swal.mixin({
             icon: "success",

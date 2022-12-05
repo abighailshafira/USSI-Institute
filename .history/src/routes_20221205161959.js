@@ -26,19 +26,18 @@ import jwtDecode from "jwt-decode";
 
 const RouteApp = () => {
   const [isAdmin, setIsAdmin] = useState();
+  const admin = !!useSelector((state) => state.auth.accessToken);
+  // const navigate = useNavigate();
 
-  const admin = useSelector((state) => state.auth.role);
-
-  useEffect(() => {
-    setIsAdmin(admin);
-
-  }, [admin]);
-
-  // console.log(admin);
-
-  // const user = jwtDecode(admin);
+  // useEffect(() => {
+  //   const user = jwtDecode(isLoggedIn);
   //   // console.log(user.role)
   //   setIsAdmin(user.role);
+  // }, []);
+
+  const user = jwtDecode(admin);
+    // console.log(user.role)
+    setIsAdmin(user.role);
 
   const adminRoute = <>
     <Route path="/dashboard" exact element={<DashboardPage />} />
@@ -74,13 +73,12 @@ const RouteApp = () => {
   return (
     <>
       <Routes>
-        {isAdmin === "admin" ? adminRoute : guestRoute}
-
         <Route path="/" exact element={<Home />} />
         <Route path="/login" exact element={<LoginPage />} />
         <Route path="/register" exact element={<RegisterPage />} />
         <Route path="/forgot-password" exact element={<ForgotPasswordPage />} />
 
+        {isAdmin ? adminRoute === "admin" : guestRoute}
 
         {/* <Route path="/tentang" exact element={<ProfilePage />} />
         <Route path="/jadwal-pelatihan" exact element={<JadwalPelatihanPage />} />
