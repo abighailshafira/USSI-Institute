@@ -62,59 +62,67 @@ const TablePelatihan = () => {
   const showModal1 = () => {
     setIsModalOpen1(true);
   };
-
+  console.log(formData);
   const handleOk1 = (e) => {
     e.preventDefault();
     setConfirmLoading1(true);
     setTimeout(() => {
       setIsModalOpen1(false);
       setConfirmLoading1(false);
-    }, 2000);
-    axios({
-      method: "post",
-      url: `http://localhost:5000/api/v1/training`,
-      data: formData,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    })
-      .then((res) => {
-        var toastMixin = Swal.mixin({
-          icon: "success",
-          title: "Title",
-          showConfirmButton: false,
-          timer: 1000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener("mouseenter", Swal.stopTimer);
-            toast.addEventListener("mouseleave", Swal.resumeTimer);
-          },
-        });
-        toastMixin.fire({
-          title: res.data.message,
-        });
-        navigate("/dashboard/pelatihan");
+      axios({
+        method: "post",
+        url: `http://localhost:5000/api/v1/training`,
+        // data: formData,
+        data: {
+          trainingName: formData.trainingName,
+          description: formData.description,
+          // startDate: formData.startDate,
+          // endDate: formData.endDate,
+          time: formData.time,
+          location: formData.location,
+          city: formData.city,
+          // registrationDate: formData.registrationDate,
+        },
       })
-      .catch((err) => {
-        console.log(err);
-        var toastMixin = Swal.mixin({
-          icon: "success",
-          title: "Title",
-          showConfirmButton: false,
-          timer: 1000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener("mouseenter", Swal.stopTimer);
-            toast.addEventListener("mouseleave", Swal.resumeTimer);
-          },
-        });
-        toastMixin.fire({
-          icon: "error",
-          animation: true,
-          title: "Register Gagal",
-        });
-      });
+        .then((res) => {
+          console.log(res.data);
+          var toastMixin = Swal.mixin({
+            icon: "success",
+            title: "Title",
+            showConfirmButton: false,
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            },
+          });
+          toastMixin.fire({
+            title: res.data.message,
+          });
+          navigate("/dashboard/pelatihan");
+          console.log(formData);
+        })
+        .catch((err) => {
+          console.log(err);
+          var toastMixin = Swal.mixin({
+            icon: "success",
+            title: "Title",
+            showConfirmButton: false,
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            },
+          });
+          toastMixin.fire({
+            icon: "error",
+            animation: true,
+            title: "Register Gagal",
+          });
+        }, 2000);
+    });
 
     // Swal.fire({ title: "Berhasil!", text: "Data pelatihan berhasil ditambahkan", icon: "success" });
   };

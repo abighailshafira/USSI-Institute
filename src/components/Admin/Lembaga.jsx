@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "antd/dist/antd.css";
 import { Layout, Menu, Space } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
@@ -8,12 +8,39 @@ import { FiHome, FiUser } from "react-icons/fi";
 import { TbCertificate } from "react-icons/tb";
 import TableLembaga from "./Table/TableLembaga";
 import Logo from "../../assets/image/logo-ussi.png";
+import Swal from "sweetalert2";
 
 const { Header, Content, Sider } = Layout;
 
 const Lembaga = () => {
   // Navbar
   const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
+
+  // Handle Logout
+  const handleLogout = () => {
+    // jsCookie.remove('auth')
+    localStorage.removeItem("persist:auth");
+    var toastMixin = Swal.mixin({
+      toast: true,
+      icon: "success",
+      title: "Title",
+      animation: false,
+      position: "top-right",
+      showConfirmButton: false,
+      timer: 800,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+    toastMixin.fire({
+      title: "Berhasil logout",
+    });
+    navigate("/");
+    setTimeout(window.location.reload.bind(window.location), 1000);
+  };
 
   return (
     <>
@@ -55,7 +82,9 @@ const Lembaga = () => {
                 <Link to="/dashboard/profile" />
                 Profil
               </Menu.Item>
-              <Menu.Item key="logout">Keluar</Menu.Item>
+              <Menu.Item key="logout" onClick={handleLogout}>
+                Keluar
+              </Menu.Item>
             </Menu.SubMenu>
           </Menu>
         </Sider>

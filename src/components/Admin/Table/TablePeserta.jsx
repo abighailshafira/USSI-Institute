@@ -1,10 +1,49 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Space, Table, Button, Input, Tag, Upload } from "antd";
 import { UploadOutlined, SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const TablePeserta = () => {
+  const [users, setUsers] = useState([]);
+
+  // Integrasi
+  useEffect(() => {
+    getAdmin();
+    // getAdminById();
+  }, []);
+
+  // Read Data Admin
+  const getAdmin = async () => {
+    await axios
+      .get("http://localhost:5000/api/v1/event", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        const getData = res.data.data;
+        console.log(getData);
+        setUsers(getData);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  console.log(users);
+  const dataSource = users.map((user) => {
+    return {
+      name: user.Profile.User.name,
+      institutionName: user.Profile.User.Institution.institutionName,
+      trainingName: user.DetailTraining.trainingName,
+      startDate: user.DetailTraining.startDate,
+      endDate: user.DetailTraining.endDate,
+      location: user.DetailTraining.location,
+      city: user.DetailTraining.city,
+      certificate: user.DetailTraining.certificate,
+    };
+  });
+
   // Search
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
@@ -91,55 +130,49 @@ const TablePeserta = () => {
       ),
   });
 
-  // Delete
-  const handleDelete = (key) => {
-    const newData = dataSource.filter((item) => item.key !== key);
-    setDataSource(newData);
-  };
-
-  // Table
-  const [dataSource, setDataSource] = useState([
-    {
-      key: "1",
-      no: "1",
-      name: "Edward King 0",
-      institutionName: "BPR Tangerang",
-      trainingName: "Pelatihan A",
-      startDate: "12/02/2022",
-      endDate: "12/03/2022",
-      status: ["Download"],
-    },
-    {
-      key: "2",
-      no: "2",
-      name: "Zayn King 1",
-      institutionName: "BPR Bandung",
-      trainingName: "Pelatihan",
-      startDate: "12/02/2022",
-      endDate: "12/03/2022",
-      status: ["Lulus"],
-    },
-    {
-      key: "3",
-      no: "3",
-      name: "Zayn King 1",
-      institutionName: "BPR Bandung",
-      trainingName: "Pelatihan",
-      startDate: "12/02/2022",
-      endDate: "12/03/2022",
-      status: ["Tidak Lulus"],
-    },
-    {
-      key: "4",
-      no: "4",
-      name: "Zayn King 1",
-      institutionName: "BPR Bandung",
-      trainingName: "Pelatihan",
-      startDate: "12/02/2022",
-      endDate: "12/03/2022",
-      status: ["Menunggu Hasil"],
-    },
-  ]);
+  // // Table
+  // const [dataSource, setDataSource] = useState([
+  //   {
+  //     key: "1",
+  //     no: "1",
+  //     name: "Edward King 0",
+  //     institutionName: "BPR Tangerang",
+  //     trainingName: "Pelatihan A",
+  //     startDate: "12/02/2022",
+  //     endDate: "12/03/2022",
+  //     status: ["Download"],
+  //   },
+  //   {
+  //     key: "2",
+  //     no: "2",
+  //     name: "Zayn King 1",
+  //     institutionName: "BPR Bandung",
+  //     trainingName: "Pelatihan",
+  //     startDate: "12/02/2022",
+  //     endDate: "12/03/2022",
+  //     status: ["Lulus"],
+  //   },
+  //   {
+  //     key: "3",
+  //     no: "3",
+  //     name: "Zayn King 1",
+  //     institutionName: "BPR Bandung",
+  //     trainingName: "Pelatihan",
+  //     startDate: "12/02/2022",
+  //     endDate: "12/03/2022",
+  //     status: ["Tidak Lulus"],
+  //   },
+  //   {
+  //     key: "4",
+  //     no: "4",
+  //     name: "Zayn King 1",
+  //     institutionName: "BPR Bandung",
+  //     trainingName: "Pelatihan",
+  //     startDate: "12/02/2022",
+  //     endDate: "12/03/2022",
+  //     status: ["Menunggu Hasil"],
+  //   },
+  // ]);
 
   const defaultColumns = [
     {
@@ -213,27 +246,27 @@ const TablePeserta = () => {
       title: "Status",
       key: "Status",
       dataIndex: "status",
-      render: (_, { status }) => (
-        <>
-          {status.map((tag) => {
-            let color = tag.length > 5 ? "geekblue" : "green";
-            if (tag === "Download") {
-              color = "geekblue";
-            } else if (tag === "Tidak Lulus") {
-              color = "red";
-            } else if (tag === "Lulus") {
-              color = "green";
-            } else if (tag === "Menunggu Hasil") {
-              color = "yellow";
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag}
-              </Tag>
-            );
-          })}
-        </>
-      ),
+      // render: (_, { status }) => (
+      //   <>
+      //     {status.map((tag) => {
+      //       let color = tag.length > 5 ? "geekblue" : "green";
+      //       if (tag === "Download") {
+      //         color = "geekblue";
+      //       } else if (tag === "Tidak Lulus") {
+      //         color = "red";
+      //       } else if (tag === "Lulus") {
+      //         color = "green";
+      //       } else if (tag === "Menunggu Hasil") {
+      //         color = "yellow";
+      //       }
+      //       return (
+      //         <Tag color={color} key={tag}>
+      //           {tag}
+      //         </Tag>
+      //       );
+      //     })}
+      //   </>
+      // ),
 
       filters: [
         {

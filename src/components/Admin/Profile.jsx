@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "antd/dist/antd.css";
 import { Form, Input, Layout, Menu, Space, Image, Button } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
@@ -19,6 +19,7 @@ const Profile = () => {
   const token = JSON.parse(profile.auth);
   console.log(token.accessToken);
   const { id } = jwtDecode(token.accessToken);
+  const navigate = useNavigate();
 
   // Navbar
   const [collapsed, setCollapsed] = useState(false);
@@ -52,8 +53,10 @@ const Profile = () => {
     Swal.fire({ title: "Berhasil!", text: "Profil berhasil diperbarui", icon: "success" });
   };
 
-  // Logout
+  // Handle Logout
   const handleLogout = () => {
+    // jsCookie.remove('auth')
+    localStorage.removeItem("persist:auth");
     var toastMixin = Swal.mixin({
       toast: true,
       icon: "success",
@@ -71,7 +74,8 @@ const Profile = () => {
     toastMixin.fire({
       title: "Berhasil logout",
     });
-    Navigate("/");
+    navigate("/");
+    setTimeout(window.location.reload.bind(window.location), 1000);
   };
 
   console.log(users);

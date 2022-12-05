@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "antd/dist/antd.css";
 import { Layout, Menu, Space, DatePicker } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
@@ -8,42 +8,42 @@ import { FiHome, FiUser } from "react-icons/fi";
 import { TbCertificate } from "react-icons/tb";
 import TableRekapPelatihan from "./Table/TableRekapPelatihan";
 import Logo from "../../assets/image/logo-ussi.png";
+import Swal from "sweetalert2";
 
 const { Header, Content, Sider } = Layout;
 
-// const dataPelatihan = [
-//   {
-//     id: 1,
-//     institutionName: "Universitas Brawijaya",
-//     detailTrainings: [
-//       {
-//         id: 1,
-//         trainingName: "Pelatihan Janauari",
-//         startDate: "Januari", // mengambil dari startdate lalu di convert ke bulan
-//         detail: {
-//           participants: 100, // jumlah peserta dari trainingname dan institutionName yang sama
-//           attendance: null, // jumlah peserta yang hadir dari trainingname dan institutionName yang sama
-//         },
-//       },
-//       {
-//         id: 2,
-//         trainingName: "Pelatihan Janauari",
-//         startDate: "Januari", // mengambil dari startdate lalu di convert ke bulan
-//         detail: {
-//           participants: 100, // jumlah peserta dari trainingname dan institutionName yang sama
-//           attendance: null, // jumlah peserta yang hadir dari trainingname dan institutionName yang sama
-//         },
-//       },
-//     ],
-//   },
-// ];
-
-const onChange = (date, dateString) => {
-  console.log(date, dateString);
-};
-
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
+
+  // Handle Logout
+  const handleLogout = () => {
+    // jsCookie.remove('auth')
+    localStorage.removeItem("persist:auth");
+    var toastMixin = Swal.mixin({
+      toast: true,
+      icon: "success",
+      title: "Title",
+      animation: false,
+      position: "top-right",
+      showConfirmButton: false,
+      timer: 800,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+    toastMixin.fire({
+      title: "Berhasil logout",
+    });
+    navigate("/");
+    setTimeout(window.location.reload.bind(window.location), 1000);
+  };
+
+  const onChange = (date, dateString) => {
+    console.log(date, dateString);
+  };
   return (
     <>
       <Layout>
@@ -84,7 +84,9 @@ const App = () => {
                 <Link to="/dashboard/profile" />
                 Profil
               </Menu.Item>
-              <Menu.Item key="logout">Keluar</Menu.Item>
+              <Menu.Item key="logout" onClick={handleLogout}>
+                Keluar
+              </Menu.Item>
             </Menu.SubMenu>
           </Menu>
         </Sider>

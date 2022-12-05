@@ -60,8 +60,32 @@ const InputPelatihan = ({ formData, setFormData }) => {
         >
           <Input.TextArea showCount maxLength={100} value={formData.description} onChange={(event) => setFormData({ ...formData, description: event.target.value })} />
         </Form.Item>
-        <Form.Item name="range-picker" label="Tanggal pelaksanaan" {...rangeConfig}>
+        {/* <Form.Item name="range-picker" label="Tanggal pelaksanaan" {...rangeConfig}>
           <RangePicker value={formData.startDate} onChange={(event) => setFormData({ ...formData, startDate: event.target.value })} />
+        </Form.Item> */}
+        <Form.Item
+          name="startDate"
+          label="Tanggal Mulai"
+          rules={[
+            {
+              required: true,
+              message: "Input tanggal pelaksanaan!",
+            },
+          ]}
+        >
+          <DatePicker value={formData.startDate} onChange={(event) => setFormData({ ...formData, startDate: event.target.value })} />
+        </Form.Item>
+        <Form.Item
+          name="endDate"
+          label="Tanggal Selesai"
+          rules={[
+            {
+              required: true,
+              message: "Input tanggal pelaksanaan!",
+            },
+          ]}
+        >
+          <DatePicker value={formData.endDate} onChange={(event) => setFormData({ ...formData, endDate: event.target.value })} />
         </Form.Item>
         <Form.Item name="time-picker" label="Waktu Pelaksanaan" {...config}>
           <TimePicker value={formData.time} onChange={(event) => setFormData({ ...formData, time: event.target.value })} />

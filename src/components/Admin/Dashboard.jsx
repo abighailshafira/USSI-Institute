@@ -20,7 +20,7 @@ const Dashboard = () => {
   // Handle Logout
   const handleLogout = () => {
     // jsCookie.remove('auth')
-    // localStorage.removeItem("persist:auth");
+    localStorage.removeItem("persist:auth");
     var toastMixin = Swal.mixin({
       toast: true,
       icon: "success",
@@ -38,7 +38,8 @@ const Dashboard = () => {
     toastMixin.fire({
       title: "Berhasil logout",
     });
-    // navigate("/login");
+    navigate("/");
+    setTimeout(window.location.reload.bind(window.location), 1000);
   };
 
   return (

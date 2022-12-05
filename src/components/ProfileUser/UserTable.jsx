@@ -1,10 +1,46 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Table } from "antd";
 import { Button, Input, Space } from "antd";
 import { DownloadOutlined, SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
+import axios from "axios";
 
 const App = () => {
+  const [users, setUsers] = useState([]);
+
+  // Integrasi
+  useEffect(() => {
+    getAdmin();
+    // getAdminById();
+  }, []);
+
+  // Read Data Admin
+  const getAdmin = async () => {
+    await axios
+      .get("http://localhost:5000/api/v1/event", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        const getData = res.data.data;
+        console.log(getData);
+        setUsers(getData);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  console.log(users);
+  const dataSource = users.map((user) => {
+    return {
+      trainingName: user.DetailTraining.trainingName,
+      startDate: user.DetailTraining.startDate,
+      endDate: user.DetailTraining.endDate,
+      location: user.DetailTraining.location,
+      city: user.DetailTraining.city,
+      certificate: user.DetailTraining.certificate,
+    };
+  });
   // Search
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
@@ -187,7 +223,7 @@ const App = () => {
           </div>
         </div>
 
-        <Table className="px-5" columns={columns} dataSource={data} bordered size="middle" />
+        <Table className="px-5" columns={columns} dataSource={dataSource} bordered size="middle" />
       </div>
     </>
   );
