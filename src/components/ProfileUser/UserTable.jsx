@@ -3,11 +3,14 @@ import { Table } from "antd";
 import { Button, Input, Space } from "antd";
 import { DownloadOutlined, SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
+import jwtDecode from "jwt-decode";
 import axios from "axios";
 
 const App = () => {
   const [users, setUsers] = useState([]);
-
+  const { auth } = JSON.parse(localStorage.getItem("persist:auth"));
+  const { accessToken } = JSON.parse(auth);
+  const bebas = jwtDecode(accessToken);
   // Integrasi
   useEffect(() => {
     getAdmin();
@@ -17,7 +20,7 @@ const App = () => {
   // Read Data Admin
   const getAdmin = async () => {
     await axios
-      .get("http://localhost:5000/api/v1/event", {
+      .get(`http://localhost:5000/api/v1/event/${bebas.id}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -31,6 +34,7 @@ const App = () => {
   };
 
   console.log(users);
+  console.log(bebas.id)
   const dataSource = users.map((user) => {
     return {
       trainingName: user.DetailTraining.trainingName,

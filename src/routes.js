@@ -33,7 +33,7 @@ const RouteApp = () => {
   useEffect(() => {
     setIsAdmin(admin);
 
-  }, [admin]);
+  }, []);
 
   // console.log(admin);
 
@@ -67,21 +67,35 @@ const RouteApp = () => {
     <Route path="/pendaftaran" exact element={<PendaftaranPage />} />
     <Route path="/pendaftaran/:id" exact element={<PendaftaranPage />} />
     <Route path="/kontak" exact element={<ContactPage />} />
-    <Route path="/profile-user" exact element={<ProfileUserPage />} />
+    {/* <Route path="/profile-user" exact element={<ProfileUserPage />} /> */}
     <Route path="/detail-divisi/audit" exact element={<AuditPage />} />
     <Route path="/detail-divisi/ussi-institute" exact element={<UssiInstitutePage />} />
   </>
 
+  const memberRoute = <>
+    <Route path="/tentang" exact element={<ProfilePage />} />
+    <Route path="/jadwal-pelatihan" exact element={<JadwalPelatihanPage />} />
+    <Route path="/detail-pelatihan/:id" exact element={<DetailPelatihanPage />} />
+    <Route path="/pendaftaran" exact element={<PendaftaranPage />} />
+    <Route path="/pendaftaran/:id" exact element={<PendaftaranPage />} />
+    <Route path="/kontak" exact element={<ContactPage />} />
+    <Route path="/profile-user" exact element={<ProfileUserPage />} />
+    <Route path="/detail-divisi/audit" exact element={<AuditPage />} />
+    <Route path="/detail-divisi/ussi-institute" exact element={<UssiInstitutePage />} />
+  </>
+  console.log(isAdmin)
+  console.log(admin)
+
   return (
     <>
       <Routes>
-        {isAdmin === "admin" ? adminRoute : guestRoute}
+        {admin === "admin" ? adminRoute : admin === "member"? memberRoute : guestRoute}
 
         <Route path="/" exact element={<Home />} />
         <Route path="/login" exact element={<LoginPage />} />
         <Route path="/register" exact element={<RegisterPage />} />
         <Route path="/forgot-password" exact element={<ForgotPasswordPage />} />
-        <Route path="*" exact element={<ErrorPage />} />
+        <Route path="*" exact element={<LoginPage />} />
 
 
         {/* <Route path="/tentang" exact element={<ProfilePage />} />

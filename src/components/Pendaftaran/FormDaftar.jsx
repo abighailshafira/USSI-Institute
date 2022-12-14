@@ -9,9 +9,13 @@ import Payment from "./Steps/Payment";
 import Image from "../../assets/image/pendaftaran.png";
 
 const FormDaftar = () => {
+  const { auth } = JSON.parse(localStorage.getItem("persist:auth"));
+  const { accessToken } = JSON.parse(auth);
+  const bebas = jwtDecode(accessToken);
   const [info, setInfo] = useState({});
   const [formData, setFormData] = useState({
-    userId: info?.User?.id || 0,
+    userId: bebas.id || 0,
+    detailTrainingId: 0,
     city: "",
     phone: "",
     gender: "",
@@ -22,12 +26,9 @@ const FormDaftar = () => {
 
   useEffect(() => {
     getPendaftaran();
-    setFormData({ userId: info?.User?.id });
+    // setFormData({ userId: info?.User?.id });
   }, []);
 
-  const { auth } = JSON.parse(localStorage.getItem("persist:auth"));
-  const { accessToken } = JSON.parse(auth);
-  const bebas = jwtDecode(accessToken);
 
   const getPendaftaran = () => {
     axios.get(`http://localhost:5000/api/v1/manuk/${bebas.id}`).then((res) => {

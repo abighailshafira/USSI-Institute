@@ -56,12 +56,12 @@ function Institution({ formData, setFormData }) {
         <select
           id="trainingName"
           className="form-control block w-full px-2 py-1.5 text-sm bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:outline-none focus:ring-cyan-500 focus:ring-1 focus:border-cyan-500"
-          value={formData.trainingName}
-          onChange={(event) => setFormData({ ...formData, trainingName: event.target.value })}
+          // value={formData.trainingName}
+          onChange={(event) => setFormData({ ...formData, detailTrainingId: event.target.value })}
         >
           <option selected>Pilih Pelatihan</option>
           {pelatihan.map((d) => (
-            <option value={d.trainingName}>{d.trainingName}</option>
+            <option value={d.id}>{d.trainingName}</option>
           ))}
         </select>
       </div>

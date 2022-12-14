@@ -76,12 +76,12 @@ const TablePelatihan = () => {
         data: {
           trainingName: formData.trainingName,
           description: formData.description,
-          // startDate: formData.startDate,
-          // endDate: formData.endDate,
+          startDate: formData.startDate,
+          endDate: formData.endDate,
           time: formData.time,
           location: formData.location,
           city: formData.city,
-          // registrationDate: formData.registrationDate,
+          registrationDate: formData.registrationDate,
         },
       })
         .then((res) => {
@@ -296,6 +296,15 @@ const TablePelatihan = () => {
       editable: true,
       sorter: (a, b) => a.location.localeCompare(b.location),
       ...getColumnSearchProps("location"),
+    },
+    {
+      title: "Kota",
+      dataIndex: "city",
+      key: "city",
+      width: 100,
+      editable: true,
+      sorter: (a, b) => a.city.localeCompare(b.city),
+      ...getColumnSearchProps("city"),
     },
     {
       title: "Batas Pendaftaran",

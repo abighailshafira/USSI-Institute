@@ -16,6 +16,23 @@ const InputPelatihan = ({ formData, setFormData }) => {
     ],
   };
 
+  const startDate = (date, dateString) => {
+    // console.log(dateString)
+    setFormData({...formData, startDate: dateString})
+  }
+
+  const endDate = (date, dateString) => {
+    setFormData({...formData, endDate: dateString})
+  }
+
+  const registrationDate = (date, dateString) => {
+    setFormData({...formData, registrationDate: dateString})
+  }
+
+  const time = (time, timeString) => {
+    setFormData({...formData, time: timeString})
+  }
+
   // Time
   const config = {
     rules: [
@@ -73,7 +90,7 @@ const InputPelatihan = ({ formData, setFormData }) => {
             },
           ]}
         >
-          <DatePicker value={formData.startDate} onChange={(event) => setFormData({ ...formData, startDate: event.target.value })} />
+          <DatePicker value={formData.startDate} onChange={startDate} />
         </Form.Item>
         <Form.Item
           name="endDate"
@@ -85,10 +102,10 @@ const InputPelatihan = ({ formData, setFormData }) => {
             },
           ]}
         >
-          <DatePicker value={formData.endDate} onChange={(event) => setFormData({ ...formData, endDate: event.target.value })} />
+          <DatePicker value={formData.endDate} onChange={endDate} />
         </Form.Item>
         <Form.Item name="time-picker" label="Waktu Pelaksanaan" {...config}>
-          <TimePicker value={formData.time} onChange={(event) => setFormData({ ...formData, time: event.target.value })} />
+          <TimePicker value={formData.time} onChange={time} />
         </Form.Item>
         <Form.Item
           name="location"
@@ -102,6 +119,20 @@ const InputPelatihan = ({ formData, setFormData }) => {
         >
           <Input value={formData.location} onChange={(event) => setFormData({ ...formData, location: event.target.value })} />
         </Form.Item>
+
+        <Form.Item
+          name="city"
+          label="Kota"
+          rules={[
+            {
+              required: true,
+              message: "Input kota pelatihan!",
+            },
+          ]}
+        >
+          <Input value={formData.city} onChange={(event) => setFormData({ ...formData, city: event.target.value })} />
+        </Form.Item>
+
         <Form.Item
           name="image"
           label="Gambar"
@@ -136,7 +167,7 @@ const InputPelatihan = ({ formData, setFormData }) => {
             },
           ]}
         >
-          <DatePicker value={formData.registrationDate} onChange={(event) => setFormData({ ...formData, registrationDate: event.target.value })} />
+          <DatePicker value={formData.registrationDate} onChange={registrationDate} />
         </Form.Item>
       </Form>
     </>

@@ -7,6 +7,7 @@ import axios from "axios";
 
 const TablePeserta = () => {
   const [users, setUsers] = useState([]);
+  console.log(users)
 
   // Integrasi
   useEffect(() => {
@@ -33,14 +34,14 @@ const TablePeserta = () => {
   console.log(users);
   const dataSource = users.map((user) => {
     return {
-      name: user.Profile.User.name,
-      institutionName: user.Profile.User.Institution.institutionName,
-      trainingName: user.DetailTraining.trainingName,
-      startDate: user.DetailTraining.startDate,
-      endDate: user.DetailTraining.endDate,
-      location: user.DetailTraining.location,
-      city: user.DetailTraining.city,
-      certificate: user.DetailTraining.certificate,
+      name: user?.Profile?.User?.name,
+      institutionName: user?.Profile?.User?.Institution?.institutionName,
+      trainingName: user?.DetailTraining?.trainingName,
+      startDate: user?.DetailTraining?.startDate,
+      endDate: user?.DetailTraining?.endDate,
+      location: user?.DetailTraining?.location,
+      city: user?.DetailTraining?.city,
+      certificate: user?.DetailTraining?.certificate,
     };
   });
 
