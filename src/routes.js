@@ -54,8 +54,8 @@ const RouteApp = () => {
       <Route path="/tentang" exact element={<ProfilePage />} />
       <Route path="/jadwal-pelatihan" exact element={<JadwalPelatihanPage />} />
       <Route path="/detail-pelatihan/:id" exact element={<DetailPelatihanPage />} />
-      <Route path="/pendaftaran" exact element={<PendaftaranPage />} />
-      <Route path="/pendaftaran/:id" exact element={<PendaftaranPage />} />
+      {/* <Route path="/pendaftaran" exact element={<PendaftaranPage />} /> */}
+      {/* <Route path="/pendaftaran/:id" exact element={<PendaftaranPage />} /> */}
       <Route path="/kontak" exact element={<ContactPage />} />
       <Route path="/detail-divisi/audit" exact element={<AuditPage />} />
       <Route path="/detail-divisi/ussi-institute" exact element={<UIPage />} />
