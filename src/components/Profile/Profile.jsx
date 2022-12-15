@@ -31,7 +31,7 @@ const Profile = () => {
               <div>
                 <h2 className="font-semibold text-lg text-cyan-500 mb-0">Profil</h2>
                 <h1 className="text-3xl font-bold mb-6 uppercase text-slate-800">USSI Institute</h1>
-                <p className="text-base text-slate-500 text-justify">
+                <p className="text-lg text-slate-500 text-justify">
                   USSI INSTITUTE merupakan sebuah divisi yang berada di bawah naungan PT. USSI Pinbuk Prima Software yang bergerak dalam bidang teknologi informasi. Divisi USSI INSTITUTE lebih berfokus pada pelatihan dan peningkatan
                   kompetensi SDM baik internal maupun eksternal. Dengan mengadakan pelatihan dan sertifikasi yang diselenggarakan secara berkelanjutan untuk menunjang operasional pada perusahaan customer juga untuk meningkatkan kompetensi
                   SDM.

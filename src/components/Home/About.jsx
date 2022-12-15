@@ -25,7 +25,7 @@ const About = () => {
               <div className="mb-6 md:mb-0">
                 <div className="group relative overflow-hidden shadow-lg rounded-md aspect-[4/3] hover:scale-95 transition-all duration-500">
                   <img src={Image1} className="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500 group-hover:rotate-12" alt="USSI" />
-                  <a href="#">
+                  <a>
                     <div
                       className="absolute top-0 right-0 bottom-0 left-0 w-full h-full"
                       style={{
@@ -51,7 +51,7 @@ const About = () => {
               <div className="mb-6 md:mb-0 md:order-2">
                 <div className="group relative overflow-hidden shadow-lg rounded-md aspect-[4/3] hover:scale-95 transition-all duration-500">
                   <img src={Image2} className="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500 group-hover:rotate-12" alt="USSI" />
-                  <a href="#">
+                  <a>
                     <div
                       className="absolute top-0 right-0 bottom-0 left-0 w-full h-full"
                       style={{

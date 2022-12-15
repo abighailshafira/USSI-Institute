@@ -47,7 +47,7 @@ const Dashboard = () => {
       <Layout>
         <Sider trigger={null} collapsible collapsed={collapsed} width={230} breakpoint="lg" collapsedWidth="100">
           <div className="logo">
-            <Link to="/">
+            <Link to="/dashboard">
               <a className="py-6 flex justify-center">
                 <img src={Logo} alt="USSI Institute" className="h-10" />
               </a>

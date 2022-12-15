@@ -3,18 +3,18 @@ import { Table } from "antd";
 import { Button, Input, Space } from "antd";
 import { DownloadOutlined, SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
-import jwtDecode from "jwt-decode";
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 
 const App = () => {
   const [users, setUsers] = useState([]);
+
   const { auth } = JSON.parse(localStorage.getItem("persist:auth"));
   const { accessToken } = JSON.parse(auth);
   const bebas = jwtDecode(accessToken);
-  // Integrasi
+
   useEffect(() => {
     getAdmin();
-    // getAdminById();
   }, []);
 
   // Read Data Admin
@@ -33,8 +33,6 @@ const App = () => {
       .catch((error) => console.log(error));
   };
 
-  console.log(users);
-  console.log(bebas.id)
   const dataSource = users.map((user) => {
     return {
       trainingName: user.DetailTraining.trainingName,
@@ -45,6 +43,7 @@ const App = () => {
       certificate: user.DetailTraining.certificate,
     };
   });
+
   // Search
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
@@ -177,7 +176,7 @@ const App = () => {
       title: "Sertifikat",
       dataIndex: "sertificate",
       align: "center",
-      render: (_, record) => (data.length >= 1 ? <Button type="primary" icon={<DownloadOutlined />}></Button> : null),
+      render: (_, record) => <Button type="primary" icon={<DownloadOutlined />}></Button>,
     },
     {
       title: "Status",
@@ -204,18 +203,6 @@ const App = () => {
       onFilter: (value, record) => record.status.indexOf(value) === 0,
     },
   ];
-
-  // Table data
-  const data = [];
-  for (let i = 0; i < 5; i++) {
-    data.push({
-      number: i + 1,
-      trainingName: "Pelatihan Sertifikasi Teknisi Muda Jaringan Komputer",
-      age: i + 1,
-      location: "Hotel Grand Cordella",
-      city: "Bandung",
-    });
-  }
 
   return (
     <>

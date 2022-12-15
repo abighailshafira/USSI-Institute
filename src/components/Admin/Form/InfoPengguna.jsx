@@ -14,7 +14,7 @@ const InfoPengguna = ({ detail, setFormData, formData }) => {
         labelAlign="left"
       >
         <Form.Item label="Kode">
-          <Input disabled={true} value={detail?.id} onChange={(event) => setFormData({ ...formData, id: event.target.value })} />
+          <Input value={detail?.id} onChange={(event) => setFormData({ ...formData, id: event.target.value })} />
         </Form.Item>
         <Form.Item label="Nama">
           <Input value={detail?.name} onChange={(event) => setFormData({ ...formData, name: event.target.value })} />

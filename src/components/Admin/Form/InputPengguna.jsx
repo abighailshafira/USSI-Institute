@@ -12,17 +12,6 @@ const inputPengguna = ({ formData, setFormData }) => {
         labelAlign="left"
       >
         <Form.Item
-          name="code"
-          label="Kode"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input disabled={true} />
-        </Form.Item>
-        <Form.Item
           name="name"
           label="Nama"
           rules={[

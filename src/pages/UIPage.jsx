@@ -1,18 +1,18 @@
 import React from "react";
-import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
-import UssiInstitute from "../components/DetailDivisi/UssiInstitute";
+import DivisiUI from "../components/DetailDivisi/DivisiUI";
 import FloatingButton from "../components/FloatingButton";
+import Footer from "../components/Footer";
 
-const UssiInstitutePage = () => {
+const UIPage = () => {
   return (
     <>
       <NavBar />
-      <UssiInstitute />
+      <DivisiUI />
       <FloatingButton />
       <Footer />
     </>
   );
 };
 
-export default UssiInstitutePage;
+export default UIPage;

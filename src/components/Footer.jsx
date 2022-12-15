@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Image from "../assets/image/icon-ussi.ico";
 
-
 const Footer = () => {
-  
   const isLoggedIn = useSelector((state) => state.auth.accessToken);
 
   return (
@@ -90,11 +88,11 @@ const Footer = () => {
                 </p>
 
                 <p className="mb-4">
-                  {isLoggedIn? (
+                  {isLoggedIn ? (
                     <Link to="/pendaftaran">
                       <a className="text-white hover:text-cyan-500">Pendaftaran</a>
                     </Link>
-                  ):(
+                  ) : (
                     <Link to="/login">
                       <a className="text-white hover:text-cyan-500">Pendaftaran</a>
                     </Link>
@@ -102,7 +100,7 @@ const Footer = () => {
                 </p>
 
                 <p className="mb-4">
-                  <Link to="/contact">
+                  <Link to="/kontak">
                     <a className="text-white hover:text-cyan-500">Kontak</a>
                   </Link>
                 </p>

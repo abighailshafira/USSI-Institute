@@ -34,7 +34,6 @@ const FormLogin = () => {
       data: userData,
     })
       .then((res) => {
-        // console.log(res.data);
         if (res.data.statusCode === 200) {
           const token = res.data.accessToken;
           const user = jwtDecode(token);
@@ -58,7 +57,7 @@ const FormLogin = () => {
             },
           });
           toastMixin.fire({
-            title: "Login berhasil!",
+            title: "Berhasil login!",
           });
           if (user.role === "admin") {
             navigate("/dashboard");
