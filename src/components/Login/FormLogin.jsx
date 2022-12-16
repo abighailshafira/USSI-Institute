@@ -30,7 +30,7 @@ const FormLogin = () => {
     userData.append("password", password);
     axios({
       method: "post",
-      url: `http://45.13.132.160:5000/login`,
+      url: `http://localhost:5000/login`,
       data: userData,
     })
       .then((res) => {

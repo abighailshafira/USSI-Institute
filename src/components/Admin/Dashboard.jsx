@@ -19,6 +19,7 @@ const Dashboard = () => {
 
   // Handle Logout
   const handleLogout = () => {
+    // jsCookie.remove('auth')
     localStorage.removeItem("persist:auth");
     var toastMixin = Swal.mixin({
       toast: true,

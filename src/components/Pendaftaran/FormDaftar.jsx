@@ -29,6 +29,7 @@ const FormDaftar = () => {
     // setFormData({ userId: info?.User?.id });
   }, []);
 
+
   const getPendaftaran = () => {
     axios.get(`http://localhost:5000/api/v1/manuk/${bebas.id}`).then((res) => {
       setInfo(res.data.data);
@@ -54,7 +55,7 @@ const FormDaftar = () => {
 
     axios({
       method: "post",
-      url: ` http://45.13.132.160:5000/registration`,
+      url: ` http://localhost:5000/registration`,
       data: formData,
       headers: {
         Accept: "application/json",
