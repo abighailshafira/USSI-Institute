@@ -23,7 +23,7 @@ function Institution({ formData, setFormData }) {
 
   // Read Data Pelatihan
   const getPelatihan = async () => {
-    await axios.get("http://localhost:5000/api/v1/detail/training").then((res) => {
+    await axios.get("http://45.13.132.160:5000/detail/training").then((res) => {
       const getData = res.data.data;
       setPelatihan(getData);
       // console.log(res.data.data);
@@ -32,7 +32,7 @@ function Institution({ formData, setFormData }) {
 
   // Read Data Pelatihan berdasarkan Id
   const getPelatihanById = async () => {
-    await axios.get(`http://localhost:5000/api/v1/detail/training/${id}`).then((res) => {
+    await axios.get(`http://45.13.132.160:5000/detail/training/${id}`).then((res) => {
       const getData = res.data.data;
       setFormData(getData);
       // console.log(res.data.data);
@@ -41,7 +41,7 @@ function Institution({ formData, setFormData }) {
 
   // Read Data Pendaftaran
   const getPendaftaran = () => {
-    axios.get(`http://localhost:5000/api/v1/institution/${bebas.id}`).then((res) => {
+    axios.get(`http://45.13.132.160:5000/institution/${bebas.id}`).then((res) => {
       // console.log(res.data.data);
       setInfo(res.data.data);
     });

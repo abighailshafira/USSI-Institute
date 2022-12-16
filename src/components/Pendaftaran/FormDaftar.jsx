@@ -30,7 +30,7 @@ const FormDaftar = () => {
   }, []);
 
   const getPendaftaran = () => {
-    axios.get(`http://localhost:5000/api/v1/institution/${bebas.id}`).then((res) => {
+    axios.get(`http://45.13.132.160:5000/institution/${bebas.id}`).then((res) => {
       setInfo(res.data.data);
     });
   };
