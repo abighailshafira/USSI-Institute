@@ -34,7 +34,7 @@ const TableLembaga = () => {
   // Read Data Lembaga
   const getInstitutions = async () => {
     await axios
-      .get("http://45.13.132.160:5000/institution", {
+      .get("http://localhost:5000/api/v1/institution", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -49,7 +49,7 @@ const TableLembaga = () => {
 
   // Delete Data
   const deleteInstitution = async (id) => {
-    await axios.delete(`http://45.13.132.160:5000/institution/${id}`, {
+    await axios.delete(`http://localhost:5000/api/v1/institution/${id}`, {
       headers: {
         Accept: "application/json",
       },
@@ -77,7 +77,7 @@ const TableLembaga = () => {
 
     axios({
       method: "post",
-      url: `http://45.13.132.160:5000/institution`,
+      url: `http://localhost:5000/api/v1/institution`,
       data: formData,
       headers: {
         Accept: "application/json",
@@ -104,7 +104,7 @@ const TableLembaga = () => {
   // Read Data Lembaga by Id
   const getInstitutionsById = async (id) => {
     await axios
-      .get(`http://45.13.132.160:5000/institution/${id}`, {
+      .get(`http://localhost:5000/api/v1/institution/${id}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -134,7 +134,7 @@ const TableLembaga = () => {
 
     axios({
       method: "put",
-      url: `http://45.13.132.160:5000/institution`,
+      url: `http://localhost:5000/api/v1/institution`,
       data: formData,
       headers: {
         Accept: "application/json",

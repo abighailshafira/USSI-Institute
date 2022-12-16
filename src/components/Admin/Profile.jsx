@@ -35,7 +35,7 @@ const Profile = () => {
   // Read Data
   const getAdmin = async (id) => {
     await axios
-      .get(`http://45.13.132.160:5000/admin/${id}`, {
+      .get(`http://localhost:5000/api/v1/admin/${id}`, {
         headers: {
           "Content-Type": "application/json",
         },

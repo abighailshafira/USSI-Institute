@@ -18,7 +18,7 @@ const TablePeserta = () => {
   // Read Data Admin
   const getAdmin = async () => {
     await axios
-      .get("http://45.13.132.160:5000/event", {
+      .get("http://localhost:5000/api/v1/event", {
         headers: {
           "Content-Type": "application/json",
         },

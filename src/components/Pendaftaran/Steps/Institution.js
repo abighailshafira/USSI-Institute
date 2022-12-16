@@ -41,7 +41,7 @@ function Institution({ formData, setFormData }) {
 
   // Read Data Pendaftaran
   const getPendaftaran = () => {
-    axios.get(`http://45.13.132.160:5000/institution/${bebas.id}`).then((res) => {
+    axios.get(`http://localhost:5000/api/v1/manuk/${bebas.id}`).then((res) => {
       // console.log(res.data.data);
       setInfo(res.data.data);
     });
