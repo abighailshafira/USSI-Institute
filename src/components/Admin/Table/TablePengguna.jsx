@@ -31,7 +31,7 @@ const TablePengguna = () => {
   // Read Data Admin
   const getAdmin = async () => {
     await axios
-      .get("http://45.13.132.160:5000/admin", {
+      .get("http://localhost:5000/api/v1/admin", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -47,7 +47,7 @@ const TablePengguna = () => {
   // Read Data Admin by Id
   const getAdminById = async (id) => {
     await axios
-      .get(`http://45.13.132.160:5000/admin/${id}`, {
+      .get(`http://localhost:5000/api/v1/admin/${id}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -62,7 +62,7 @@ const TablePengguna = () => {
 
   // Delete Data
   const deleteAdmin = async (id) => {
-    await axios.delete(`http://45.13.132.160:5000/admin/${id}`, {
+    await axios.delete(`http://localhost:5000/api/v1/admin/${id}`, {
       headers: {
         Accept: "application/json",
       },
@@ -88,7 +88,7 @@ const TablePengguna = () => {
 
     axios({
       method: "post",
-      url: `http://45.13.132.160:5000/register`,
+      url: `http://localhost:5000/api/v1/register`,
       data: formData,
       headers: {
         Accept: "application/json",
