@@ -7,7 +7,7 @@ import axios from "axios";
 
 const TablePeserta = () => {
   const [users, setUsers] = useState([]);
-  console.log(users)
+  console.log(users);
 
   // Integrasi
   useEffect(() => {
@@ -18,7 +18,7 @@ const TablePeserta = () => {
   // Read Data Admin
   const getAdmin = async () => {
     await axios
-      .get("http://localhost:5000/api/v1/event", {
+      .get("http://45.13.132.160:5000/event", {
         headers: {
           "Content-Type": "application/json",
         },

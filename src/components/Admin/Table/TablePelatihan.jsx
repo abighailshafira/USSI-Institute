@@ -32,7 +32,7 @@ const TablePelatihan = () => {
   // Read Detail Pelatihan
   const detailTraining = async () => {
     await axios
-      .get("http://localhost:5000/api/v1/detail/training", {
+      .get("http://45.13.132.160:5000/detail/training", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -47,7 +47,7 @@ const TablePelatihan = () => {
 
   // Delete Data
   const deleteTraining = async (id) => {
-    await axios.delete(`http://localhost:5000/api/v1/detail/training/${id}`, {
+    await axios.delete(`http://45.13.132.160:5000/detail/training/${id}`, {
       headers: {
         Accept: "application/json",
       },
@@ -71,7 +71,7 @@ const TablePelatihan = () => {
       setConfirmLoading1(false);
       axios({
         method: "post",
-        url: `http://localhost:5000/api/v1/training`,
+        url: `http://45.13.132.160:5000/training`,
         // data: formData,
         data: {
           trainingName: formData.trainingName,
