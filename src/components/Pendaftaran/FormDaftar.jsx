@@ -54,7 +54,7 @@ const FormDaftar = () => {
 
     axios({
       method: "post",
-      url: `http://localhost:5000/api/v1/registration`,
+      url: ` http://45.13.132.160:5000/registration`,
       data: formData,
       headers: {
         Accept: "application/json",

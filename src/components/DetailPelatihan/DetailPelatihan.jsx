@@ -19,7 +19,7 @@ const DetailPelatihan = () => {
   // Read Data
   const getDetailPelatihan = async () => {
     await axios
-      .get(`http://localhost:5000/api/v1/detail/training/${id}`, {
+      .get(` http://45.13.132.160:5000/detail/training/${id}`, {
         headers: {
           Accept: "application/json",
         },
