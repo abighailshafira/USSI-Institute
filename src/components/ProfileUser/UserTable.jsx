@@ -20,7 +20,7 @@ const App = () => {
   // Read Data Admin
   const getAdmin = async () => {
     await axios
-      .get(` http://45.13.132.160:5000/${bebas.id}`, {
+      .get(` http://localhost:5000/${bebas.id}`, {
         headers: {
           "Content-Type": "application/json",
         },

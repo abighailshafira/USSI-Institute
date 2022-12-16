@@ -114,7 +114,7 @@ const FormRegister = () => {
   }, []);
 
   const getInstitution = async () => {
-    await axios.get(" http://45.13.132.160:5000/institution").then((res) => {
+    await axios.get(" http://localhost:5000/institution").then((res) => {
       const getData = res.data.data;
 
       let pelatihan = [];
