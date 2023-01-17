@@ -29,9 +29,8 @@ const FormDaftar = () => {
     // setFormData({ userId: info?.User?.id });
   }, []);
 
-
   const getPendaftaran = () => {
-    axios.get(`http://localhost:5000/api/v1/manuk/${bebas.id}`).then((res) => {
+    axios.get(`http://localhost:5000/api/v1/institution/${bebas.id}`).then((res) => {
       setInfo(res.data.data);
     });
   };
